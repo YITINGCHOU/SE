@@ -1,0 +1,3239 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地方特考四等｜資訊處理・資訊管理概要（舊制）考古題詳解</title>
+<style>/* ===== 關務四等考古題複習系統 — 樣式 ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --ink:        #1a1f2c;
+  --ink-soft:   #3d4456;
+  --paper:      #f4f1ea;
+  --paper-warm: #ece6d8;
+  --card:       #fffdf8;
+  --line:       #d8d0bf;
+  --accent:     #8a3324;   /* 朱紅 — 印章色 */
+  --accent-2:   #1f5673;   /* 靛藍 */
+  --gold:       #a07e2c;
+  --shadow:     rgba(40,32,20,0.13);
+
+  /* 主題分類色 */
+  --t-db:   #1f5673;
+  --t-ds:   #6a4c93;
+  --t-prog: #2d6a4f;
+  --t-sec:  #8a3324;
+  --t-net:  --t-net;
+  --t-net-c:#b5651d;
+  --t-mis:  #4a5859;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(138,51,36,0.025) 31px, rgba(138,51,36,0.025) 32px);
+}
+
+/* ===== 頁首 ===== */
+.site-header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2.4rem 1.5rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--accent);
+  position: relative;
+}
+.site-header .kicker {
+  font-size: .78rem; letter-spacing: .55em; text-indent: .55em;
+  color: var(--gold); font-weight: 700; margin-bottom: .7rem;
+}
+.site-header h1 {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900; font-size: clamp(1.6rem, 4.4vw, 2.7rem);
+  letter-spacing: .06em; line-height: 1.3;
+}
+.site-header h1 .stamp {
+  display: inline-block; border: 2.5px solid var(--accent);
+  color: var(--accent); padding: .05em .3em; border-radius: 6px;
+  transform: rotate(-4deg); margin: 0 .15em;
+  font-size: .82em; background: rgba(244,241,234,0.06);
+}
+.site-header .sub {
+  margin-top: .8rem; font-size: .9rem; color: #b8bcca; font-weight: 400;
+  letter-spacing: .04em;
+}
+
+/* ===== 統計列 ===== */
+.stat-bar {
+  display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+  background: var(--paper-warm); padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.stat-bar .stat { text-align: center; }
+.stat-bar .num {
+  font-family: 'Noto Serif TC', serif; font-weight: 900;
+  font-size: 1.7rem; color: var(--accent); line-height: 1;
+}
+.stat-bar .lbl {
+  font-size: .72rem; color: var(--ink-soft); letter-spacing: .15em;
+  margin-top: .25rem;
+}
+
+/* ===== 控制列 ===== */
+.controls {
+  position: sticky; top: 0; z-index: 50;
+  background: rgb(244,241,234);
+  border-bottom: 1.5px solid var(--line);
+  padding: .9rem 1.5rem;
+  box-shadow: 0 3px 14px var(--shadow);
+}
+.controls-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.mode-switch {
+  display: flex; border: 2px solid var(--ink); border-radius: 8px;
+  overflow: hidden;
+}
+.mode-switch button {
+  font-family: 'Noto Sans TC', sans-serif;
+  border: none; background: transparent; cursor: pointer;
+  padding: .5rem 1.1rem; font-size: .88rem; font-weight: 700;
+  color: var(--ink); transition: all .18s;
+}
+.mode-switch button.active { background: var(--ink); color: var(--paper); }
+
+.search-box {
+  flex: 1; min-width: 180px; position: relative;
+}
+.search-box input {
+  width: 100%; font-family: 'Noto Sans TC', sans-serif;
+  padding: .55rem .9rem .55rem 2.2rem; font-size: .9rem;
+  border: 1.5px solid var(--line); border-radius: 8px;
+  background: var(--card); color: var(--ink);
+}
+.search-box input:focus { outline: 2px solid var(--accent-2); border-color: transparent; }
+.search-box::before {
+  content: '🔍'; position: absolute; left: .7rem; top: 50%;
+  transform: translateY(-50%); font-size: .85rem; opacity: .5;
+}
+.btn-expand {
+  font-family: 'Noto Sans TC', sans-serif;
+  border: 1.5px solid var(--ink-soft); background: var(--card);
+  color: var(--ink-soft); cursor: pointer; border-radius: 8px;
+  padding: .5rem .9rem; font-size: .82rem; font-weight: 500;
+  white-space: nowrap; transition: all .15s;
+}
+.btn-expand:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ===== 篩選晶片 ===== */
+.filter-row {
+  max-width: 1080px; margin: .7rem auto 0;
+  display: flex; gap: .45rem; flex-wrap: wrap;
+}
+.chip {
+  font-family: 'Noto Sans TC', sans-serif;
+  border: 1.5px solid var(--line); background: var(--card);
+  color: var(--ink-soft); cursor: pointer; border-radius: 20px;
+  padding: .3rem .85rem; font-size: .8rem; font-weight: 500;
+  transition: all .15s;
+}
+.chip:hover { border-color: var(--ink-soft); }
+.chip.active {
+  background: var(--ink); color: var(--paper); border-color: var(--ink);
+}
+.chip .c-count { opacity: .6; font-size: .92em; margin-left: .2em; }
+
+/* ===== 主內容 ===== */
+.wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+/* 群組標題（年度 / 主題） */
+.group {
+  margin-bottom: 2.6rem;
+}
+.group-head {
+  display: flex; align-items: center; gap: .9rem;
+  margin-bottom: 1.1rem; padding-bottom: .6rem;
+  border-bottom: 2.5px solid var(--ink);
+}
+.group-head .g-badge {
+  font-family: 'Noto Serif TC', serif; font-weight: 900;
+  background: var(--ink); color: var(--paper);
+  padding: .35rem .8rem; border-radius: 6px; font-size: 1.05rem;
+  white-space: nowrap;
+}
+.group-head .g-title {
+  font-family: 'Noto Serif TC', serif; font-weight: 700;
+  font-size: 1.15rem; color: var(--ink);
+}
+.group-head .g-meta {
+  margin-left: auto; font-size: .76rem; color: var(--ink-soft);
+  text-align: right; line-height: 1.5;
+}
+.group-note {
+  font-size: .8rem; color: var(--accent-2); font-style: italic;
+  margin: -.5rem 0 1rem; padding-left: .2rem;
+}
+
+/* ===== 題目卡 ===== */
+.q-card {
+  background: var(--card); border: 1.5px solid var(--line);
+  border-radius: 10px; margin-bottom: .9rem;
+  box-shadow: 0 2px 8px var(--shadow);
+  overflow: hidden; transition: box-shadow .2s;
+}
+.q-card:hover { box-shadow: 0 4px 16px var(--shadow); }
+
+.q-header {
+  display: flex; align-items: flex-start; gap: .8rem;
+  padding: 1rem 1.2rem; cursor: pointer;
+  border-left: 5px solid var(--line);
+  transition: background .15s;
+}
+.q-card.t-db   .q-header { border-left-color: var(--t-db); }
+.q-card.t-ds   .q-header { border-left-color: var(--t-ds); }
+.q-card.t-prog .q-header { border-left-color: var(--t-prog); }
+.q-card.t-sec  .q-header { border-left-color: var(--t-sec); }
+.q-card.t-net  .q-header { border-left-color: var(--t-net-c); }
+.q-card.t-mis  .q-header { border-left-color: var(--t-mis); }
+.q-header:hover { background: var(--paper-warm); }
+
+.q-no {
+  font-family: 'Noto Serif TC', serif; font-weight: 900;
+  font-size: 1rem; color: var(--paper); background: var(--ink-soft);
+  min-width: 2.4rem; height: 2.4rem; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.q-headmain { flex: 1; min-width: 0; }
+.q-title {
+  font-family: 'Noto Serif TC', serif; font-weight: 700;
+  font-size: 1.02rem; color: var(--ink); line-height: 1.5;
+}
+.q-tags {
+  display: flex; gap: .45rem; flex-wrap: wrap; margin-top: .4rem;
+  align-items: center;
+}
+.tag {
+  font-size: .7rem; font-weight: 700; padding: .12rem .55rem;
+  border-radius: 4px; letter-spacing: .03em;
+}
+.tag-topic { color: #fff; }
+.t-db   .tag-topic, .tag.topic-db   { background: var(--t-db); }
+.t-ds   .tag-topic, .tag.topic-ds   { background: var(--t-ds); }
+.t-prog .tag-topic, .tag.topic-prog { background: var(--t-prog); }
+.t-sec  .tag-topic, .tag.topic-sec  { background: var(--t-sec); }
+.t-net  .tag-topic, .tag.topic-net  { background: var(--t-net-c); }
+.t-mis  .tag-topic, .tag.topic-mis  { background: var(--t-mis); }
+.tag-year {
+  background: var(--paper-warm); color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+.tag-score {
+  background: transparent; color: var(--gold);
+  border: 1px solid var(--gold);
+}
+.tag-part {
+  background: var(--accent-2); color: #fff;
+  font-weight: 500;
+}
+.q-toggle {
+  flex-shrink: 0; font-size: 1.3rem; color: var(--ink-soft);
+  transition: transform .25s; line-height: 1; margin-top: .4rem;
+}
+.q-card.open .q-toggle { transform: rotate(45deg); }
+
+/* ===== 題目展開內容 ===== */
+.q-body { display: none; padding: 0 1.2rem 1.4rem; }
+.q-card.open .q-body { display: block; animation: fadeIn .25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+.section-label {
+  display: inline-block; font-family: 'Noto Serif TC', serif;
+  font-weight: 700; font-size: .82rem; letter-spacing: .1em;
+  padding: .25rem .8rem; border-radius: 4px; margin: 1.1rem 0 .6rem;
+}
+.section-label.q { background: var(--ink); color: var(--paper); }
+.section-label.a { background: var(--accent); color: var(--paper); }
+
+.q-question {
+  background: var(--paper-warm); border-left: 3px solid var(--ink-soft);
+  padding: .9rem 1.1rem; border-radius: 0 6px 6px 0;
+  font-size: .93rem; white-space: pre-wrap; color: var(--ink-soft);
+  font-feature-settings: "tnum";
+}
+.q-answer {
+  font-size: .95rem; color: var(--ink);
+}
+.q-answer h4 {
+  font-family: 'Noto Serif TC', serif; color: var(--accent);
+  font-size: 1rem; margin: 1.1rem 0 .4rem;
+  border-bottom: 1px dashed var(--line); padding-bottom: .2rem;
+}
+.q-answer p { margin: .55rem 0; }
+.q-answer ul, .q-answer ol { margin: .5rem 0 .5rem 1.4rem; }
+.q-answer li { margin: .3rem 0; }
+.q-answer strong { color: var(--accent-2); font-weight: 700; }
+.q-answer code {
+  font-family: 'JetBrains Mono', monospace; font-size: .86em;
+  background: var(--paper-warm); padding: .1em .35em;
+  border-radius: 3px; color: var(--accent);
+}
+.q-answer table {
+  border-collapse: collapse; width: 100%; margin: .8rem 0;
+  font-size: .86rem;
+  display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;  /* MOBILE_TABLE：手機寬度下表格可左右捲動 */
+}
+.q-figure { max-width: 100%; overflow-x: auto; }
+.q-answer th, .q-answer td {
+  border: 1px solid var(--line); padding: .4rem .6rem;
+  text-align: left;
+}
+.q-answer th {
+  background: var(--ink); color: var(--paper); font-weight: 700;
+}
+.q-answer tr:nth-child(even) td { background: var(--paper-warm); }
+
+/* 程式碼/ASCII 區塊 */
+.q-answer pre {
+  background: #2b303b; color: #f2f0e9;
+  font-family: 'JetBrains Mono', monospace; font-size: .85rem;
+  line-height: 1.7; padding: 1rem 1.2rem; border-radius: 8px;
+  overflow-x: auto; margin: .8rem 0;
+  border-left: 3px solid var(--gold);
+}
+.q-answer pre code { background: none; color: inherit; padding: 0; }
+
+/* 獨立程式碼區（code 欄位） */
+.code-block {
+  margin: 1rem 0; border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--ink);
+}
+.code-head {
+  background: var(--ink); color: var(--gold);
+  font-family: 'JetBrains Mono', monospace; font-size: .76rem;
+  padding: .4rem .9rem; font-weight: 500;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.code-head .dots { display: flex; gap: .3rem; }
+.code-head .dots span {
+  width: .6rem; height: .6rem; border-radius: 50%; display: block;
+}
+.code-head .dots span:nth-child(1) { background: #d4554a; }
+.code-head .dots span:nth-child(2) { background: #d9a441; }
+.code-head .dots span:nth-child(3) { background: #5a9e6f; }
+.code-block pre {
+  margin: 0; border-radius: 0; border-left: none;
+  background: #2b303b;            /* 提亮背景，降低與文字的明度落差刺眼感 */
+  color: #f2f0e9;                 /* 預設文字（變數、標點）改為近白，清楚可見 */
+  font-size: .86rem; line-height: 1.7;
+  padding: 1.1rem 1.3rem 1.1rem 1.7rem;   /* 左側多留白，程式碼不貼邊、不壓迫 */
+}
+/* 語法highlight — 高對比配色，深背景下皆清晰 */
+.tok-kw  { color: #ff9d6f; font-weight: 700; }   /* 關鍵字：亮橘，最醒目 */
+.tok-str { color: #b8e986; }                      /* 字串：亮綠 */
+.tok-com { color: #9aa6b8; font-style: italic; }  /* 註解：提亮的灰藍，不再灰到看不見 */
+.tok-num { color: #f7d56e; }                      /* 數字：亮黃 */
+.tok-fn  { color: #82c8ff; }                      /* 函式：亮藍 */
+.tok-typ { color: #ffd166; }                      /* 型別：金黃 */
+
+/* ===== HTML 圖表（取代易跑版的 ASCII 圖）===== */
+.html-diagram {
+  margin: 1.1rem 0; padding: 1.3rem 1rem;
+  background: var(--paper-warm);
+  border: 1.5px solid var(--line); border-radius: 10px;
+  overflow-x: auto;
+}
+/* 通用方框節點 */
+.dg-box {
+  display: inline-flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center;
+  border: 2px solid var(--ink); border-radius: 8px;
+  background: var(--card); padding: .55rem .9rem;
+  font-size: .86rem; line-height: 1.5; font-weight: 500;
+  min-width: 5.5rem;
+}
+.dg-box .dg-sub { font-size: .73rem; color: var(--ink-soft); font-weight: 400; }
+.dg-box.accent { border-color: var(--accent); background: #fbf3f0; }
+.dg-box.blue   { border-color: var(--accent-2); background: #eef4f7; }
+.dg-box.gold   { border-color: var(--gold); background: #faf5e6; }
+.dg-box.ink    { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.dg-box.ink .dg-sub { color: #b8bcca; }
+
+/* 排列容器 */
+.dg-row { display: flex; align-items: center; justify-content: center;
+  gap: .5rem; flex-wrap: wrap; }
+.dg-col { display: flex; flex-direction: column; align-items: center;
+  gap: .5rem; }
+.dg-center { justify-content: center; }
+
+/* 箭頭 */
+.dg-arrow { font-size: 1.3rem; color: var(--accent); font-weight: 700;
+  line-height: 1; padding: 0 .15rem; }
+.dg-arrow.v { transform: rotate(90deg); margin: .1rem 0; }
+.dg-arrow.bi::before { content: '◀▶'; }
+.dg-arrow.down::before { content: '▼'; }
+.dg-arrow.right::before { content: '▶'; }
+
+/* 流程圖專用 */
+.flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.flow-node {
+  border: 2px solid var(--ink); background: var(--card);
+  padding: .55rem 1.1rem; font-size: .86rem; text-align: center;
+  font-weight: 500; max-width: 32rem; line-height: 1.55;
+}
+.flow-node.start, .flow-node.end {
+  border-radius: 22px; background: var(--ink); color: var(--paper);
+  font-weight: 700;
+}
+.flow-node.process { border-radius: 6px; }
+.flow-node.io {
+  border-radius: 6px; background: var(--paper-warm);
+  border-style: dashed;
+}
+.flow-node.decision {
+  background: #faf5e6; border-color: var(--gold);
+  border-radius: 6px; font-weight: 700;
+}
+/* 連接線（直線 + 箭頭） */
+.flow-conn { width: 2px; height: 1.6rem; background: var(--ink-soft);
+  position: relative; }
+.flow-conn::after {
+  content: '▼'; position: absolute; bottom: -.3rem; left: 50%;
+  transform: translateX(-50%); color: var(--ink-soft); font-size: .68rem;
+}
+/* 連接線旁的小標籤（如「否」「未出貨訂單」） */
+.flow-edge {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.flow-edge .lbl {
+  font-size: .74rem; font-weight: 700; padding: .08rem .55rem;
+  border-radius: 4px; position: relative; z-index: 1;
+}
+.flow-edge .lbl.yes { background: #2d6a4f; color: #fff; }
+.flow-edge .lbl.no  { background: var(--accent); color: #fff; }
+.flow-edge .lbl.plain {
+  background: var(--card); color: var(--accent-2);
+  border: 1px solid var(--line);
+}
+.flow-conn.short { height: .7rem; }
+.flow-conn.short::after { display: none; }
+
+/* 迴圈返回標記 —— 掛在決策節點下方，明確標示「往回」 */
+.flow-loop {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .76rem; font-weight: 700;
+  background: #eef4f7; color: var(--accent-2);
+  border: 1.5px dashed var(--accent-2); border-radius: 20px;
+  padding: .25rem .8rem; margin: .35rem 0;
+}
+.flow-loop::before { content: '⟲'; font-size: 1.05rem; }
+
+.flow-label {
+  font-size: .73rem; color: var(--accent-2); font-weight: 600;
+  background: var(--card); padding: 0 .4rem; margin: .15rem 0;
+}
+/* 舊版分支樣式（保留相容，僅用於少數真正左右並排的場景） */
+.flow-branch { display: flex; align-items: flex-start; gap: 2.5rem;
+  justify-content: center; }
+.flow-branch-arm { display: flex; flex-direction: column;
+  align-items: center; gap: 0; }
+.flow-yes, .flow-no {
+  font-size: .76rem; font-weight: 700; padding: .1rem .5rem;
+  border-radius: 4px; margin: .2rem 0;
+}
+.flow-yes { background: #2d6a4f; color: #fff; }
+.flow-no  { background: var(--accent); color: #fff; }
+
+/* ERD 專用形狀 */
+.erd-entity {
+  border: 2px solid var(--ink); background: var(--card);
+  padding: .5rem 1.1rem; font-weight: 700; font-size: .9rem;
+  border-radius: 4px; text-align: center;
+}
+.erd-rel {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 7rem; height: 4rem; background: #faf5e6;
+  border: 2px solid var(--gold);
+  transform: rotate(45deg); margin: 1rem;
+}
+.erd-rel > span {
+  transform: rotate(-45deg); font-size: .8rem; font-weight: 700;
+  text-align: center; line-height: 1.3;
+}
+.erd-attr {
+  display: inline-block; border: 1.5px solid var(--accent-2);
+  background: #eef4f7; border-radius: 50%;
+  padding: .35rem .8rem; font-size: .76rem; text-align: center;
+  color: var(--accent-2);
+}
+.empty .big { font-size: 2.5rem; margin-bottom: .5rem; }
+
+/* 回頂部 */
+.to-top {
+  position: fixed; right: 1.5rem; bottom: 1.5rem;
+  width: 3rem; height: 3rem; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none;
+  font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 14px var(--shadow);
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+  z-index: 60;
+}
+.to-top.show { opacity: 1; pointer-events: auto; }
+
+/* 頁尾 */
+.site-footer {
+  background: var(--ink); color: #9aa0b0;
+  text-align: center; padding: 2rem 1.5rem;
+  font-size: .8rem; line-height: 1.8;
+}
+.site-footer strong { color: var(--gold); }
+
+/* 手機 */
+@media (max-width: 640px) {
+  .stat-bar { gap: 1.4rem; }
+  .controls-inner { gap: .6rem; }
+  .search-box { order: 3; flex-basis: 100%; }
+  .group-head { flex-wrap: wrap; }
+  .group-head .g-meta { margin-left: 0; flex-basis: 100%; text-align: left; }
+  .q-answer table { font-size: .78rem; }
+  .q-answer pre, .code-block pre { font-size: .74rem; }
+}
+
+/* ===== 搜尋強化 / 跳轉面板（新增） ===== */
+.search-box input { padding-right: 2.2rem; }
+.search-clear {
+  position: absolute; right: .35rem; top: 50%; transform: translateY(-50%);
+  border: none; background: transparent; color: var(--ink-soft);
+  font-size: 1.05rem; line-height: 1; cursor: pointer;
+  padding: .25rem .45rem; border-radius: 50%; display: none;
+}
+.search-clear.show { display: block; }
+.search-clear:hover { background: var(--paper-warm); }
+.search-info {
+  max-width: 1100px; margin: .55rem auto 0;
+  font-size: .8rem; color: var(--ink-soft); display: none;
+}
+.search-info.show { display: block; }
+.search-info b { color: var(--accent); }
+mark.hl {
+  background: rgba(255, 208, 70, .6); color: inherit;
+  padding: 0 .06em; border-radius: 2px;
+}
+
+.jump-fab {
+  position: fixed; right: 1.5rem; bottom: 5.3rem; z-index: 90;
+  height: 2.6rem; padding: 0 1rem; border: none; border-radius: 999px;
+  background: var(--accent-2); color: #fff; cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif; font-size: .88rem; font-weight: 700;
+  box-shadow: 0 4px 12px var(--shadow); display: none;
+}
+.jump-fab.show { display: block; }
+.jump-fab:hover { background: var(--ink); }
+.jump-panel {
+  position: fixed; right: 1.5rem; bottom: calc(5.3rem + 3.2rem); z-index: 95;
+  width: min(360px, calc(100vw - 2.4rem)); max-height: 60vh; overflow: auto;
+  background: var(--card); border: 1.5px solid var(--line); border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(40,32,20,.25);
+}
+.jump-panel[hidden] { display: none; }
+.jump-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .7rem .9rem; border-bottom: 1px solid var(--line);
+  font-family: 'Noto Serif TC', serif; font-weight: 700; color: var(--ink);
+  position: sticky; top: 0; background: var(--card);
+}
+.jump-head button {
+  border: none; background: transparent; cursor: pointer;
+  font-size: 1rem; color: var(--ink-soft);
+}
+.jump-grid {
+  display: grid; gap: .45rem; padding: .8rem;
+  grid-template-columns: repeat(auto-fill, minmax(4.6rem, 1fr));
+}
+.jump-item {
+  display: flex; flex-direction: column; align-items: center; gap: .1rem;
+  padding: .45rem .3rem; border: 1.5px solid var(--line); border-radius: 8px;
+  background: var(--paper); color: var(--ink); cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif; line-height: 1.25;
+}
+.jump-item b { font-size: .95rem; }
+.jump-item small { font-size: .68rem; color: var(--ink-soft); }
+.jump-item:hover { border-color: var(--accent-2); background: #fff; }
+.jump-item.on { border-color: var(--accent-2); box-shadow: 0 0 0 1px var(--accent-2) inset; }
+.jump-item.done small { color: #2d6a4f; font-weight: 700; }
+.jump-foot {
+  display: flex; gap: .5rem; padding: 0 .8rem .8rem;
+}
+.jump-foot button {
+  flex: 1; padding: .45rem; border: 1.5px solid var(--ink-soft); border-radius: 8px;
+  background: var(--card); color: var(--ink-soft); cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif; font-size: .8rem;
+}
+.jump-foot button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ===== 子主題分類晶片：樣式沿用一般晶片（無色），顏色只出現在題目卡的標籤、色條與分組標題 ===== */
+/* 手機：晶片改成單列、可左右滑動，避免固定列佔掉半個螢幕 */
+@media (max-width: 640px) {
+  .filter-row { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: .35rem; scrollbar-width: thin; }
+  .filter-row .chip { flex: 0 0 auto; white-space: nowrap; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="kicker">特種考試地方政府公務人員考試 ‧ 四等 ‧ 資訊處理（舊制科目）</div>
+  <h1>資訊處理・資訊管理概要<br>歷年申論題詳解（舊制）</h1>
+  <div class="sub">101 年 ～ 112 年 ‧ 逐題參考解答 ‧ 子主題分類</div>
+</header>
+
+<div class="stat-bar">
+  <div class="stat"><div class="num" id="statYear">—</div><div class="lbl">考試年度</div></div>
+  <div class="stat"><div class="num" id="statQ">—</div><div class="lbl">題目總數</div></div>
+  <div class="stat"><div class="num" id="statTopic">—</div><div class="lbl">主題分類</div></div>
+  <div class="stat"><div class="num">100%</div><div class="lbl">附詳解</div></div>
+</div>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="mode-switch">
+      <button class="active" data-mode="year" onclick="setMode('year')">依年度</button>
+      <button data-mode="topic" onclick="setMode('topic')">依主題分類</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" autocomplete="off" placeholder="搜尋（多個關鍵字用空格分開）">
+      <button class="search-clear" id="searchClear" aria-label="清除搜尋">✕</button>
+    </div>
+    <button class="btn-expand" id="btnExpand" onclick="toggleExpandAll()">全部展開</button>
+  </div>
+  <div class="filter-row" id="filterRow"></div>
+  <div class="search-info" id="searchInfo"></div>
+</div>
+
+<main class="wrap">
+  <div id="content"></div>
+</main>
+
+<button class="jump-fab" id="jumpFab" onclick="toggleJump()" aria-label="跳轉">📍 跳轉</button>
+<div class="jump-panel" id="jumpPanel" hidden>
+  <div class="jump-head"><span id="jumpTitle">跳到年度</span><button onclick="toggleJump(false)" aria-label="關閉">✕</button></div>
+  <div class="jump-grid" id="jumpGrid"></div>
+</div>
+
+<button class="to-top" id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<footer class="site-footer">
+  <p><strong>特種考試地方政府公務人員考試四等</strong>　資訊處理・資訊管理概要（舊制）　考古題複習系統</p>
+  <p>本頁收錄 101～112 年共 12 個年度的申論題。113 年起此科目已改為「資通網路與安全概要」，這些是舊制題目，可供高考「資訊管理」準備參考。申論題沒有官方標準答案，詳解為依專業知識編寫的參考解答，請搭配教科書與最新資料自行查證。</p>
+  <p style="margin-top:.6rem;opacity:.7;">點擊任一題目卡可展開／收合詳解　‧　可切換「依年度」或「依主題分類」檢視</p>
+</footer>
+
+<script>// 公務人員特種考試關務人員四等考試 - 資訊處理 程式設計概要 考古題詳解
+// 主題分類代碼：db=資料庫 ds=資料結構與演算法 prog=程式設計實作
+
+/* ===== 關務四等資訊處理 程式設計概要 — 全部關務年度 ===== */
+const EXAM_DATA_CUSTOMS = [
+
+{
+  year: "112", exam: "local",
+  subject: "資訊管理與資通安全概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 44130",
+  questions: [
+    {
+      id: "loc-mis-112-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "零信任安全模型的定義與 5 項基本原則",
+      score: 25,
+      question: `請說明何謂零信任安全模型（Zero Trust Security Model）？並請條列說明該模型的 5 項基本原則。（25 分）`,
+      answer: `**一、定義**
+
+零信任安全模型的核心理念是「**永不信任，始終驗證（Never trust, always verify）**」。傳統的「城堡與護城河」模型認為內網可信、外網不可信；零信任則認為**無論使用者、裝置或應用位於內網或外網，都不預設可信**，每一次存取資源都要依身分、裝置狀態與情境進行驗證與授權，並持續監控。（NIST SP 800-207 為代表性的參考架構。）
+
+**二、5 項基本原則**
+
+| 原則 | 說明 |
+|---|---|
+| 1. 明確驗證（Verify explicitly） | 每次存取都用多項訊號驗證與授權：使用者身分、裝置健康度、位置、資料敏感度、服務類型；搭配多因素驗證（MFA） |
+| 2. 最小權限存取（Least privilege） | 只給完成工作所需的最少權限，採 Just-in-Time（限時）與 Just-Enough-Access（夠用即可）；以角色、屬性控制 |
+| 3. 假設已遭入侵（Assume breach） | 設計時假定攻擊者可能已在內部，縮小爆炸半徑、加密端對端流量、快速偵測與回應 |
+| 4. 微分段（Micro-segmentation）／網路隔離 | 把網路與工作負載切成小區段，區段間預設拒絕，阻止橫向移動 |
+| 5. 持續監控與分析（Continuous monitoring） | 蒐集日誌與遙測資料，結合行為分析與自動化回應，動態調整信任評估 |
+
+（說明：各機構對「5 項原則」的列法略有差異，例如也有把「所有資源視為資源、所有通訊都要加密、逐次連線授權、依動態政策決定、持續量測資產狀態」列為原則，作答時只要概念完整、條列清楚即可。）
+
+**三、導入效益**：降低內部橫向移動風險、保護遠距工作與雲端環境、提升可視性與稽核能力。`
+    },
+    {
+      id: "loc-mis-112-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "身分驗證與授權的區別及各兩個實例",
+      score: 25,
+      question: `請說明身分驗證（Authentication）和授權（Authorization）的區別，並各提供身分驗證和授權的兩個實際例子。（25 分）`,
+      answer: `**一、定義與區別**
+
+| 比較 | 身分驗證（Authentication） | 授權（Authorization） |
+|---|---|---|
+| 回答的問題 | 「你是誰？」確認身分是否真實 | 「你能做什麼？」確認已驗證的身分可存取哪些資源與操作 |
+| 先後順序 | **先做**（第一步） | **後做**（身分確認後才判斷權限） |
+| 依據 | 你知道的（密碼）、你擁有的（手機、卡片）、你本身的（指紋、臉部） | 權限政策、角色（RBAC）、存取控制清單（ACL）、屬性（ABAC） |
+| 結果 | 通過或失敗 | 允許或拒絕特定操作（讀、寫、刪除、管理） |
+| 常見技術 | 密碼、MFA、憑證、生物特徵、Kerberos、SSO | ACL、RBAC、OAuth 2.0 授權、作業系統與資料庫權限 |
+
+兩者合起來（加上稽核 Accounting，即 AAA）構成存取控制。**驗證通過不代表可以存取所有資源**。
+
+**二、身分驗證的兩個實例**
+1. **網路銀行登入**：輸入帳號密碼，再輸入手機收到的一次性密碼（OTP）— 使用兩種以上因子（多因素驗證）。
+2. **手機以指紋或臉部辨識解鎖**：以生物特徵確認使用者就是手機的擁有者。
+（其他：出入口刷員工證、憑證登入網站、自然人憑證報稅。）
+
+**三、授權的兩個實例**
+1. **公司檔案伺服器**：員工登入後，業務部門員工可讀寫「業務」資料夾，但只能唯讀「公告」資料夾，無法存取「人事」資料夾（依角色賦予權限）。
+2. **App 授權**：使用 Facebook 帳號登入第三方 App 時，系統詢問「是否允許此 App 讀取你的基本資料與好友名單？」使用者只授權有限範圍（OAuth 的 scope）。
+（其他：資料庫管理員可執行 DROP TABLE，一般使用者只能 SELECT；醫院系統中醫師可看病歷，行政人員不行。）
+
+**四、小結**：驗證確認「身分」，授權決定「權限」；先驗證、再授權，兩者缺一不可。`
+    },
+    {
+      id: "loc-mis-112-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "雲端運算對資訊管理的影響，以及雲端環境的資料安全與法令遵循",
+      score: 25,
+      question: `請說明雲端運算（Cloud Computing）對資訊管理的影響，以及在雲端環境中如何確保數據的安全和法令遵循。（25 分）`,
+      answer: `**一、雲端運算簡介**
+
+雲端運算是透過網路，以隨需自助、彈性擴充、按使用量計費的方式，取得運算、儲存、網路、平台與軟體等資源。服務模式有 IaaS（基礎設施）、PaaS（平台）、SaaS（軟體）；部署模式有公有雲、私有雲、混合雲、社群雲。
+
+**二、對資訊管理的影響**
+
+| 面向 | 影響 |
+|---|---|
+| 成本 | 由資本支出（買設備）轉為營運支出（按量付費），降低初期投資，但長期成本要管控（避免閒置資源、用量失控） |
+| 彈性與效率 | 資源快速佈建、依需求伸縮，加速新系統上線與創新 |
+| IT 部門角色 | 由機房維運轉向雲端治理、整合、成本管理與資安管理，須具備新技能 |
+| 服務水準與可用性 | 依賴雲端業者的 SLA，需評估可用性、備援與退場計畫（避免被單一廠商綁定 vendor lock-in） |
+| 資料與風險管理 | 資料存放在業者的資料中心，控制權改變，需重新思考資安、隱私、法遵與委外管理 |
+| 營運模式 | 支援遠距辦公、行動化與大數據、AI 等應用 |
+
+**三、確保資料安全與法令遵循的做法**
+
+1. **釐清責任共擔模型（Shared Responsibility Model）**：雲端業者負責基礎設施安全；客戶仍須負責資料、帳號、存取權限與設定的安全（SaaS、PaaS、IaaS 責任界線不同）。
+2. **資料保護**：資料分類分級，敏感資料加密（傳輸中 TLS、儲存中加密），自行掌握金鑰（BYOK／HYOK）；資料備份與異地備援；資料外洩防護（DLP）。
+3. **身分與存取管理**：強制多因素驗證、最小權限、特權帳號管理、單一登入與定期權限盤點。
+4. **雲端設定與監控**：防止設定錯誤（如儲存桶公開），使用 CSPM 工具檢查；集中蒐集與保存日誌，異常告警與事件應變。
+5. **供應商評估與契約**：選擇通過 ISO 27001、ISO 27017／27018、SOC 2 等驗證的業者；在契約與 SLA 中明訂資安責任、資料所有權、事件通報、稽核權、資料返還與刪除、退場機制。
+6. **法令遵循**：
+   - 了解資料**所在地與跨境傳輸**限制（如我國個人資料保護法、資通安全管理法；歐盟 GDPR 等）；
+   - 公務機關與特定非公務機關對委外與雲端的規範（如資通安全責任等級、資料落地要求）；
+   - 定期稽核、取得第三方查核報告，保存符合法規的證據。
+7. **人員與制度**：教育訓練、雲端使用政策、影子 IT（未經核准使用雲端服務）管理。
+
+**四、結論**：雲端帶來彈性與成本效益，但控制權與風險型態改變；資訊管理要以「責任共擔、資料保護、存取控制、供應商管理、法遵稽核」確保安全與合規。`
+    },
+    {
+      id: "loc-mis-112-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "數據治理的概念、組織中的重要性與好處",
+      score: 25,
+      question: `請說明數據治理（Data Governance）的概念，並論述其在組織中的重要性和好處。（25 分）`,
+      answer: `**一、概念**
+
+數據治理是組織針對**資料資產**所建立的一套**政策、角色權責、流程、標準與技術**，確保資料在整個生命週期（產生、儲存、使用、分享、保存、銷毀）中是**可用、可信、安全、合規**的。重點不是單純的技術，而是「由誰、依什麼規則、如何管理資料」。
+
+**主要構成要素**
+
+| 要素 | 說明 |
+|---|---|
+| 政策與標準 | 資料命名、分類分級、品質標準、保存與銷毀、共享規範 |
+| 組織與角色 | 資料治理委員會、資料長（CDO）、資料擁有者（Data Owner）、資料管理者（Data Steward） |
+| 資料品質管理 | 正確性、完整性、一致性、及時性、唯一性的衡量與改善 |
+| 中介資料與資料目錄 | 記錄資料來源、定義、血緣（lineage），方便查找與理解 |
+| 安全與隱私 | 存取控制、加密、去識別化、個資保護 |
+| 合規與稽核 | 符合法規（如個資法、GDPR）與內部稽核 |
+| 主資料與整合管理 | 統一客戶、產品等核心資料的唯一版本（MDM） |
+
+**二、重要性**
+
+1. **資料是組織的策略資產**：決策、數位轉型、AI 與大數據分析都仰賴高品質資料，資料不可信則決策錯誤。
+2. **資料量與來源快速增加**：跨系統、跨部門、跨雲端，容易產生資料孤島與不一致。
+3. **法規與隱私壓力**：個資法等要求明確的責任、安全控管與稽核。
+4. **降低風險**：避免資料外洩、誤用與品質問題造成的財務與聲譽損失。
+
+**三、好處**
+
+- 提升**資料品質與一致性**，減少重複與錯誤，報表數字一致。
+- 強化**決策品質**，主管能信任資料。
+- 提高**合規與安全**：降低外洩與違規風險，稽核容易。
+- 促進**資料共享與再利用**，打破部門壁壘，加速分析與創新。
+- 提升**營運效率與降低成本**（減少重複蒐集、清理資料的時間）。
+- 明確**責任歸屬**，問題發生時能迅速追溯。
+
+**四、實施建議**：高階支持→成立治理組織→盤點與分類資料→訂定政策與品質指標→導入工具（資料目錄、品質監控）→持續稽核與改善。`
+    }
+  ]
+},
+
+{
+  year: "111", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 44430",
+  questions: [
+    {
+      id: "loc-mis-111-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "敏捷宣言的主要內容與敏捷開發適合的系統類型",
+      score: 25,
+      question: `敏捷思維主要的核心價值是來自敏捷宣言（Agile Manifesto），請說明敏捷宣言的主要內容為何？敏捷軟體開發較適合那些類型的軟體系統開發？（25 分）`,
+      answer: `**一、敏捷宣言的主要內容**
+
+2001 年 17 位軟體專家發表《敏捷軟體開發宣言》，包含 **4 項價值**與 **12 項原則**。
+
+**4 項價值（左邊重於右邊，但右邊並非不重要）**
+
+| 更重視 | 勝過 |
+|---|---|
+| **個人與互動** | 流程與工具 |
+| **可運作的軟體** | 詳盡的文件 |
+| **與客戶合作** | 合約協商 |
+| **回應變化** | 遵循計畫 |
+
+**12 項原則（重點歸納）**
+1. 以持續、及早交付有價值的軟體來滿足客戶。
+2. 歡迎需求變更，即使在開發後期。
+3. 經常交付可運作的軟體（數週到數個月，越短越好）。
+4. 業務人員與開發人員每天一起工作。
+5. 以積極的個人建立專案，給予環境與支持並信任他們。
+6. 面對面溝通是最有效的資訊傳遞方式。
+7. 可運作的軟體是進度的主要衡量標準。
+8. 維持可持續的開發步調。
+9. 持續關注技術卓越與良好設計。
+10. 簡潔——盡量減少不必要的工作。
+11. 最佳的架構、需求與設計來自自我組織的團隊。
+12. 團隊定期反思如何更有效率，並調整行為。
+
+常見實務方法：Scrum（Sprint、Product Backlog、Daily Scrum、Sprint Review／Retrospective）、XP（極限程式設計）、看板（Kanban）。
+
+**二、較適合的軟體系統類型**
+
+| 適合敏捷的情境 | 原因 |
+|---|---|
+| 需求不明確或會頻繁變動（新創產品、行動 App、網站、電商） | 迭代交付、快速取得回饋並調整 |
+| 需要快速上市、持續創新的產品 | 短週期交付可儘早驗證 |
+| 小型到中型團隊（約 3～9 人）的專案 | 溝通成本低，易自我組織 |
+| 使用者／客戶可高度參與的專案 | 能持續回饋、確認需求 |
+| 風險與不確定性高的專案 | 用小步迭代降低風險 |
+
+**較不適合**：需求固定且規格嚴格的專案（如法規嚴格的醫療設備、航太、核電等安全關鍵系統，需要完整文件與驗證）、大型固定價格合約專案、團隊分散且無法頻繁溝通者。（大型專案可採 SAFe 等擴展框架，但要調整。）`
+    },
+    {
+      id: "loc-mis-111-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "政府機關以 CMMI-ACQ 改善軟體委外籌獲流程的導入步驟",
+      score: 25,
+      question: `能力成熟度整合模式-籌獲（Capability Maturity Model Integration-Acquisition, CMMI-ACQ）提供組織一個持續性的軟體籌獲流程改善路徑。如果您服務於政府機關資訊部門，選擇以 CMMI-ACQ 作為軟體委外開發籌獲流程改善的參考模式，請舉例說明您所規劃的 CMMI-ACQ 導入步驟為何？（25 分）`,
+      answer: `**一、CMMI-ACQ 簡介**
+
+CMMI-ACQ（CMMI for Acquisition）是針對「**採購（籌獲）方**」的流程改善模型，協助組織有紀律地管理委外與採購，從需求、招標、簽約到驗收與管理供應商。它有成熟度等級（1 初始、2 已管理、3 已定義、4 量化管理、5 最佳化），並以「流程領域（Process Areas）」說明要做的事，例如：
+- **需求開發（ARD）**、**招標與供應商協議開發（SSAD）**；
+- **協議管理（AM）**、**籌獲技術管理（ATM）**、**驗證（AVER）與確認（AVAL）**；
+- 專案規劃（PP）、專案監控（PMC）、需求管理（REQM）、風險管理（RSKM）等。
+
+**二、以政府機關資訊部門為例的導入步驟**
+
+| 步驟 | 作法（舉例：軟體委外開發採購） |
+|---|---|
+| 1. 取得高層承諾與設定目標 | 向機關首長與資訊長說明效益，確認目標，如：「兩年內達成成熟度等級 2，降低委外專案延遲與驗收糾紛」 |
+| 2. 成立推動組織 | 成立導入小組（含資訊、採購、主計、政風與業務單位代表），指派負責人，編列經費與教育訓練 |
+| 3. 現況評估（Gap Analysis） | 盤點現行委外流程（需求訂定、招標、評選、履約管理、驗收），對照 CMMI-ACQ 流程領域，找出差距，例如：需求書寫不明確、驗收準則不具體、缺少變更管理 |
+| 4. 選定改善範圍與優先順序 | 先聚焦等級 2 的關鍵流程領域：需求管理、協議管理、專案規劃與監控、籌獲需求開發 |
+| 5. 規劃改善行動計畫 | 訂出時程、里程碑、責任人，納入機關年度計畫 |
+| 6. 建立與制度化流程資產 | 訂定標準作業程序與範本：需求規格書範本、RFP 與評選標準、契約附件範本、里程碑與驗收檢查表、變更控制程序、風險登記表 |
+| 7. 試行（Pilot） | 選一個中小型委外專案試行新流程，蒐集問題與回饋，修正 |
+| 8. 訓練與推廣 | 對承辦人員、採購與驗收人員訓練，逐步推廣到全機關專案 |
+| 9. 量測與評鑑 | 訂定指標（如：進度偏差、變更次數、缺陷數、驗收一次通過率），定期內部稽核，必要時委由合格主任評估師做正式評鑑（SCAMPI） |
+| 10. 持續改善 | 依評鑑與經驗回饋更新流程，向更高成熟度邁進 |
+
+**三、預期效益**：委外需求更清晰、供應商管理有紀律、降低延遲與超支風險、驗收有客觀依據，提高公帑使用效益。
+
+**四、導入重點與風險**：高層支持是成功關鍵；避免形式主義（只做文件）；結合政府採購法規定，將流程融入現有行政程序；注意人員流動，知識要制度化。`
+    },
+    {
+      id: "loc-mis-111-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "資通安全維護計畫應包含的內容",
+      score: 25,
+      question: `依據資通安全管理法規定，公務機關應依其所屬資通安全責任等級要求來訂定、修正及實施資通安全維護計畫。如果您身為政府機關資訊部門的資安專責人員，負責訂定資通安全維護計畫，請說明該計畫應包含那些內容。（25 分）`,
+      answer: `**一、法源**
+
+《資通安全管理法》第 10 條規定，公務機關應依其資通安全責任等級，訂定、修正及實施**資通安全維護計畫**；其應包含的內容，規定於**《資通安全管理法施行細則》第 6 條**。（法條內容請以現行條文為準，作答時依下列重點分項說明。）
+
+**二、維護計畫應包含的內容（依施行細則，條列說明）**
+
+| 項目 | 說明 |
+|---|---|
+| 1. 核心業務及其重要性 | 界定機關的核心業務、重要性與可容忍中斷時間，作為保護的優先順序 |
+| 2. 資通安全政策及目標 | 由機關首長核定的資安政策，訂定可衡量的目標 |
+| 3. 資通安全推動組織 | 成立資安推動小組，明確角色與責任 |
+| 4. 專責人力及經費配置 | 配置專責人員與預算 |
+| 5. 公務機關資通安全長之配置 | 指派資安長（通常由副首長或適當人員兼任） |
+| 6. 資訊及資通系統之盤點 | 盤點資訊資產，標示核心資通系統與相關資產 |
+| 7. 資通安全風險評估 | 辨識威脅與弱點，評估風險並訂定處理方式 |
+| 8. 資通安全防護及控制措施 | 技術與管理控制，如存取控制、網路與系統安全、加密、備份、實體安全、弱點掃描與滲透測試等（依責任等級要求） |
+| 9. 資通安全事件通報、應變及演練相關機制 | 事件通報程序、應變計畫、定期演練 |
+| 10. 資通安全情資之評估及因應 | 蒐集與分析威脅情資，採取因應措施 |
+| 11. 資通系統或服務委外辦理之管理措施 | 選商、契約資安要求、監督與稽核委外廠商 |
+| 12. 公務機關所屬人員辦理業務涉及資通安全事項之考核機制 | 對人員資安作為的考核與獎懲 |
+| 13. 資通安全維護計畫與實施情形之持續精進及績效管理機制 | 內部稽核、管理審查、PDCA 持續改善 |
+
+**三、制訂與實施要點**
+- 依機關的**資通安全責任等級（A～E 級）**決定應辦事項的強度（如 A、B 級要辦理弱點掃描、滲透測試、資安健診、導入 ISMS 等）。
+- 計畫需經機關首長核定，定期（至少每年）檢討修正，並向上級機關提報實施情形。
+- 結合**資安教育訓練**（一般使用者、資訊人員、主管不同時數）與**稽核**，確保落實。
+- 以 PDCA 持續改善，與 ISO 27001 管理制度可互相搭配。`
+    },
+    {
+      id: "loc-mis-111-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "政府網站營運績效檢核指標：網站介面、內容、服務、行動友善四面向的次指標",
+      score: 25,
+      question: `國家發展委員會所頒布的政府網站營運績效檢核指標共包含八大面向下的 37 項次指標。請就「網站介面」、「網站內容」、「網站服務」、「行動友善」四個面向來說明其下包含那些次指標。（25 分）`,
+      answer: `**說明（請先閱讀）**：這一題考的是國發會（原研考會）《政府網站營運績效檢核指標》的**條文內容**，屬於需要背誦的資料，而且指標項目與名稱曾經修訂。我沒有可靠的原文可逐項對照，因此下面只整理**各面向的檢核重點**，並標示為「概念性說明」；**正式的次指標名稱與項次，請以國發會公布的最新版檢核指標為準**，並以該文件為背誦依據。
+
+**一、整體架構**
+
+指標分成八大面向，其中與使用者最直接相關的是：**網站介面、網站內容、網站服務、行動友善**（其餘面向還包括網站的管理維運、網站安全、無障礙等）。評估目的是讓政府網站「**好找、好用、好懂、可信賴**」。
+
+**二、四個面向的檢核重點（概念性說明）**
+
+| 面向 | 檢核重點（概念性說明） |
+|---|---|
+| **網站介面** | 版面與導覽是否一致且清楚（主選單、麵包屑、網站地圖）；搜尋功能是否好用；各頁面格式風格一致；連結有效、無失效連結；頁面載入速度與瀏覽器相容性；字型、色彩與版面可讀性；提供不同使用者（如英文、其他語系）的入口 |
+| **網站內容** | 內容是否正確、完整、及時更新並標示更新日期；機關基本資訊（組織、業務、聯絡方式）是否清楚；法規、公告、施政與預算等資訊公開；資料格式便於閱讀與下載；內容可信、來源清楚；提供開放資料等 |
+| **網站服務** | 線上申辦、查詢與繳費等服務是否完整易用；服務流程與說明是否清楚；提供意見信箱與常見問答（FAQ）；回應民眾意見的時效；個人資料與隱私保護聲明；跨機關整合與單一入口 |
+| **行動友善** | 網站是否採用響應式設計（RWD），在手機與平板能正常瀏覽與操作；按鈕、文字大小適合觸控；行動版載入速度；行動裝置上的服務與表單可正常使用；提供行動 App 或行動版入口 |
+
+**三、作答建議**
+1. 考場上應優先寫出自己確實記得的次指標名稱；若不確定，以上述各面向的**檢核重點與評估目的**說明，也能得部分分數。
+2. 可補充這四個面向的**關聯**：介面（好用）→ 內容（可信完整）→ 服務（解決問題）→ 行動友善（隨時隨地可用），共同提升民眾對政府網站的滿意度。
+3. 建議把國發會最新指標說明手冊的四個面向逐項列成表格背誦。`
+    }
+  ]
+},
+
+{
+  year: "110", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43430",
+  questions: [
+    {
+      id: "loc-mis-110-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "摩爾定律、梅特卡夫定律、殺手級應用的目的與實務範例",
+      score: 20,
+      question: `請說明摩爾定律、梅特卡夫定律及殺手級應用這三者的目的。此外也請針對這三者列舉實務範例。（20 分）`,
+      answer: `| 概念 | 內容與目的 | 實務範例 |
+|---|---|---|
+| **摩爾定律（Moore's Law）** | Intel 共同創辦人摩爾觀察：積體電路上可容納的電晶體數量，約每 18～24 個月增加一倍（效能提升、單位成本下降）。**目的**：用來預測資訊科技的進步速度，協助企業規劃技術更新、產品開發與投資 | 智慧型手機的處理器效能數年間大幅提升，價格卻不升反降；儲存裝置單位容量價格持續下降；企業據此規劃設備汰換週期 |
+| **梅特卡夫定律（Metcalfe's Law）** | 網路的價值約與**用戶數的平方**成正比（n 個用戶可形成約 n(n−1)/2 個連結）。**目的**：說明網路效應，解釋為何用戶越多價值越高，並指導企業採取「先擴大用戶規模」的策略（平台、補貼、免費） | 社群平台（Facebook、LINE）、電話與電子郵件、拍賣與電商平台、通訊軟體：朋友越多越有價值 |
+| **殺手級應用（Killer Application）** | 一種新技術或平台因某個**關鍵應用**而迅速被大眾接受，帶動整個平台普及。**目的**：策略上用來刺激新平台、新設備或新技術的採用，找出市場爆發點 | VisiCalc 試算表帶動 Apple II 個人電腦的普及；電子郵件與網頁瀏覽帶動網際網路普及；Line／即時通訊帶動智慧型手機；遊戲帶動遊戲主機普及 |
+
+**三者關聯**：摩爾定律讓硬體越來越便宜，降低門檻；殺手級應用促使人們採用新平台；梅特卡夫定律說明用戶越多、網路越有價值，形成良性循環，推動數位服務與平台經濟成長。`
+    },
+    {
+      id: "loc-mis-110-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "以波特五力分析中華郵政在臺灣宅配業的競爭力",
+      score: 20,
+      question: `就電子商務相關業務而言，請用波特的五力分析進行中華郵政在臺灣宅配業之競爭力分析。（20 分）`,
+      answer: `**說明**：下列是依一般產業常識所做的**分析框架與推論**，不是特定年度的數據；實際市占與政策請以最新資料為準，作答時可依自己掌握的資訊補充。
+
+**一、波特五力分析**
+
+| 力量 | 分析 |
+|---|---|
+| **1. 同業競爭強度（高）** | 臺灣宅配市場主要有統一速達（黑貓宅急便）、新竹物流、嘉里大榮、蝦皮 SPX、各大超商店配（7-11、全家）及中華郵政。服務差異不大，業者以價格、配送速度、據點與通路整合競爭，競爭激烈 |
+| **2. 新進入者的威脅（中高）** | 電商平台自建物流（如蝦皮店到店）、即時外送（Uber Eats、Foodpanda 等）、新創物流平台進入；進入門檻（車隊、倉儲、資訊系統）雖高，但平台資本雄厚，威脅仍大 |
+| **3. 替代品的威脅（中高）** | 超商取貨（店到店）、智慧取貨櫃、自取、跨境集運；以及未來無人機、機器人配送。消費者轉換成本低 |
+| **4. 供應商議價能力（中）** | 供應商包括人力（司機、投遞員）、車輛與油料、資訊系統與設備；勞動力成本與油價上升壓力大；但郵政規模大，採購議價能力較強 |
+| **5. 買方議價能力（高）** | 大型電商平台與企業客戶出貨量大，能要求低價與客製服務；一般消費者轉換成本低、價格敏感，買方議價力強 |
+
+**二、中華郵政的競爭力（SWOT 式歸納）**
+
+| | 內容 |
+|---|---|
+| 優勢 | 全國郵局據點密集，具備偏遠與離島的最後一哩投遞能力；品牌信任度高；有郵務與金融（匯款、貨到付款）整合；普及服務義務下的規模效益 |
+| 劣勢 | 受公營體制與人事成本限制，服務彈性與創新速度較慢；資訊整合與即時追蹤、尖峰時段的時效不如民營業者；價格策略受限 |
+| 機會 | 電商與跨境電商成長；與電商平台、超商策略合作；智慧郵局（智能櫃）、數位化追蹤；利用郵局金融通路發展物流金融 |
+| 威脅 | 民營業者與平台自建物流持續搶客；價格戰；客戶流失到店配方式 |
+
+**三、策略建議**
+1. 發揮據點優勢：郵局＋智慧取貨櫃，建立便利的取件網。
+2. 提升資訊化：即時追蹤、API 與電商平台串接、預約配送。
+3. 差異化服務：偏遠地區、退換貨、冷鏈與貨到付款、與郵政金融結合。
+4. 與平台、超商策略聯盟，擴大貨源；提升作業自動化與時效。
+
+**結論**：宅配市場競爭強度高、買方議價能力強；中華郵政以全國據點與品牌信任為核心優勢，需補強資訊化與服務彈性以提升競爭力。`
+    },
+    {
+      id: "loc-mis-110-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "四類資訊系統的特性與適合的系統開發模式",
+      score: 20,
+      question: `請分別說明下列資訊系統的系統特性及適合那一種系統開發模式。（20 分）
+（一）客製化的特殊控制軟體。
+（二）遊戲軟體。
+（三）網頁製作。
+（四）典型的管理資訊系統或 ERP 系統。`,
+      answer: `**說明**：「適合哪種開發模式」沒有唯一答案，重點在於**依系統特性選擇模式並說明理由**。
+
+| 系統 | 系統特性 | 適合的開發模式與理由 |
+|---|---|---|
+| **（一）客製化的特殊控制軟體**（如工業控制、醫療設備、飛控） | 需求明確且穩定、**可靠度與安全性要求極高**、即時性、和硬體緊密結合、錯誤成本高，需嚴格驗證與完整文件 | **傳統系統發展生命週期（SDLC）／瀑布模型，或 V 模型**：階段清楚、重視需求規格、設計審查與測試驗證，利於稽核與安全認證。也可用螺旋模型管理高風險 |
+| **（二）遊戲軟體** | 創意導向、**需求不確定且會不斷調整**、重視玩家體驗與回饋、需要快速試玩與持續更新 | **原型（Prototyping）與敏捷（Agile）／迭代式開發**：快速做出可玩原型，依玩家與測試回饋調整，持續交付新版本（Scrum） |
+| **（三）網頁製作** | 介面與內容為主、**開發週期短**、需求常變、需快速上線與更新、可大量使用現成元件與框架 | **快速應用開發（RAD）、原型法或敏捷開發**：使用工具與元件快速組裝，與使用者密切互動，快速迭代 |
+| **（四）典型管理資訊系統或 ERP** | 需求以企業流程為主，**需求明確、涵蓋面廣、跨部門整合**、資料一致性與整合性要求高；常採套裝軟體 | **系統發展生命週期（瀑布式）搭配套裝軟體導入方法論**：分析企業流程→差異分析（Fit-Gap）→組態設定與少量客製→整合與資料轉換→測試→上線訓練；大型專案可採分階段上線 |
+
+**補充**：實務上常混合使用，例如核心系統用瀑布式控管、周邊功能用敏捷快速迭代；選擇模式時要考慮需求穩定度、風險、使用者參與程度、時程與團隊經驗。`
+    },
+    {
+      id: "loc-mis-110-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "以康德定然律令與功利主義分析職員購買機器人帳號的道德問題",
+      score: 20,
+      question: `請從康德的定然律令（Immanuel Kant's Categorical Imperative）和功利主義（Utilitarian Principle）兩個觀點進行某公司職員 A 行為之道德分析：職員 A 用公司資金購買一堆機器人帳號的決定，造成追蹤者和臉書按讚都是偽造的。（20 分）`,
+      answer: `**一、事件摘要**：職員 A 用公司資金購買機器人帳號，使公司社群的追蹤者與按讚數造假，目的是製造聲量與人氣。
+
+**二、康德的定然律令（義務論）**
+
+康德主張道德行為要符合不依賴後果的**絕對命令**，主要有兩個公式：
+1. **普遍化原則**：你的行為準則是否能成為**所有人都遵守的普遍法則**而不自相矛盾？
+2. **人性公式**：把他人視為**目的**，而不只是**手段**。
+
+| 檢驗 | 分析 | 結論 |
+|---|---|---|
+| 普遍化 | 若人人都用假帳號製造假人氣，按讚與追蹤將失去意義，社群數據不再可信，欺騙行為本身無法成立（自相矛盾） | 行為**不可普遍化**，不道德 |
+| 人性公式 | 以虛假數據誤導消費者、廣告主與投資人，把他們當作達成業績的**手段**；同時違反平台規範，也濫用公司資金（背信） | 不道德 |
+
+**結論**：依康德觀點，不論結果好壞，這種欺騙行為本身就是不道德的。
+
+**三、功利主義（目的論）**
+
+功利主義主張：道德的行為是能為**最大多數人帶來最大幸福（效益）**的行為，要比較行為的**整體後果**。
+
+| 對象 | 短期效益 | 長期成本 |
+|---|---|---|
+| 公司與 A | 數據好看、可能獲得績效、吸引客戶 | 被發現後商譽與信用受損、被平台處罰（停權）、法律責任（如不實廣告、背信）、浪費公司資金 |
+| 消費者與廣告主 | — | 被誤導做出購買與投放決策，受到損害 |
+| 其他守法的競爭者 | — | 競爭不公平 |
+| 社會 | — | 降低社群平台資訊的可信度，破壞信任 |
+
+**結論**：整體來看，**短期、少數人（A 與公司）的利益遠小於長期、多數人（消費者、同業、社會）的損失**，總效益為負，因此也是不道德的。
+
+**四、比較與結論**
+
+| 觀點 | 判斷依據 | 對本案的結論 |
+|---|---|---|
+| 康德定然律令 | 行為本身是否符合普遍法則與尊重人性 | 不道德（欺騙） |
+| 功利主義 | 整體後果的利弊 | 不道德（總效益為負） |
+
+兩種不同取向的倫理觀點都認為此行為不當。建議：公司應訂定誠信行銷規範、績效以真實指標衡量、定期稽核社群數據與預算使用。`
+    },
+    {
+      id: "loc-mis-110-5", no: "五", topic: "mis", topicName: "資訊管理概要",
+      title: "從資料庫存取資訊以改善績效與決策的主要工具與技術",
+      score: 20,
+      question: `從資料庫存取資訊來改善企業績效與決策制定的主要工具及技術為何？（20 分）`,
+      answer: `**一、背景**：企業的營運資料存放於各系統與資料庫中，要把資料轉成能支援決策的資訊，需要查詢、整合、分析與呈現等工具與技術。主要有以下幾類：
+
+| 工具與技術 | 說明 | 用途／例子 |
+|---|---|---|
+| **資料庫管理系統（DBMS）與查詢語言（SQL）** | 以 SQL 查詢、報表工具從關聯式資料庫取得資料 | 查詢某月銷售明細、客戶名單 |
+| **資料倉儲（Data Warehouse）與資料超市（Data Mart）** | 把來自不同系統的資料，經 **ETL（擷取、轉換、載入）** 整合到主題導向、歷史性、整合式的儲存庫；資料超市是針對特定部門的小型倉儲 | 整合銷售、庫存、財務資料做跨部門分析 |
+| **線上分析處理（OLAP）** | 提供**多維度**分析：切片（slice）、切塊（dice）、向下鑽取（drill-down）、向上彙總（roll-up） | 依時間、地區、產品別分析銷售額，找出趨勢 |
+| **資料探勘（Data Mining）** | 從大量資料中發現隱藏的型態與關聯：關聯規則（購物籃分析）、分類、群集、預測、序列分析 | 找出常一起購買的商品、預測流失客戶、信用評分 |
+| **文字探勘與網頁探勘** | 分析非結構化資料（客戶評論、社群貼文、網站點擊流量） | 輿情與客戶意見分析 |
+| **商業智慧（BI）與儀表板（Dashboard）** | 彙整資料並以圖表、記分卡呈現 KPI，支援管理者決策 | 主管即時監看營運績效 |
+| **大數據技術** | 以 Hadoop、Spark、NoSQL 等處理大量、高速、多樣的資料 | 即時推薦、物聯網資料分析 |
+| **資料庫與網站整合（Web-database）** | 透過網路介面讓使用者線上查詢資料庫 | 客戶登入查詢訂單狀態 |
+
+**二、如何改善績效與決策**
+1. **提升決策品質**：以事實與數據取代直覺。
+2. **發現機會與問題**：透過探勘與鑽取找出異常與趨勢。
+3. **提高效率**：自動化報表，減少手工整理。
+4. **個人化與精準行銷**：依分析結果進行客戶分群與推薦。
+
+**三、導入重點**：資料品質（清理、標準化）、資料治理、使用者易用性、與業務目標結合。`
+    }
+  ]
+},
+
+{
+  year: "109", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43930",
+  questions: [
+    {
+      id: "loc-mis-109-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "專案管理的意義、組成與利害關係人",
+      score: 25,
+      question: `請先說明專案管理（Project Management）的意義，然後詳細說明專案管理有那些組成以及專案管理的利害關係人員（stakeholders）包括那些人？（25 分）`,
+      answer: `**一、專案與專案管理的意義**
+
+**專案（Project）**是為了創造獨特的產品、服務或成果所進行的**暫時性**努力，有明確的起訖時間與目標。**專案管理**是把知識、技能、工具與技術應用於專案活動，以**在時間、成本、品質、範疇的限制下達成專案目標**，並滿足利害關係人需求的管理過程。
+
+**二、專案管理的組成**
+
+**（一）知識領域（以 PMBOK 的十大知識領域為例）**
+
+| 知識領域 | 重點 |
+|---|---|
+| 整合管理 | 協調各領域、整體變更控制 |
+| 範疇管理 | 界定做什麼與不做什麼（WBS）、控制範疇蔓延 |
+| 時程管理 | 活動排序、工期估計、關鍵路徑、進度控制 |
+| 成本管理 | 成本估算、預算、成本控制（如 EVM 價值管理） |
+| 品質管理 | 品質規劃、保證與控制 |
+| 資源管理 | 人員與資源的取得、團隊發展 |
+| 溝通管理 | 溝通計畫、資訊傳遞、報告 |
+| 風險管理 | 風險識別、分析、因應與監控 |
+| 採購管理 | 採購、供應商選擇與合約管理 |
+| 利害關係人管理 | 識別、分析與參與利害關係人 |
+
+三大限制（鐵三角）：**範疇、時程、成本**，並影響品質。
+
+**（二）專案生命週期與流程群組**：**啟動 → 規劃 → 執行 → 監控 → 結案**（五大流程群組）。
+
+**（三）其他組成**：專案目標與成功準則（如 MOV）、專案章程與計畫、專案組織與角色、工具與方法（甘特圖、PERT/CPM、WBS）。
+
+**三、專案管理的利害關係人（Stakeholders）**
+
+利害關係人是會影響專案、或受專案影響的個人與組織：
+
+| 類別 | 例子 | 關注點 |
+|---|---|---|
+| 專案發起人／贊助者 | 高階主管、出資者 | 預算、投資報酬、策略目標 |
+| 專案經理 | 負責規劃執行與控制 | 在限制下達成目標 |
+| 專案團隊成員 | 分析師、設計師、程式設計師、測試人員 | 工作內容、資源、技術 |
+| 使用者與客戶 | 最終使用系統的人、付費客戶 | 功能、易用性、品質 |
+| 功能部門主管 | 提供人力與資源的部門 | 人力調度、部門業務影響 |
+| 供應商與合作夥伴 | 外包廠商、設備供應商 | 合約、付款、範圍 |
+| 專案管理辦公室（PMO） | 提供標準與監督 | 流程遵循、績效 |
+| 管理階層與資訊部門 | 營運、維護的接手者 | 可維護性、整合 |
+| 政府與法規單位、稽核 | 主管機關、稽核人員 | 合規 |
+| 社會大眾與其他受影響者 | 社區、競爭者 | 影響與聲譽 |
+
+**四、結論**：專案成功需要完整的管理領域搭配全生命週期流程，並持續識別、溝通與管理利害關係人的期望。`
+    },
+    {
+      id: "loc-mis-109-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "網站效能指標與前端提升網站效能的方法",
+      score: 25,
+      question: `隨著人們日益依賴網路服務，開發大型網站時，效能（Performance）需求也更加受到重視。請先詳細說明網站效能指標，然後說明至少三種（含）在網站前端提升網站效能的方法。（25 分）`,
+      answer: `**一、網站效能指標**
+
+| 類別 | 指標 | 說明 |
+|---|---|---|
+| 伺服器端 | **回應時間（Response time）／TTFB** | 從送出請求到收到第一個位元組的時間 |
+| | **吞吐量（Throughput）** | 單位時間處理的請求數（如 requests/sec） |
+| | **並行使用者數／容量** | 同時可服務的使用者數量 |
+| | **錯誤率** 與 **可用性** | 失敗請求比例、正常運作時間（如 99.9%） |
+| | **資源使用率** | CPU、記憶體、網路頻寬、資料庫連線 |
+| 使用者感知（前端） | **頁面載入時間（Page load time）** | 頁面完整載入所需時間 |
+| | **FCP（First Contentful Paint）** | 第一個內容出現的時間 |
+| | **LCP（Largest Contentful Paint）** | 最大內容元素顯示時間（Core Web Vitals，建議 2.5 秒內） |
+| | **INP／FID（互動延遲）** | 使用者操作後頁面的回應速度 |
+| | **CLS（累計版面位移）** | 版面是否跳動（視覺穩定性） |
+| | **TTI（Time to Interactive）** | 頁面可完整互動的時間 |
+
+**二、前端提升網站效能的方法（至少三種）**
+
+1. **減少 HTTP 請求數量與資源大小**
+   - 合併與壓縮（minify）CSS、JavaScript、HTML；使用 CSS Sprite 或 SVG 圖示、內嵌關鍵 CSS。
+   - 啟用傳輸壓縮（Gzip／Brotli）。
+2. **圖片最佳化**
+   - 選擇適合格式（WebP、AVIF）、依顯示尺寸縮圖、壓縮品質。
+   - **延遲載入（Lazy loading）**：捲動到可視範圍才載入圖片。
+   - 使用響應式圖片（srcset）依裝置載入不同尺寸。
+3. **善用快取**
+   - 以 Cache-Control、ETag 設定瀏覽器快取，靜態資源（圖片、CSS、JS）檔名加雜湊版本號（fingerprint），讓瀏覽器重複瀏覽時直接取用本機資源。
+4. **使用 CDN（內容傳遞網路）**
+   - 將靜態資源放在離使用者近的節點，降低延遲與主機負載。
+5. **優化 JavaScript 載入與執行**
+   - 使用 \`async\`、\`defer\` 避免阻擋頁面渲染；拆分程式碼（code splitting），只載入當前頁面所需；減少與延後非必要的第三方腳本。
+6. **改善關鍵渲染路徑**
+   - 把 CSS 放在頁首、JS 放在頁尾；預先載入關鍵資源（preload、preconnect）；避免渲染阻塞。
+7. **採用 HTTP/2 或 HTTP/3**：多工傳輸，減少連線負擔。
+8. **字型優化**：使用 font-display、子集化字型。
+
+**三、小結**：先以量測工具（如 Lighthouse、PageSpeed Insights、瀏覽器開發者工具）找出瓶頸，再針對載入量、請求數、快取與腳本執行進行優化，並持續監測。`
+    },
+    {
+      id: "loc-mis-109-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "弱點檢測的意義、A／B 級機關每年辦理的理由，以及侵入式與非侵入式的比較",
+      score: 25,
+      question: `（一）何謂弱點檢測（Vulnerability testing）？網站安全弱點檢測已列為行政院頒布資通安全責任等級分級辦法中 A、B 級公務機關每年應辦理的重要工作，請申論其理由。（15 分）
+（二）弱點檢測可分為侵入式（Invasive）及非侵入式（non-Invasive）兩種，請詳細說明其各自的意義並比較其優缺點。（10 分）`,
+      answer: `**（一）弱點檢測的意義與機關每年辦理的理由（15 分）**
+
+**意義**：弱點檢測是以工具與人工方式，系統化地**找出資訊系統（網站、主機、網路、應用程式）中存在的安全弱點**（如未修補漏洞、錯誤設定、弱密碼、SQL 注入與 XSS 等），評估其風險，並提供修補建議，目的是在被攻擊者利用之前先行改善。
+
+**為何 A、B 級公務機關每年都應辦理網站安全弱點檢測**
+
+1. **責任等級高，保護對象重要**：A、B 級機關通常是核心業務、重要民生或關鍵基礎設施相關機關，持有大量個資與重要資料，系統一旦被入侵，影響層面大。
+2. **網站是對外服務的主要攻擊面**：網站暴露在網際網路，最容易被掃描與攻擊；許多資安事件起因於網站漏洞（如注入、弱認證、未更新元件）。
+3. **弱點會不斷新增**：新漏洞持續被公開、系統改版與設定變更也可能引入新弱點，需要**定期（每年）**檢測才能維持安全水準。
+4. **及早發現、降低風險與損失**：修補成本遠低於事件發生後的處理、賠償與聲譽損失。
+5. **符合法令與稽核要求**：落實《資通安全管理法》及責任等級分級辦法的規定，是機關的法定義務，也是稽核與評鑑項目。
+6. **驗證防護措施有效**：確認防火牆、WAF、存取控制等措施確實發揮作用，並作為資安經費與改善優先順序的依據。
+7. **示範與保護民眾信賴**：公務機關須對民眾資料負責，維持政府服務的信賴度。
+
+**（二）侵入式與非侵入式弱點檢測（10 分）**
+
+| 比較 | 非侵入式（Non-invasive／被動式） | 侵入式（Invasive／主動式） |
+|---|---|---|
+| 意義 | 不實際利用弱點，只以掃描、版本比對、設定檢查等方式**判斷是否存在**弱點 | 會**實際嘗試利用**弱點（如送出攻擊酬載、注入測試），驗證弱點能否被入侵，類似滲透測試 |
+| 優點 | 對系統影響小、風險低；速度快，可自動化、大範圍檢測；成本較低 | 可確認弱點**真實可被利用**，誤報少；能評估實際衝擊與攻擊路徑，結果有說服力 |
+| 缺點 | 可能有**誤報／漏報**（只判斷版本或回應特徵）；無法證明弱點能實際被利用 | 可能造成**系統當機、資料被修改或服務中斷**，須審慎規劃（如在測試環境或維護時段）；耗時、成本高、需專業人員 |
+| 適用情境 | 例行、大範圍的定期檢測 | 重要系統上線前或有高風險時的深入驗證 |
+
+**實務建議**：先以非侵入式做大範圍掃描，再對重點系統做侵入式（滲透）測試，並事先取得授權、訂定範圍與備份回復計畫。`
+    },
+    {
+      id: "loc-mis-109-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "可衡量的組織價值（MOV）的意義、原則與決定方式",
+      score: 25,
+      question: `在軟體專案管理中，決定可衡量的組織價值（Measurable Organizational Value, MOV）是很重要的一個工作，請問何謂 MOV？一個好的 MOV 應該符合那些原則以及該如何決定這些 MOV？請詳細說明之。（25 分）`,
+      answer: `**說明**：MOV 是特定教科書（如 Marchewka 的《資訊科技專案管理》）使用的專案管理名詞，不同教材對「原則」的列法略有差異；下列是常見的說法與合理的整理，作答時以**可衡量、與組織策略連結**為核心即可。
+
+**一、何謂 MOV**
+
+MOV（可衡量的組織價值）是指**專案能為組織帶來的、可以被衡量的具體價值**，也就是專案的**成功準則**。它回答「為什麼要做這個專案？做完之後組織要得到什麼可驗證的好處？」。MOV 不只是完成專案（交付軟體），而是**組織實際獲得的價值**（如降低成本、增加營收、縮短處理時間、提升滿意度），並在專案過程中用來判斷決策與是否值得繼續。
+
+**二、好的 MOV 應符合的原則**
+
+| 原則 | 說明 | 例子 |
+|---|---|---|
+| **可衡量（Measurable）** | 用具體數字或可觀察的指標表示，不是模糊的「提升效率」 | 「訂單處理時間由 5 天降到 2 天」 |
+| **可證明／可驗證（Provable）** | 能以資料或證據證明有達成，有明確的衡量方法與基準值 | 以系統記錄比較導入前後 |
+| **利害關係人同意（Agreed）** | 贊助者、使用者與團隊對目標有共識 | 由發起人與使用者簽認 |
+| **可達成且實際（Attainable／Realistic）** | 在資源與時間下可達成，不過度理想化 | 目標不超過市場與技術可行範圍 |
+| **有時限（Time-bound）** | 明確在什麼時間內達成 | 「上線後六個月內」 |
+| **與組織策略一致（Aligned）** | 能支援組織的策略與目標 | 配合降低營運成本的策略 |
+
+（這些原則與 SMART 原則相近：具體、可衡量、可達成、相關、有時限。）
+
+**三、如何決定 MOV**
+
+1. **釐清專案背景與問題**：了解專案要解決的問題或把握的機會，以及與組織策略的關係。
+2. **識別利害關係人與其期望**：與贊助者、使用者與關鍵人員訪談，找出他們認為的價值。
+3. **從價值面向思考**：例如財務（成本、收入、投資報酬）、顧客（滿意度、留存）、流程（效率、時間、錯誤率）、組織學習與成長（可參考平衡計分卡四構面）。
+4. **訂出衡量指標與基準**：決定衡量什麼、如何衡量，蒐集目前的基準值，設定目標值與時限。
+5. **檢驗是否符合原則**：用上述原則檢查（可衡量、可證明、有共識、可達成、有時限、與策略一致）。
+6. **溝通、取得共識並書面化**：寫入專案章程，作為範疇決策與變更管理的依據。
+7. **持續追蹤與調整**：專案期間定期檢視，若外部環境改變，經過核准後可調整 MOV。
+
+**四、舉例**：專案「導入線上申辦系統」，MOV：「上線後一年內，臨櫃申辦案件減少 30%，平均辦理時間由 3 天降為 1 天，民眾滿意度達 85% 以上」。`
+    }
+  ]
+},
+
+{
+  year: "108", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43530",
+  questions: [
+    {
+      id: "loc-mis-108-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "提供線上付款與網路銀行服務的組織如何保護客戶資訊、避免個資外洩",
+      score: 25,
+      question: `隨著金融科技的發展，線上付款與線上銀行使用普及。若組織有提供客戶這類的服務，說明組織如何保護客戶資訊，避免個資外洩。（25 分）`,
+      answer: `**一、先認識風險**：線上付款與網路銀行涉及帳號、密碼、身分證字號、信用卡與帳戶餘額等高敏感資料，威脅包括釣魚與社交工程、惡意程式、帳號被盜、系統漏洞（SQL 注入）、資料庫被入侵、內部人員濫用、委外廠商疏失等。保護要從**法規、管理、技術、人員**四個層面著手。
+
+**二、保護措施**
+
+| 層面 | 具體作法 |
+|---|---|
+| **法規與治理** | 遵守《個人資料保護法》與其施行細則、金融監理機關的資安規範、**PCI DSS**（信用卡資料安全標準）；建立資訊安全管理制度（ISO 27001）與個資管理制度（如 ISO 27701）；指派資安與個資負責人 |
+| **資料最小化與分類** | 只蒐集必要資料（最小蒐集原則）；資料分類分級，依敏感度控管；超過保存期限即銷毀 |
+| **身分驗證與存取控制** | 客戶端使用**多因素驗證**（OTP、生物辨識、裝置綁定）；內部採**最小權限**、權限定期盤點、特權帳號管理；離職調職立即撤權 |
+| **加密與資料保護** | 傳輸全程 **TLS** 加密；資料庫與備份**加密儲存**；信用卡資料使用**代碼化（tokenization）**、顯示時**遮罩**；金鑰妥善保管（HSM） |
+| **系統與應用安全** | 安全開發生命週期（SDLC）、程式碼檢測；定期**弱點掃描與滲透測試**；網站防火牆（WAF）、入侵偵測；及時修補；防止 SQL Injection、XSS |
+| **交易風險控管** | 偵測異常交易（地點、金額、頻率）、詐欺偵測模型、交易通知簡訊、限額與冷卻期 |
+| **監控與日誌** | 集中蒐集與保存日誌（SIEM）、異常行為告警、存取稽核；資料外洩防護（DLP） |
+| **委外與供應鏈管理** | 選商評估、契約載明資安與個資責任、稽核委外廠商 |
+| **事件應變與通報** | 訂定個資外洩應變計畫，發生事件時依法通報主管機關並通知當事人；定期演練、保留證據 |
+| **人員教育** | 員工資安與個資教育訓練、保密協議、社交工程演練；提醒客戶防範釣魚、不洩漏驗證碼 |
+| **營運持續** | 備份與異地備援、災害復原計畫 |
+
+**三、對客戶的保護與溝通**：隱私權政策清楚、取得告知同意、提供查詢更正刪除管道、異常交易通知、宣導防詐。
+
+**四、結論**：保護客戶個資需要「**法遵＋管理制度＋技術防護＋人員教育＋事件應變**」的整體作法，並持續稽核與改善。`
+    },
+    {
+      id: "loc-mis-108-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "供應鏈攻擊下，企業如何控管供應商（委外廠商）的資安風險",
+      score: 25,
+      question: `供應鏈攻擊是一種新興的威脅，一種以軟體開發人員和供應商（委外廠商）為目標，目的在於存取企業資訊系統或是內部資料。針對供應鏈攻擊之威脅，說明企業如何控管供應商（委外廠商）之資安風險。（25 分）`,
+      answer: `**一、供應鏈攻擊簡述**
+
+攻擊者不直接攻擊目標企業，而是入侵其**較弱的供應商**（軟體開發商、委外維運廠商、更新伺服器、第三方元件），藉由供應商的信任關係或帶有惡意程式的軟體更新進入企業。常見形式：被植入惡意碼的更新程式、被汙染的開放原始碼套件、供應商帳號被盜用、遠端維護通道被濫用。
+
+**二、控管供應商資安風險的作法（依生命週期）**
+
+| 階段 | 控管措施 |
+|---|---|
+| **1. 事前：盤點與分級** | 盤點所有供應商與其存取範圍；依**可接觸的資料與系統重要性**分級（高、中、低風險），高風險者管控更嚴 |
+| **2. 選商與評估** | 要求資安資格證明（如 ISO 27001、SOC 2）；進行資安問卷與實地查核；審查過往資安事件、人員背景、分包情形 |
+| **3. 契約** | 明訂資安責任與要求：保密、個資保護、資安事件**通報時限**、**稽核權**、安全開發要求、漏洞修補時限、分包需同意、人員管理、違約罰則、結束時資料返還與銷毀 |
+| **4. 存取控制** | **最小權限**與職責分離；專用帳號（不共用）、**多因素驗證**；遠端維護僅限必要時段並經核准、全程記錄（錄影與稽核）；網路隔離（VPN、跳板機、微分段）；用完即撤權 |
+| **5. 軟體與程式碼安全** | 要求安全開發流程（SSDLC）；交付時做原始碼檢測、弱點掃描、惡意程式檢查；要求**軟體物料清單（SBOM）**，追蹤第三方與開源元件；驗證軟體更新的**數位簽章與雜湊值**；在測試環境驗證後才上線 |
+| **6. 持續監督** | 定期稽核與評分、檢視日誌與異常行為、追蹤供應商弱點與威脅情資；重大變更重新評估 |
+| **7. 事件應變** | 事先訂定供應商發生事件的通報與應變流程、演練；隔離受影響的連線；保留證據 |
+| **8. 退場管理** | 合約終止或更換廠商時撤銷帳號、取回資料與設備、確認資料已銷毀 |
+| **9. 組織架構** | 設置供應鏈風險管理責任單位；整合採購、法務與資安；採零信任思維，不因為「信任的廠商」而放寬驗證 |
+
+**三、對公務機關的補充**：依資通安全管理法要求，委外辦理資通系統或服務時，應訂定委外管理措施、選任適當受託者並監督其資安維護情形。
+
+**四、結論**：供應鏈風險要靠「**分級評估、契約約束、最小權限、安全開發與交付驗證、持續監督、事件應變**」層層控管。`
+    },
+    {
+      id: "loc-mis-108-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "開發新資訊系統時如何避免上線後的維運與使用問題",
+      score: 25,
+      question: `企業新開發的資訊系統上線後，可能才發現問題，例如客戶資料格式不符、與某些舊系統無法相容等。說明組織在開發新資訊系統時，如何避免上線後可能面臨到維運與使用上的問題。（25 分）`,
+      answer: `**一、問題根源**：需求不清、使用者未參與、整合與相容性未事先評估、資料轉換品質不佳、測試不足、轉換方式不當、教育訓練與維運準備不足。可依系統開發生命週期各階段預防。
+
+**二、各階段的預防作法**
+
+| 階段 | 作法 |
+|---|---|
+| **1. 規劃與需求分析** | 使用者與關鍵利害關係人**全程參與**；訪談與流程盤點，清楚定義需求、資料欄位與格式、效能與安全要求；需求經確認簽核，並進行**變更管理** |
+| **2. 現況與相容性評估** | 盤點既有系統、介面、資料庫與平台；評估新舊系統**整合與相容性**（介面、資料格式、編碼、通訊協定）；必要時建立中介層（API、ETL） |
+| **3. 設計** | 採標準化與開放介面、模組化設計；資料字典、資料格式統一；考量擴充性、可維護性；以**原型（Prototype）**讓使用者提早確認畫面與流程 |
+| **4. 開發** | 遵循編碼規範、程式碼審查；持續整合；文件同步更新 |
+| **5. 測試（關鍵）** | **多層次測試**：單元、整合（含與舊系統的介面測試）、系統、**效能與壓力測試**、安全測試、**使用者驗收測試（UAT）**；使用接近真實的資料測試；資料轉換驗證（筆數、欄位、格式比對） |
+| **6. 資料轉換與清理** | 資料清理、對應規則與驗證；試轉換並核對；保留回復機制 |
+| **7. 上線轉換策略** | 依風險選擇**平行轉換、分階段轉換、試點（先在部分單位）**，避免一次性切換；制定上線檢查清單與**回復（rollback）計畫** |
+| **8. 教育訓練與文件** | 使用者與維運人員訓練；使用手冊、操作與維運文件；設置服務台（Help Desk）支援 |
+| **9. 維運移交與支援** | 規劃維運團隊與 SLA；監控與告警；上線後一段**穩定期**加強支援；收集使用者意見並持續改善 |
+| **10. 專案管理與品質保證** | 風險管理、品質查核點、里程碑審查；上線前做**上線準備度檢查（Go/No-Go）** |
+
+**三、結論**：避免上線後問題的關鍵，在於「**使用者參與的完整需求、早期的相容性與整合評估、充分的測試與資料轉換驗證、穩健的轉換策略與回復計畫、教育訓練與維運準備**」。`
+    },
+    {
+      id: "loc-mis-108-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "如何辨別假新聞",
+      score: 25,
+      question: `假新聞對民眾與組織造成許多困擾，影響社會安定與企業形象等。說明如何辨別假新聞。（25 分）`,
+      answer: `**一、假新聞的特徵與危害**：假新聞指刻意或錯誤製造、傳播的不實訊息，常以聳動標題、情緒性語言吸引轉傳，可能影響選舉、公共衛生、金融市場與企業聲譽。
+
+**二、辨別假新聞的方法**
+
+| 面向 | 檢查方式 |
+|---|---|
+| **1. 看來源** | 查看發布者與網站：是否為可信的媒體或機關？網址是否為仿冒（如多一個字母）？有無作者、聯絡方式與出處？ |
+| **2. 看標題與內容** | 標題是否過度聳動、情緒化（「震驚！」「一定要轉」）？內文是否與標題相符？是否有錯別字、語句怪異？ |
+| **3. 查證據與出處** | 是否引用具體資料、研究或官方文件，能否追溯原始來源？是否只有匿名消息？ |
+| **4. 交叉比對** | 搜尋其他**可信**媒體是否也有報導，內容是否一致；注意是否只有單一來源、無法驗證 |
+| **5. 查日期與脈絡** | 是否為舊聞新傳？是否斷章取義？時間、地點是否正確？ |
+| **6. 查證圖片與影片** | 以圖片反向搜尋（Google 圖片、TinEye）確認是否盜用或移花接木；注意 **AI 生成或深偽（Deepfake）** 的瑕疵 |
+| **7. 使用事實查核機構** | 查詢查核單位，如台灣事實查核中心、MyGoPen、Cofacts（真的假的）等的查核結果 |
+| **8. 檢視自己的反應** | 若內容強烈挑起情緒（憤怒、恐懼），先停下來查證再轉傳；注意自己的**確認偏誤**（只相信想相信的） |
+| **9. 注意傳播特徵** | 「轉發給親友」的連鎖訊息、匿名帳號與機器人帳號大量散布、廣告導向 |
+
+**三、組織與社會層面的因應**
+- 組織：建立輿情監控與澄清機制，快速發布正確資訊，保留證據、必要時依法處理。
+- 平台與政府：事實查核合作、標示與降低不實訊息曝光，依法追究惡意造謠。
+- 教育：**媒體素養與資訊素養**教育，培養批判思考。
+
+**四、結論**：辨別假新聞要「**查來源、核證據、比對多方、驗證影像、留意情緒、利用查核機構**」，並在轉傳前先暫停查證，才能避免成為散播者。`
+    }
+  ]
+},
+
+{
+  year: "107", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43430",
+  questions: [
+    {
+      id: "loc-mis-107-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "哪些特性的工作較不容易被人工智慧取代",
+      score: 10,
+      question: `那些特性的工作較不容易被人工智慧（Artificial Intelligence）所取代？（10 分）`,
+      answer: `**判斷原則**：AI 擅長**規則明確、資料充足、重複性高**的任務；較難取代的是需要**人類獨特能力**的工作。
+
+| 特性 | 說明 | 例子 |
+|---|---|---|
+| **需要創造力與創新** | 原創想法、藝術、策略規劃、新產品設計 | 設計師、研發人員、策略顧問 |
+| **需要同理心與情感互動** | 理解他人情緒、建立信任、關懷 | 護理師、心理諮商師、社工、教師 |
+| **需要複雜的人際溝通與領導** | 協商、說服、激勵、處理衝突 | 業務談判、管理者 |
+| **需要複雜判斷與倫理決策** | 資訊不完整、牽涉價值取捨與責任 | 法官、醫師的複雜診斷與告知、高階決策 |
+| **非結構化與高度變動的環境** | 需要靈活的肢體操作與臨場應變 | 水電維修、廚師、消防救災 |
+| **需要跨領域整合與常識** | 融合不同知識與背景脈絡 | 專案經理、顧問 |
+| **需要人際責任與信任** | 責任歸屬需由人承擔 | 律師、會計師簽證 |
+
+相對而言，**例行、重複、規則明確**的工作（資料輸入、基本客服、單純檢驗）較容易被取代；實務上更常見的是**人與 AI 協作**，AI 輔助而人負責判斷與關係。`
+    },
+    {
+      id: "loc-mis-107-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "從組織、科技、環境三面向分析影響組織採用創新 ICT 的因素",
+      score: 15,
+      question: `請從組織、科技、環境等三個面向，提出影響組織是否採用創新資訊通訊科技（Information and Communication Technology, ICT）之重要因素，並說明之。（15 分）`,
+      answer: `這是 **TOE 框架**（Technology－Organization－Environment，Tornatzky 與 Fleischer 提出）的典型題目。
+
+| 面向 | 影響因素 | 說明 |
+|---|---|---|
+| **組織面** | 高階主管支持 | 資源分配與推動的關鍵 |
+| | 組織規模與資源 | 資金、人力、技術能力是否充足 |
+| | 組織文化與接受變革的程度 | 員工是否願意學習與改變 |
+| | 既有流程與資訊基礎 | 是否具備整合的基礎，轉換成本 |
+| | 人員的知識與技能 | IT 人才與使用者能力 |
+| **科技面** | 相對優勢（Relative advantage） | 比現行方式更好嗎？效益是否明確 |
+| | 相容性（Compatibility） | 與現有系統、流程、價值觀是否一致 |
+| | 複雜度（Complexity） | 是否易學易用 |
+| | 可試用性與可觀察性 | 是否能小規模試辦、效果是否看得到 |
+| | 成本與安全性 | 導入與維運成本、資安風險 |
+| **環境面** | 競爭壓力 | 競爭者已採用，不採用會落後 |
+| | 法規與政府政策 | 法令要求或政策鼓勵／限制 |
+| | 供應商與技術支援 | 市場上是否有成熟的供應商與服務 |
+| | 顧客與合作夥伴的壓力與期望 | 客戶或夥伴要求使用 |
+| | 產業標準與整體環境 | 標準成熟度、社會接受度 |
+
+**結論**：組織是否採用創新 ICT，取決於**自身能力與支持（組織）、技術本身的特性（科技）及外部壓力與條件（環境）**三者的綜合考量。`
+    },
+    {
+      id: "loc-mis-107-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "不適合委外的資訊系統特性與委外的關鍵成功因素",
+      score: 15,
+      question: `具有那些特性的資訊系統較不適合委外（Outsourcing）？並請從組織、供應商、雙方面等三個面向，提出資訊系統委外之關鍵成功因素？（15 分）`,
+      answer: `**一、較不適合委外的資訊系統特性**
+
+| 特性 | 原因 |
+|---|---|
+| **核心競爭力或策略性系統** | 涉及企業差異化與競爭優勢，外流可能失去控制與知識 |
+| **機密性、敏感性高**（機密資料、大量個資） | 資安與保密風險高，不易控管 |
+| **需求不明確或經常變動** | 合約難以界定範圍，容易產生糾紛與追加費用 |
+| **與內部流程高度整合、需要深厚組織知識** | 廠商不易理解組織細節，溝通成本高 |
+| **需要快速反應與持續調整** | 對外溝通與契約變更成本高 |
+| **關乎法規或責任必須由組織自行負責** | 責任無法轉移 |
+| **內部已具備足夠能力且成本更低** | 委外沒有經濟效益 |
+
+**二、委外關鍵成功因素（三面向）**
+
+| 面向 | 關鍵成功因素 |
+|---|---|
+| **組織面（委託方）** | 高階主管支持；清楚的委外目的與策略；明確且完整的需求規格；有效的專案與合約管理能力；保留內部核心人員與知識；使用者參與；風險管理與變更管理機制 |
+| **供應商面（受託方）** | 專業技術與經驗；財務穩定與信譽；人員素質與穩定；專案管理能力與品質保證；資安與保密能力；良好服務與支援能力 |
+| **雙方面（關係與合約）** | 互信與良好溝通；明確的**合約與服務水準協議（SLA）**，載明範圍、權責、驗收、罰則與智慧財產權；風險與利益共享；夥伴關係與文化相容；定期檢討與績效衡量；明確的退場與資料移轉機制 |
+
+**結論**：委外前先評估系統是否適合（避免核心與高敏感系統），再從**組織管理能力、供應商實力與雙方的信任與契約**三方面確保成功。`
+    },
+    {
+      id: "loc-mis-107-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "影響資訊系統成敗的重要因素",
+      score: 20,
+      question: `請列出影響資訊系統成敗之重要因素，並說明之。（20 分）`,
+      answer: `**一、影響資訊系統成敗的重要因素**
+
+| 類別 | 因素 | 說明 |
+|---|---|---|
+| **管理與組織** | 高階主管支持 | 提供資源、解決衝突、傳達重要性 |
+| | 明確的目標與策略一致性 | 系統目標與組織策略一致，並有可衡量的成功準則 |
+| | 專案管理能力 | 範疇、時程、成本、風險與品質管理得宜 |
+| | 變更管理與組織文化 | 處理抗拒變革，調整流程與組織 |
+| **使用者** | 使用者參與 | 從需求到驗收的全程參與，系統才符合需求 |
+| | 教育訓練與支援 | 使用者會用、願意用 |
+| **需求與設計** | 需求的完整與穩定 | 需求不清、頻繁變動是失敗的主因 |
+| | 系統品質與易用性 | 功能正確、效能、可靠、可維護、介面友善 |
+| **技術** | 技術適當性與相容性 | 技術成熟、能與既有系統整合 |
+| | 資料品質 | 資料正確、完整、一致 |
+| **資源與人員** | 預算、時程與人力 | 充足且合理 |
+| | 團隊能力與經驗 | 開發與維運人員的專業能力 |
+| **風險與環境** | 風險管理 | 預先識別並處理風險 |
+| | 供應商與委外管理 | 供應商能力與管理 |
+
+**二、成功模型（延伸說明）**：DeLone 與 McLean 的**資訊系統成功模型**認為，成功取決於**系統品質、資訊品質、服務品質**，影響**使用與使用者滿意度**，最終帶來**淨效益**。
+
+**三、結論**：資訊系統的成功不只是技術問題，更取決於**管理支持、使用者參與、清楚需求、良好專案管理與變革管理**。`
+    },
+    {
+      id: "loc-mis-107-5", no: "五", topic: "mis", topicName: "資訊管理概要",
+      title: "共享經濟經營模式的關鍵成功因素",
+      score: 20,
+      question: `共享經濟（Sharing Economy）經營模式之關鍵成功因素有那些？（20 分）`,
+      answer: `**一、共享經濟的概念**：透過數位平台，把個人或組織**閒置的資源**（空間、車輛、技能、物品）在**供給者與需求者**之間媒合、分享，取得使用權而非所有權，例如 Uber（交通）、Airbnb（住宿）、共享單車與共享辦公室。
+
+**二、關鍵成功因素**
+
+| 關鍵因素 | 說明 |
+|---|---|
+| **1. 具備良好的平台與媒合技術** | 方便、穩定的 App 與網站；有效的媒合演算法、定位、行動支付與評價機制 |
+| **2. 建立信任機制** | 雙方身分驗證、互相評價、保險與保障、糾紛處理與客服，解決陌生人間的信任問題 |
+| **3. 網路效應與規模經濟** | 供給與需求雙方都要達到**臨界量**，才有吸引力；初期常用補貼或優惠快速衝規模 |
+| **4. 充足且高品質的資源供給** | 吸引優質供給者（車主、房東）加入，維持服務品質與一致性 |
+| **5. 合理的定價與激勵機制** | 價格透明、動態定價，供給者有合理收入，平台抽成合理 |
+| **6. 使用者體驗與便利性** | 流程簡單、付款快速、即時支援，降低使用門檻 |
+| **7. 法規遵循與政策風險管理** | 營業登記、稅務、勞動與消費者保護、公共安全；與主管機關溝通 |
+| **8. 風險控管與安全** | 資安、個資保護、交易安全、事故處理 |
+| **9. 品牌與社群經營** | 形成社群與口碑，建立忠誠度 |
+| **10. 永續的商業模式** | 清楚的獲利模式與營運成本控制，避免只靠補貼 |
+
+**三、結論**：共享經濟的成功取決於「**平台技術、信任機制、規模化與網路效應、供給品質、合規與風險管理**」。`
+    },
+    {
+      id: "loc-mis-107-6", no: "六", topic: "mis", topicName: "資訊管理概要",
+      title: "新資訊系統上線轉換的作法",
+      score: 20,
+      question: `新資訊系統上線轉換（System Conversion）有那些作法，並說明之。（20 分）`,
+      answer: `**一、四種主要轉換方式**
+
+| 方式 | 作法 | 優點 | 缺點 | 適用情境 |
+|---|---|---|---|---|
+| **直接轉換（Direct cutover／一次到位）** | 在某個時間點停用舊系統，直接啟用新系統 | 成本低、時程短、不需同時維護兩套 | **風險最高**，一旦新系統出問題無備援，難以回復 | 系統不重要、舊系統無法繼續使用、風險小 |
+| **平行轉換（Parallel）** | 新舊系統**同時運作**一段時間，比對結果，確認無誤後停用舊系統 | **風險最低**，有舊系統備援，可驗證結果 | 成本高、人力負擔重（重複輸入與維護）、時間較長 | 重要的核心系統（財務、金融） |
+| **分階段轉換（Phased）** | 依**功能或模組**逐步轉換，先上線一部分，穩定後再上線其他 | 風險分散、問題較易處理，使用者逐步適應 | 時程長，新舊系統並存期間需處理介面與整合 | 大型、模組化系統（如 ERP） |
+| **試點轉換（Pilot／先導）** | 先在**少數單位或地點**（如一個分公司）上線，驗證後再推廣到全組織 | 風險低，可取得經驗並修正，再推廣 | 各單位使用不同系統時有暫時性不一致 | 擁有許多分支單位的組織 |
+
+**二、選擇考量**：系統的重要性與風險、組織可容忍的中斷、成本與人力、系統複雜度與模組獨立性、使用者準備程度。
+
+**三、轉換時的共通重點**：資料轉換與驗證、完整測試與使用者驗收、教育訓練、上線檢查清單與**回復計畫**、上線後的支援與監控。
+
+**結論**：風險越高越傾向「平行或分階段」，風險低、需快速轉換才用「直接轉換」；大型組織適合「試點」搭配推廣。`
+    }
+  ]
+},
+
+{
+  year: "106", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43430",
+  questions: [
+    {
+      id: "loc-mis-106-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "專家系統的核心模組架構與實務應用",
+      score: 25,
+      question: `請詳述專家系統（Expert System）的核心模組架構，並舉例說明專家系統的實務應用。（25 分）`,
+      answer: `**一、專家系統簡介**
+
+專家系統是一種人工智慧應用，把**特定領域專家的知識**以電腦儲存，並模擬專家推理，對特定問題提出建議、診斷或決策。
+
+**二、核心模組架構**
+
+| 模組 | 功能 |
+|---|---|
+| **知識庫（Knowledge Base）** | 儲存領域專家知識，常以「**若…則…（IF-THEN）規則**」、框架、語意網路表示，包括事實與規則 |
+| **推論引擎（Inference Engine）** | 系統的「大腦」，依知識庫的規則與使用者提供的事實進行推理。推理策略：**前向鏈結**（由已知事實推導結論）、**反向鏈結**（由假設目標回溯驗證所需事實） |
+| **工作記憶體（Working Memory）** | 暫存目前問題的事實與推論的中間結果 |
+| **使用者介面（User Interface）** | 讓使用者輸入問題與事實、取得建議，通常以問答式或選單方式互動 |
+| **解釋模組（Explanation Facility）** | 說明系統**為何問這個問題、如何得到結論**，增加使用者信任與可驗證性 |
+| **知識獲取模組（Knowledge Acquisition）** | 協助知識工程師取得、整理並輸入專家知識到知識庫 |
+
+運作流程：使用者輸入問題 → 推論引擎使用知識庫規則與工作記憶體中的事實推理 → 產生結論並由解釋模組說明理由。
+
+**三、實務應用舉例**
+
+| 領域 | 應用 |
+|---|---|
+| 醫療診斷 | MYCIN 依症狀與檢驗結果診斷細菌感染並建議抗生素；臨床決策支援系統 |
+| 金融 | 貸款與信用審核、保險核保、詐欺偵測 |
+| 製造與設備 | 設備故障診斷、維修建議（如 DEC 的 XCON 協助電腦組態配置） |
+| 客戶服務 | 客服自動問答、疑難排解 |
+| 稅務與法律 | 報稅諮詢、法規適用建議 |
+| 地質與探勘 | PROSPECTOR 協助礦藏評估 |
+
+**四、優缺點**
+- 優點：保存與傳承專家知識、一致且不受情緒影響、可全天候提供服務、降低專家需求成本。
+- 缺點：知識取得困難且成本高、僅適用於範圍狹窄的領域、缺乏常識與學習能力、知識庫需持續維護更新。`
+    },
+    {
+      id: "loc-mis-106-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "未部署資通安全機制時，網路系統可能面臨的安全威脅與攻擊",
+      score: 25,
+      question: `若無部署適當的資通安全機制，使用網路系統將可能面臨那些安全威脅與攻擊？（25 分）`,
+      answer: `**一、以資安三要素（CIA）分類**
+
+| 目標 | 威脅 | 攻擊舉例 |
+|---|---|---|
+| **機密性（Confidentiality）** | 資料被未授權者取得 | **竊聽／封包嗅探**、中間人攻擊、釣魚網站與社交工程、竊取密碼與憑證、資料庫遭入侵、資料外洩、內部人員洩密 |
+| **完整性（Integrity）** | 資料被未授權修改 | 竄改網頁（Defacement）、竄改交易內容、**SQL 注入**、**跨站腳本（XSS）**、**重放攻擊**、植入惡意碼 |
+| **可用性（Availability）** | 服務無法使用 | **阻斷服務攻擊（DoS／DDoS）**、勒索軟體加密檔案、蠕蟲耗用頻寬、破壞設備與資料 |
+| **鑑別與不可否認性** | 身分被冒用、事後否認 | **IP／ARP／DNS 欺騙**、帳號盜用、暴力破解與字典攻擊、權限提升、使用者否認交易 |
+
+**二、依攻擊類型說明**
+
+1. **惡意程式（Malware）**：病毒（需依附宿主）、蠕蟲（自行複製傳播）、木馬（偽裝成正常程式）、後門、間諜軟體、勒索軟體、殭屍網路（Botnet）。
+2. **被動攻擊與主動攻擊**：被動攻擊（竊聽、流量分析）不改變資料，難發現；主動攻擊（偽裝、重放、修改訊息、阻斷服務）會改變資料或服務。
+3. **欺騙與冒充**：IP 欺騙、ARP 欺騙、DNS 欺騙、釣魚（Phishing）、社交工程。
+4. **針對應用程式與系統的攻擊**：SQL 注入、XSS、緩衝區溢位、利用未修補的漏洞、零時差（Zero-day）攻擊。
+5. **針對認證的攻擊**：暴力破解、字典攻擊、撞庫（Credential stuffing）、竊取 Session。
+6. **阻斷服務**：大量封包（SYN Flood、UDP Flood）、DDoS 利用殭屍網路。
+7. **內部威脅與人為疏失**：員工誤操作、權限濫用、設定錯誤。
+8. **進階持續性威脅（APT）**：長期、有目標地滲透。
+
+**三、可能的後果**：資料外洩與個資洩漏、財務損失、服務中斷、聲譽受損、法律責任與罰款。
+
+**四、結論**：缺乏防火牆、加密、存取控制、更新修補、備份與監控等機制，網路系統會面臨 CIA 三方面的威脅，因此需要多層次的資安防護與管理。`
+    },
+    {
+      id: "loc-mis-106-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "機器學習的定義與應用",
+      score: 25,
+      question: `請詳述機器學習（Machine Learning）的定義及其應用。（25 分）`,
+      answer: `**一、定義**
+
+機器學習是人工智慧的一個分支，指**讓電腦從資料（經驗）中自動學習規律或模型，而不是由人明確撰寫每一條規則**，並用學到的模型對新資料做預測或決策。常見的經典定義（Tom Mitchell）：若電腦程式在某類任務 T 上的表現 P，隨著經驗 E 而進步，則稱此程式從 E 中學習。
+
+**二、機器學習的類型**
+
+| 類型 | 說明 | 常見演算法 | 例子 |
+|---|---|---|---|
+| **監督式學習** | 以**有標籤**的資料訓練（輸入與正確答案） | 迴歸、決策樹、SVM、神經網路、k-NN | 垃圾郵件分類、房價預測、疾病診斷 |
+| **非監督式學習** | 資料**沒有標籤**，找出結構 | 分群（K-means）、降維（PCA）、關聯規則 | 客戶分群、購物籃分析、異常偵測 |
+| **半監督式學習** | 少量標籤＋大量無標籤資料 | 自我訓練等 | 資料標註成本高的場景 |
+| **強化學習** | 與環境互動，依**獎勵**調整策略 | Q-learning、深度強化學習 | 遊戲 AI、機器人控制、自駕決策 |
+
+**三、典型流程**：資料蒐集 → 資料清理與特徵工程 → 選擇模型 → 訓練 → 驗證與評估（準確率、召回率、交叉驗證）→ 部署 → 監控與再訓練。要避免**過擬合**（對訓練資料太貼合、對新資料表現差）。
+
+**四、應用**
+
+| 領域 | 應用 |
+|---|---|
+| 電子商務與行銷 | 推薦系統、顧客分群、需求預測、動態定價 |
+| 金融 | 信用評分、詐欺偵測、風險預測、演算法交易 |
+| 醫療 | 影像判讀（X 光、病理）、疾病預測、新藥研發 |
+| 製造 | 預測性維護、品質檢測 |
+| 資訊安全 | 垃圾郵件過濾、惡意程式與入侵偵測、異常行為分析 |
+| 影像與語音 | 人臉辨識、語音辨識與合成、翻譯、聊天機器人 |
+| 交通 | 自動駕駛、路線與交通預測 |
+| 公共服務 | 人流預測、災害預警、智慧城市 |
+
+**五、挑戰**：資料品質與偏誤、可解釋性、隱私與倫理、模型被攻擊（對抗樣本）、運算資源。
+
+**結論**：機器學習讓系統從資料中學習並持續改進，已廣泛應用於各產業，但需要重視資料品質、公平與隱私。`
+    },
+    {
+      id: "loc-mis-106-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "擷取揮發性與邏輯性資料後，如何保全數位證據",
+      score: 25,
+      question: `數位證據（Digital Evidence）是取之於電腦系統、儲存媒體或行動裝置內，可作為犯罪偵防及資安事件調查的數位資料。當數位證據保全人員處於開機狀態的標的設備中擷取揮發性與邏輯性資料完畢後，應如何保全這些數位證據？（25 分）`,
+      answer: `**一、背景**：數位證據容易被修改、刪除，且具揮發性。依**揮發性順序**（RFC 3227）：暫存器與快取 → 記憶體（RAM）→ 網路連線狀態 → 執行中的行程 → 磁碟 → 日誌與遠端記錄 → 備份。題目情境是已在開機狀態下擷取完**揮發性資料（如記憶體、網路連線、行程）**與**邏輯性資料**後，接著要**保全證據**，確保證據的**完整性、真實性與可採性**。
+
+**二、保全的步驟與要點**
+
+| 步驟 | 作法 | 目的 |
+|---|---|---|
+| **1. 記錄現場與狀態** | 拍照或錄影現場、設備連接與畫面；記錄時間、設備型號、序號、擷取過程與使用工具 | 完整記錄，證明過程合法與可重現 |
+| **2. 計算雜湊值** | 對已擷取的資料（記憶體映像、檔案）計算 **MD5／SHA-256** 雜湊值並記錄 | 證明資料之後沒有被修改（完整性） |
+| **3. 安全關機並保持原狀** | 依標的情況選擇關機方式（拔電源或正常關機，視作業系統與風險，並記錄原因）；關機後不再開機使用原系統 | 避免繼續改變證據 |
+| **4. 製作鑑識映像檔（Forensic image）** | 以**防寫器（Write blocker）**連接硬碟，用鑑識工具做**位元對位元（bit-by-bit）完整複製**，並驗證雜湊值一致 | 分析時只用副本，保護原始證物 |
+| **5. 保全原始證物** | 原始儲存媒體不再使用，封存保管 | 保持原始證物完整，必要時可重新製作映像 |
+| **6. 行動裝置特別處理** | 置於**法拉第袋**或啟用飛航模式，避免遠端清除或連網更動資料；保持電力 | 防止資料被遠端變更 |
+| **7. 標示與包裝** | 標籤（案號、編號、時間、保全人員），以防靜電袋與防靜電包裝，貼封條 | 防止損壞與被調換 |
+| **8. 建立與維護保管鏈（Chain of Custody）** | 記錄**誰、何時、何地、為何**接觸過證據、移交與保管的每個環節，並簽名 | 證明證據沒有被竄改，確保**法庭可採性** |
+| **9. 安全儲存** | 放置在有門禁、溫濕度與防磁控制的環境，限制存取 | 防止遺失或毀損 |
+| **10. 分析使用副本並留存紀錄** | 在映像檔副本上分析，記錄使用的工具、步驟與發現，可由第三方重現 | 可驗證與可重現 |
+
+**三、原則**：不改變原始證據、完整記錄、可驗證完整性（雜湊值）、保管鏈完整、符合法律與程序（取得合法授權）。
+
+**結論**：擷取揮發性與邏輯性資料後，應**計算雜湊值、製作鑑識映像（使用寫入防護）、封存原始證物、標示包裝，並以完整的保管鏈與紀錄維持證據的完整性與可採性**。`
+    }
+  ]
+},
+
+{
+  year: "105", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43430",
+  questions: [
+    {
+      id: "loc-mis-105-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "資訊系統的六個面向，以及公共自行車租用系統的分析",
+      score: 25,
+      question: `某縣市政府想要建置一個公共自行車租用系統，希望透過此系統創造其交通與旅遊之便利性。學者認為資訊系統是企業組織為了回應環境挑戰所提出的解決方案，是一個以資訊科技為基礎的管理與組織上之解決方案。根據上述說明，試分別回答下列問題：
+（一）試說明環境挑戰、管理面、組織面、科技面、資訊系統、解決方案，這六個重要面向的內涵。（10 分）
+（二）試分析公共自行車租用系統在上述層面之考量重點。（15 分）`,
+      answer: `**（一）六個面向的內涵（10 分）**
+
+| 面向 | 內涵 |
+|---|---|
+| **環境挑戰** | 組織面對的外部壓力與機會：全球化、數位化、顧客期望、競爭、法規、社會趨勢與技術變化 |
+| **管理面** | 管理者如何**規劃、決策、協調、控制**，制定策略、配置資源，並負責資訊系統的方向與成敗 |
+| **組織面** | 組織的結構、營運流程、文化、權責與員工，以及政治（利益團體）與人員的接受度 |
+| **科技面** | 實現系統的硬體、軟體、資料庫管理、網路與通訊、雲端、行動裝置與感測器等資訊科技 |
+| **資訊系統** | 由人員、程序、硬體、軟體與資料組成，負責**蒐集、處理、儲存、分送資訊**，支援決策、協調與控制 |
+| **解決方案** | 將科技、管理與組織三方面整合起來，回應環境挑戰的**整體性解決辦法**，目標是創造價值 |
+
+關係：環境挑戰 → 管理者提出解決方案 → 由資訊系統（結合科技、組織與管理）來實現。
+
+**（二）公共自行車租用系統的分析（15 分）**
+
+| 面向 | 考量重點 |
+|---|---|
+| **環境挑戰** | 交通壅塞與空污、推動低碳運輸與觀光、民眾要求便利與即時資訊；其他城市與業者的競爭與參考；法規（道路使用、個資、公共安全） |
+| **管理面** | 明確目標（提升使用率、改善接駁與旅遊）與績效指標（租借次數、周轉率、滿意度）；經費與預算；委外或自營決策；跨局處（交通、觀光、工務）協調；營運模式（收費、與捷運悠遊卡整合）；風險管理（車輛失竊、事故責任） |
+| **組織面** | 設置營運與客服單位、維運與調度人力（車輛搬運、維修）；流程設計（租、還、報修、客訴）；員工教育訓練；與民間業者、場地提供者的協作；民眾使用習慣與文化 |
+| **科技面** | 車輛與站點的硬體（感應鎖、站柱、GPS／RFID 感測）；會員註冊與付款（悠遊卡、信用卡、行動支付）；即時車輛數與站點查詢 App；後台調度、資料庫與資料分析；網路通訊（4G、物聯網）；資訊安全與個資保護；系統穩定與備援 |
+| **資訊系統** | 租借管理、車輛追蹤、計費與付款、客服、報表與營運分析、站點需求預測與調度 |
+| **解決方案** | 整合「系統＋站點佈設＋營運流程＋行銷推廣」的完整方案，達成交通與旅遊便利性，並持續改善 |
+
+**結論**：公共自行車系統不只是技術建置，需同時考量環境需求、管理決策、組織營運與科技整合，才能成功。`
+    },
+    {
+      id: "loc-mis-105-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "專家黃頁與知識地圖的異同，以及縣市政府的知識管理應用",
+      score: 25,
+      question: `某縣市政府想要透過知識管理，來強化同仁們的專業知識與服務效能。學者認為知識管理是組織為了提升存活能力與競爭優勢，對於存在組織內外部的個人與群體內有價值的知識，進行有系統地定義、獲取、儲存、分享與轉移、利用與評估。根據上述說明，試分別回答下列問題：
+（一）專家黃頁（Expert Yellow Page）和知識地圖（Knowledge Map）有何異同？（10 分）
+（二）試說明縣市政府如何利用專家黃頁和知識地圖來進行知識管理。（15 分）`,
+      answer: `**（一）專家黃頁與知識地圖的異同（10 分）**
+
+| 比較 | 專家黃頁（Expert Yellow Page） | 知識地圖（Knowledge Map） |
+|---|---|---|
+| 意義 | 記錄組織內**各領域專家**的名單、專長、經歷、所屬單位與聯絡方式，像「專家電話簿」 | 以圖形或索引方式呈現組織**知識的分布**：有哪些知識、存放在哪裡（文件、資料庫、人員）、彼此的關聯 |
+| 焦點 | 「**誰**知道？」（以人為中心，指向隱性知識） | 「**知識在哪裡**？」（以知識與其位置為中心，涵蓋顯性與隱性知識） |
+| 呈現 | 名冊式、可依專長查詢 | 圖示、分類架構、連結（地圖式） |
+| **相同點** | 都是「**導引型**」工具，目的是**幫助員工快速找到知識或知識擁有者**，促進知識分享與利用；都不直接儲存知識內容本身；都需要持續更新維護 | |
+
+**（二）縣市政府如何運用（15 分）**
+
+1. **建置專家黃頁**
+   - 盤點各局處同仁的專長、證照、承辦業務與專案經驗，建立資料庫（含聯絡方式、可諮詢主題）。
+   - 提供查詢（依主題、單位、關鍵字）與更新機制（鼓勵自行維護）；個人資料公開範圍需取得同意並符合個資法。
+   - 運用：新人或承辦人遇到問題時，可快速找到有經驗的同仁；跨局處專案可迅速組成團隊；退休或調職前辦理經驗傳承。
+2. **建置知識地圖**
+   - 盤點市政知識資產：法規與函釋、作業手冊、案例、會議記錄、專案報告、檔案與資料庫，依業務類別分類並標示**存放位置、負責人與更新時間**。
+   - 以圖形或分類架構呈現，並連結到文件庫與專家黃頁。
+   - 運用：同仁能迅速找到所需資料；發現知識缺口（沒人懂、沒有文件的領域）並規劃培訓；避免重複研究。
+3. **搭配配套機制**
+   - **制度**：訂定知識分享獎勵、考核與績效連結，鼓勵貢獻與使用。
+   - **平台**：整合入口網站、搜尋、討論區、線上社群（實務社群 CoP）、問答與案例庫。
+   - **文化**：高層支持，建立分享與信任的文化；舉辦經驗分享與讀書會。
+   - **維護**：定期更新、品質審查、成效評估（使用率、問題解決時間、服務滿意度）。
+4. **預期效益**：縮短尋找資訊時間、提升服務效率與品質、保存隱性知識、減少人員流動造成的斷層。
+
+**結論**：專家黃頁「找人」，知識地圖「找知識」，兩者結合並搭配制度與文化，能讓縣市政府有系統地管理與利用知識。`
+    },
+    {
+      id: "loc-mis-105-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "RAD 與敏捷式開發的異同，手機系統開發與自適應性網頁設計的特色",
+      score: 25,
+      question: `在數位化時代下，有一些新的系統建置方法產生，試分別回答下列問題：
+（一）快速應用開發（Rapid Application Development, RAD）和敏捷式開發（Agile Development）有何異同？（10 分）
+（二）請說明手機系統開發與自適應性網頁設計的特色。（15 分）`,
+      answer: `**（一）RAD 與敏捷式開發的異同（10 分）**
+
+| 比較 | 快速應用開發（RAD） | 敏捷式開發（Agile） |
+|---|---|---|
+| 起源 | 1980～90 年代（James Martin） | 2001 年敏捷宣言 |
+| 核心 | 以**原型**、使用者參與與**開發工具／元件**快速交付系統 | 以**價值導向的迭代**、持續交付、擁抱變更與團隊協作 |
+| 流程 | 需求規劃 → 使用者設計（原型反覆）→ 快速建置 → 轉換上線；時間盒（time-box）短 | 短迭代（Sprint）、產出可運作軟體、每次迭代回顧與調整（Scrum、XP） |
+| 文件 | 較少文件 | 重視可運作軟體而非詳盡文件 |
+| 範圍 | 偏重快速建置**單一系統**，常用 CASE 與 4GL 工具 | 範圍廣，是一種**思維與方法**，涵蓋開發、測試、團隊管理 |
+| **相同點** | 都強調**快速交付**、**使用者／客戶高度參與**、迭代與原型、適應需求變更、避免傳統瀑布式的冗長週期 | |
+| **相異重點** | 強調工具與原型技術，適用中小型、模組化系統 | 強調價值與原則、團隊自我管理與持續改善，適用需求不確定的各類軟體 |
+
+**（二）手機系統開發與自適應性網頁設計的特色（15 分）**
+
+**1. 手機系統（行動 App）開發的特色**
+
+| 特色 | 說明 |
+|---|---|
+| 平台多樣 | iOS、Android 等；可選**原生（Native）**、**跨平台**（React Native、Flutter）、**混合式（Hybrid）**開發 |
+| 螢幕小、觸控操作 | 介面設計需簡潔、重點突出、按鈕大小適合手指 |
+| 硬體與感測器 | 可使用定位（GPS）、相機、加速度計、推播通知，提供情境式服務 |
+| 資源受限 | 電力、記憶體、網路頻寬有限，需最佳化效能與耗電 |
+| 離線與連線切換 | 需處理網路不穩、資料同步 |
+| 上架與更新機制 | 需通過應用商店審核，版本更新頻繁，需要相容不同系統版本與裝置 |
+| 資安與隱私 | 權限管理、資料加密、個資保護 |
+
+**2. 自適應性（適應性／響應式）網頁設計的特色**
+
+自適應性網頁設計（Responsive／Adaptive Web Design）讓**同一個網站依裝置的螢幕大小與特性自動調整版面**，使用者在電腦、平板、手機都有良好體驗。
+
+| 特色 | 說明 |
+|---|---|
+| 單一網站、多種裝置 | 一套 HTML 內容，用 **CSS 媒體查詢（Media Query）**、**彈性網格（Fluid grid）**與彈性圖片，依螢幕寬度調整 |
+| 維護成本低 | 不需要為每種裝置各做一個版本，內容更新一次即可 |
+| 利於搜尋引擎 | 單一網址，利於 SEO 與分享 |
+| 使用者體驗一致 | 內容與功能在不同裝置保持一致 |
+| 限制 | 無法像原生 App 完整使用硬體功能；複雜頁面在小螢幕可能效能不佳，需做行動優先（Mobile first）與效能最佳化 |
+
+（補充：「適應性（Adaptive）」設計是預先為幾個固定螢幕寬度準備不同版面，偵測裝置後載入最適合的版本；「響應式（Responsive）」則是版面隨寬度連續變化。）
+
+**結論**：RAD 與敏捷都追求快速與靈活；行動 App 能深度利用裝置功能，自適應網頁則以單一網站覆蓋多種裝置，開發時依需求選擇。`
+    },
+    {
+      id: "loc-mis-105-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "資訊政策、資料管理與資料品質保證的重要性，以及資料資源管理措施",
+      score: 25,
+      question: `某縣市政府想要透過資料資源管理，來確保其組織資料能維持準確、可靠，且隨時可供需要者使用。根據上述說明，試分別回答下列問題：
+（一）資訊政策、資料管理及資料品質保證，對於組織資料資源的管理有何重要性？（10 分）
+（二）說明縣市政府可以透過那些措施來管理其資料資源。（15 分）`,
+      answer: `**（一）三者的重要性（10 分）**
+
+| 項目 | 意義 | 對資料資源管理的重要性 |
+|---|---|---|
+| **資訊政策（Information policy）** | 規範組織如何**共享、傳播、取得、標準化**資訊的規則，並明定誰擁有資料、誰能存取與使用、資料的責任歸屬 | 提供**明確的規則與權責**，避免資料各自為政、重複與衝突，是資料管理的基礎與依據 |
+| **資料管理（Data administration）** | 負責資料的**規劃、標準與控制**：制定資料標準與字典、資料庫設計與管理、資料安全與備份、存取控制（含資料庫管理員 DBA） | 讓資料**一致、可用、安全**，並確保資料能依政策被有效取得與保護 |
+| **資料品質保證（Data quality assurance）** | 評估與改善資料的**正確性、完整性、一致性、及時性、唯一性**；資料稽核、清理與品質監控 | 劣質資料會導致錯誤決策與服務問題，品質保證可讓資料**準確、可靠**，值得信賴 |
+
+三者關係：**政策定方向，管理做落實，品質保證做把關**。
+
+**（二）縣市政府的資料資源管理措施（15 分）**
+
+1. **制定資訊政策與制度**：訂定資料治理與共享政策、資料分類分級、保存與銷毀規定、資料擁有者與管理者的權責、個資保護規範。
+2. **建立專責組織與角色**：成立資料管理單位或資料治理委員會、指派資料長與各業務資料管理者，並設置資料庫管理員（DBA）。
+3. **資料標準化與資料字典**：統一欄位名稱、代碼、格式（如地址、身分證字號的格式），建立資料字典與主資料管理（避免同一民眾在各系統資料不一致）。
+4. **使用資料庫管理系統（DBMS）**：集中管理資料，減少重複與不一致，提供查詢、報表、交易管理與完整性限制；必要時建立**資料倉儲**整合各局處資料，供分析使用。
+5. **資料品質管理**：定期資料稽核、**資料清理**（去除重複、更正錯誤、補足缺漏）、輸入驗證規則、品質指標與持續監控。
+6. **資料安全與隱私**：存取權限控管、加密、備份與復原、日誌稽核、個資保護與去識別化；資料外洩應變。
+7. **資料共享與整合**：建置跨機關的資料交換平台與介面標準、開放資料（Open Data）、促進各局處在合法前提下共享資料。
+8. **教育訓練與宣導**：培養承辦人員資料管理與品質意識。
+9. **績效評估與持續改善**：以資料品質、可用性、使用滿意度為指標，定期檢討。
+
+**結論**：透過「政策、組織、標準、系統、品質與安全」的整體機制，縣市政府才能讓資料維持準確、可靠且隨時可用。`
+    }
+  ]
+},
+
+{
+  year: "104", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43830",
+  questions: [
+    {
+      id: "loc-mis-104-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "資料探勘的兩項技術及其在電子商務的應用",
+      score: 20,
+      question: `請說明資料探勘（data mining）技術之其中兩項技術，並分別舉例說明這兩項技術於電子商務之應用。（20 分）`,
+      answer: `**一、資料探勘簡介**：資料探勘是從大量資料中，以統計與機器學習方法**發現隱藏的、有價值的型態與關聯**，支援決策。常見技術有關聯規則、分類、群集分析、迴歸／預測、序列分析等。以下說明兩項。
+
+**二、技術一：關聯規則探勘（Association rule mining）／購物籃分析**
+
+- **意義**：找出資料項目之間同時出現的關係，規則形式為「若購買 A，則也可能購買 B」，並以**支持度（Support）**與**信賴度（Confidence）**、**提升度（Lift）**衡量。常用演算法：Apriori、FP-Growth。
+- **電子商務應用**：分析網路購物訂單，發現「購買手機的顧客，常同時購買保護殼與保護貼」。
+  - 商品推薦（「買了這個的人也買了…」）與**交叉銷售**；
+  - 組合優惠、商品頁面與購物車推薦、商品陳列與倉儲配置；
+  - 提高客單價與轉換率。
+
+**三、技術二：分類與預測（Classification）／決策樹、迴歸**
+
+- **意義**：用已知類別的歷史資料訓練模型（決策樹、邏輯斯迴歸、神經網路等），再對**新資料預測所屬類別或數值**。
+- **電子商務應用**：
+  - **客戶流失預測**：依客戶的購買頻率、最近購買時間、客訴紀錄，預測誰可能流失，及早提供優惠挽留；
+  - **信用與詐欺偵測**：判斷交易是否為盜刷；
+  - **購買意願預測**：預測哪些訪客會下單，進行精準廣告投放。
+
+**四、其他常見技術（補充）**：**群集分析**（客戶區隔，如以 RFM 將客戶分群，採不同行銷策略）、**序列分析**（預測客戶下一步行為）、**文字探勘**（分析商品評論情感）。
+
+**五、結論**：資料探勘讓電商業者從交易與行為資料中找出規律，用於推薦、行銷與風險控管，提高銷售與顧客滿意度。`
+    },
+    {
+      id: "loc-mis-104-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "OSI 七層模型及各層功能",
+      score: 20,
+      question: `請說明網路通訊協定 OSI 的七層模型，並敘述各層之功能。（20 分）`,
+      answer: `**一、OSI 模型簡介**：開放式系統互連（Open Systems Interconnection）參考模型由 ISO 提出，把網路通訊分成**七層**，每一層只與上下層溝通，並提供服務給上一層，讓不同廠商的設備可以互通，方便設計與除錯。
+
+**二、七層模型與功能（由上而下）**
+
+| 層與名稱（資料單位） | 功能 | 常見協定與設備 |
+|---|---|---|
+| **7 應用層（Application）**<br>資料 | 提供使用者應用程式存取網路的介面與服務 | HTTP、FTP、SMTP、DNS、Telnet |
+| **6 表達層（Presentation）**<br>資料 | 資料的**格式轉換、編碼、加解密、壓縮**，確保雙方能理解對方的資料 | JPEG、ASCII、SSL／TLS（加密） |
+| **5 會議層（Session）**<br>資料 | 建立、維持與結束**通訊會議（連線）**，控制對話（同步、檢查點） | NetBIOS、RPC |
+| **4 傳輸層（Transport）**<br>區段（Segment） | **端點對端點**的可靠（或快速）資料傳輸：分段與重組、流量控制、錯誤控制、連接埠定位 | TCP、UDP |
+| **3 網路層（Network）**<br>封包（Packet） | **邏輯位址（IP）定址與路由選擇**，把封包由來源送到目的網路 | IP、ICMP、路由器 |
+| **2 資料連結層（Data Link）**<br>訊框（Frame） | 相鄰節點間的**訊框傳輸**、實體位址（MAC）定址、錯誤偵測、媒體存取控制 | Ethernet、PPP、交換器、橋接器 |
+| **1 實體層（Physical）**<br>位元（Bit） | 在媒體上傳送**位元（0、1）**：電壓、訊號、接頭、傳輸媒介 | 網路線、光纖、集線器、無線電 |
+
+**三、記憶方式**：由下往上「Please Do Not Throw Sausage Pizza Away」（實體、資料連結、網路、傳輸、會議、表達、應用）；也可記作「應表會傳網資實」。
+
+**四、與 TCP/IP 的對照**：TCP/IP 模型為四層（應用層 ≈ OSI 的 5～7 層、傳輸層、網際網路層、網路存取層 ≈ OSI 1～2 層）。
+
+**五、資料傳送過程**：傳送端資料由上往下，每層加上自己的標頭（封裝）；接收端由下往上，每層去除標頭（解封裝）。`
+    },
+    {
+      id: "loc-mis-104-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "CRM 資料分析所需的技術",
+      score: 15,
+      question: `客戶關係管理（customer relationship management, CRM）對企業組織中是一個重要的支援系統。CRM 是利用資訊科技 IT 技術，來支援組織企業價值鏈中的行銷、銷售與服務等功能。後台型 CRM 主要包含三大部分：資料蒐集、資料儲存與資料分析。請說明資料分析所需之技術。（15 分）`,
+      answer: `**一、背景**：後台型（分析型）CRM 的三階段是：**資料蒐集**（交易、網站點擊、客服、社群）→ **資料儲存**（資料庫、資料倉儲）→ **資料分析**（把資料轉成對客戶的洞察）。資料分析所需技術如下：
+
+| 技術 | 說明 | CRM 中的應用 |
+|---|---|---|
+| **線上分析處理（OLAP）** | 多維度分析（時間、地區、產品、客戶群），支援切片、切塊、向下鑽取與向上彙總 | 分析各通路、客層的銷售與獲利，找出貢獻度高的客戶 |
+| **資料探勘（Data Mining）** | 發現隱藏型態：<br>• **關聯規則**（購物籃分析）<br>• **分類與預測**（決策樹、迴歸、神經網路）<br>• **群集分析**（客戶區隔）<br>• **序列分析** | 交叉銷售與推薦、預測客戶流失與購買意願、客戶分群與精準行銷 |
+| **客戶價值分析** | **RFM 分析**（最近購買 Recency、頻率 Frequency、金額 Monetary）、**客戶終身價值（CLV）**、客戶獲利分析 | 找出高價值客戶，分配行銷資源 |
+| **客戶區隔與輪廓分析** | 以人口統計、行為與偏好把客戶分群，建立客戶輪廓（Profile） | 針對不同客群設計產品與促銷 |
+| **文字探勘與情感分析** | 分析客服紀錄、評論、社群貼文 | 了解客戶意見與滿意度 |
+| **網站與點擊流分析（Web analytics）** | 分析瀏覽行為、轉換漏斗 | 改善網站與行銷成效 |
+| **推薦引擎** | 協同過濾、內容推薦 | 個人化推薦 |
+| **資料視覺化與商業智慧（BI）／儀表板** | 圖表呈現分析結果 | 協助管理者與業務人員決策 |
+| **資料清理與整合（ETL）** | 前處理：去除重複、補值、整合多來源資料 | 確保分析品質 |
+
+**二、分析的目的**：了解客戶需求、**獲取新客戶、留住既有客戶、提升客戶價值（交叉銷售與向上銷售）**，並評估行銷活動成效。
+
+**三、結論**：CRM 資料分析結合 **OLAP、資料探勘、客戶價值模型與視覺化**，把資料轉為決策與行動。`
+    },
+    {
+      id: "loc-mis-104-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "分散式資料庫及其與集中式資料庫的差異",
+      score: 15,
+      question: `資料庫在資訊系統中占有重要地位，分散式運算逐漸成為趨勢。請說明分散式資料庫，並比較與集中式資料庫之差異性。（15 分）`,
+      answer: `**一、分散式資料庫（Distributed Database）**
+
+指**邏輯上屬於同一個資料庫，但資料實體分散儲存在以網路連接的多個地點（節點）**，由**分散式資料庫管理系統（DDBMS）**統一管理，使用者感覺像在使用單一資料庫（**分散透明性**）。
+
+**分散資料的方式**
+- **分割（Fragmentation）**：水平分割（依列，如依地區分）、垂直分割（依欄）。
+- **複製（Replication）**：同一份資料在多個節點保存副本，提高可用性與讀取效能，但需處理資料同步與一致性。
+- **混合式**。
+
+**特色**：位置透明、分割透明、複製透明、各節點具一定自主性、分散式交易（兩階段提交 2PC）與查詢最佳化。
+
+**二、與集中式資料庫比較**
+
+| 比較項目 | 集中式資料庫 | 分散式資料庫 |
+|---|---|---|
+| 資料位置 | 全部存放於**單一地點**的主機 | 分散在**多個節點** |
+| 管理 | 單一管理點，管理與控制簡單 | 管理複雜（需協調多節點、同步、分散式交易） |
+| 可靠度與可用性 | **單點故障**：主機故障則整個系統停擺 | 一個節點故障，其他節點仍可運作；可透過複製提高可用性 |
+| 效能 | 遠端使用者需透過網路存取，延遲高、主機負載集中 | 資料靠近使用者（區域性），本地查詢快、負載分散 |
+| 擴充性 | 擴充需升級主機（垂直擴充），成本高 | 可增加節點（水平擴充），較有彈性 |
+| 成本 | 建置與維護成本集中；較低管理成本 | 網路與管理成本較高，但可用較便宜的設備 |
+| 一致性與完整性 | 容易維持一致性（只有一份資料） | **維持一致性困難**（多副本同步、分散式交易、網路延遲） |
+| 安全性 | 集中防護，較容易管理 | 攻擊面分散，各節點都需要安全措施，較難控管 |
+| 適用 | 規模小、地點集中、資料一致性要求極高 | 組織地理分散（跨區分公司）、大量資料、高可用需求 |
+
+**三、結論**：分散式資料庫提供更好的可用性、效能與擴充性，但付出管理複雜與一致性維護的成本；集中式則簡單、一致性好，但有單點故障與擴充瓶頸。`
+    },
+    {
+      id: "loc-mis-104-5", no: "五", topic: "mis", topicName: "資訊管理概要",
+      title: "ISO 27001 的資訊安全控管要項與 PDCA 程序",
+      score: 30,
+      question: `企業組織的資訊安全管理系統（ISMS）對組織之資產保護有非常重要的角色。（每小題 15 分，共 30 分）
+（一）請說明 ISO 27001 主要的資訊安全控管要項。
+（二）PDCA 是建置 ISMS 的方法，請說明 PDCA 程序。`,
+      answer: `**（一）ISO 27001 主要的資訊安全控管要項（15 分）**
+
+ISO/IEC 27001 是**資訊安全管理系統（ISMS）**的國際標準，規範組織如何建立、實施、維持並持續改善 ISMS。其附錄 A 列出**控制措施（Controls）**，須依風險評鑑選用。
+
+**說明**：附錄 A 的分類在 2013 版與 2022 版不同。考試年度（104 年）依 **2013 版**，共 **14 個控制領域、114 項控制措施**；2022 版改為 4 大類、93 項。作答時可依你熟悉的版本，並說明大類。
+
+**2013 版 14 個控制領域**
+
+| 領域 | 重點 |
+|---|---|
+| A.5 資訊安全政策 | 管理階層核定的政策與定期審查 |
+| A.6 資訊安全組織 | 角色與責任、職責分離、行動裝置與遠距工作 |
+| A.7 人力資源安全 | 任用前、中、後的背景查核、教育訓練、離職管理 |
+| A.8 資產管理 | 資產盤點、分類分級、媒體處理 |
+| A.9 存取控制 | 存取控制政策、使用者與特權管理、密碼管理 |
+| A.10 密碼學 | 加密控制與金鑰管理 |
+| A.11 實體與環境安全 | 安全區域、設備保護、電力與纜線 |
+| A.12 運作安全 | 作業程序、惡意軟體防護、備份、日誌與監控、弱點管理 |
+| A.13 通訊安全 | 網路安全管理、資訊傳輸 |
+| A.14 系統獲取、開發與維護 | 安全開發、測試資料 |
+| A.15 供應商關係 | 供應商資安要求與監督 |
+| A.16 資訊安全事故管理 | 事故通報、回應與學習 |
+| A.17 營運持續管理 | 資安面向的營運持續與備援 |
+| A.18 遵循性 | 法規、契約與個資保護；內部稽核與審查 |
+
+**2022 版 4 大主題（93 項控制）**：組織控制（Organizational）、人員控制（People）、實體控制（Physical）、技術控制（Technological）。
+
+**ISMS 主要條款（4～10 條）**：組織背景、領導、規劃（風險評鑑與處理、適用性聲明 SoA）、支援、運作、績效評估（監控、內部稽核、管理審查）、改進。
+
+**（二）PDCA 程序（15 分）**
+
+PDCA（戴明循環）是持續改善的管理方法，ISMS 依此循環運作：
+
+| 階段 | 在 ISMS 中的工作 |
+|---|---|
+| **P：Plan（規劃）— 建立 ISMS** | 界定範圍與組織背景；訂定資訊安全政策與目標；進行**風險評鑑**（識別資產、威脅、弱點與衝擊）；決定風險處理方式；選擇控制措施，撰寫**適用性聲明（SoA）** |
+| **D：Do（執行）— 實施與運作 ISMS** | 實施風險處理計畫與選定的控制措施；教育訓練與意識提升；管理資源與文件；實施事件通報與運作程序 |
+| **C：Check（檢查）— 監控與審查 ISMS** | 監控、量測與分析控制措施的有效性；進行**內部稽核**；定期**管理審查**；檢視風險評鑑是否仍然適當；評估稽核與事件的發現 |
+| **A：Act（行動）— 維持與改進 ISMS** | 針對稽核與檢查發現，採取**矯正與預防措施**；持續改進；重新進入下一輪 PDCA |
+
+**循環**：Plan → Do → Check → Act → 回到 Plan，持續提升資訊安全水準。`
+    }
+  ]
+},
+
+{
+  year: "103", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43830",
+  questions: [
+    {
+      id: "loc-mis-103-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "RAID 5 的好處與原理、硬體 RAID 對硬碟的要求、6 顆 1TB 的容量",
+      score: 30,
+      question: `試述使用磁碟陣列 RAID 5 的好處，並說明其工作原理。如想要把多個硬碟組成硬體控制的磁碟陣列，這些硬碟有什麼要求？假如把 6 個 1T 的硬碟組成 RAID 5 磁碟陣列，該磁碟陣列的總容量會是多少？（30 分）`,
+      answer: `**一、RAID 5 的好處**
+
+1. **容錯**：允許**任一顆硬碟故障**而資料不遺失（可由其餘硬碟與同位資料重建）。
+2. **讀取效能高**：資料分散在多顆硬碟，可**平行讀取**。
+3. **容量使用率高**：只犧牲一顆硬碟的容量作為同位資訊，比 RAID 1（鏡像，損失 50%）更節省，成本效益好。
+4. **硬碟壞掉時系統可繼續運作**（降級模式，效能下降），更換新碟後可重建。
+5. 無單一同位碟瓶頸（相對於 RAID 4）。
+
+缺點：寫入時要計算與更新同位資訊（寫入懲罰）；重建期間效能下降且若再壞一顆就會遺失資料；最少需 3 顆硬碟。
+
+**二、工作原理**
+
+- **條帶化（Striping）**：把資料切成小區塊（stripe unit），**輪流分散寫入**各硬碟。
+- **分散式同位（Distributed parity）**：每一條帶（stripe）會計算一個**同位區塊**（對該條帶的資料區塊做 **XOR**），並且**輪流**存放在不同的硬碟上，而不是固定在某一顆。
+
+範例（4 顆硬碟，P 為同位）：
+
+| | 碟 1 | 碟 2 | 碟 3 | 碟 4 |
+|---|---|---|---|---|
+| 條帶 0 | A1 | A2 | A3 | **P(A)** |
+| 條帶 1 | B1 | B2 | **P(B)** | B3 |
+| 條帶 2 | C1 | **P(C)** | C2 | C3 |
+
+- 同位計算：P(A) ＝ A1 ⊕ A2 ⊕ A3。
+- **重建**：若碟 2 損壞，可由 A2 ＝ A1 ⊕ A3 ⊕ P(A) 重新算出遺失的資料。
+
+**三、硬體控制 RAID 對硬碟的要求**
+
+1. **需要 RAID 控制卡（或主機板 RAID 控制器）**，並且硬碟的介面（SATA、SAS）要與控制器相容。
+2. 建議使用**相同廠牌、型號、容量、轉速與介面**的硬碟：
+   - RAID 的可用容量以**容量最小的硬碟**為準，容量不同會浪費空間；
+   - 轉速或效能不同，會拖慢整體效能。
+3. 數量：RAID 5 **至少 3 顆**硬碟。
+4. 建議使用適合 RAID 的企業級或 NAS 級硬碟（具有快速錯誤恢復機制，避免硬碟因為長時間錯誤修復而被誤判離線）。
+5. 可搭配**熱備援（Hot spare）**硬碟，在故障時自動重建。
+
+**四、6 顆 1T 硬碟組成 RAID 5 的容量**
+
+RAID 5 可用容量 ＝ (硬碟數量 − 1) × 單顆容量 ＝ (6 − 1) × 1 TB ＝ **5 TB**。（有 1 TB 的容量用來存放同位資訊。）`
+    },
+    {
+      id: "loc-mis-103-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "個人資料隱私的意義",
+      score: 20,
+      question: `何謂個人資料隱私（Privacy of Data about A Person）？（20 分）`,
+      answer: `**一、定義**
+
+個人資料隱私（資訊隱私權）是指**個人對於與自己有關的資料，有權決定「是否被蒐集、如何被使用、與誰分享，以及何時、在多大範圍被揭露」，並能維持控制**的權利。簡單說是「**個人對自己資料的控制權**」。（Alan Westin 的定義：個人、團體或機構有權決定何時、如何、在多大程度上把關於他們的資訊傳達給他人。）
+
+**二、個人資料的範圍**：能直接或間接識別特定個人的資料，如姓名、出生年月日、身分證字號、護照號碼、聯絡方式、住址、病歷、醫療與健康檢查、基因、財務情況、職業與社會活動、指紋與生物特徵、位置與網路行為紀錄等。
+
+**三、個資隱私保護的基本原則（OECD 與各國立法常見原則）**
+
+| 原則 | 說明 |
+|---|---|
+| 蒐集限制 | 合法、公平並在當事人**知情與同意**下蒐集，只蒐集必要資料 |
+| 目的明確與使用限制 | 蒐集目的要明確，不得為目的外的使用 |
+| 資料品質 | 資料應正確、完整、及時 |
+| 安全保護 | 適當的技術與管理措施，防止遺失、外洩與竄改 |
+| 公開與參與 | 當事人可知道誰在蒐集及使用，並可**查詢、閱覽、更正、停止使用、刪除** |
+| 責任 | 資料保管者要負責遵守上述原則 |
+
+**四、資訊科技帶來的隱私威脅**：網路與行動裝置的追蹤、大數據分析與用戶輪廓建立、社群媒體、資料外洩、個資交易、監控設備與人臉辨識等。
+
+**五、我國法律**：《個人資料保護法》規範公務機關與非公務機關蒐集、處理與利用個資的要件，並賦予當事人查詢、更正、停止利用、刪除等不得預先拋棄的權利，違反者須負民、刑事與行政責任。
+
+**六、結論**：個人資料隱私強調「**個人對自己資料的控制與自主**」，需要法律、組織管理與技術措施共同保障。`
+    },
+    {
+      id: "loc-mis-103-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "廣域網路（WAN）的意義與採用的技術標準",
+      score: 25,
+      question: `說明何謂廣域網路（WAN）？就你所知，試舉出一個廣域網路採用的技術標準。（25 分）`,
+      answer: `**一、廣域網路（Wide Area Network, WAN）**
+
+指涵蓋**很大地理範圍**（跨城市、跨國家，甚至全球）的網路，連接多個區域網路（LAN）或都會網路（MAN）。因為距離遠，通常**租用或使用電信業者的公共傳輸設施**（專線、公共交換網路、衛星、光纖），而不是自己架設線路。網際網路（Internet）就是最大的廣域網路。
+
+**特色**
+| 比較項目 | LAN | WAN |
+|---|---|---|
+| 範圍 | 一棟建築、校園 | 跨縣市、國家 |
+| 速度 | 高（100 Mbps～10 Gbps） | 一般較低、延遲較高（但骨幹可達很高） |
+| 擁有者 | 組織自有 | 電信業者提供，組織租用 |
+| 成本 | 低 | 較高（租用費） |
+| 錯誤率 | 低 | 相對較高 |
+
+**常見的連線型態**：專線（Leased line）、電路交換（ISDN、電話撥接）、封包交換（X.25、Frame Relay）、訊元交換（ATM）、MPLS VPN、網際網路 VPN、衛星、行動寬頻（4G／5G）。
+
+**二、舉例：廣域網路採用的技術標準**
+
+**例：MPLS（多重通訊協定標籤交換，Multi-Protocol Label Switching）**
+- 由 IETF 制定（RFC 3031），常用於電信業者與企業**專線 VPN**。
+- **運作**：封包進入業者網路時，邊緣路由器為封包貼上**標籤（Label）**，核心路由器只依標籤快速轉送，不再逐一查詢 IP 路由表；離開網路時移除標籤。
+- **優點**：轉送快、可做**服務品質（QoS）**與流量工程、支援多種協定、可建立隔離的 **VPN**，適合連接企業的各地分公司。
+
+**其他例子（任選皆可）**
+| 標準／技術 | 說明 |
+|---|---|
+| **Frame Relay（訊框中繼）** | 封包交換技術，速率約 56 Kbps～45 Mbps，早期企業專線常用 |
+| **ATM（非同步傳輸模式）** | 以固定 53 位元組的訊元傳輸，支援語音、影像與資料，適合需要 QoS 的骨幹 |
+| **X.25** | 早期封包交換標準（ITU-T），可靠但速率低 |
+| **ISDN** | 整合服務數位網路，用於電話線上同時傳語音與資料 |
+| **SONET／SDH** | 光纖骨幹的同步傳輸標準 |
+| **Metro Ethernet／Carrier Ethernet** | 用乙太網路技術建置的廣域或都會網路 |
+| **DSL（如 ADSL）**、**4G LTE／5G** | 用戶端的寬頻接取技術 |
+
+**三、結論**：WAN 連接遠距離的網路，通常由電信業者提供；MPLS 是現今企業與電信廣域網路常見的技術標準之一。`
+    },
+    {
+      id: "loc-mis-103-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "資訊倫理四大議題 PAPA",
+      score: 25,
+      question: `所謂資訊倫理的四大議題簡稱為 PAPA 的是那四個議題？請說明各議題。（25 分）`,
+      answer: `**一、PAPA 的由來**
+
+資訊倫理的四大議題由 **Richard Mason（1986 年）**提出，取四個英文字首簡稱為 **PAPA**：**Privacy（隱私權）、Accuracy（正確性）、Property（所有權）、Access（存取權）**。
+
+**二、各議題說明**
+
+| 議題 | 意義 | 主要問題 | 例子 |
+|---|---|---|---|
+| **P：隱私權（Privacy）** | 個人有權決定**自己的資訊被誰蒐集、如何使用與揭露**，免於不當的監視與侵擾 | 組織可蒐集哪些個資？如何保護？可否監控員工的電子郵件與網路使用？ | 網站未經同意蒐集並販售個資；公司監看員工通訊；個資外洩；監視器與人臉辨識 |
+| **A：正確性（Accuracy）** | 資訊的**正確、真實與完整**，以及誰要為資訊錯誤負責與賠償 | 誰負責確保資訊正確？資訊錯誤造成損害由誰負責？如何避免被竄改？ | 信用資料錯誤導致貸款被拒；病歷錯誤；假新聞、不實資訊；軟體錯誤造成損失 |
+| **P：所有權（Property）** | 資訊與智慧財產（軟體、著作、資料）的**所有權與使用權**，誰擁有？如何保護？ | 軟體盜版、侵權；資料與資訊的所有權歸屬；公開資料與商業機密的界線 | 非法下載與盜版；抄襲程式碼；侵犯專利與商標；員工離職帶走客戶資料 |
+| **A：存取權（Access）** | 誰有**權利與能力取得資訊**？包含**資訊公平使用**（數位落差）與存取的授權 | 誰能取得資訊？是否人人都有取得資訊的機會？如何防止未授權存取？ | 數位落差（城鄉、貧富、年齡）；偏鄉網路建設；資料授權與權限管理；駭客入侵 |
+
+**三、結論與建議**：資訊科技帶來便利，也產生倫理問題。組織應制定**資訊倫理政策與行為準則**、加強教育訓練、落實法規（如個資法、著作權法）並建立稽核機制，在 PAPA 四個面向取得平衡。`
+    }
+  ]
+},
+
+{
+  year: "102", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：電子工程、電信工程、資訊處理｜代號 44030",
+  questions: [
+    {
+      id: "loc-mis-102-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "五種電子商務營運模式，以及行動商務的角色與應用",
+      score: 25,
+      question: `電子商務係以數位形式來完成的商業交易行為：
+（一）請列舉並說明五種主要的電子商務營運模式。（15 分）
+（二）請列舉並說明行動商務在電子商務的商業活動中扮演的角色及應用。（10 分）`,
+      answer: `**（一）五種主要的電子商務營運模式（15 分）**
+
+| 模式 | 意義（交易對象） | 例子 |
+|---|---|---|
+| **B2C（企業對消費者）** | 企業直接向消費者銷售商品或服務 | 博客來、momo 購物網、航空公司訂位網站 |
+| **B2B（企業對企業）** | 企業之間的交易，如採購、供應鏈與電子市集 | 企業電子採購平台、供應商入口網站、EDI |
+| **C2C（消費者對消費者）** | 消費者之間透過平台交易，平台提供媒合 | 拍賣網站、二手交易平台（如蝦皮、Yahoo 拍賣、eBay） |
+| **B2G／G2B（企業對政府）** | 企業與政府機關的交易，如政府採購、報稅、電子公文 | 政府電子採購網、線上報稅 |
+| **C2B（消費者對企業）** | 消費者提出需求或出價，由企業競標或回應，或消費者提供內容與服務給企業 | 反向拍賣、自由接案平台、網路徵稿、團購 |
+| **O2O（線上到線下）** | 線上下單與付款，線下取貨或體驗 | 線上訂餐廳、網路預約服務、線上購買超商取貨 |
+| **G2C（政府對民眾）** | 政府提供民眾線上服務 | 線上申辦、電子戶政 |
+
+（作答時任選五種說明即可。）
+
+**（二）行動商務（m-commerce）的角色與應用（10 分）**
+
+**角色**：行動商務是電子商務的延伸，利用**智慧型手機、平板與無線網路**，讓使用者**隨時隨地**進行商業活動，具備**個人化、即時性、定位性、便利性**。它擴大電子商務的使用場景與客群，並結合位置與裝置資訊提供**情境式服務**。
+
+**應用**
+| 應用 | 說明 |
+|---|---|
+| **行動購物** | 手機 App 或行動網站購物、比價、掃描條碼 |
+| **行動支付** | NFC 與 QR Code 付款、行動錢包（如 Apple Pay、Line Pay） |
+| **行動銀行與證券** | 查詢帳戶、轉帳、下單交易 |
+| **位置服務（LBS）** | 依所在位置推送附近優惠、導航、叫車（如 Uber） |
+| **行動票券與訂位** | 電子票券、訂票訂房、掃碼入場 |
+| **行動廣告與行銷** | 推播通知、精準廣告、優惠券 |
+| **O2O 服務** | 線上下單、線下取貨或享受服務 |
+| **企業行動應用** | 外勤人員行動銷售、庫存查詢與派工 |
+
+**結論**：行動商務讓電子商務更貼近日常生活，並因定位與個人化而創造新的商業模式。`
+    },
+    {
+      id: "loc-mis-102-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "企業戰情室所屬的系統與特色，以及導入的問題與解決方案",
+      score: 25,
+      question: `企業戰情室可以根據異常的資料向下或多面向進行挖掘：
+（一）請問企業戰情室是那個系統的應用？並請說明此系統的特色。（10 分）
+（二）若您任職某家企業要您負責引進企業戰情室這套系統，請申論可能面臨的問題與可能的解決方案。（15 分）`,
+      answer: `**（一）企業戰情室所屬系統與特色（10 分）**
+
+**所屬系統**：企業戰情室（Business War Room／Executive Dashboard）是**高階主管資訊系統（Executive Information System, EIS，也稱主管支援系統 ESS）**的應用，並結合**商業智慧（BI）、決策支援系統（DSS）與資料倉儲**。
+
+**EIS 的特色**
+| 特色 | 說明 |
+|---|---|
+| 服務高階主管 | 提供策略層級所需的**精簡、重點、全貌**資訊 |
+| **整合多來源資料** | 整合企業內部（ERP、CRM、財務）與外部（市場、競爭者）資料，常以資料倉儲為基礎 |
+| **向下鑽取（Drill-down）** | 從摘要指標逐層往下看明細，找出異常原因（題目所說「向下或多面向挖掘」） |
+| **多維度分析** | 依時間、產品、地區、通路等多角度檢視（OLAP） |
+| **異常通報（Exception reporting）與警示** | 指標超過門檻自動警示，使管理者聚焦問題 |
+| **視覺化介面** | 儀表板、圖表、紅黃綠燈、記分卡（KPI），操作簡單、可即時查看 |
+| **即時與可預測** | 近乎即時的資料更新、趨勢分析與預測 |
+
+**（二）導入企業戰情室可能面臨的問題與解決方案（15 分）**
+
+| 可能問題 | 解決方案 |
+|---|---|
+| **1. 資料品質與整合困難**：各系統資料格式、定義不一致，資料不正確或不完整 | 先做資料治理：統一指標定義與資料字典、資料清理與標準化；建置資料倉儲與 ETL；指定資料管理者 |
+| **2. 高層支持與需求不明確**：主管不清楚要看什麼、使用意願低 | 高階主管親自參與，訪談找出**關鍵績效指標（KPI）**；先做原型，快速展示價值；分階段導入 |
+| **3. 指標設計不當**：指標過多或與策略脫節 | 以平衡計分卡等方法連結策略，聚焦少數關鍵指標，定期檢討調整 |
+| **4. 技術與系統整合複雜**：舊系統介面不一、效能問題 | 先評估架構，使用中介層與標準介面；選擇可擴充的 BI 平台；效能最佳化（索引、預先彙總） |
+| **5. 成本高、效益難衡量** | 以投資報酬分析，選擇優先領域做先導專案，以成效說服；考慮雲端或採月租方案降低成本 |
+| **6. 組織與文化阻力**：部門不願公開資料、擔心被監督 | 變革管理、溝通與教育訓練，明確資料共享與使用規範，讓部門了解對自己的好處 |
+| **7. 資訊安全與權限** | 角色權限控管、加密、存取稽核，確保機密資料安全 |
+| **8. 使用者能力不足、使用率低** | 教育訓練、設計簡單易用的畫面（行動版、儀表板），提供專人支援 |
+| **9. 維護與持續更新** | 設立維運團隊、定期更新與使用者回饋改善 |
+
+**結論**：企業戰情室屬 EIS／BI 的應用，成功關鍵在於**高層支持、清楚的 KPI、良好的資料品質與整合、使用者易用性與持續維運**。`
+    },
+    {
+      id: "loc-mis-102-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "網路行銷對企業與消費者各四項好處",
+      score: 25,
+      question: `網路行銷隨著網路環境及電子商務的成熟而蓬勃發展。
+（一）請列舉並說明網路行銷對企業所帶來的四項好處。（12 分）
+（二）請列舉並說明網路行銷對消費者所帶來的四項好處。（13 分）`,
+      answer: `網路行銷（Internet marketing）是利用網際網路與數位工具（網站、社群媒體、搜尋引擎、電子郵件、行動 App）進行產品與服務的推廣、溝通與銷售。
+
+**（一）對企業的四項好處（12 分）**
+
+| 好處 | 說明 |
+|---|---|
+| **1. 降低成本** | 相較實體店面與傳統廣告，網路廣告與銷售成本低（減少店租、人力與印刷費用），可自動化客服與訂單處理 |
+| **2. 擴大市場範圍、全天候營運** | 突破地理與時間限制，面向全球顧客，24 小時營業 |
+| **3. 精準行銷與個人化** | 蒐集與分析顧客資料與行為，依興趣進行**目標行銷、個人化推薦**，提高轉換率 |
+| **4. 即時互動與效果可衡量** | 與顧客即時溝通、快速取得回饋；可追蹤點擊、轉換率與投資報酬，快速調整策略 |
+
+（其他：縮短交易流程與供應鏈、建立品牌與顧客關係、中小企業也能與大企業競爭、快速推出新產品與促銷。）
+
+**（二）對消費者的四項好處（13 分）**
+
+| 好處 | 說明 |
+|---|---|
+| **1. 便利與節省時間** | 隨時隨地購物與查詢，不必出門，快速完成交易與付款 |
+| **2. 資訊豐富、方便比較** | 可快速搜尋商品規格、評價與價格，進行比價與蒐集意見，作出更好決策 |
+| **3. 選擇多、價格較優惠** | 可接觸全球商品，通路縮短，常有網路專屬優惠與促銷，價格競爭使價格較低 |
+| **4. 個人化與互動服務** | 享有依個人偏好的推薦與客製化服務，可即時與業者互動、獲得客服與售後支援，並可分享消費評論 |
+
+（其他：能分享使用心得與評價、取得即時促銷與優惠資訊。）
+
+**結論**：網路行銷對企業可降低成本、擴大市場、精準與可衡量；對消費者帶來便利、資訊透明與更多選擇；但也要注意個資保護與網路詐騙等問題。`
+    },
+    {
+      id: "loc-mis-102-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "TPS、MIS、DSS、EIS、KMS 五類資訊系統的特色",
+      score: 25,
+      question: `請說明下列各類資訊系統的特色：（每小題 5 分，共 25 分）
+（一）交易處理系統（Transaction Processing System, TPS）
+（二）管理資訊系統（Management Information System, MIS）
+（三）決策支援系統（Decision Support System, DSS）
+（四）高階主管資訊系統（Executive Information System, EIS）
+（五）知識管理系統（Knowledge Management System, KMS）`,
+      answer: `**組織層級與系統關係（金字塔）**：作業層（TPS）→ 管理層（MIS、DSS）→ 策略層（EIS）；知識工作者與全組織（KMS）。
+
+| 系統 | 使用者與層級 | 特色 | 輸入／輸出 | 例子 |
+|---|---|---|---|---|
+| **（一）TPS 交易處理系統** | **作業層**（基層人員） | 處理**日常、重複、結構化**的交易，並記錄資料；強調**速度、準確、可靠**；其他系統的**資料來源**；多為即時或批次處理；需要完整稽核軌跡 | 輸入：交易資料；輸出：明細報表、交易記錄 | 銷售點系統（POS）、訂單處理、薪資、訂位、提款機 |
+| **（二）MIS 管理資訊系統** | **管理層**（中階主管） | 把 TPS 資料**彙整**成摘要報表，供**規劃、控制與監督**使用；多為**定期報告**、例外報告與需求報告；問題多為**結構化、已知**；通常彈性較低，報表格式固定 | 輸入：TPS 彙總資料；輸出：摘要報表（月報、績效報告） | 年度預算報表、銷售分析報表、庫存管理報告 |
+| **（三）DSS 決策支援系統** | **管理層**（也含專業人員） | 協助**半結構化或非結構化**問題的決策；互動式、彈性高，提供**模型、資料分析與模擬**（如假設分析 what-if、敏感度分析）；使用者可參與分析 | 輸入：內外部資料、模型參數；輸出：分析結果、情境比較 | 產品定價模型、投資組合分析、生產排程模擬、資料分析儀表板 |
+| **（四）EIS 高階主管資訊系統（亦稱 ESS）** | **策略層**（高階主管） | 提供**精簡、重點、全貌**的資訊；整合內外部資料；**向下鑽取**、異常警示；圖形化與易用的**儀表板**；支援策略與非結構化決策 | 輸入：內外部彙總資料；輸出：圖表、KPI、趨勢 | 企業績效儀表板、經營戰情室、市場趨勢分析 |
+| **（五）KMS 知識管理系統** | **全組織**，特別是知識工作者 | 支援知識的**蒐集、儲存、分享、轉移與應用**；包含知識庫、搜尋、文件管理、專家名錄、討論社群；促進組織學習，保存**顯性與隱性知識** | 輸入：文件、經驗、專家知識；輸出：可搜尋與分享的知識 | 企業內部知識庫、FAQ 與案例庫、專家黃頁、線上社群 |
+
+**比較重點**
+- TPS 處理**交易**，MIS 產生**報表**，DSS 支援**分析決策**，EIS 提供**高階概覽**，KMS 管理**知識**。
+- 資料流向：TPS 提供資料給 MIS、DSS、EIS 使用。`
+    }
+  ]
+},
+
+{
+  year: "101", exam: "local",
+  subject: "資訊管理概要", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：電子工程、電信工程、資訊處理｜代號 43730",
+  questions: [
+    {
+      id: "loc-mis-101-1", no: "一", topic: "mis", topicName: "資訊管理概要",
+      title: "名詞解釋：二元搜尋樹、LTE、服務科學、隱性知識、ERP",
+      score: 25,
+      question: `解釋名詞：（每小題 5 分，共 25 分）
+（一）Binary search tree（data structure）
+（二）LTE（telecommunication standard）
+（三）Service science
+（四）Tacit knowledge
+（五）ERP（management information system）`,
+      answer: `**（一）Binary Search Tree（二元搜尋樹）— 資料結構**
+
+一種二元樹，每個節點最多有兩個子節點，且滿足：**左子樹所有節點的鍵值 < 根節點 < 右子樹所有節點的鍵值**（左小右大），左右子樹本身也是二元搜尋樹。
+- 搜尋、插入、刪除的平均時間複雜度為 O(log n)；若樹退化成鏈狀（如依序插入已排序資料），最差為 O(n)。
+- **中序走訪（左、根、右）**可得到由小到大排序的結果。
+- 改良：AVL 樹、紅黑樹等**平衡**二元搜尋樹，保證高度為 O(log n)。
+
+**（二）LTE（Long Term Evolution）— 電信標準**
+
+由 3GPP 制定的**第四代（4G）行動寬頻通訊標準**（常稱 3.9G／4G）。
+- 以 **OFDMA**（下行）與 SC-FDMA（上行）、**MIMO** 多天線技術提高頻譜效率；採**全 IP 網路架構**，封包交換；語音以 VoLTE 傳輸。
+- 特色：**高速率**（理論下載可達 100 Mbps 以上，LTE-Advanced 更高）、**低延遲**、頻寬彈性。
+- 應用：行動上網、串流影音、行動商務、物聯網。
+
+**（三）Service Science（服務科學）**
+
+結合資訊科技、管理、工程與社會科學，以**科學方法研究與設計服務系統**，提升服務的**生產力、品質與創新**的跨領域學科（由 IBM 倡導，亦稱 SSME：Service Science, Management, and Engineering）。重點：價值共創（供應者與顧客一同創造價值）、服務系統（人員、技術、組織與流程）、服務創新。台灣服務業占 GDP 比重高，因此重要。
+
+**（四）Tacit Knowledge（隱性知識）**
+
+存在於**個人腦中、難以用文字或語言表達**的知識，來自個人**經驗、直覺、技能與心智模式**，如師傅的技藝、業務的談判技巧。與之相對的是**顯性知識（Explicit knowledge）**，可文件化（手冊、規格）。
+- 知識螺旋（Nonaka 與 Takeuchi 的 SECI 模型）：社會化（隱性→隱性）、外化（隱性→顯性）、結合（顯性→顯性）、內化（顯性→隱性）。
+- 管理方式：師徒制、實務社群、經驗分享、專家黃頁。
+
+**（五）ERP（企業資源規劃，Enterprise Resource Planning）— 管理資訊系統**
+
+**整合企業內部各部門的主要作業流程（財務會計、生產、採購、庫存、銷售、人力資源）於單一系統與共用資料庫**的企業資訊系統。
+- 特色：**資料整合、即時、一次輸入多處共用**；標準化流程；模組化設計；支援管理決策與跨部門協調。
+- 效益：減少重複作業與資料不一致、提高效率、降低庫存、加速財務結算。
+- 風險與挑戰：導入成本高、流程再造（BPR）與組織變革阻力、客製化與維護。
+- 代表產品：SAP、Oracle、鼎新。`
+    },
+    {
+      id: "loc-mis-101-2", no: "二", topic: "mis", topicName: "資訊管理概要",
+      title: "G2C 的定義與如何利用資訊科技讓民眾積極參與政策與政府活動",
+      score: 15,
+      question: `G2C 是電子化政府所提供的主要經營模式（delivery model）之一，請嘗試對 G2C 作一定義，並說明如何利用資訊設施與技術，協助民眾成為積極的政策與政府活動參與者？（15 分）`,
+      answer: `**一、G2C 的定義**
+
+**G2C（Government to Citizen，政府對民眾）**是電子化政府的服務模式之一，指**政府機關透過網際網路與資訊科技，直接為民眾提供資訊與服務，並與民眾互動**，使民眾能便利、迅速、透明地取得政府服務，提高行政效率與民眾滿意度。其他模式還有 G2B（對企業）、G2G（機關之間）、G2E（對公務員）。
+
+**二、如何協助民眾成為積極的政策與政府活動參與者（電子參與 e-Participation）**
+
+| 層次 | 作法（資訊設施與技術） |
+|---|---|
+| **資訊公開（讓民眾知情）** | 政府入口網站、機關網站公開法規、預算、施政計畫與會議資訊；**開放資料（Open Data）**平台提供資料給民眾與民間應用；以行動 App 與社群媒體推播資訊 |
+| **雙向溝通（讓民眾表達）** | 電子信箱與首長信箱、線上客服與聊天機器人、**網路意見調查與民意論壇**、公共政策**網路參與平台**（如 Join 平台），民眾提案與附議 |
+| **諮詢與審議** | 重大政策**線上公開諮詢**、法規草案預告與線上留言、線上公聽會、預算參與式（如參與式預算平台） |
+| **協作與決策參與** | 線上投票與連署、民眾協作平台、公民科技（Civic Tech）社群與黑客松，共同開發應用 |
+| **服務便利化** | **一站式服務**、線上申辦、電子支付、行動化服務，降低參與門檻 |
+
+**三、需要的配套與基礎建設**
+1. **資訊設施**：高速且普及的寬頻與行動網路、偏鄉網路建設，縮短**數位落差**；
+2. **身分認證與安全**：自然人憑證、行動身分識別；網路安全與個資保護，建立信任；
+3. **無障礙與易用設計**：支援視障、高齡者與多語；
+4. **法制與回應機制**：政府對民意明確回應與公開處理進度，民眾才有意願持續參與；
+5. **資訊素養教育與推廣**：提升民眾使用能力。
+
+**四、效益**：提升行政透明度與課責，強化民主參與與政策品質，增進政府與民眾的信任。`
+    },
+    {
+      id: "loc-mis-101-3", no: "三", topic: "mis", topicName: "資訊管理概要",
+      title: "個人資料的範圍、公務機關蒐集利用原則，以及當事人不得預先拋棄的權利",
+      score: 15,
+      question: `個人資料保護是資訊管理的重要任務。根據我國「個人資料保護法」之規定，個人資料的範圍，除了習知的自然人之姓名、出生年月日、國民身分證統一編號、護照號碼、特徵、指紋、婚姻、家庭、教育、職業、聯絡方式和社會活動以外，還包括那些？請再具體列舉您所知悉的三種個人資料。公務機關對個人資料之蒐集或利用之原則為何？當事人對保存在公務機關的個人資料，有何不得預先拋棄或以特約限制之權利？（15 分）`,
+      answer: `**說明**：個人資料保護法歷經修正（如 2010 年大幅修正、2015 年再修正），條文內容與條號以現行法為準；以下依法律的重點整理，作答時掌握「範圍、原則、當事人權利」三大重點即可。
+
+**一、個人資料的範圍（除題目所列外，還包括）**
+
+依個資法第 2 條，個人資料指自然人的姓名、出生年月日、國民身分證統一編號、護照號碼、特徵、指紋、婚姻、家庭、教育、職業、聯絡方式、財務情況、社會活動，以及**病歷、醫療、基因、性生活、健康檢查、犯罪前科**，和其他得以**直接或間接方式識別該個人之資料**。
+
+**具體列舉三種（例）**：**病歷**（醫療紀錄）、**基因**、**犯罪前科**；另外也可舉**財務情況**（如銀行帳戶、信用資料）、**健康檢查**、**性生活**。（其中病歷、醫療、基因、性生活、健康檢查、犯罪前科屬於**特種個資**，原則上不得蒐集、處理或利用，有法定例外。）
+
+**二、公務機關蒐集、處理與利用個人資料的原則**
+
+1. **蒐集與處理（第 15 條）**：除特種個資外，應有**特定目的**，並符合下列情形之一：
+   - 執行**法定職務必要範圍**內；
+   - 經**當事人同意**；
+   - 對當事人權益**無侵害**。
+2. **利用（第 16 條）**：應於**執行法定職務必要範圍內**，並與**蒐集之特定目的相符**；有法定例外（如法律明文規定、為維護國家安全或公共利益、經當事人同意、為免除當事人生命身體危險等）才可為特定目的外利用。
+3. **其他相關原則**：目的明確、**最小必要**、告知義務（蒐集時應告知當事人目的、類別、使用期間與方式、權利及不提供之影響）、**安全維護**義務、資料正確性、使用期限屆滿或目的消失時應刪除或停止利用。
+
+**三、當事人不得預先拋棄或以特約限制之權利（第 3 條）**
+
+當事人就其個人資料，依法可行使下列權利，**不得預先拋棄，也不得以契約或約定加以限制**：
+1. **查詢或請求閱覽**；
+2. **請求製給複製本**；
+3. **請求補充或更正**；
+4. **請求停止蒐集、處理或利用**；
+5. **請求刪除**。
+
+**四、結論**：公務機關須以**特定目的、法定職務必要範圍**蒐集與利用個資，並保障當事人上述五項不得拋棄的權利，同時加強安全維護。`
+    },
+    {
+      id: "loc-mis-101-4", no: "四", topic: "mis", topicName: "資訊管理概要",
+      title: "雲端運算的定義、特色與核心技術",
+      score: 15,
+      question: `我國政府於民國 99 年 4 月通過「雲端運算產業發展方案」，決定投入雲端運算建設，並開始著手規劃低碳雲、交通雲、健康雲及教育雲等，積極推動政府的雲端運算應用。請對雲端運算（Cloud computing）作一定義。另雲端運算的特色為何？雲端運算有那些核心技術？（15 分）`,
+      answer: `**一、定義**
+
+雲端運算是一種**透過網路，以服務的方式，隨需取得共享的、可設定的運算資源（網路、伺服器、儲存、應用程式、服務）的模式**，資源能快速佈建與釋放，只需最少的管理與服務供應商互動。（NIST 的定義。）簡單說，使用者不必自己擁有與維護設備，**像用水用電一樣，按需使用、按量付費**。
+
+**服務模式**：IaaS（基礎設施即服務）、PaaS（平台即服務）、SaaS（軟體即服務）。**部署模式**：公有雲、私有雲、社群雲、混合雲。
+
+**二、特色（NIST 五大基本特徵）**
+
+| 特色 | 說明 |
+|---|---|
+| **隨需自助服務** | 使用者可自行取得與調整資源，無須人工介入 |
+| **廣泛的網路存取** | 透過標準網路機制，以各種裝置（電腦、手機）存取 |
+| **資源共享（資源池化）** | 提供者以多租戶模式將資源集中管理，動態分配給多個使用者 |
+| **快速彈性擴縮** | 資源可依需求快速增加或減少，對使用者來說似乎無限 |
+| **可計量的服務** | 依使用量計價與監控（Pay-as-you-go），資源使用透明 |
+
+其他優點：降低初期投資與維運成本、提升資源使用率、易於管理與部署、容易達成備援。
+
+**三、核心技術**
+
+| 技術 | 說明 |
+|---|---|
+| **虛擬化（Virtualization）** | 把實體伺服器、儲存與網路切成多個虛擬資源，提高使用率與隔離性（如 VMware、KVM、Hyper-V） |
+| **分散式運算與平行處理** | 把大型工作分配到多台機器，如 **MapReduce**、Hadoop、Spark |
+| **分散式儲存與資料管理** | 如分散式檔案系統（HDFS、Google File System）、NoSQL 資料庫（BigTable）、物件儲存，提供可擴充與容錯 |
+| **網格與叢集運算** | 整合多台電腦成為大型運算資源 |
+| **Web 服務與服務導向架構（SOA）、Web 2.0／AJAX** | 以標準介面提供服務，使用者透過瀏覽器使用 |
+| **自動化管理與資源調度（雲端作業系統／編排）** | 自動佈建、負載平衡、容錯與計費 |
+| **資料中心與節能技術** | 大型資料中心的電力、冷卻與網路建置（綠色運算） |
+| **資訊安全與隱私技術** | 加密、身分與存取管理、多租戶隔離 |
+
+**四、結論**：雲端運算讓資源服務化、彈性與規模化，是政府與企業數位轉型的重要基礎，但需要重視資料安全、隱私與服務可用性。`
+    },
+    {
+      id: "loc-mis-101-5", no: "五", topic: "mis", topicName: "資訊管理概要",
+      title: "資料庫交易的 ACID 四個特性",
+      score: 15,
+      question: `資料庫交易必須符合 ACID 四個特性，請問它們指的分別是什麼？請略述其要點。（15 分）`,
+      answer: `**交易（Transaction）**是資料庫中一組邏輯上不可分割的操作（如轉帳：A 帳戶扣款、B 帳戶加款）。為了確保資料正確，交易必須具備 **ACID** 四個特性：
+
+| 特性 | 英文 | 要點 | 例子（轉帳 1000 元） |
+|---|---|---|---|
+| **A：原子性** | Atomicity | 交易中的所有操作**要嘛全部完成，要嘛全部不做**（沒有做一半）；失敗時要**回復（Rollback）**，恢復到交易前的狀態 | 扣款成功但加款失敗，則要把扣款也取消 |
+| **C：一致性** | Consistency | 交易執行前後，資料庫要從**一個一致（合法）狀態**轉換到另一個一致狀態，必須遵守所有完整性限制（主鍵、外鍵、約束與商業規則） | 轉帳前後兩帳戶總金額不變，餘額不為負（若有此規則） |
+| **I：隔離性** | Isolation | 多個交易**並行執行**時，彼此不互相干擾，每個交易感覺像單獨執行；透過**鎖定（Lock）**與隔離等級避免髒讀、不可重複讀、幻讀 | 兩個同時轉帳的交易不會互相覆蓋對方的餘額 |
+| **D：持久性** | Durability | 交易**一旦提交（Commit），結果就是永久性**的，即使發生系統當機或斷電也不會遺失（透過交易日誌與備份、寫入非揮發性儲存） | 轉帳成功後，即使主機當機，餘額仍然正確 |
+
+**實作機制**：交易日誌（Log）、先寫日誌（WAL）、回復與重做（Undo／Redo）、兩階段鎖定（2PL）、檢查點與備份。
+
+**補充**：ACID 保證資料正確，是關聯式資料庫的重要特性；NoSQL 常採 **BASE**（基本可用、軟狀態、最終一致）以換取擴充性。`
+    },
+    {
+      id: "loc-mis-101-6", no: "六", topic: "mis", topicName: "資訊管理概要",
+      title: "商業智慧的意義、導入目的與三種技術",
+      score: 15,
+      question: `何謂商業智慧（Business Intelligence）？企業引進商業智慧的目的為何？並請列舉出三種可用於商業智慧的資訊技術。（15 分）`,
+      answer: `**一、何謂商業智慧（BI）**
+
+商業智慧是指運用**資料倉儲、資料分析與呈現等技術與流程**，把企業內外部**大量資料轉換為有用的資訊與知識**，並呈現給決策者，**協助企業做出更快速、更正確的決策**的整套方法、工具與應用。
+
+簡單說：**資料 → 資訊 → 知識 → 決策**。
+
+**二、引進 BI 的目的**
+
+1. **提升決策品質與速度**：以事實與數據取代直覺。
+2. **掌握營運狀況**：即時監控績效（KPI）、發現問題與異常。
+3. **洞察顧客與市場**：了解顧客行為與趨勢，進行精準行銷、提高顧客滿意與忠誠度。
+4. **發現商機與預測趨勢**：預測銷售、需求，辨識新機會。
+5. **提升營運效率、降低成本**：找出浪費與瓶頸，改善流程。
+6. **風險管理**：偵測詐欺與異常、評估信用與風險。
+7. **強化競爭優勢**：快速因應市場變化。
+
+**三、可用於商業智慧的資訊技術（至少三種）**
+
+| 技術 | 說明 |
+|---|---|
+| **資料倉儲（Data Warehouse）與資料超市** | 以 **ETL**（擷取、轉換、載入）整合各來源資料，成為主題導向、歷史性、整合式的分析資料庫 |
+| **線上分析處理（OLAP）** | 多維度分析、向下鑽取、切片切塊、向上彙總，快速回應分析需求 |
+| **資料探勘（Data Mining）** | 發現隱藏型態：關聯規則、分類、群集、預測 |
+| **報表與儀表板（Dashboard）／資料視覺化** | 以圖表與記分卡呈現 KPI，讓管理者快速掌握 |
+| **文字探勘與大數據分析** | 分析非結構化資料（評論、社群）；Hadoop、Spark 處理大量資料 |
+| **預測分析與機器學習** | 預測銷售、客戶流失、風險 |
+
+（作答時列出任意三種並簡述即可。）
+
+**四、結論**：BI 整合資料與分析，讓企業從資料中取得洞察，提升競爭力。`
+    }
+  ]
+},
+
+];
+
+</script>
+<script>/* ===== 地方特考四等（資訊管理概要）考古題複習系統 — 應用邏輯 ===== */
+
+// 合併所有資料（依年度由新到舊）
+const ALL_YEARS = [
+  ...EXAM_DATA_CUSTOMS
+];
+
+const TOPIC_INFO = {
+  db:   { name: '資料庫',          cls: 't-db'   },
+  ds:   { name: '資料結構與演算法', cls: 't-ds'   },
+  prog: { name: '程式設計實作',     cls: 't-prog' },
+  sec:  { name: '資訊安全',         cls: 't-sec'  },
+  net:  { name: '網路與系統',       cls: 't-net'  },
+  mis:  { name: '資管理論與名詞',   cls: 't-mis'  },
+};
+
+// 攤平成題目陣列
+const SUBTOPICS = [{"key": "a", "name": "資訊系統與電子商務", "color": "#1f5673"}, {"key": "b", "name": "系統開發與專案管理", "color": "#8a3324"}, {"key": "c", "name": "資料庫與資料管理", "color": "#2f6b4f"}, {"key": "d", "name": "資通安全與個資法規", "color": "#6a4c93"}, {"key": "e", "name": "網路與雲端", "color": "#a07e2c"}, {"key": "f", "name": "策略與管理理論", "color": "#b5651d"}, {"key": "g", "name": "倫理與社會議題", "color": "#4a5859"}];
+const SUB_INFO = Object.fromEntries(SUBTOPICS.map(x => [x.key, x]));
+const SUB_MAP = {"loc-mis-112-1": "d", "loc-mis-112-2": "d", "loc-mis-112-3": "e", "loc-mis-112-4": "c", "loc-mis-111-1": "b", "loc-mis-111-2": "b", "loc-mis-111-3": "d", "loc-mis-111-4": "a", "loc-mis-110-1": "f", "loc-mis-110-2": "f", "loc-mis-110-3": "b", "loc-mis-110-4": "g", "loc-mis-110-5": "c", "loc-mis-109-1": "b", "loc-mis-109-2": "e", "loc-mis-109-3": "d", "loc-mis-109-4": "b", "loc-mis-108-1": "d", "loc-mis-108-2": "d", "loc-mis-108-3": "b", "loc-mis-108-4": "g", "loc-mis-107-1": "f", "loc-mis-107-2": "f", "loc-mis-107-3": "b", "loc-mis-107-4": "b", "loc-mis-107-5": "a", "loc-mis-107-6": "b", "loc-mis-106-1": "a", "loc-mis-106-2": "d", "loc-mis-106-3": "a", "loc-mis-106-4": "d", "loc-mis-105-1": "a", "loc-mis-105-2": "f", "loc-mis-105-3": "b", "loc-mis-105-4": "c", "loc-mis-104-1": "c", "loc-mis-104-2": "e", "loc-mis-104-3": "c", "loc-mis-104-4": "c", "loc-mis-104-5": "d", "loc-mis-103-1": "c", "loc-mis-103-2": "g", "loc-mis-103-3": "e", "loc-mis-103-4": "g", "loc-mis-102-1": "a", "loc-mis-102-2": "a", "loc-mis-102-3": "a", "loc-mis-102-4": "a", "loc-mis-101-1": "e", "loc-mis-101-2": "a", "loc-mis-101-3": "d", "loc-mis-101-4": "e", "loc-mis-101-5": "c", "loc-mis-101-6": "c"};
+const ALL_Q = [];
+ALL_YEARS.forEach(y => {
+  y.questions.forEach(q => {
+    ALL_Q.push({ ...q, sub: SUB_MAP[q.id] || '', year: y.year, subject: y.subject,
+                 yearNote: y.note || '', timeLimit: y.timeLimit });
+  });
+});
+
+let state = { mode: 'year', topic: 'all', search: '', terms: [] };
+const openIds = new Set();   // 使用者展開的題目卡（重新渲染後仍保留）
+
+
+/* ============================================================
+   搜尋 / 跳轉 / 換行 共用工具（新增）
+   ============================================================ */
+const BREAK_AT_PERIOD = true;   // 解析遇到「。」自動換行；不想要就改成 false
+
+/* 全形→半形、英文轉小寫；逐字處理，確保處理後長度不變（highlight 才對得準） */
+function normText(s) {
+  let out = '';
+  for (const ch of String(s)) {
+    const n = ch.normalize('NFKC').toLowerCase();
+    out += (n.length === ch.length) ? n : ch;
+  }
+  return out;
+}
+function parseTerms(raw) {
+  return [...new Set(normText(raw).split(/\s+/).filter(Boolean))];
+}
+/* 去掉資料裡用來排版的 HTML 標籤，避免搜 "br"、"code"、"strong" 時誤中 */
+function stripTags(s) {
+  return String(s == null ? '' : s)
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?(?:strong|code|sub|sup|u|em|b|i|pre)(?:\s[^>]*)?>/gi, '')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+}
+/* 每個關鍵字都必須出現（AND）；總分 = 各關鍵字命中的最高權重欄位之和 */
+function scoreFields(terms, fields) {
+  let total = 0;
+  for (const term of terms) {
+    let best = 0;
+    for (const f of fields) if (f.w > best && f.t.includes(term)) best = f.w;
+    if (!best) return 0;
+    total += best;
+  }
+  return total;
+}
+/* 在已渲染的 DOM 文字節點上標黃（不動 HTML 結構） */
+function highlightIn(root, terms) {
+  if (!root || !terms.length) return;
+  const nodes = [];
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let n;
+  while ((n = walker.nextNode())) {
+    if (!n.nodeValue.trim()) continue;
+    const p = n.parentNode;
+    if (p && p.closest && p.closest('svg, button, mark')) continue;
+    nodes.push(n);
+  }
+  nodes.forEach(node => {
+    const text = node.nodeValue, low = normText(text);
+    const ranges = [];
+    terms.forEach(t => {
+      let i = low.indexOf(t);
+      while (i !== -1) { ranges.push([i, i + t.length]); i = low.indexOf(t, i + t.length); }
+    });
+    if (!ranges.length) return;
+    ranges.sort((a, b) => a[0] - b[0]);
+    const merged = [ranges[0].slice()];
+    for (let k = 1; k < ranges.length; k++) {
+      const last = merged[merged.length - 1];
+      if (ranges[k][0] <= last[1]) last[1] = Math.max(last[1], ranges[k][1]);
+      else merged.push(ranges[k].slice());
+    }
+    const frag = document.createDocumentFragment();
+    let pos = 0;
+    merged.forEach(([s, e]) => {
+      if (s > pos) frag.appendChild(document.createTextNode(text.slice(pos, s)));
+      const m = document.createElement('mark');
+      m.className = 'hl';
+      m.textContent = text.slice(s, e);
+      frag.appendChild(m);
+      pos = e;
+    });
+    if (pos < text.length) frag.appendChild(document.createTextNode(text.slice(pos)));
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+
+/* 解析換行：遇到「。」就換行（已有 <br>、句尾、或後面接」』）” 的不重複換） */
+function breakSentences(s) {
+  if (!BREAK_AT_PERIOD) return s;
+  return String(s).replace(
+    /。(?!(?:<\/[a-z]+>)*(?:\s*<br\s*\/?>|\s*$|[」』）)”"']))/gi,
+    '。<br>'
+  );
+}
+
+/* ---------- 搜尋框綁定（支援中文輸入法，組字中不觸發搜尋） ---------- */
+function applySearch() {
+  const input = document.getElementById('searchInput');
+  state.search = input.value.trim();
+  state.terms = parseTerms(state.search);
+  render();
+}
+function clearSearch() {
+  const input = document.getElementById('searchInput');
+  input.value = '';
+  document.getElementById('searchClear').classList.remove('show');
+  applySearch();
+  input.focus();
+}
+function bindSearch() {
+  const input = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('searchClear');
+  let timer, composing = false;
+  const schedule = () => { clearTimeout(timer); timer = setTimeout(applySearch, 150); };
+  input.addEventListener('compositionstart', () => { composing = true; });
+  input.addEventListener('compositionend', () => { composing = false; schedule(); });
+  input.addEventListener('input', () => {
+    clearBtn.classList.toggle('show', input.value.length > 0);
+    if (!composing) schedule();
+  });
+  input.addEventListener('keydown', e => { if (e.key === 'Escape') clearSearch(); });
+  clearBtn.addEventListener('click', clearSearch);
+}
+
+/* ---------- 跳轉面板 ---------- */
+let JUMP_ITEMS = [];
+let JUMP_TITLE = '跳到年度';
+function buildJump() {
+  const fab = document.getElementById('jumpFab');
+  const grid = document.getElementById('jumpGrid');
+  document.getElementById('jumpTitle').textContent = JUMP_TITLE;
+  fab.classList.toggle('show', JUMP_ITEMS.length > 0);
+  grid.innerHTML = JUMP_ITEMS.map(it =>
+    `<button class="jump-item${it.done ? ' done' : ''}${it.open ? ' on' : ''}" onclick="jumpTo('${it.key}')">
+       <b>${it.label}</b><small>${it.sub || ''}</small></button>`
+  ).join('');
+  if (!JUMP_ITEMS.length) toggleJump(false);
+}
+function toggleJump(force) {
+  const p = document.getElementById('jumpPanel');
+  p.hidden = (typeof force === 'boolean') ? !force : !p.hidden;
+}
+function scrollToGroup(key) {
+  const el = document.getElementById('g-' + key);
+  if (!el) return;
+  const ctrl = document.querySelector('.controls');
+  const top = el.getBoundingClientRect().top + window.scrollY - (ctrl ? ctrl.offsetHeight : 0) - 10;
+  const root = document.documentElement;
+  root.style.scrollBehavior = 'auto';          // 跳轉用瞬間定位，避免長距離捲動動畫
+  window.scrollTo(0, Math.max(0, top));
+  root.style.scrollBehavior = '';
+}
+document.addEventListener('click', e => {
+  const p = document.getElementById('jumpPanel');
+  if (p && !p.hidden && !p.contains(e.target) && !e.target.closest('#jumpFab')) p.hidden = true;
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleJump(false); });
+
+/* ---------- 搜尋欄位索引 ---------- */
+function plainAnswer(md) {
+  return String(md || '')
+    .replace(/```(?:htmldiagram|tree)\n[\s\S]*?```/g, ' ')   // 圖表/樹狀圖的 HTML、JSON 不列入搜尋
+    .replace(/^#{1,4}\s+/gm, '')
+    .replace(/\*\*|`/g, '')
+    .replace(/\|/g, ' ')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?(?:strong|code|sub|sup|u|em|b|i)\s*>/gi, '');
+}
+function searchIndex(q) {
+  return q._ix || (q._ix = {
+    title: normText(stripTags(q.title)),
+    ques:  normText(stripTags(q.question)),
+    ans:   normText(plainAnswer(q.answer)),
+    code:  normText(q.code ? q.code.text : ''),
+    meta:  normText(q.year + ' ' + q.year + '年 第' + q.no + '題 ' +
+                    ((TOPIC_INFO[q.topic] || {}).name || '') + ' ' + (q.part || ''))
+  });
+}
+function searchFields(q) {
+  const ix = searchIndex(q);
+  return [{ t: ix.title, w: 10 }, { t: ix.ques, w: 6 }, { t: ix.ans, w: 3 },
+          { t: ix.code, w: 2 }, { t: ix.meta, w: 1 }];
+}
+function bodyHit(q) {
+  const ix = searchIndex(q);
+  return state.terms.some(t => ix.ques.includes(t) || ix.ans.includes(t) || ix.code.includes(t));
+}
+
+/* ---------- 輕量 Markdown 渲染 ---------- */
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderMarkdown(md) {
+  // 先抽出 ``` 程式碼/ASCII 區塊
+  const blocks = [];
+  md = md.replace(/```(\w*)\n([\s\S]*?)```/g, (m, lang, code) => {
+    blocks.push({ lang, code });
+    return `\u0000BLOCK${blocks.length - 1}\u0000`;
+  });
+
+  const lines = md.split('\n');
+  let html = '', i = 0;
+
+  while (i < lines.length) {
+    let line = lines[i];
+
+    // 區塊佔位
+    if (/^\u0000BLOCK\d+\u0000$/.test(line.trim())) {
+      const idx = parseInt(line.trim().match(/\d+/)[0]);
+      const b = blocks[idx];
+      // html-diagram 圍欄：直接輸出 HTML（用於圖表），不做跳脫
+      if (b.lang === 'htmldiagram') {
+        html += `<div class="html-diagram">${b.code}</div>`;
+      } else if (b.lang === 'tree') {
+        // tree 圍欄：JSON 樹資料 → 自動產生對齊的 SVG 樹狀圖
+        html += `<div class="html-diagram">${renderTreeSVG(b.code)}</div>`;
+      } else {
+        html += `<pre><code>${escapeHtml(b.code.replace(/\n$/,''))}</code></pre>`;
+      }
+      i++; continue;
+    }
+
+    // 表格
+    if (line.includes('|') && i + 1 < lines.length &&
+        /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[i+1])) {
+      const headers = line.split('|').map(c => c.trim()).filter(c => c !== '');
+      i += 2;
+      let rows = [];
+      while (i < lines.length && lines[i].includes('|')) {
+        const cells = lines[i].split('|').map(c => c.trim());
+        // 去除頭尾空白格
+        if (cells[0] === '') cells.shift();
+        if (cells[cells.length-1] === '') cells.pop();
+        rows.push(cells);
+        i++;
+      }
+      html += '<table><thead><tr>' +
+        headers.map(h => `<th>${inline(h)}</th>`).join('') +
+        '</tr></thead><tbody>' +
+        rows.map(r => '<tr>' +
+          r.map(c => `<td>${inline(c)}</td>`).join('') + '</tr>').join('') +
+        '</tbody></table>';
+      continue;
+    }
+
+    // 標題
+    let m;
+    if ((m = line.match(/^####\s+(.*)/))) { html += `<h4>${inline(m[1])}</h4>`; i++; continue; }
+    if ((m = line.match(/^###\s+(.*)/)))  { html += `<h4>${inline(m[1])}</h4>`; i++; continue; }
+
+    // 無序清單
+    if (/^\s*[-*]\s+/.test(line)) {
+      let items = [];
+      while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) {
+        items.push(lines[i].replace(/^\s*[-*]\s+/, ''));
+        i++;
+      }
+      html += '<ul>' + items.map(it => `<li>${breakSentences(inline(it))}</li>`).join('') + '</ul>';
+      continue;
+    }
+    // 有序清單
+    if (/^\s*\d+\.\s+/.test(line)) {
+      let items = [];
+      while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) {
+        items.push(lines[i].replace(/^\s*\d+\.\s+/, ''));
+        i++;
+      }
+      html += '<ol>' + items.map(it => `<li>${breakSentences(inline(it))}</li>`).join('') + '</ol>';
+      continue;
+    }
+
+    // 空行
+    if (line.trim() === '') { i++; continue; }
+
+    // 一般段落（合併連續非空行）
+    let para = [line];
+    i++;
+    while (i < lines.length && lines[i].trim() !== '' &&
+           !/^\s*[-*]\s+/.test(lines[i]) && !/^\s*\d+\.\s+/.test(lines[i]) &&
+           !/^#{3,4}\s/.test(lines[i]) &&
+           !/^\u0000BLOCK\d+\u0000$/.test(lines[i].trim()) &&
+           !(lines[i].includes('|') && i+1 < lines.length &&
+             /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[i+1]))) {
+      para.push(lines[i]); i++;
+    }
+    html += `<p>${para.map(l => breakSentences(inline(l))).join('<br>')}</p>`;
+  }
+  return html;
+}
+
+// 行內語法：**粗體**、`code`、<u>底線</u>
+function inline(s) {
+  // 先抽出 `code` 片段保護起來，其餘文字才做標籤還原與粗體
+  const codes = [];
+  s = s.replace(/`([^`]+)`/g, (m, c) => { codes.push(c); return '\u0001' + (codes.length - 1) + '\u0001'; });
+  s = escapeHtml(s);
+  // 還原資料中直接寫的白名單標籤（<u> 用於標示主鍵）
+  s = s.replace(/&lt;(\/?)(strong|code|sub|sup|u)&gt;/g, '<$1$2>');
+  s = s.replace(/&lt;br\s*\/?&gt;/g, '<br>');
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  s = s.replace(/\u0001(\d+)\u0001/g, (m, i) => '<code>' + escapeHtml(codes[+i]) + '</code>');
+  return s;
+}
+
+/* ---------- 二元樹 SVG 產生器 ---------- */
+// 輸入 JSON：{ "v":"根值", "l":{子樹}, "r":{子樹} }
+// l/r 可省略；空子樹可用 null。採對稱佈局：節點置於左右子樹正中央，
+// 單子節點向左/右偏移固定距離，使左右視覺平衡。
+function renderTreeSVG(json) {
+  let root;
+  try { root = JSON.parse(json.trim()); }
+  catch (e) { return `<pre><code>樹資料格式錯誤</code></pre>`; }
+
+  const NODE_R  = 21;       // 節點圓半徑
+  const H_UNIT  = 32;       // 水平基本單位
+  const V_GAP   = 76;       // 層與層垂直間距
+  const PAD     = 30;       // 邊界留白
+
+  // ── 遞迴佈局：回傳該子樹的 {width, rootX}（皆以 H_UNIT 為單位）──
+  // 做法：左子樹先排好佔據 [0, lw)，右子樹排在 [lw+gap, ...)，
+  //       父節點 x = 左右子根的中點；單子節點則讓父在子的對側偏移一格，
+  //       使整棵子樹仍保有對稱的視覺重心。
+  function layout(node, depth) {
+    node._d = depth;
+    const L = node.l, R = node.r;
+
+    // 葉節點：寬度 1，根在 0
+    if (!L && !R) {
+      node._w = 1;
+      node._x = 0;
+      return;
+    }
+
+    // 雙子：左右子樹各自佈局，並排放置
+    if (L && R) {
+      layout(L, depth + 1);
+      layout(R, depth + 1);
+      const gap = 1;                         // 左右子樹之間留 1 單位
+      // 左子樹佔 [0, L._w)，右子樹整體右移 L._w + gap
+      const shift = L._w + gap;
+      offset(R, shift);
+      node._w = L._w + gap + R._w;
+      node._x = (L._x + R._x) / 2;           // 父 = 左右子根中點
+      return;
+    }
+
+    // 單左子：左子樹佈局後，父放在「左子根右側一格」
+    if (L) {
+      layout(L, depth + 1);
+      node._x = L._x + 1;                    // 父在左子根右邊一格
+      // 整棵子樹寬度 = 左子樹寬度，但要確保涵蓋父節點 x
+      node._w = Math.max(L._w, node._x + 1);
+      return;
+    }
+
+    // 單右子：右子樹佈局後，父放在「右子根左側一格」
+    {
+      layout(R, depth + 1);
+      // 父在右子根左邊一格；若會 < 0 則整體右移
+      let px = R._x - 1;
+      if (px < 0) { offset(R, -px); px = 0; }
+      node._x = px;
+      node._w = Math.max(R._w + (px < 0 ? -px : 0), node._x + 1,
+                         R._x + 1);
+      return;
+    }
+  }
+  // 把以 node 為根的整棵子樹所有 _x 平移 dx
+  function offset(node, dx) {
+    if (!node) return;
+    node._x += dx;
+    offset(node.l, dx);
+    offset(node.r, dx);
+  }
+  layout(root, 0);
+
+  // 收集座標範圍
+  let minX = Infinity, maxX = -Infinity, maxDepth = 0;
+  (function scan(node) {
+    if (!node) return;
+    minX = Math.min(minX, node._x);
+    maxX = Math.max(maxX, node._x);
+    maxDepth = Math.max(maxDepth, node._d);
+    scan(node.l); scan(node.r);
+  })(root);
+
+  const width  = (maxX - minX) * H_UNIT + PAD * 2 + NODE_R * 2;
+  const height = maxDepth * V_GAP + PAD * 2 + NODE_R * 2;
+
+  function cx(node) { return PAD + NODE_R + (node._x - minX) * H_UNIT; }
+  function cy(node) { return PAD + NODE_R + node._d * V_GAP; }
+
+  // 第三遍：產生連線與節點
+  let edges = '', nodes = '';
+  function draw(node) {
+    if (!node) return;
+    const x = cx(node), y = cy(node);
+    ['l', 'r'].forEach(side => {
+      const child = node[side];
+      if (child) {
+        edges += `<line x1="${x}" y1="${y}" x2="${cx(child)}" y2="${cy(child)}" `
+               + `stroke="#3d4456" stroke-width="2"/>`;
+        draw(child);
+      }
+    });
+    const palette = {
+      accent: ['#fbf3f0', '#8a3324', '#8a3324'],
+      blue:   ['#eef4f7', '#1f5673', '#1f5673'],
+      gold:   ['#faf5e6', '#a07e2c', '#7a5d1e'],
+      dim:    ['#e8e3d6', '#b3a98f', '#8a8266'],
+      ink:    ['#1a1f2c', '#1a1f2c', '#ffffff'],
+    };
+    const [fill, stroke, txt] = palette[node.t] || palette.ink;
+    nodes += `<circle cx="${x}" cy="${y}" r="${NODE_R}" `
+           + `fill="${fill}" stroke="${stroke}" stroke-width="2.5"/>`
+           + `<text x="${x}" y="${y + 5}" text-anchor="middle" `
+           + `font-size="15" font-weight="700" fill="${txt}">`
+           + escapeHtml(String(node.v)) + `</text>`;
+  }
+  draw(root);
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" `
+       + `style="max-width:${width}px;width:100%;font-family:'Noto Sans TC',sans-serif;">`
+       + edges + nodes + `</svg>`;
+}
+
+/* ---------- 程式碼語法highlight（逐字元 tokenizer，不在 HTML 上做 regex）---------- */
+function highlightCode(code, lang) {
+  const kw = {
+    c: ['int','char','void','return','if','else','for','while','do','struct','typedef','bool','long','double','float','define','include','sizeof','static','const','unsigned','break','continue','switch','case','NULL','true','false'],
+    java: ['public','private','protected','class','int','void','return','if','else','for','while','do','new','static','final','abstract','extends','implements','import','package','this','super','boolean','double','String','char','long','float','try','catch','throw','throws','interface','null','true','false','break','continue'],
+    python: ['def','return','if','elif','else','for','while','import','from','as','with','try','except','finally','class','None','True','False','and','or','not','in','is','lambda','break','continue','global','print'],
+    javascript: ['function','return','if','else','for','while','let','const','var','new','class','this','try','catch','import','export','from','null','true','false','typeof','break','continue','console'],
+    php: ['function','return','if','else','elseif','for','while','foreach','as','class','new','public','private','echo','true','false','null','require','include']
+  };
+  const list = new Set(kw[lang] || kw.c);
+
+  let out = '';
+  let i = 0;
+  const n = code.length;
+  // 包一段文字成指定 token 樣式（內容先 escape）
+  const wrap = (cls, text) => `<span class="${cls}">${escapeHtml(text)}</span>`;
+
+  const isWordChar = c => /[A-Za-z0-9_@]/.test(c);
+  const isDigit = c => c >= '0' && c <= '9';
+
+  while (i < n) {
+    const c = code[i];
+    const two = code.substr(i, 2);
+
+    // 區塊註解 /* ... */
+    if (two === '/*') {
+      let j = code.indexOf('*/', i + 2);
+      if (j === -1) j = n; else j += 2;
+      out += wrap('tok-com', code.slice(i, j));
+      i = j; continue;
+    }
+    // 行註解 //...
+    if (two === '//') {
+      let j = code.indexOf('\n', i);
+      if (j === -1) j = n;
+      out += wrap('tok-com', code.slice(i, j));
+      i = j; continue;
+    }
+    // 行註解 #...（Python；PHP 也用，C 的 #include 也歸此類顯示為註解色以外——改用關鍵字處理）
+    if (c === '#' && (lang === 'python' || lang === 'php')) {
+      let j = code.indexOf('\n', i);
+      if (j === -1) j = n;
+      out += wrap('tok-com', code.slice(i, j));
+      i = j; continue;
+    }
+    // 字串 "..." 或 '...'（含跳脫 \）
+    if (c === '"' || c === "'") {
+      let j = i + 1;
+      while (j < n && code[j] !== c) {
+        if (code[j] === '\\') j++;   // 跳過跳脫字元
+        j++;
+      }
+      j = Math.min(j + 1, n);
+      out += wrap('tok-str', code.slice(i, j));
+      i = j; continue;
+    }
+    // 數字
+    if (isDigit(c)) {
+      let j = i;
+      while (j < n && /[0-9.]/.test(code[j])) j++;
+      out += wrap('tok-num', code.slice(i, j));
+      i = j; continue;
+    }
+    // 識別字（可能是關鍵字）
+    if (isWordChar(c) && !isDigit(c)) {
+      let j = i;
+      while (j < n && isWordChar(code[j])) j++;
+      const word = code.slice(i, j);
+      if (list.has(word)) out += wrap('tok-kw', word);
+      else out += escapeHtml(word);
+      i = j; continue;
+    }
+    // 其他單一字元
+    out += escapeHtml(c);
+    i++;
+  }
+  return out;
+}
+
+function codeBlockHtml(codeObj) {
+  if (!codeObj) return '';
+  const langLabel = {
+    c: 'C', java: 'Java', python: 'Python',
+    javascript: 'JavaScript', php: 'PHP'
+  }[codeObj.lang] || codeObj.lang;
+  return `<div class="code-block">
+    <div class="code-head">
+      <span class="dots"><span></span><span></span><span></span></span>
+      <span>${langLabel}</span>
+    </div>
+    <pre><code>${highlightCode(codeObj.text, codeObj.lang)}</code></pre>
+  </div>`;
+}
+
+/* ---------- 渲染題目卡 ---------- */
+/* QFENCE：考題中的程式碼圍欄 ``` 轉成程式碼區塊（避免原樣顯示、長行撐破版面） */
+function qFences(h) {
+  return h.replace(/```[a-z]*\n([\s\S]*?)\n```/g, (m, c) =>
+    '<pre style="background:#2b303b;color:#eee;padding:.7rem 1rem;border-radius:6px;overflow-x:auto;margin:.5rem 0;font-size:.85rem;white-space:pre">' + c + '</pre>');
+}
+
+function bodyHtml(q) {
+  return `      <span class="section-label q">考題</span>
+      <div class="q-question">${qFences(escapeHtml(q.question)).replace(/&lt;u&gt;([\s\S]*?)&lt;\/u&gt;/g, '<u>$1</u>')}</div>
+      ${q.figure ? `<div class="q-figure" style="margin:.7rem 0">${q.figure}</div>` : ''}
+      <span class="section-label a">詳解</span>
+      <div class="q-answer">${renderMarkdown(q.answer)}</div>
+      ${q.code ? codeBlockHtml(q.code) : ''}`;
+}
+
+function fillBody(card) {
+  if (card.dataset.filled) return;
+  const q = ALL_Q.find(x => x.id === card.dataset.id);
+  if (!q) return;
+  const box = card.querySelector('.q-body');
+  box.innerHTML = bodyHtml(q);
+  card.dataset.filled = '1';
+  if (state.terms.length) highlightIn(box, state.terms);
+}
+
+function questionCard(q, forceOpen) {
+  const t = TOPIC_INFO[q.topic] || { name: q.topicName, cls: '' };
+  const sb = SUB_INFO[q.sub] || null;
+  const isOpen = openIds.has(q.id) || !!forceOpen;
+  return `<div class="q-card ${t.cls}${isOpen ? ' open' : ''}" data-id="${q.id}"${isOpen ? ' data-filled="1"' : ''}>
+    <div class="q-header" onclick="toggleCard(this)"${sb ? ` style="border-left-color:${sb.color}"` : ''}>
+      <div class="q-no">${q.no}</div>
+      <div class="q-headmain">
+        <div class="q-title">${escapeHtml(q.title)}</div>
+        <div class="q-tags">
+          <span class="tag tag-topic"${sb ? ` style="background:${sb.color}"` : ''}>${sb ? sb.name : t.name}</span>
+          <span class="tag tag-year">${q.year}年</span>
+          ${q.part ? `<span class="tag tag-part">${escapeHtml(q.part)}　第${q.no}題</span>` : ''}
+          <span class="tag tag-score">${q.score}分</span>
+        </div>
+      </div>
+      <div class="q-toggle">+</div>
+    </div>
+    <div class="q-body">${isOpen ? bodyHtml(q) : ''}</div>
+  </div>`;
+}
+
+/* ---------- 篩選 ---------- */
+function filterQuestions() {
+  let list = ALL_Q.filter(q => state.topic === 'all' || q.sub === state.topic);
+  if (state.terms.length) {
+    // 多關鍵字 AND、全形半形統一、依相關度排序（標題 > 考題 > 詳解 > 程式碼）
+    list = list
+      .map((q, i) => ({ q, i, s: scoreFields(state.terms, searchFields(q)) }))
+      .filter(x => x.s > 0)
+      .sort((a, b) => b.s - a.s || a.i - b.i)
+      .map(x => x.q);
+  }
+  return list;
+}
+
+/* ---------- 渲染主內容 ---------- */
+function updateSearchInfo(count, autoOpen) {
+  const el = document.getElementById('searchInfo');
+  if (!state.terms.length) { el.classList.remove('show'); el.innerHTML = ''; return; }
+  let h = `找到 <b>${count}</b> 題 ‧ 依相關度排序`;
+  if (count > 30) h += ' ‧ 結果較多，已不自動展開詳解，可再加關鍵字縮小範圍';
+  else h += ' ‧ 詳解中有符合的題目已自動展開並標黃';
+  el.innerHTML = h;
+  el.classList.add('show');
+}
+
+function render() {
+  const list = filterQuestions();
+  const wrap = document.getElementById('content');
+  const searching = state.terms.length > 0;
+  const autoOpen = searching && list.length <= 30;
+  JUMP_ITEMS = [];
+  updateSearchInfo(list.length, autoOpen);
+
+  if (list.length === 0) {
+    const msg = searching
+      ? `找不到符合「${escapeHtml(state.search)}」的題目。可改用較短的關鍵字；多個關鍵字請用空格分開。`
+      : '找不到符合條件的題目';
+    wrap.innerHTML = `<div class="empty">
+      <div class="big">📭</div>
+      <p>${msg}</p>
+    </div>`;
+    buildJump();
+    syncExpandBtn();
+    return;
+  }
+
+  let html = '';
+
+  if (searching) {
+    html += `<div class="group">
+      <div class="group-head">
+        <span class="g-badge">搜尋</span>
+        <span class="g-title">依相關度排序</span>
+        <span class="g-meta">共 ${list.length} 題</span>
+      </div>
+      ${list.map(q => questionCard(q, autoOpen && bodyHit(q))).join('')}
+    </div>`;
+  } else if (state.mode === 'year') {
+    JUMP_TITLE = '跳到年度';
+    // 依年度分組
+    const byYear = {};
+    list.forEach(q => { (byYear[q.year] = byYear[q.year] || []).push(q); });
+    const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+    years.forEach(yr => {
+      const qs = byYear[yr];
+      const yObj = ALL_YEARS.find(y => y.year === yr);
+      const totalScore = qs.reduce((s, q) => s + q.score, 0);
+      JUMP_ITEMS.push({ key: 'y' + yr, label: yr, sub: `${qs.length} 題` });
+      html += `<div class="group" id="g-y${yr}">
+        <div class="group-head">
+          <span class="g-badge">${yr} 年</span>
+          <span class="g-title">${escapeHtml(yObj.subject)}</span>
+          <span class="g-meta">
+            ${yObj.timeLimit ? '考試時間 ' + yObj.timeLimit + '<br>' : ''}
+            本頁 ${qs.length} 題 / ${totalScore} 分
+          </span>
+        </div>
+        ${yObj.note ? `<div class="group-note">※ ${escapeHtml(yObj.note)}</div>` : ''}
+        ${qs.map(q => questionCard(q)).join('')}
+      </div>`;
+    });
+  } else {
+    JUMP_TITLE = '跳到主題';
+    // 依主題（子主題）分組
+    const bySub = {};
+    list.forEach(q => { (bySub[q.sub] = bySub[q.sub] || []).push(q); });
+    SUBTOPICS.forEach(st => {
+      const qs = bySub[st.key];
+      if (!qs || qs.length === 0) return;
+      qs.sort((a, b) => Number(b.year) - Number(a.year));
+      JUMP_ITEMS.push({ key: 't' + st.key, label: st.name, sub: `${qs.length} 題` });
+      html += `<div class="group" id="g-t${st.key}">
+        <div class="group-head">
+          <span class="g-badge" style="background:${st.color}">${st.name}</span>
+          <span class="g-title">相似概念彙整</span>
+          <span class="g-meta">共 ${qs.length} 題<br>跨 ${new Set(qs.map(q => q.year)).size} 個年度</span>
+        </div>
+        ${qs.map(q => questionCard(q)).join('')}
+      </div>`;
+    });
+  }
+
+  wrap.innerHTML = html;
+  if (searching) highlightIn(wrap, state.terms);
+  buildJump();
+  syncExpandBtn();
+}
+
+function jumpTo(key) {
+  toggleJump(false);
+  scrollToGroup(key);
+}
+
+/* ---------- 互動 ---------- */
+function toggleCard(headerEl) {
+  const card = headerEl.parentElement;
+  const open = card.classList.toggle('open');
+  if (open) fillBody(card);
+  if (open) openIds.add(card.dataset.id); else openIds.delete(card.dataset.id);
+  syncExpandBtn();
+}
+
+function setMode(mode) {
+  state.mode = mode;
+  document.querySelectorAll('.mode-switch button').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === mode);
+  });
+  render();
+}
+
+function updateStatBar() {
+  const scope = ALL_Q;
+  const yearSet = new Set(scope.map(q => q.year));
+  document.getElementById('statYear').textContent = yearSet.size;
+  document.getElementById('statQ').textContent = scope.length;
+  document.getElementById('statTopic').textContent = new Set(scope.map(q => q.sub)).size;
+}
+
+function rebuildTopicChips() {
+  const scope = ALL_Q;
+  const cnt = {};
+  scope.forEach(q => cnt[q.sub] = (cnt[q.sub] || 0) + 1);
+  const filterRow = document.getElementById('filterRow');
+  let chips = `<button class="chip ${state.topic === 'all' ? 'active' : ''}" data-topic="all"
+    onclick="setTopic('all')">全部<span class="c-count">${scope.length}</span></button>`;
+  SUBTOPICS.forEach(st => {
+    const n = cnt[st.key] || 0;
+    if (!n) return;
+    chips += `<button class="chip ${state.topic === st.key ? 'active' : ''}" data-topic="${st.key}"
+      onclick="setTopic('${st.key}')">${st.name}<span class="c-count">${n}</span></button>`;
+  });
+  filterRow.innerHTML = chips;
+}
+
+function setTopic(topic) {
+  state.topic = topic;
+  document.querySelectorAll('.chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.topic === topic);
+  });
+  render();
+}
+
+/* 按鈕文字依「目前畫面上的卡片是否都已展開」決定，不再用獨立旗標 */
+function syncExpandBtn() {
+  const cards = [...document.querySelectorAll('.q-card')];
+  const allOpen = cards.length > 0 && cards.every(c => c.classList.contains('open'));
+  document.getElementById('btnExpand').textContent = allOpen ? '全部收合' : '全部展開';
+}
+function toggleExpandAll() {
+  const cards = [...document.querySelectorAll('.q-card')];
+  const allOpen = cards.length > 0 && cards.every(c => c.classList.contains('open'));
+  cards.forEach(c => {
+    c.classList.toggle('open', !allOpen);
+    if (!allOpen) fillBody(c);
+    if (allOpen) openIds.delete(c.dataset.id); else openIds.add(c.dataset.id);
+  });
+  syncExpandBtn();
+}
+
+/* ---------- 初始化 ---------- */
+function init() {
+  updateStatBar();
+  rebuildTopicChips();
+
+  bindSearch();
+
+  // 回頂部
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 600);
+  });
+
+  render();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

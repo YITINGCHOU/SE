@@ -1,0 +1,4625 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地方特考四等｜資訊處理・資料處理概要（舊制）考古題詳解</title>
+<style>/* ===== 關務四等考古題複習系統 — 樣式 ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --ink:        #1a1f2c;
+  --ink-soft:   #3d4456;
+  --paper:      #f4f1ea;
+  --paper-warm: #ece6d8;
+  --card:       #fffdf8;
+  --line:       #d8d0bf;
+  --accent:     #8a3324;   /* 朱紅 — 印章色 */
+  --accent-2:   #1f5673;   /* 靛藍 */
+  --gold:       #a07e2c;
+  --shadow:     rgba(40,32,20,0.13);
+
+  /* 主題分類色 */
+  --t-db:   #1f5673;
+  --t-ds:   #6a4c93;
+  --t-prog: #2d6a4f;
+  --t-sec:  #8a3324;
+  --t-net:  --t-net;
+  --t-net-c:#b5651d;
+  --t-mis:  #4a5859;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(138,51,36,0.025) 31px, rgba(138,51,36,0.025) 32px);
+}
+
+/* ===== 頁首 ===== */
+.site-header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2.4rem 1.5rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--accent);
+  position: relative;
+}
+.site-header .kicker {
+  font-size: .78rem; letter-spacing: .55em; text-indent: .55em;
+  color: var(--gold); font-weight: 700; margin-bottom: .7rem;
+}
+.site-header h1 {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900; font-size: clamp(1.6rem, 4.4vw, 2.7rem);
+  letter-spacing: .06em; line-height: 1.3;
+}
+.site-header h1 .stamp {
+  display: inline-block; border: 2.5px solid var(--accent);
+  color: var(--accent); padding: .05em .3em; border-radius: 6px;
+  transform: rotate(-4deg); margin: 0 .15em;
+  font-size: .82em; background: rgba(244,241,234,0.06);
+}
+.site-header .sub {
+  margin-top: .8rem; font-size: .9rem; color: #b8bcca; font-weight: 400;
+  letter-spacing: .04em;
+}
+
+/* ===== 統計列 ===== */
+.stat-bar {
+  display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+  background: var(--paper-warm); padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.stat-bar .stat { text-align: center; }
+.stat-bar .num {
+  font-family: 'Noto Serif TC', serif; font-weight: 900;
+  font-size: 1.7rem; color: var(--accent); line-height: 1;
+}
+.stat-bar .lbl {
+  font-size: .72rem; color: var(--ink-soft); letter-spacing: .15em;
+  margin-top: .25rem;
+}
+
+/* ===== 控制列 ===== */
+.controls {
+  position: sticky; top: 0; z-index: 50;
+  background: rgb(244,241,234);
+  border-bottom: 1.5px solid var(--line);
+  padding: .9rem 1.5rem;
+  box-shadow: 0 3px 14px var(--shadow);
+}
+.controls-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.mode-switch {
+  display: flex; border: 2px solid var(--ink); border-radius: 8px;
+  overflow: hidden;
+}
+.mode-switch button {
+  font-family: 'Noto Sans TC', sans-serif;
+  border: none; background: transparent; cursor: pointer;
+  padding: .5rem 1.1rem; font-size: .88rem; font-weight: 700;
+  color: var(--ink); transition: all .18s;
+}
+.mode-switch button.active { background: var(--ink); color: var(--paper); }
+
+.search-box {
+  flex: 1; min-width: 180px; position: relative;
+}
+.search-box input {
+  width: 100%; font-family: 'Noto Sans TC', sans-serif;
+  padding: .55rem .9rem .55rem 2.2rem; font-size: .9rem;
+  border: 1.5px solid var(--line); border-radius: 8px;
+  background: var(--card); color: var(--ink);
+}
+.search-box input:focus { outline: 2px solid var(--accent-2); border-color: transparent; }
+.search-box::before {
+  content: '🔍'; position: absolute; left: .7rem; top: 50%;
+  transform: translateY(-50%); font-size: .85rem; opacity: .5;
+}
+.btn-expand {
+  font-family: 'Noto Sans TC', sans-serif;
+  border: 1.5px solid var(--ink-soft); background: var(--card);
+  color: var(--ink-soft); cursor: pointer; border-radius: 8px;
+  padding: .5rem .9rem; font-size: .82rem; font-weight: 500;
+  white-space: nowrap; transition: all .15s;
+}
+.btn-expand:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ===== 篩選晶片 ===== */
+.filter-row {
+  max-width: 1080px; margin: .7rem auto 0;
+  display: flex; gap: .45rem; flex-wrap: wrap;
+}
+.chip {
+  font-family: 'Noto Sans TC', sans-serif;
+  border: 1.5px solid var(--line); background: var(--card);
+  color: var(--ink-soft); cursor: pointer; border-radius: 20px;
+  padding: .3rem .85rem; font-size: .8rem; font-weight: 500;
+  transition: all .15s;
+}
+.chip:hover { border-color: var(--ink-soft); }
+.chip.active {
+  background: var(--ink); color: var(--paper); border-color: var(--ink);
+}
+.chip .c-count { opacity: .6; font-size: .92em; margin-left: .2em; }
+
+/* ===== 主內容 ===== */
+.wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+/* 群組標題（年度 / 主題） */
+.group {
+  margin-bottom: 2.6rem;
+}
+.group-head {
+  display: flex; align-items: center; gap: .9rem;
+  margin-bottom: 1.1rem; padding-bottom: .6rem;
+  border-bottom: 2.5px solid var(--ink);
+}
+.group-head .g-badge {
+  font-family: 'Noto Serif TC', serif; font-weight: 900;
+  background: var(--ink); color: var(--paper);
+  padding: .35rem .8rem; border-radius: 6px; font-size: 1.05rem;
+  white-space: nowrap;
+}
+.group-head .g-title {
+  font-family: 'Noto Serif TC', serif; font-weight: 700;
+  font-size: 1.15rem; color: var(--ink);
+}
+.group-head .g-meta {
+  margin-left: auto; font-size: .76rem; color: var(--ink-soft);
+  text-align: right; line-height: 1.5;
+}
+.group-note {
+  font-size: .8rem; color: var(--accent-2); font-style: italic;
+  margin: -.5rem 0 1rem; padding-left: .2rem;
+}
+
+/* ===== 題目卡 ===== */
+.q-card {
+  background: var(--card); border: 1.5px solid var(--line);
+  border-radius: 10px; margin-bottom: .9rem;
+  box-shadow: 0 2px 8px var(--shadow);
+  overflow: hidden; transition: box-shadow .2s;
+}
+.q-card:hover { box-shadow: 0 4px 16px var(--shadow); }
+
+.q-header {
+  display: flex; align-items: flex-start; gap: .8rem;
+  padding: 1rem 1.2rem; cursor: pointer;
+  border-left: 5px solid var(--line);
+  transition: background .15s;
+}
+.q-card.t-db   .q-header { border-left-color: var(--t-db); }
+.q-card.t-ds   .q-header { border-left-color: var(--t-ds); }
+.q-card.t-prog .q-header { border-left-color: var(--t-prog); }
+.q-card.t-sec  .q-header { border-left-color: var(--t-sec); }
+.q-card.t-net  .q-header { border-left-color: var(--t-net-c); }
+.q-card.t-mis  .q-header { border-left-color: var(--t-mis); }
+.q-header:hover { background: var(--paper-warm); }
+
+.q-no {
+  font-family: 'Noto Serif TC', serif; font-weight: 900;
+  font-size: 1rem; color: var(--paper); background: var(--ink-soft);
+  min-width: 2.4rem; height: 2.4rem; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.q-headmain { flex: 1; min-width: 0; }
+.q-title {
+  font-family: 'Noto Serif TC', serif; font-weight: 700;
+  font-size: 1.02rem; color: var(--ink); line-height: 1.5;
+}
+.q-tags {
+  display: flex; gap: .45rem; flex-wrap: wrap; margin-top: .4rem;
+  align-items: center;
+}
+.tag {
+  font-size: .7rem; font-weight: 700; padding: .12rem .55rem;
+  border-radius: 4px; letter-spacing: .03em;
+}
+.tag-topic { color: #fff; }
+.t-db   .tag-topic, .tag.topic-db   { background: var(--t-db); }
+.t-ds   .tag-topic, .tag.topic-ds   { background: var(--t-ds); }
+.t-prog .tag-topic, .tag.topic-prog { background: var(--t-prog); }
+.t-sec  .tag-topic, .tag.topic-sec  { background: var(--t-sec); }
+.t-net  .tag-topic, .tag.topic-net  { background: var(--t-net-c); }
+.t-mis  .tag-topic, .tag.topic-mis  { background: var(--t-mis); }
+.tag-year {
+  background: var(--paper-warm); color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+.tag-score {
+  background: transparent; color: var(--gold);
+  border: 1px solid var(--gold);
+}
+.tag-part {
+  background: var(--accent-2); color: #fff;
+  font-weight: 500;
+}
+.q-toggle {
+  flex-shrink: 0; font-size: 1.3rem; color: var(--ink-soft);
+  transition: transform .25s; line-height: 1; margin-top: .4rem;
+}
+.q-card.open .q-toggle { transform: rotate(45deg); }
+
+/* ===== 題目展開內容 ===== */
+.q-body { display: none; padding: 0 1.2rem 1.4rem; }
+.q-card.open .q-body { display: block; animation: fadeIn .25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+.section-label {
+  display: inline-block; font-family: 'Noto Serif TC', serif;
+  font-weight: 700; font-size: .82rem; letter-spacing: .1em;
+  padding: .25rem .8rem; border-radius: 4px; margin: 1.1rem 0 .6rem;
+}
+.section-label.q { background: var(--ink); color: var(--paper); }
+.section-label.a { background: var(--accent); color: var(--paper); }
+
+.q-question {
+  background: var(--paper-warm); border-left: 3px solid var(--ink-soft);
+  padding: .9rem 1.1rem; border-radius: 0 6px 6px 0;
+  font-size: .93rem; white-space: pre-wrap; color: var(--ink-soft);
+  font-feature-settings: "tnum";
+}
+.q-answer {
+  font-size: .95rem; color: var(--ink);
+}
+.q-answer h4 {
+  font-family: 'Noto Serif TC', serif; color: var(--accent);
+  font-size: 1rem; margin: 1.1rem 0 .4rem;
+  border-bottom: 1px dashed var(--line); padding-bottom: .2rem;
+}
+.q-answer p { margin: .55rem 0; }
+.q-answer ul, .q-answer ol { margin: .5rem 0 .5rem 1.4rem; }
+.q-answer li { margin: .3rem 0; }
+.q-answer strong { color: var(--accent-2); font-weight: 700; }
+.q-answer code {
+  font-family: 'JetBrains Mono', monospace; font-size: .86em;
+  background: var(--paper-warm); padding: .1em .35em;
+  border-radius: 3px; color: var(--accent);
+}
+.q-answer table {
+  border-collapse: collapse; width: 100%; margin: .8rem 0;
+  font-size: .86rem;
+  display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;  /* MOBILE_TABLE：手機寬度下表格可左右捲動 */
+}
+.q-figure { max-width: 100%; overflow-x: auto; }
+.q-answer th, .q-answer td {
+  border: 1px solid var(--line); padding: .4rem .6rem;
+  text-align: left;
+}
+.q-answer th {
+  background: var(--ink); color: var(--paper); font-weight: 700;
+}
+.q-answer tr:nth-child(even) td { background: var(--paper-warm); }
+
+/* 程式碼/ASCII 區塊 */
+.q-answer pre {
+  background: #2b303b; color: #f2f0e9;
+  font-family: 'JetBrains Mono', monospace; font-size: .85rem;
+  line-height: 1.7; padding: 1rem 1.2rem; border-radius: 8px;
+  overflow-x: auto; margin: .8rem 0;
+  border-left: 3px solid var(--gold);
+}
+.q-answer pre code { background: none; color: inherit; padding: 0; }
+
+/* 獨立程式碼區（code 欄位） */
+.code-block {
+  margin: 1rem 0; border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--ink);
+}
+.code-head {
+  background: var(--ink); color: var(--gold);
+  font-family: 'JetBrains Mono', monospace; font-size: .76rem;
+  padding: .4rem .9rem; font-weight: 500;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.code-head .dots { display: flex; gap: .3rem; }
+.code-head .dots span {
+  width: .6rem; height: .6rem; border-radius: 50%; display: block;
+}
+.code-head .dots span:nth-child(1) { background: #d4554a; }
+.code-head .dots span:nth-child(2) { background: #d9a441; }
+.code-head .dots span:nth-child(3) { background: #5a9e6f; }
+.code-block pre {
+  margin: 0; border-radius: 0; border-left: none;
+  background: #2b303b;            /* 提亮背景，降低與文字的明度落差刺眼感 */
+  color: #f2f0e9;                 /* 預設文字（變數、標點）改為近白，清楚可見 */
+  font-size: .86rem; line-height: 1.7;
+  padding: 1.1rem 1.3rem 1.1rem 1.7rem;   /* 左側多留白，程式碼不貼邊、不壓迫 */
+}
+/* 語法highlight — 高對比配色，深背景下皆清晰 */
+.tok-kw  { color: #ff9d6f; font-weight: 700; }   /* 關鍵字：亮橘，最醒目 */
+.tok-str { color: #b8e986; }                      /* 字串：亮綠 */
+.tok-com { color: #9aa6b8; font-style: italic; }  /* 註解：提亮的灰藍，不再灰到看不見 */
+.tok-num { color: #f7d56e; }                      /* 數字：亮黃 */
+.tok-fn  { color: #82c8ff; }                      /* 函式：亮藍 */
+.tok-typ { color: #ffd166; }                      /* 型別：金黃 */
+
+/* ===== HTML 圖表（取代易跑版的 ASCII 圖）===== */
+.html-diagram {
+  margin: 1.1rem 0; padding: 1.3rem 1rem;
+  background: var(--paper-warm);
+  border: 1.5px solid var(--line); border-radius: 10px;
+  overflow-x: auto;
+}
+/* 通用方框節點 */
+.dg-box {
+  display: inline-flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center;
+  border: 2px solid var(--ink); border-radius: 8px;
+  background: var(--card); padding: .55rem .9rem;
+  font-size: .86rem; line-height: 1.5; font-weight: 500;
+  min-width: 5.5rem;
+}
+.dg-box .dg-sub { font-size: .73rem; color: var(--ink-soft); font-weight: 400; }
+.dg-box.accent { border-color: var(--accent); background: #fbf3f0; }
+.dg-box.blue   { border-color: var(--accent-2); background: #eef4f7; }
+.dg-box.gold   { border-color: var(--gold); background: #faf5e6; }
+.dg-box.ink    { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.dg-box.ink .dg-sub { color: #b8bcca; }
+
+/* 排列容器 */
+.dg-row { display: flex; align-items: center; justify-content: center;
+  gap: .5rem; flex-wrap: wrap; }
+.dg-col { display: flex; flex-direction: column; align-items: center;
+  gap: .5rem; }
+.dg-center { justify-content: center; }
+
+/* 箭頭 */
+.dg-arrow { font-size: 1.3rem; color: var(--accent); font-weight: 700;
+  line-height: 1; padding: 0 .15rem; }
+.dg-arrow.v { transform: rotate(90deg); margin: .1rem 0; }
+.dg-arrow.bi::before { content: '◀▶'; }
+.dg-arrow.down::before { content: '▼'; }
+.dg-arrow.right::before { content: '▶'; }
+
+/* 流程圖專用 */
+.flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.flow-node {
+  border: 2px solid var(--ink); background: var(--card);
+  padding: .55rem 1.1rem; font-size: .86rem; text-align: center;
+  font-weight: 500; max-width: 32rem; line-height: 1.55;
+}
+.flow-node.start, .flow-node.end {
+  border-radius: 22px; background: var(--ink); color: var(--paper);
+  font-weight: 700;
+}
+.flow-node.process { border-radius: 6px; }
+.flow-node.io {
+  border-radius: 6px; background: var(--paper-warm);
+  border-style: dashed;
+}
+.flow-node.decision {
+  background: #faf5e6; border-color: var(--gold);
+  border-radius: 6px; font-weight: 700;
+}
+/* 連接線（直線 + 箭頭） */
+.flow-conn { width: 2px; height: 1.6rem; background: var(--ink-soft);
+  position: relative; }
+.flow-conn::after {
+  content: '▼'; position: absolute; bottom: -.3rem; left: 50%;
+  transform: translateX(-50%); color: var(--ink-soft); font-size: .68rem;
+}
+/* 連接線旁的小標籤（如「否」「未出貨訂單」） */
+.flow-edge {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.flow-edge .lbl {
+  font-size: .74rem; font-weight: 700; padding: .08rem .55rem;
+  border-radius: 4px; position: relative; z-index: 1;
+}
+.flow-edge .lbl.yes { background: #2d6a4f; color: #fff; }
+.flow-edge .lbl.no  { background: var(--accent); color: #fff; }
+.flow-edge .lbl.plain {
+  background: var(--card); color: var(--accent-2);
+  border: 1px solid var(--line);
+}
+.flow-conn.short { height: .7rem; }
+.flow-conn.short::after { display: none; }
+
+/* 迴圈返回標記 —— 掛在決策節點下方，明確標示「往回」 */
+.flow-loop {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .76rem; font-weight: 700;
+  background: #eef4f7; color: var(--accent-2);
+  border: 1.5px dashed var(--accent-2); border-radius: 20px;
+  padding: .25rem .8rem; margin: .35rem 0;
+}
+.flow-loop::before { content: '⟲'; font-size: 1.05rem; }
+
+.flow-label {
+  font-size: .73rem; color: var(--accent-2); font-weight: 600;
+  background: var(--card); padding: 0 .4rem; margin: .15rem 0;
+}
+/* 舊版分支樣式（保留相容，僅用於少數真正左右並排的場景） */
+.flow-branch { display: flex; align-items: flex-start; gap: 2.5rem;
+  justify-content: center; }
+.flow-branch-arm { display: flex; flex-direction: column;
+  align-items: center; gap: 0; }
+.flow-yes, .flow-no {
+  font-size: .76rem; font-weight: 700; padding: .1rem .5rem;
+  border-radius: 4px; margin: .2rem 0;
+}
+.flow-yes { background: #2d6a4f; color: #fff; }
+.flow-no  { background: var(--accent); color: #fff; }
+
+/* ERD 專用形狀 */
+.erd-entity {
+  border: 2px solid var(--ink); background: var(--card);
+  padding: .5rem 1.1rem; font-weight: 700; font-size: .9rem;
+  border-radius: 4px; text-align: center;
+}
+.erd-rel {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 7rem; height: 4rem; background: #faf5e6;
+  border: 2px solid var(--gold);
+  transform: rotate(45deg); margin: 1rem;
+}
+.erd-rel > span {
+  transform: rotate(-45deg); font-size: .8rem; font-weight: 700;
+  text-align: center; line-height: 1.3;
+}
+.erd-attr {
+  display: inline-block; border: 1.5px solid var(--accent-2);
+  background: #eef4f7; border-radius: 50%;
+  padding: .35rem .8rem; font-size: .76rem; text-align: center;
+  color: var(--accent-2);
+}
+.empty .big { font-size: 2.5rem; margin-bottom: .5rem; }
+
+/* 回頂部 */
+.to-top {
+  position: fixed; right: 1.5rem; bottom: 1.5rem;
+  width: 3rem; height: 3rem; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none;
+  font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 14px var(--shadow);
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+  z-index: 60;
+}
+.to-top.show { opacity: 1; pointer-events: auto; }
+
+/* 頁尾 */
+.site-footer {
+  background: var(--ink); color: #9aa0b0;
+  text-align: center; padding: 2rem 1.5rem;
+  font-size: .8rem; line-height: 1.8;
+}
+.site-footer strong { color: var(--gold); }
+
+/* 手機 */
+@media (max-width: 640px) {
+  .stat-bar { gap: 1.4rem; }
+  .controls-inner { gap: .6rem; }
+  .search-box { order: 3; flex-basis: 100%; }
+  .group-head { flex-wrap: wrap; }
+  .group-head .g-meta { margin-left: 0; flex-basis: 100%; text-align: left; }
+  .q-answer table { font-size: .78rem; }
+  .q-answer pre, .code-block pre { font-size: .74rem; }
+}
+
+/* ===== 搜尋強化 / 跳轉面板（新增） ===== */
+.search-box input { padding-right: 2.2rem; }
+.search-clear {
+  position: absolute; right: .35rem; top: 50%; transform: translateY(-50%);
+  border: none; background: transparent; color: var(--ink-soft);
+  font-size: 1.05rem; line-height: 1; cursor: pointer;
+  padding: .25rem .45rem; border-radius: 50%; display: none;
+}
+.search-clear.show { display: block; }
+.search-clear:hover { background: var(--paper-warm); }
+.search-info {
+  max-width: 1100px; margin: .55rem auto 0;
+  font-size: .8rem; color: var(--ink-soft); display: none;
+}
+.search-info.show { display: block; }
+.search-info b { color: var(--accent); }
+mark.hl {
+  background: rgba(255, 208, 70, .6); color: inherit;
+  padding: 0 .06em; border-radius: 2px;
+}
+
+.jump-fab {
+  position: fixed; right: 1.5rem; bottom: 5.3rem; z-index: 90;
+  height: 2.6rem; padding: 0 1rem; border: none; border-radius: 999px;
+  background: var(--accent-2); color: #fff; cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif; font-size: .88rem; font-weight: 700;
+  box-shadow: 0 4px 12px var(--shadow); display: none;
+}
+.jump-fab.show { display: block; }
+.jump-fab:hover { background: var(--ink); }
+.jump-panel {
+  position: fixed; right: 1.5rem; bottom: calc(5.3rem + 3.2rem); z-index: 95;
+  width: min(360px, calc(100vw - 2.4rem)); max-height: 60vh; overflow: auto;
+  background: var(--card); border: 1.5px solid var(--line); border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(40,32,20,.25);
+}
+.jump-panel[hidden] { display: none; }
+.jump-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .7rem .9rem; border-bottom: 1px solid var(--line);
+  font-family: 'Noto Serif TC', serif; font-weight: 700; color: var(--ink);
+  position: sticky; top: 0; background: var(--card);
+}
+.jump-head button {
+  border: none; background: transparent; cursor: pointer;
+  font-size: 1rem; color: var(--ink-soft);
+}
+.jump-grid {
+  display: grid; gap: .45rem; padding: .8rem;
+  grid-template-columns: repeat(auto-fill, minmax(4.6rem, 1fr));
+}
+.jump-item {
+  display: flex; flex-direction: column; align-items: center; gap: .1rem;
+  padding: .45rem .3rem; border: 1.5px solid var(--line); border-radius: 8px;
+  background: var(--paper); color: var(--ink); cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif; line-height: 1.25;
+}
+.jump-item b { font-size: .95rem; }
+.jump-item small { font-size: .68rem; color: var(--ink-soft); }
+.jump-item:hover { border-color: var(--accent-2); background: #fff; }
+.jump-item.on { border-color: var(--accent-2); box-shadow: 0 0 0 1px var(--accent-2) inset; }
+.jump-item.done small { color: #2d6a4f; font-weight: 700; }
+.jump-foot {
+  display: flex; gap: .5rem; padding: 0 .8rem .8rem;
+}
+.jump-foot button {
+  flex: 1; padding: .45rem; border: 1.5px solid var(--ink-soft); border-radius: 8px;
+  background: var(--card); color: var(--ink-soft); cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif; font-size: .8rem;
+}
+.jump-foot button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ===== 子主題分類晶片：樣式沿用一般晶片（無色），顏色只出現在題目卡的標籤、色條與分組標題 ===== */
+/* 手機：晶片改成單列、可左右滑動，避免固定列佔掉半個螢幕 */
+@media (max-width: 640px) {
+  .filter-row { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: .35rem; scrollbar-width: thin; }
+  .filter-row .chip { flex: 0 0 auto; white-space: nowrap; }
+}
+</style>
+<style>.q-answer table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}</style></head>
+<body>
+
+<header class="site-header">
+  <div class="kicker">特種考試地方政府公務人員考試 ‧ 四等 ‧ 統計、資訊處理（舊制科目）</div>
+  <h1>資料處理概要<br>歷年申論題詳解（舊制）</h1>
+  <div class="sub">101 年 ～ 112 年 ‧ 逐題參考解答 ‧ SQL 與程式已實測 ‧ 子主題分類</div>
+</header>
+
+<div class="stat-bar">
+  <div class="stat"><div class="num" id="statYear">—</div><div class="lbl">考試年度</div></div>
+  <div class="stat"><div class="num" id="statQ">—</div><div class="lbl">題目總數</div></div>
+  <div class="stat"><div class="num" id="statTopic">—</div><div class="lbl">主題分類</div></div>
+  <div class="stat"><div class="num">100%</div><div class="lbl">附詳解</div></div>
+</div>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="mode-switch">
+      <button class="active" data-mode="year" onclick="setMode('year')">依年度</button>
+      <button data-mode="topic" onclick="setMode('topic')">依主題分類</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" autocomplete="off" placeholder="搜尋（多個關鍵字用空格分開）">
+      <button class="search-clear" id="searchClear" aria-label="清除搜尋">✕</button>
+    </div>
+    <button class="btn-expand" id="btnExpand" onclick="toggleExpandAll()">全部展開</button>
+  </div>
+  <div class="filter-row" id="filterRow"></div>
+  <div class="search-info" id="searchInfo"></div>
+</div>
+
+<main class="wrap">
+  <div id="content"></div>
+</main>
+
+<button class="jump-fab" id="jumpFab" onclick="toggleJump()" aria-label="跳轉">📍 跳轉</button>
+<div class="jump-panel" id="jumpPanel" hidden>
+  <div class="jump-head"><span id="jumpTitle">跳到年度</span><button onclick="toggleJump(false)" aria-label="關閉">✕</button></div>
+  <div class="jump-grid" id="jumpGrid"></div>
+</div>
+
+<button class="to-top" id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<footer class="site-footer">
+  <p><strong>特種考試地方政府公務人員考試四等</strong>　資料處理概要（舊制）　考古題複習系統</p>
+  <p>本頁收錄 101～112 年共 12 個年度的申論題。「資料處理概要」近年已不再考，這些是舊制題目，內容涵蓋資料庫、資料結構、演算法與網路，與其他科目有重疊，可供複習參考。申論題沒有官方標準答案，詳解為依專業知識編寫的參考解答；SQL 以 MySQL 語法撰寫；標示「實測」的 SQL 邏輯以 SQLite 實際執行驗證（未在 MySQL 上執行），程式以 gcc 實際執行驗證。</p>
+  <p style="margin-top:.6rem;opacity:.7;">點擊任一題目卡可展開／收合詳解　‧　可切換「依年度」或「依主題分類」檢視</p>
+</footer>
+
+<script>// 公務人員特種考試關務人員四等考試 - 資訊處理 程式設計概要 考古題詳解
+// 主題分類代碼：db=資料庫 ds=資料結構與演算法 prog=程式設計實作
+
+/* ===== 關務四等資訊處理 程式設計概要 — 全部關務年度 ===== */
+const EXAM_DATA_CUSTOMS = [
+
+{
+  year: "112", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 44140",
+  questions: [
+    {
+      id: "loc-dp-112-1", no: "一", topic: "db", topicName: "資料庫",
+      title: "SQL：計算每個部門的平均業績，依平均業績遞減排列",
+      score: 25,
+      question: `使用結構化查詢語言（Structured Query Language, SQL），對 SalesData 的資料表進行查詢，計算出每個部門的平均業績。最後顯示出部門 ID（DepartmentID）以及各部門的平均業績（AverageSales），並依平均業績遞減排列。（25 分）
+資料表名稱：SalesData
+\`\`\`
+EmployeeID   DepartmentID   SalesAmount
+   101            1            1000
+   102            1            1500
+   103            2             800
+   104            2            1200
+   105            3             900
+\`\`\``,
+      answer: `**一、解題思路**
+
+| 需求 | SQL 子句 |
+|---|---|
+| 以「部門」為單位計算平均 | \`GROUP BY DepartmentID\`，搭配聚合函數 \`AVG(SalesAmount)\` |
+| 顯示部門 ID 與平均業績，平均業績取名 AverageSales | \`SELECT DepartmentID, AVG(SalesAmount) AS AverageSales\` |
+| 依平均業績**遞減**排列 | \`ORDER BY AverageSales DESC\`（\`DESC\` ＝ descending 遞減；\`ASC\` 才是遞增） |
+
+**二、SQL 敘述**
+
+\`\`\`sql
+SELECT DepartmentID, AVG(SalesAmount) AS AverageSales
+FROM SalesData
+GROUP BY DepartmentID
+ORDER BY AverageSales DESC;
+\`\`\`
+
+**三、執行結果（實測：SQLite 以題目資料表執行）**
+
+| DepartmentID | AverageSales |
+|---|---|
+| 1 | 1250.0 |
+| 2 | 1000.0 |
+| 3 | 900.0 |
+
+**驗算**：部門 1：(1000 ＋ 1500) ÷ 2 ＝ 1250；部門 2：(800 ＋ 1200) ÷ 2 ＝ 1000；部門 3：只有一筆，900。依平均業績由大到小排列：1、2、3。
+
+**四、觀念說明**
+- \`GROUP BY\` 把資料依部門分組，每組只輸出一列；\`SELECT\` 中沒有被聚合的欄位（DepartmentID）必須出現在 \`GROUP BY\` 中。
+- 聚合函數（\`AVG\`、\`SUM\`、\`COUNT\`、\`MAX\`、\`MIN\`）作用在每一組上。
+- \`ORDER BY\` 在 \`SELECT\` 之後執行，所以可以使用 \`SELECT\` 中取的別名 \`AverageSales\`（也可以寫成 \`ORDER BY AVG(SalesAmount) DESC\`）。
+- 若平均值要取到整數或小數兩位，可用 \`ROUND(AVG(SalesAmount), 2)\`。`
+    },
+    {
+      id: "loc-dp-112-2", no: "二", topic: "net", topicName: "網路與系統",
+      title: "乙太網路（CSMA/CD）與 WiFi（CSMA/CA）的媒體存取控制協議與傳輸方式",
+      score: 25,
+      question: `請解釋乙太網路（Ethernet）和 WiFi 分別使用的媒體存取控制（Media Access Control, MAC）協議，並敘述兩者的傳輸方式。（25 分）`,
+      answer: `**一、先說明 MAC 協議的目的**
+
+多個裝置共用同一個傳輸媒介（同一條線或同一個無線頻道）時，需要有一套規則決定「誰什麼時候可以傳送」，避免大家同時傳送造成**碰撞（collision）**，這就是**媒體存取控制（MAC）協議**，位於資料連結層。
+
+**二、乙太網路（IEEE 802.3）：CSMA/CD**
+
+**CSMA/CD ＝ 載波偵測多重存取／碰撞偵測（Carrier Sense Multiple Access with Collision Detection）**
+
+| 步驟 | 說明 |
+|---|---|
+| 1. 載波偵測（CS） | 傳送前先**聽**線路上有沒有人在傳；有人在傳就等待 |
+| 2. 多重存取（MA） | 線路空閒時就開始傳送（多個裝置共用同一條匯流排或集線器） |
+| 3. 碰撞偵測（CD） | 傳送的**同時繼續監聽**，如果偵測到訊號異常（碰撞） |
+| 4. 碰撞處理 | 立刻停止傳送並送出**干擾訊號（jam signal）**，通知其他站；然後以**二進位指數後退（binary exponential backoff）**隨機等待一段時間，再重新嘗試 |
+
+**傳輸方式**
+- 有線傳輸（雙絞線、光纖）；以**訊框（Frame）**為單位，內含目的與來源 MAC 位址、型態、資料與檢查碼（FCS）；
+- 早期使用集線器（hub），所有裝置共用同一個碰撞網域，為**半雙工**，必須使用 CSMA/CD；
+- 現在多使用**交換器（switch）**，每個埠是獨立的連線，採**全雙工**（同時收送），不會發生碰撞，CSMA/CD 實際上已不再需要，但標準中仍保留。
+- 能夠偵測碰撞是因為有線媒介上傳送者可以同時「聽」到自己的訊號。
+
+**三、WiFi（IEEE 802.11）：CSMA/CA**
+
+**CSMA/CA ＝ 載波偵測多重存取／碰撞避免（Collision Avoidance）**
+
+**為什麼不能用碰撞偵測？** 無線裝置**難以邊傳送邊接收**（自己的發射訊號太強，蓋過別人的訊號）；而且有**隱藏終端問題（hidden terminal）**：A 與 C 都能聽到 B，但彼此聽不到對方，同時傳給 B 就會在 B 處碰撞，A、C 卻不知道。因此改採「**避免**碰撞」。
+
+| 步驟 | 說明 |
+|---|---|
+| 1. 載波偵測 | 傳送前先偵測頻道是否空閒 |
+| 2. 等待 DIFS＋隨機後退 | 頻道空閒時，**等待一段固定時間（DIFS）再加上隨機的後退時間（backoff）**；後退計數器只在頻道空閒時遞減，降到 0 才傳送，避免多個站同時搶著傳 |
+| 3. 傳送資料 | 送出資料訊框 |
+| 4. 確認（ACK） | 接收端收到後等待一小段時間（SIFS），**回傳 ACK 確認**；若發送端沒有收到 ACK，就認定發生碰撞或錯誤，**加倍後退視窗後重傳** |
+| 5. 可選的 RTS/CTS | 為解決隱藏終端問題，傳送前先送 **RTS（Request to Send）**，接收端回 **CTS（Clear to Send）**，所有聽到 CTS 的站都會延後傳送（虛擬載波偵測 NAV） |
+
+**傳輸方式**：無線電波傳輸（2.4／5／6 GHz），**半雙工**（同一頻道同一時間只有一個方向）；每個訊框都要確認（ACK）；速度較有線不穩定，會受距離、干擾、障礙物影響。
+
+**四、比較**
+
+| 比較 | 乙太網路（802.3） | WiFi（802.11） |
+|---|---|---|
+| MAC 協議 | **CSMA/CD**（碰撞偵測） | **CSMA/CA**（碰撞避免） |
+| 媒介 | 有線 | 無線 |
+| 如何處理碰撞 | 發生後偵測、停止、後退重傳 | **事先避免**（隨機後退、RTS/CTS），並以 ACK 確認 |
+| 確認機制 | 沒有（由上層協定如 TCP 處理） | 每個訊框都有鏈結層的 ACK |
+| 雙工 | 現代交換式為全雙工 | 半雙工 |
+| 位址 | 目的與來源 MAC | 位址欄位較多（來源、目的、AP 位址） |
+
+**結論**：兩者都是「先聽再說」的隨機存取方式；有線網路能偵測碰撞，所以用 CD；無線網路無法可靠地偵測碰撞，所以用 CA 事前避免並靠 ACK 確認。`
+    },
+    {
+      id: "loc-dp-112-3", no: "三", topic: "ds", topicName: "資料結構與演算法",
+      title: "依序輸入 39, 18, 61, 46, 11, 2, 24, 33 建立二元搜尋樹，並畫出刪除節點 11 後的樹",
+      score: 25,
+      question: `依序輸入數值為：39, 18, 61, 46, 11, 2, 24, 33，請使用這些數值，劃出刪除節點 11 後的二元搜尋樹。（25 分）`,
+      answer: `**一、二元搜尋樹的規則**：每個節點的**左子樹所有值都比它小**，**右子樹所有值都比它大**。依輸入順序逐一插入：從根開始比較，小於往左、大於往右，直到找到空位。
+
+**二、建立過程**
+
+| 插入 | 比較路徑 | 結果 |
+|---|---|---|
+| 39 | 樹是空的 | 成為**根** |
+| 18 | 18 < 39 → 左 | 39 的左子 |
+| 61 | 61 > 39 → 右 | 39 的右子 |
+| 46 | 46 > 39 → 右 → 46 < 61 → 左 | 61 的左子 |
+| 11 | 11 < 39 → 左 → 11 < 18 → 左 | 18 的左子 |
+| 2 | 2 < 39 → 左 → 2 < 18 → 左 → 2 < 11 → 左 | 11 的左子 |
+| 24 | 24 < 39 → 左 → 24 > 18 → 右 | 18 的右子 |
+| 33 | 33 < 39 → 左 → 33 > 18 → 右 → 33 > 24 → 右 | 24 的右子 |
+
+**刪除 11 之前的二元搜尋樹**
+
+\`\`\`
+             39
+           /    \\
+        18        61
+       /  \\      /
+     11    24   46
+    /        \\
+   2          33
+\`\`\`
+
+（中序走訪：2, 11, 18, 24, 33, 39, 46, 61，由小到大，符合二元搜尋樹的性質。）
+
+**三、刪除節點 11**
+
+刪除節點時分三種情況：
+
+| 情況 | 作法 |
+|---|---|
+| ① 葉節點（沒有子節點） | 直接刪除 |
+| ② 只有**一個**子節點 | 用**那個子節點**取代被刪除的節點（接到被刪除節點的父節點上） |
+| ③ 有**兩個**子節點 | 以**右子樹的最小值（中序後繼）**或**左子樹的最大值（中序前驅）**取代，再刪除原本那個值所在的節點 |
+
+節點 11 只有一個子節點（左子 2），屬於情況 ②：**把 2 接到 11 的父節點 18 的左邊**，11 被移除。
+
+**刪除 11 之後的二元搜尋樹**
+
+\`\`\`
+             39
+           /    \\
+        18        61
+       /  \\      /
+      2    24   46
+             \\
+              33
+\`\`\`
+
+（中序走訪：2, 18, 24, 33, 39, 46, 61，仍由小到大，仍是合法的二元搜尋樹。實測：以程式建立並刪除，結構與上圖一致。）
+
+**四、補充**：若題目是刪除有兩個子節點的 18，則以右子樹最小值 24 取代 18（或以左子樹最大值 11 取代），再刪除原來的 24 節點（24 有右子 33，接上去）。`
+    },
+    {
+      id: "loc-dp-112-4", no: "四", topic: "sec", topicName: "資訊安全",
+      title: "雜湊函數（Hash Function）的特性",
+      score: 25,
+      question: `雜湊函數（Hash Function）作為一種常見的資料加密演算法，請詳細說明雜湊函數之特性。（25 分）`,
+      answer: `**一、先釐清**
+
+雜湊函數（Hash Function）是把**任意長度的輸入資料（訊息）**，經過運算轉成**固定長度的輸出（雜湊值，Hash Value／訊息摘要 Message Digest）**的函數。題目說它是「資料加密演算法」，嚴格來說**雜湊不是加密**：加密是「可以解密還原」，雜湊是**單向、不可逆**的，主要用於**驗證完整性與指紋比對**，而不是保密。
+
+**二、雜湊函數的特性（密碼學雜湊函數）**
+
+| 特性 | 說明 |
+|---|---|
+| **1. 輸入長度任意、輸出長度固定** | 不論輸入是 1 個字元或 1 GB 的檔案，輸出長度固定（如 SHA-256 為 256 位元） |
+| **2. 計算快速、容易** | 對任何輸入，計算雜湊值很有效率 |
+| **3. 確定性（Deterministic）** | **相同的輸入永遠得到相同的輸出** |
+| **4. 單向性（不可逆，抗原像 Preimage resistance）** | 已知雜湊值 h，**無法（在實務上）反推出原本的輸入** |
+| **5. 抗第二原像（Second-preimage resistance）** | 已知輸入 x，**很難找到另一個不同的輸入 x′**，使 H(x′) ＝ H(x) |
+| **6. 抗碰撞（Collision resistance）** | **很難找到任何兩個不同的輸入**得到相同的雜湊值 |
+| **7. 雪崩效應（Avalanche effect）** | 輸入**只改變 1 個位元**，輸出會有約一半的位元改變，看起來毫無關聯 |
+| **8. 輸出分布均勻** | 雜湊值在輸出範圍內均勻分布，減少碰撞的機率 |
+
+**說明**：因為輸入空間無限、輸出空間有限，依鴿籠原理**碰撞必然存在**，但好的雜湊函數使找到碰撞在計算上**不可行**。
+
+**三、常見的雜湊函數**
+
+| 演算法 | 輸出長度 | 現況 |
+|---|---|---|
+| MD5 | 128 位元 | 已被找到碰撞，**不再安全**，只可用於一般檔案校驗 |
+| SHA-1 | 160 位元 | 已被找到碰撞，**不建議再使用** |
+| **SHA-2（SHA-256、SHA-512）** | 256／512 位元 | 目前廣泛使用 |
+| SHA-3 | 224～512 位元 | 新一代標準 |
+
+**四、應用**
+
+1. **資料完整性驗證**：下載檔案附上雜湊值，下載後重算比對，確認未被竄改；
+2. **數位簽章**：先對訊息做雜湊，再對雜湊值簽章（比直接簽整個訊息快）；
+3. **密碼儲存**：資料庫只存密碼的雜湊值（並加上隨機鹽 salt、使用慢速雜湊如 bcrypt、Argon2），不存明文；
+4. **訊息鑑別碼（HMAC）**：以金鑰加上雜湊，驗證來源與完整性；
+5. **區塊鏈**：區塊以前一區塊的雜湊值串接；
+6. 資料結構中的**雜湊表**（一般用途的雜湊函數，不要求抗碰撞，但要求分布均勻、計算快）。
+
+**結論**：雜湊函數的核心是「**固定長度、單向不可逆、確定性、抗碰撞、雪崩效應**」，用於驗證完整性而不是加密保密。`
+    }
+  ]
+},
+
+{
+  year: "111", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：統計、資訊處理｜代號 44440",
+  questions: [
+    {
+      id: "loc-dp-111-1", no: "一", topic: "ds", topicName: "資料結構與演算法",
+      title: "合併兩個陣列 M、N 為排序後的陣列 P：演算法 Sort(M, N, P, m, n) 與時間複雜度",
+      score: 25,
+      question: `設 M 與 N 分別含有 m 及 n 個元素之兩個數列陣列。
+(一) 試設計一演算法 Sort（M, N, P, m, n），將 M 與 N 內之元素，合併成一個新陣列 P。合併後 P 內之元素需依小而大排序；該演算法的執行時間需最佳。（15 分）
+(二) 試計算所設計出之演算法 Sort（M, N, P, m, n）的執行時間複雜度。（10 分）`,
+      answer: `**先說明假設**：題目說「兩個數列陣列」要合併成「依小而大排序」的 P，且執行時間要最佳。這是**合併排序（merge sort）中的「合併（merge）」步驟**，標準的假設是 **M 與 N 本身已經各自由小到大排序好**。若兩個陣列沒有排序，作法與複雜度見最後的補充。
+
+**（一）演算法設計（15 分）：雙指標合併**
+
+用三個指標：\`i\` 走 M、\`j\` 走 N、\`k\` 填 P。
+
+1. 當 M 與 N **都還有元素**時，比較 \`M[i]\` 與 \`N[j]\`，**把較小的放進 P[k]**，該陣列的指標與 k 都往後移一格；
+2. 其中一個陣列用完後，把**另一個陣列剩下的元素依序全部接到 P 後面**（它們本來就是排序好的，且都比 P 已有的元素大或相等）。
+
+**步驟表（以 M ＝ {1, 4, 7}，N ＝ {2, 3, 9, 10} 為例）**
+
+| 比較 | 較小者 | P 目前內容 |
+|---|---|---|
+| 1 與 2 | 1（M） | 1 |
+| 4 與 2 | 2（N） | 1 2 |
+| 4 與 3 | 3（N） | 1 2 3 |
+| 4 與 9 | 4（M） | 1 2 3 4 |
+| 7 與 9 | 7（M） | 1 2 3 4 7 |
+| M 用完 | 接上 N 剩下的 9、10 | 1 2 3 4 7 9 10 |
+
+**程式（C，實測：gcc 編譯執行，輸出 \`1 2 3 4 7 9 10\`）**
+
+\`\`\`c
+#include <stdio.h>
+
+/* 把已由小到大排序的 M[0..m-1] 與 N[0..n-1] 合併到 P[0..m+n-1]，P 也是由小到大 */
+void Sort(int M[], int N[], int P[], int m, int n) {
+    int i = 0, j = 0, k = 0;
+    while (i < m && j < n) {              /* 兩邊都還有元素：取較小的放入 P */
+        if (M[i] <= N[j]) P[k++] = M[i++];
+        else              P[k++] = N[j++];
+    }
+    while (i < m) P[k++] = M[i++];        /* M 還有剩下的，全部接上去 */
+    while (j < n) P[k++] = N[j++];        /* N 還有剩下的，全部接上去 */
+}
+
+int main(void) {
+    int M[] = { 1, 4, 7 }, N[] = { 2, 3, 9, 10 }, P[7], k;
+    Sort(M, N, P, 3, 4);
+    for (k = 0; k < 7; k++) printf("%d ", P[k]);
+    printf("\\n");
+    return 0;
+}
+\`\`\`
+
+**（二）時間複雜度（10 分）**
+
+- 每一次比較都會**把一個元素放進 P**，每個元素只被放入一次；P 共有 m ＋ n 個元素，所以迴圈總共執行 **m ＋ n** 次（兩個 while 迴圈加起來）；
+- 每次迴圈只做常數次比較與指定，所以**時間複雜度 ＝ O(m ＋ n)**（線性時間）。
+- 空間複雜度：需要額外的陣列 P，**O(m ＋ n)**。
+
+**為什麼這是「最佳」**：結果 P 有 m ＋ n 個元素，**至少要寫入每個元素一次**，所以任何演算法至少需要 Ω(m ＋ n) 的時間；雙指標合併剛好達到這個下限，因此是**最佳（漸近最佳）**。
+
+**補充：若 M 與 N 沒有事先排序**
+
+| 作法 | 時間複雜度 |
+|---|---|
+| 先把兩個陣列各自排序（如合併排序或快速排序），再用上面的方法合併 | O(m log m ＋ n log n ＋ m ＋ n) |
+| 先把 M、N 複製到 P，再對 P 整個排序 | O((m ＋ n) log(m ＋ n)) |
+
+以比較為基礎的排序演算法，下限為 Ω(k log k)（k ＝ m ＋ n），所以未排序時最佳為 O((m ＋ n) log(m ＋ n))。`
+    },
+    {
+      id: "loc-dp-111-2", no: "二", topic: "ds", topicName: "資料結構與演算法",
+      title: "以堆疊計算後置運算式 postfix_math(PFExp)，並追蹤 \"62/3-42*+\" 每一步的 Stack 與 PFExp",
+      score: 25,
+      question: `設 PFExp 為一字串，描述著一個以後置運算式（postfix expression）表示之數學運算式，例如 PFExp = "62/3-42*+"。當中每一個運算元（operand）皆僅為一個位數整數，且只有 '+'、'-'、'*'、'/' 四種可能運算子（operator）。
+(一) 寫出一演算法(int)postfix_math(string PFExp)，利用堆疊（Stack）計算該後置運算式，並傳回該運算結果。（15 分）
+(二) 以您所設計之演算法，來計算數學運算式 PFExp = "62/3-42*+"。寫出在執行過程中每一步驟 Stack 及 PFExp 的內容。（10 分）
+以下是您可能會用到的副程式：
+(int)POPStack(Stack)：移除 Stack 中最前面的整數，並傳回被移除的整數。
+PUSHStack(Stack, V)：將整數 V 放入 Stack 的最前面。
+(int)DECV(char C)：將一字元 C 轉成一整數，並傳回該整數。
+(char)First_Char(String PFExp)：移除 PFExp 中最前面的字元，並傳回該字元。
+(Boolean)EMPTY(String PFExp)：如 PFExp 為一空字串時，傳回 TRUE，否則傳回 FALSE。`,
+      answer: `**（一）演算法（15 分）**
+
+**後置運算式的特性**：運算子寫在兩個運算元的**後面**，不需要括號與優先權；由左往右掃描，**遇到運算元就放進堆疊，遇到運算子就從堆疊取出兩個運算元計算，再把結果放回堆疊**。最後堆疊裡只剩一個數，就是答案。
+
+**注意**：取出時，**先取出的是「右運算元」（b），再取出的是「左運算元」（a）**，計算 \`a 運算子 b\`（對減法與除法很重要）。
+
+**演算法（使用題目提供的副程式）**
+
+\`\`\`
+postfix_math(PFExp):
+    建立空的 Stack
+    while not EMPTY(PFExp):
+        c = First_Char(PFExp)              // 取出並移除最前面的字元
+        if c 是數字字元:
+            PUSHStack(Stack, DECV(c))      // 轉成整數放入堆疊
+        else:                              // c 是運算子 + - * /
+            b = POPStack(Stack)            // 先取出的是右運算元
+            a = POPStack(Stack)            // 再取出的是左運算元
+            if c == '+': r = a + b
+            if c == '-': r = a - b
+            if c == '*': r = a * b
+            if c == '/': r = a / b
+            PUSHStack(Stack, r)            // 結果放回堆疊
+    return POPStack(Stack)                 // 堆疊中最後剩下的就是答案
+\`\`\`
+
+**程式（C，以陣列實作堆疊，實測：gcc 編譯執行）**
+
+\`\`\`c
+#include <stdio.h>
+#include <string.h>
+
+/* 以堆疊計算後置運算式（運算元皆為一位數整數） */
+int postfix_math(const char *PFExp) {
+    int stack[100], top = -1, i, a, b;
+    for (i = 0; PFExp[i] != '\\0'; i++) {
+        char c = PFExp[i];
+        if (c >= '0' && c <= '9') {
+            stack[++top] = c - '0';                 /* 運算元：轉成整數，PUSH */
+        } else {
+            b = stack[top--];                       /* 運算子：先 POP 的是「右」運算元 */
+            a = stack[top--];                       /* 再 POP 的是「左」運算元 */
+            switch (c) {
+                case '+': stack[++top] = a + b; break;
+                case '-': stack[++top] = a - b; break;
+                case '*': stack[++top] = a * b; break;
+                case '/': stack[++top] = a / b; break;
+            }
+        }
+        /* 以下只是為了顯示每一步 Stack 與剩餘 PFExp 的內容 */
+        { int k; printf("讀 %c  Stack(底→頂)：", c);
+          for (k = 0; k <= top; k++) printf("%d ", stack[k]);
+          printf("  剩餘 PFExp：\\"%s\\"\\n", PFExp + i + 1); }
+    }
+    return stack[top];                              /* 最後堆疊只剩一個數，就是結果 */
+}
+
+int main(void) {
+    printf("結果 = %d\\n", postfix_math("62/3-42*+"));
+    return 0;
+}
+\`\`\`
+
+**（二）計算 PFExp 的過程（10 分）**：PFExp ＝ \`62/3-42*+\`
+
+下表的 Stack 由**底到頂**列出（最右邊是頂端）：
+
+| 步驟 | 讀取的字元 | 動作 | Stack | 剩餘 PFExp |
+|---|---|---|---|---|
+| 開始 | — | — | （空） | \`62/3-42*+\` |
+| 1 | 6 | 運算元，PUSH 6 | 6 | \`2/3-42*+\` |
+| 2 | 2 | 運算元，PUSH 2 | 6 2 | \`/3-42*+\` |
+| 3 | / | POP 2（b）、POP 6（a），6 ÷ 2 ＝ 3，PUSH 3 | 3 | \`3-42*+\` |
+| 4 | 3 | PUSH 3 | 3 3 | \`-42*+\` |
+| 5 | − | POP 3（b）、POP 3（a），3 − 3 ＝ 0，PUSH 0 | 0 | \`42*+\` |
+| 6 | 4 | PUSH 4 | 0 4 | \`2*+\` |
+| 7 | 2 | PUSH 2 | 0 4 2 | \`*+\` |
+| 8 | * | POP 2（b）、POP 4（a），4 × 2 ＝ 8，PUSH 8 | 0 8 | \`+\` |
+| 9 | + | POP 8（b）、POP 0（a），0 ＋ 8 ＝ 8，PUSH 8 | 8 | （空） |
+
+**結果：8**（程式實測結果相同）。對應的中序式是 ((6 ÷ 2) − 3) ＋ (4 × 2) ＝ 0 ＋ 8 ＝ 8。`
+    },
+    {
+      id: "loc-dp-111-3", no: "三", topic: "db", topicName: "資料庫",
+      title: "功能相依與正規化：{BC→GH, AD→E, A→H, E→BCF, G→H}，找出主鍵並正規化到 2NF、3NF",
+      score: 21,
+      question: `假設 T 為一個符合第一正規化要求之關聯表格，且 T 包含有屬性為 {A, B, C, D, E, F, G, H}，以下描述其屬性間之功能相依的關係性：BC → GH, AD → E, A → H, E → BCF, G → H
+(一) 決定出表格 T 之最合適的主要鍵（primary key）。（5 分）
+(二) 將 T 轉化成符合第二正規化要求的關聯表格，並指出關聯表格的主要鍵。（8 分）
+(三) 將轉化後的關聯表格，轉成符合第三正規化要求之表格，並標出表格的主要鍵。（8 分）
+（※需寫出推導過程）`,
+      answer: `**功能相依（FD）**：① BC → GH　② AD → E　③ A → H　④ E → BCF　⑤ G → H
+
+**（一）主要鍵（5 分）：AD**
+
+**步驟 1：找出一定在鍵中的屬性。** 看每個屬性有沒有出現在某個 FD 的**右邊**（能被別的屬性決定）：
+
+| 屬性 | 出現在 FD 右邊？ |
+|---|---|
+| A | 否（沒有任何 FD 決定 A） |
+| D | 否（沒有任何 FD 決定 D） |
+| B、C、F | 是（E → BCF） |
+| E | 是（AD → E） |
+| G、H | 是（BC → GH、G → H） |
+
+不能被別人決定的屬性 **A 與 D 一定在每個候選鍵中**。
+
+**步驟 2：計算 AD 的閉包（AD⁺）**
+
+- AD⁺ ＝ {A, D}
+- AD → E：加入 E → {A, D, E}
+- A → H：加入 H → {A, D, E, H}
+- E → BCF：加入 B、C、F → {A, B, C, D, E, F, H}
+- BC → GH：加入 G → {A, B, C, D, E, F, G, H}
+
+AD⁺ ＝ 全部屬性，所以 **AD 是超鍵**；又 A 與 D 都不能再拿掉（A⁺ ＝ {A, H}、D⁺ ＝ {D}，都不是全部），所以 **AD 是候選鍵**，且是**唯一**的候選鍵（因為任何鍵都必須包含 A 與 D）。
+
+**主要鍵 ＝ AD。**
+
+**（二）轉成第二正規化（2NF）（8 分）**
+
+**2NF 的要求**：已符合 1NF，且**每個非鍵屬性（非主屬性）都「完全」相依於整個候選鍵**，不可以只相依於鍵的一部分（**部分相依**）。
+
+**檢查非鍵屬性 B、C、E、F、G、H 是否對鍵 AD 部分相依：**
+
+| FD | 說明 |
+|---|---|
+| A → H | **H 只相依於 AD 的一部分（A）** → **部分相依，違反 2NF** |
+| AD → E | E 完全相依於 AD，OK |
+| E → BCF、BC → GH、G → H | 決定者（E、BC、G）不是鍵 AD 的一部分，不是「部分相依」問題（是之後 3NF 要處理的傳遞相依） |
+
+**分解**：把部分相依的 H 抽出去，與其決定者 A 成為一個新表格：
+
+- **R1(A, H)**，主要鍵 **A**（FD：A → H）
+- **R2(A, D, E, B, C, F, G)**，主要鍵 **AD**（保留：AD → E、E → BCF、BC → G；H 已移出）
+
+兩個表格都符合 2NF（R1 的鍵只有一個屬性，不可能部分相依；R2 中 AD → E 完全相依，其他屬性經由 E 傳遞相依於 AD）。
+
+**（三）轉成第三正規化（3NF）（8 分）**
+
+**3NF 的要求**：符合 2NF，且**沒有非鍵屬性「傳遞相依」於鍵**（非鍵屬性不可以由另一個非鍵屬性決定）。
+
+**檢查 R2(A, D, E, B, C, F, G)：**
+
+- **AD → E → BCF**：B、C、F 透過非鍵屬性 E 傳遞相依於 AD → 違反 3NF；
+- **AD → E → BC → G**：G 透過 BC（非鍵）傳遞相依 → 違反 3NF。
+
+**分解**：
+
+| 新表格 | 屬性 | 主要鍵 | 對應 FD |
+|---|---|---|---|
+| R1 | (A, H) | **A** | A → H |
+| R2a | (A, D, E) | **AD** | AD → E |
+| R2b | (E, B, C, F) | **E** | E → BCF |
+| R2c | (B, C, G) | **BC** | BC → G |
+
+**保持功能相依（補充）**：原本的 G → H 在上面的表格中，G 與 H 分屬不同表格（R2c 與 R1），這個相依性被分散，無法在單一表格中檢查。若要「保持相依性」，可再加一個表格 **R3(G, H)，主要鍵 G**（FD：G → H）。此時 BC → H 可由 BC → G、G → H 推得，是多餘的。
+
+**最終 3NF 結果**：R1(**A**, H)、R2a(**A, D**, E)、R2b(**E**, B, C, F)、R2c(**B, C**, G)，另加 R3(**G**, H) 以保持 G → H。其中 R2a 包含原表格的候選鍵 AD，可以無失真地還原原表格（無損連接）。
+
+**結論**：主鍵 AD；2NF 先消除 A → H 的部分相依；3NF 再消除經由 E、BC 的傳遞相依。`
+    },
+    {
+      id: "loc-dp-111-4", no: "四", topic: "prog", topicName: "程式設計實作",
+      title: "傳名呼叫、傳址呼叫、傳值呼叫：主程式印出的結果",
+      score: 9,
+      question: `以下為某種程式語言的 pseudo codes，其中 main()為主程式，p(int x, int y, int z)為被呼叫的副程式。
+\`\`\`
+main()                                     p(int y, int x, int z)
+{ x = 2;  y = 5;  p(x, y, 3);  print x, y }    { x = x+z;  z = x+1;  x = y+z;  y = z; }
+\`\`\`
+(一) 若副程式是以傳名呼叫（passed by name）法，則主程式印出的結果為何？（3 分）
+(二) 若副程式是以傳址呼叫（passed by reference）法，則主程式印出的結果為何？（3 分）
+(三) 若副程式是以傳值呼叫（passed by value）法，則主程式印出的結果為何？（3 分）`,
+      answer: `**答案：(一) 傳名：\`9 11\`；(二) 傳址：\`9 11\`；(三) 傳值：\`2 5\`。**（以 Python 依各種呼叫方式模擬驗證了傳值與傳址的結果）
+
+**先對應參數**
+
+呼叫 \`p(x, y, 3)\`，而 p 的**形式參數**是 \`p(int y, int x, int z)\`，**依位置**對應（名稱雖相同但順序不同，要小心）：
+
+| p 的形式參數 | 對應的實際參數 | 初始值 |
+|---|---|---|
+| y（第 1 個） | main 的 **x** | 2 |
+| x（第 2 個） | main 的 **y** | 5 |
+| z（第 3 個） | 常數 **3** | 3 |
+
+p 的本體：\`x = x+z;  z = x+1;  x = y+z;  y = z;\`（依序執行）
+
+**（三）傳值呼叫（call by value）：\`2 5\`**
+
+形式參數是實際參數的**複本**，在 p 中修改不影響 main：
+
+| 步驟 | p 內的複本（x、y、z） |
+|---|---|
+| 初始 | y ＝ 2，x ＝ 5，z ＝ 3 |
+| \`x = x+z\` | x ＝ 5 ＋ 3 ＝ 8 |
+| \`z = x+1\` | z ＝ 8 ＋ 1 ＝ 9 |
+| \`x = y+z\` | x ＝ 2 ＋ 9 ＝ 11 |
+| \`y = z\` | y ＝ 9 |
+
+離開 p 後，main 的 x、y 沒有改變，**印出 \`2 5\`**。
+
+**（二）傳址呼叫（call by reference）：\`9 11\`**
+
+形式參數是實際參數的**別名**（修改形式參數就是修改 main 的變數）。令 main 的變數為 mx（初值 2）、my（初值 5）；形式 y ＝ mx，形式 x ＝ my；z 是常數 3 的暫存位置（視為 p 的區域值）：
+
+| 步驟 | 動作（形式參數 → 實際變數） | mx | my | z |
+|---|---|---|---|---|
+| 初始 | | 2 | 5 | 3 |
+| \`x = x+z\` | my ＝ my ＋ z ＝ 5 ＋ 3 | 2 | **8** | 3 |
+| \`z = x+1\` | z ＝ my ＋ 1 ＝ 8 ＋ 1 | 2 | 8 | 9 |
+| \`x = y+z\` | my ＝ mx ＋ z ＝ 2 ＋ 9 | 2 | **11** | 9 |
+| \`y = z\` | mx ＝ z | **9** | 11 | 9 |
+
+main 印出 **x ＝ 9，y ＝ 11**（\`9 11\`）。
+
+**（一）傳名呼叫（call by name）：\`9 11\`**
+
+傳名是把形式參數**以實際參數的運算式文字替換**，每次使用形式參數時才在呼叫者的環境中求值。本題三個實際參數中，兩個是單純的變數名稱（x、y），替換之後的效果與傳址相同：
+
+- \`x = x+z\` 變成 \`y_main = y_main + 3\` → 8；
+- \`z = x+1\`：z 對應到常數 3，常數不能被指定；一般教科書的做法是把 z 當成**暫存值**處理 → z ＝ 9；
+- \`x = y+z\` → \`y_main = x_main + 9\` ＝ 11；
+- \`y = z\` → \`x_main = 9\`。
+
+結果同樣是 **\`9 11\`**。
+
+**補充**：傳名與傳址在引數是**運算式（如陣列元素 a[i]）**、且過程中改變了運算式內的變數時，結果才會不同；本題引數是簡單變數，所以相同。常數 3 作為傳址或傳名的實際參數時，指定值給 z 在嚴格的語言中是不允許的（或需要複製成暫存變數）；本解答依題目預期，把 z 視為可被修改的暫存值。`
+    },
+    {
+      id: "loc-dp-111-5", no: "五", topic: "net", topicName: "網路與系統",
+      title: "交換器（Switch）的位址學習與轉送：PC1 → PC3、PC5 → PC1 的過程與訊框內容",
+      score: 20,
+      question: `以下顯示一 Ethernet 2000 網路架構：
+\`\`\`
+                      PC1 (00-13-46-9A-63-74)        PC4 (00-E0-4C-39-00-1F)
+                            |fa0/1                       |fa0/1
+  PC2 (80-C1-6E-F3-E7-6A) --fa0/2-- Switch 1 --fa0/4---fa0/4-- Switch 2 --fa0/2-- PC5 (00-03-FF-C0-CD-98)
+                            |fa0/3                       |fa0/3
+                      PC3 (00-F1-EE-50-DC-92)        PC6 (09-54-11-2d-c5-22)
+\`\`\`
+(一) 當剛打開網路系統後，PC1 向 PC3 傳遞資料，描述 Switches 傳送該資料的過程及資料內容的變化。（10 分）
+(二) 隨後 PC5 向 PC1 傳遞資料，描述 Switches 傳送該資料的過程及資料內容的變化。（10 分）`,
+      answer: `**拓樸（依題目圖）**
+
+| Switch 1 的埠 | 連接 | Switch 2 的埠 | 連接 |
+|---|---|---|---|
+| fa0/1 | PC1 | fa0/1 | PC4 |
+| fa0/2 | PC2 | fa0/2 | PC5 |
+| fa0/3 | PC3 | fa0/3 | PC6 |
+| fa0/4 | Switch 2（的 fa0/4） | fa0/4 | Switch 1（的 fa0/4） |
+
+**交換器（Layer 2 Switch）的運作原則**
+
+1. **學習（Learning）**：每收到一個訊框，就把「**來源 MAC 位址**」與「**進來的埠**」記錄到 **MAC 位址表**；
+2. **轉送（Forwarding）**：查**目的 MAC 位址**：**表中有**，只往那個埠轉送（單點傳送）；
+3. **氾濫（Flooding）**：**表中沒有**（未知）或是**廣播位址**，就從**除了進來的埠以外的所有埠**送出；
+4. **過濾**：目的位置與來源在同一個埠，就不轉送；
+5. 交換器**不會修改**訊框的內容（來源與目的 MAC、資料都不變），只負責轉送。
+
+剛開機時，兩台交換器的 MAC 位址表都是**空的**。
+
+**（一）PC1 → PC3（剛開機）**
+
+訊框內容：**目的 MAC ＝ 00-F1-EE-50-DC-92（PC3）**，**來源 MAC ＝ 00-13-46-9A-63-74（PC1）**，後面是資料與 FCS。
+
+| 步驟 | 設備 | 動作 | MAC 位址表的變化 |
+|---|---|---|---|
+| 1 | Switch 1 | 從 **fa0/1** 收到訊框 → **學習**：PC1 的 MAC 在 fa0/1。查目的 PC3 的 MAC：**表中沒有** → **氾濫**：從 fa0/2、fa0/3、fa0/4 送出（除了 fa0/1） | **Switch 1：PC1 → fa0/1** |
+| 2 | PC2、PC3 | 收到訊框。PC2 發現目的不是自己，丟棄；**PC3 發現目的是自己，接收** | — |
+| 3 | Switch 2 | 從 **fa0/4** 收到（Switch 1 氾濫過來的）訊框 → **學習**：PC1 的 MAC 在 fa0/4。目的 PC3 **未知** → **氾濫**：從 fa0/1、fa0/2、fa0/3 送出 | **Switch 2：PC1 → fa0/4** |
+| 4 | PC4、PC5、PC6 | 收到後發現目的不是自己，丟棄 | — |
+
+**資料內容的變化**：**沒有任何變化**。交換器只轉送，不改寫訊框；同一個訊框在 Switch 1、Switch 2 之間原樣傳遞。**變化的是交換器內部的 MAC 位址表**。（實務上 PC1 在傳送 IP 封包前，會先用 ARP 廣播查詢 PC3 的 MAC；題目省略，直接當成已知。）
+
+**（二）PC5 → PC1（隨後）**
+
+訊框內容：**目的 MAC ＝ 00-13-46-9A-63-74（PC1）**，**來源 MAC ＝ 00-03-FF-C0-CD-98（PC5）**。
+
+| 步驟 | 設備 | 動作 | MAC 位址表的變化 |
+|---|---|---|---|
+| 1 | Switch 2 | 從 **fa0/2** 收到訊框 → **學習**：PC5 的 MAC 在 fa0/2。查目的 PC1：**表中有，在 fa0/4** → **只從 fa0/4 轉送**（不再氾濫，**PC4、PC6 不會收到**） | **Switch 2：新增 PC5 → fa0/2** |
+| 2 | Switch 1 | 從 **fa0/4** 收到訊框 → **學習**：PC5 的 MAC 在 fa0/4。查目的 PC1：**表中有，在 fa0/1** → **只從 fa0/1 轉送**（PC2、PC3 不會收到） | **Switch 1：新增 PC5 → fa0/4** |
+| 3 | PC1 | 收到訊框，目的是自己，接收 | — |
+
+**資料內容的變化**：同樣**沒有變化**，訊框原樣送達 PC1；差別在於這次是**精確的單點傳送**，不是氾濫。
+
+**兩次傳送後的 MAC 位址表**
+
+| Switch 1 | | Switch 2 | |
+|---|---|---|---|
+| MAC | 埠 | MAC | 埠 |
+| PC1（00-13-46-9A-63-74） | fa0/1 | PC1（00-13-46-9A-63-74） | fa0/4 |
+| PC5（00-03-FF-C0-CD-98） | fa0/4 | PC5（00-03-FF-C0-CD-98） | fa0/2 |
+
+**重點**：交換器**靠來源位址學習、靠目的位址轉送**；未知的目的位址先氾濫，已學習過的就精確轉送，這減少了不必要的流量並避免碰撞。`
+    }
+  ]
+},
+
+{
+  year: "110", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：統計、資訊處理｜代號 43440",
+  questions: [
+    {
+      id: "loc-dp-110-1", no: "一", topic: "prog", topicName: "程式設計實作",
+      title: "死結（deadlock）必須同時具備的四個條件",
+      score: 16,
+      question: `請說明必須同時具備那四個條件才可能使資料處理程序（process）產生死結（deadlock）？（16 分）`,
+      answer: `**死結（Deadlock）**：兩個或以上的程序**彼此等待對方持有的資源**，結果**所有程序都無法繼續執行**。
+
+**四個必要條件（Coffman 條件，必須「同時」成立才可能發生死結）**
+
+| 條件 | 說明 | 例子 |
+|---|---|---|
+| **1. 互斥（Mutual Exclusion）** | 資源**一次只能被一個程序使用**，其他程序必須等待 | 印表機、寫入檔案的鎖 |
+| **2. 持有並等待（Hold and Wait）** | 程序**已持有至少一個資源**，同時又在**等待取得其他程序持有的資源** | P1 拿著磁帶機，等待印表機 |
+| **3. 不可搶先（No Preemption）** | 資源**只能由持有者自願釋放**，不能被強制奪走 | 不能硬把 P1 的印表機拿走 |
+| **4. 循環等待（Circular Wait）** | 存在一組程序 {P0, P1, …, Pn}，P0 等 P1 持有的資源，P1 等 P2 的…，**Pn 等 P0 的**，形成一個環 | P1 等 P2 的資源，P2 又等 P1 的資源 |
+
+**重點**：四個條件**缺一不可**，只要破壞其中**任何一個**，就不會發生死結。
+
+**經典例子**：程序 P1 持有資源 R1，要求 R2；程序 P2 持有 R2，要求 R1。雙方都不放手也不能被搶，就永遠互相等待。
+
+**預防死結的方法（破壞某個條件）**
+
+| 破壞的條件 | 作法 |
+|---|---|
+| 互斥 | 盡量使用可共享的資源（如唯讀檔案）、假機（spooling）；但有些資源本質上必須互斥 |
+| 持有並等待 | 程序**一次要求所有資源**，拿不齊就一個都不拿；或要求新資源前先釋放已持有的 |
+| 不可搶先 | 允許系統**強制收回**資源（如記憶體分頁、CPU） |
+| 循環等待 | 為所有資源編號，程序必須**依編號遞增的順序**要求資源（破壞環的形成） |
+
+其他處理方式：**死結避免**（銀行家演算法，判斷安全狀態）、**死結偵測與復原**（偵測資源配置圖的環，終止或回復程序）、**忽略**（鴕鳥演算法）。`
+    },
+    {
+      id: "loc-dp-110-2", no: "二", topic: "db", topicName: "資料庫",
+      title: "實體關係模型（ER Model）、資料庫綱目（Database Schema）與資料正規化的功能",
+      score: 21,
+      question: `請說明設計關聯式資料庫時，實體關係模型（Entity-Relationship Model）、資料庫綱目（Database Schema）與資料正規化（Data Normalization）等三項技術的功能？（21 分）`,
+      answer: `三項技術對應資料庫設計的不同階段：**概念設計 → 邏輯設計 → 改善（正規化）**。
+
+**一、實體關係模型（ER Model）——概念設計（7 分）**
+
+**功能**：以**圖形（ER 圖）**描述真實世界中要儲存的資料，作為使用者與設計者**溝通的工具**，不涉及特定的資料庫產品。
+
+| 元素 | 說明 | 圖形 |
+|---|---|---|
+| 實體（Entity） | 要儲存的事物（學生、課程） | 矩形 |
+| 屬性（Attribute） | 實體的特性（學號、姓名）；其中能唯一識別者為**鍵屬性**（加底線） | 橢圓 |
+| 關係（Relationship） | 實體之間的關聯（修課、授課） | 菱形 |
+| 基數（Cardinality） | 一對一（1:1）、一對多（1:N）、多對多（M:N） | 線上標示 |
+
+設計步驟：找出實體 → 找出關係 → 定義屬性與鍵 → 決定基數；完成後再轉換成關聯式綱目。
+
+**二、資料庫綱目（Database Schema）——邏輯設計（7 分）**
+
+**功能**：**描述資料庫的結構（定義）**，包括有哪些**表格（關聯）**、每個表格有哪些**欄位**與**資料型態**、**主鍵、外來鍵**、**完整性限制**。它是資料庫的「**藍圖**」，與資料內容（實例）分開，且**很少改變**。
+
+- 例：\`學生(學號, 姓名, 系別)\`、\`選課(學號, 課號, 成績)\`，其中學號、課號為外來鍵；
+- 把 ER 模型**轉換**成關聯式綱目（實體 → 表格，M:N 關係 → 另一個表格，1:N 關係 → 在 N 方加外來鍵）；
+- 也可分成**三層綱目**：外部綱目（使用者視圖）、概念綱目（整體邏輯結構）、內部綱目（實體儲存），提供**資料獨立性**。
+- 實作時以 SQL 的 \`CREATE TABLE\` 定義。
+
+**三、資料正規化（Normalization）——改善設計（7 分）**
+
+**功能**：依據**功能相依**把表格逐步分解，**消除資料的重複與異常**，使資料庫結構合理：
+
+| 異常 | 說明 |
+|---|---|
+| 插入異常 | 想新增某筆資料，卻因為缺少其他不相關的資料而不能新增 |
+| 刪除異常 | 刪除某筆資料時，連帶把其他有用的資料一起刪掉 |
+| 更新異常 | 重複存放的資料，只改了一處造成不一致 |
+
+| 正規形式 | 要求 |
+|---|---|
+| 1NF | 每個欄位都是**不可再分的單一值** |
+| 2NF | 符合 1NF，且**消除部分相依**（非鍵屬性完全相依於整個主鍵） |
+| 3NF | 符合 2NF，且**消除傳遞相依**（非鍵屬性不可依賴另一個非鍵屬性） |
+| BCNF | 每個決定者都是候選鍵 |
+
+優點：減少儲存空間、避免資料不一致、結構清晰；缺點：表格變多，查詢需要更多**連接（join）**，效能可能降低，有時會為了效能而適度**反正規化**。
+
+**四、三者的關係**
+
+**ER 模型（概念）→ 轉成關聯式綱目（邏輯）→ 以正規化檢查與改善 → 實體實作**。ER 模型回答「要存什麼」，綱目回答「怎麼組織成表格」，正規化回答「這樣的表格好不好、如何改良」。`
+    },
+    {
+      id: "loc-dp-110-3", no: "三", topic: "ds", topicName: "資料結構與演算法",
+      title: "二維陣列定址：已知 a(2,3)＝56、a(3,2)＝76、a(4,5)＝112，求 a(6,2) 的位址",
+      score: 10,
+      question: `某個二維陣列由 a(1, 1)開始，若 a(2, 3)的位址為 56，a(3, 2)的位址為 76，a(4, 5)的位址為 112，則 a(6, 2)的位址為何？（10 分）`,
+      answer: `**答案：148**
+
+**一、假設與定址公式**
+
+二維陣列在記憶體中連續存放。題目沒有說明儲存方式、每個元素的大小與列數，必須由三個已知位址**推出**。先假設是**以列為主（row-major，一列接著一列）**，每列有 C 個元素，每個元素佔 s 個位址單位，a(1,1) 的位址為 b：
+
+**a(i, j) 的位址 ＝ b ＋ [ (i − 1) × C ＋ (j − 1) ] × s**
+
+**二、列方程式求解**
+
+| 已知 | 方程式 |
+|---|---|
+| a(2, 3) ＝ 56 | b ＋ (C ＋ 2) s ＝ 56 …… ① |
+| a(3, 2) ＝ 76 | b ＋ (2C ＋ 1) s ＝ 76 …… ② |
+| a(4, 5) ＝ 112 | b ＋ (3C ＋ 4) s ＝ 112 …… ③ |
+
+- ② − ①：(C − 1) s ＝ 20 …… ④
+- ③ − ②：(C ＋ 3) s ＝ 36 …… ⑤
+- ⑤ − ④：4 s ＝ 16 → **s ＝ 4**
+- 代入 ④：(C − 1) × 4 ＝ 20 → **C ＝ 6**（每列 6 個元素）
+- 代入 ①：b ＋ (6 ＋ 2) × 4 ＝ 56 → b ＋ 32 ＝ 56 → **b ＝ 24**（a(1,1) 的位址）
+
+**驗算**：a(4,5) ＝ 24 ＋ (3×6 ＋ 4) × 4 ＝ 24 ＋ 88 ＝ **112** ✓。
+
+**三、求 a(6, 2)**
+
+a(6, 2) ＝ 24 ＋ [(6 − 1) × 6 ＋ (2 − 1)] × 4 ＝ 24 ＋ 31 × 4 ＝ 24 ＋ 124 ＝ **148**。
+
+**四、若假設以行為主（column-major）**
+
+設每行有 R 個元素，位址 ＝ b ＋ [(j − 1) R ＋ (i − 1)] s。a(3,2) − a(2,3) ＝ [(R ＋ 2) − (2R ＋ 1)] s ＝ (1 − R) s ＝ 20，要使結果為正，R 必須小於 1，**不可能**。所以只有以列為主的假設成立，答案為 **148**。`
+    },
+    {
+      id: "loc-dp-110-4", no: "四", topic: "ds", topicName: "資料結構與演算法",
+      title: "堆疊、佇列與鏈結串列：資料儲存方式與可採行的操作特性",
+      score: 21,
+      question: `請說明堆疊（Stack）、佇列（Queue）與鏈結串列（Linked List）資料結構之資料儲存方式以及在其上可採行的操作特性。（21 分）`,
+      answer: `| 比較 | 堆疊（Stack） | 佇列（Queue） | 鏈結串列（Linked List） |
+|---|---|---|---|
+| **資料儲存方式** | **線性**結構，只有一端（**頂端 top**）可以進出；可用**陣列**或**鏈結串列**實作 | **線性**結構，一端（**尾端 rear**）進入、另一端（**前端 front**）離開；可用**陣列（含環狀佇列）**或鏈結串列實作 | 由**節點（node）**組成，每個節點含**資料**與指向**下一個節點的指標**；節點在記憶體中**不需要連續**，靠指標串連；有單向、雙向、環狀等 |
+| **存取原則** | **後進先出（LIFO）** | **先進先出（FIFO）** | **沒有固定限制**，可在任意位置插入、刪除，須由頭開始**循序存取** |
+| **主要操作** | \`push\`（加入頂端）、\`pop\`（取出頂端）、\`peek／top\`（看頂端不取出）、\`isEmpty\`、\`isFull\` | \`enqueue\`（加入尾端）、\`dequeue\`（從前端取出）、\`front\`（看前端）、\`isEmpty\`、\`isFull\` | **插入**（頭、尾、中間）、**刪除**、**搜尋**、走訪 |
+| **操作的時間複雜度** | push、pop、peek 皆 **O(1)** | enqueue、dequeue 皆 **O(1)**（環狀佇列或有頭尾指標） | 在**已知位置**插入／刪除 **O(1)**（只改指標，不必搬移其他元素）；**搜尋** O(n)；在串列頭插入 O(1) |
+| **大小** | 陣列版固定大小（可能 overflow）；鏈結版可動態成長 | 同左 | **動態**，隨需求配置，不浪費空間；但每個節點多一個指標的空間 |
+| **常見應用** | 函式呼叫與遞迴（呼叫堆疊）、運算式求值與括號比對、復原（Undo）、深度優先搜尋、瀏覽器上一頁 | 排程（CPU、列印）、緩衝區、廣度優先搜尋、等候線、訊息佇列 | 動態資料集合、實作堆疊與佇列、多項式、雜湊表的鏈結法、檔案配置 |
+
+**重點觀念與差異**
+
+1. **堆疊與佇列是「限制存取方式」的抽象資料型態（ADT）**，著重在存取的規則（LIFO／FIFO）；**鏈結串列是一種「實作方式」**（資料如何儲存），可以用來實作堆疊與佇列。
+2. **陣列 vs 鏈結串列**：陣列隨機存取 O(1)，但插入刪除要搬移（O(n)）、大小固定；鏈結串列插入刪除 O(1)（已知位置），但只能循序存取（O(n)）、每個節點需要額外指標空間。
+3. **鏈結串列的種類**：單向（只有 next）、雙向（next 與 prev，可往前往後）、環狀（尾端接回頭）。
+
+**例（單向鏈結串列在頭部插入新節點）**：新節點的 next 指向原本的頭節點，再把「頭」指向新節點，不需要搬移任何資料，時間 O(1)。`
+    },
+    {
+      id: "loc-dp-110-5", no: "五", topic: "ds", topicName: "資料結構與演算法",
+      title: "霍夫曼編碼：7 個指令 A～G 的編碼（左子樹 0、右子樹 1）",
+      score: 12,
+      question: `某機器共有 7 個指令，分別為 A~G。假設其出現的機率分別如下：A：0.25　B：0.20　C：0.15　D：0.13　E：0.12　F：0.10　G：0.05。若以哈夫曼編碼（Huffman coding）方式將指令編碼，且左子樹編碼為 0，右子樹編碼為 1，則指令 A~G 的編碼分別為何？（12 分）`,
+      answer: `**霍夫曼編碼的作法**：每次從所有節點中選出**機率最小的兩個**合併成一個新節點（機率相加），重複到只剩一個根；建好樹後，從根往下走，**左邊記 0，右邊記 1**，到達各葉節點的路徑就是該符號的編碼。**機率越大的符號，編碼越短**。
+
+**合併過程（每次取最小的兩個；機率較小者放左邊）**
+
+| 步驟 | 目前節點（機率） | 合併的兩個 | 新節點 |
+|---|---|---|---|
+| 1 | A .25、B .20、C .15、D .13、E .12、F .10、G .05 | G（.05）＋ F（.10） | **FG ＝ .15** |
+| 2 | A .25、B .20、C .15、FG .15、D .13、E .12 | E（.12）＋ D（.13） | **ED ＝ .25** |
+| 3 | A .25、B .20、C .15、FG .15、ED .25 | C（.15）＋ FG（.15） | **CFG ＝ .30** |
+| 4 | A .25、B .20、ED .25、CFG .30 | B（.20）＋ A（.25） | **BA ＝ .45** |
+| 5 | BA .45、ED .25、CFG .30 | ED（.25）＋ CFG（.30） | **EDCFG ＝ .55** |
+| 6 | BA .45、EDCFG .55 | BA（.45）＋ EDCFG（.55） | **根 ＝ 1.00** |
+
+**霍夫曼樹（左 0、右 1）**
+
+\`\`\`
+                     根(1.00)
+                   0 /      \\ 1
+              BA(.45)        EDCFG(.55)
+             0 /   \\ 1       0 /       \\ 1
+            B(.20) A(.25)  ED(.25)     CFG(.30)
+                          0 / \\ 1     0 /   \\ 1
+                        E(.12) D(.13) C(.15)  FG(.15)
+                                            0 /  \\ 1
+                                         G(.05)  F(.10)
+\`\`\`
+
+**各指令的編碼（以上述合併順序，已用程式依相同規則算出）**
+
+| 指令 | 機率 | 編碼 | 碼長 |
+|---|---|---|---|
+| A | 0.25 | **01** | 2 |
+| B | 0.20 | **00** | 2 |
+| C | 0.15 | **110** | 3 |
+| D | 0.13 | **101** | 3 |
+| E | 0.12 | **100** | 3 |
+| F | 0.10 | **1111** | 4 |
+| G | 0.05 | **1110** | 4 |
+
+**平均碼長** ＝ 0.25×2 ＋ 0.20×2 ＋ 0.15×3 ＋ 0.13×3 ＋ 0.12×3 ＋ 0.10×4 ＋ 0.05×4 ＝ 0.5 ＋ 0.4 ＋ 0.45 ＋ 0.39 ＋ 0.36 ＋ 0.4 ＋ 0.2 ＝ **2.7 位元／指令**（固定長度編碼需要 3 位元，所以較省）。
+
+**注意：編碼不是唯一的**：當有**機率相同的節點（例如第 3 步的 C 與 FG 都是 .15、第 4 步的 A 與 ED 都是 .25）**時，選哪一個先合併，以及哪個放左邊、哪個放右邊，會得到**不同的編碼**；但**各符號的碼長與平均碼長（2.7）是相同的**，同樣是最佳編碼。作答時說明所採用的規則即可。
+
+**霍夫曼編碼的特性**：**前置碼（prefix code）**，任何一個編碼都不是另一個編碼的開頭，所以可以**無歧義地解碼**（如 \`01100…\`：先讀到 01 ＝ A，再讀 100 ＝ E…）。`
+    },
+    {
+      id: "loc-dp-110-6", no: "六", topic: "db", topicName: "資料庫",
+      title: "SQL：臺北市客戶姓名與電話；各產品平均購買數量；各客戶購買的各產品數量",
+      score: 20,
+      question: `假如某公司的關聯式資料庫包含以下三個表格，其內之欄位如括號內所示。
+客戶（客戶編號，姓名，電話，地址，年齡）
+產品（產品編號，產品名稱，價格，庫存數量）
+訂單（訂單編號，購貨日期，客戶編號，產品編號，購買數量）
+(一) 請寫出 SQL 敘述（statement）以列出地址在臺北市的客戶姓名與電話。（5 分）
+(二) 請寫出 SQL 敘述以列出各個產品名稱及其平均購買數量。（7 分）
+(三) 針對不同客戶，請寫出 SQL 敘述以計算各個客戶所購買之各產品的購買數量。（8 分）`,
+      answer: `**說明**：以下 SQL 都用 **SQLite** 以自建的測試資料實際執行驗證（3 位客戶、2 項產品、6 筆訂單）。
+
+**（一）地址在臺北市的客戶姓名與電話（5 分）**
+
+地址欄位是「臺北市○○區…」，要用**模糊比對 \`LIKE\`**，\`%\` 代表任意多個字元：
+
+\`\`\`sql
+SELECT 姓名, 電話
+FROM 客戶
+WHERE 地址 LIKE '臺北市%';
+\`\`\`
+
+（實測：只列出地址以「臺北市」開頭的客戶。若地址中「臺北市」不一定在開頭，可寫 \`LIKE '%臺北市%'\`。）
+
+**（二）各產品名稱及其平均購買數量（7 分）**
+
+要用到**兩個表格**（產品與訂單），以產品編號**連接（JOIN）**，再依產品**分組**，對訂單的購買數量取**平均**：
+
+\`\`\`sql
+SELECT 產品.產品名稱, AVG(訂單.購買數量) AS 平均購買數量
+FROM 產品
+JOIN 訂單 ON 產品.產品編號 = 訂單.產品編號
+GROUP BY 產品.產品編號, 產品.產品名稱;
+\`\`\`
+
+（實測結果：滑鼠 4.0、鍵盤 2.0。）
+
+- \`JOIN … ON\`：把產品與訂單中產品編號相同的資料配成一列；
+- \`GROUP BY\`：每個產品一組；\`AVG\`：每組取購買數量的平均；
+- 若要把「沒有任何訂單的產品」也列出（平均為空值 NULL），改用 \`LEFT JOIN\`。
+
+**（三）每個客戶購買的每種產品的購買數量（8 分）**
+
+要以「客戶」與「產品」**兩個欄位一起分組**，對購買數量**加總**；需要連接三個表格（取得客戶姓名與產品名稱）：
+
+\`\`\`sql
+SELECT 客戶.客戶編號, 客戶.姓名, 產品.產品名稱, SUM(訂單.購買數量) AS 購買總數量
+FROM 訂單
+JOIN 客戶 ON 訂單.客戶編號 = 客戶.客戶編號
+JOIN 產品 ON 訂單.產品編號 = 產品.產品編號
+GROUP BY 客戶.客戶編號, 客戶.姓名, 產品.產品編號, 產品.產品名稱
+ORDER BY 客戶.客戶編號;
+\`\`\`
+
+**實測結果**
+
+| 客戶編號 | 姓名 | 產品名稱 | 購買總數量 |
+|---|---|---|---|
+| 1 | 王小明 | 滑鼠 | 6（訂單 2＋4） |
+| 1 | 王小明 | 鍵盤 | 1 |
+| 2 | 李小華 | 滑鼠 | 4 |
+| 3 | 陳大同 | 滑鼠 | 6 |
+| 3 | 陳大同 | 鍵盤 | 3 |
+
+（王小明買過滑鼠兩次，數量 2 與 4，所以滑鼠的購買總數量是 6：分組加總的效果。）
+
+**補充**：只要「各客戶總購買量」才分組客戶；本題要「各產品」分開計算，所以 GROUP BY 要同時包含客戶與產品。`
+    }
+  ]
+},
+
+{
+  year: "109", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：統計、資訊處理｜代號 43940",
+  questions: [
+    {
+      id: "loc-dp-109-1", no: "一", topic: "ds", topicName: "資料結構與演算法",
+      title: "最小生成樹（MST）：V＝{A..F}，W＝{AB2, AC6, BD7, CD4, CE5, DF10, EF9}",
+      score: 25,
+      question: `給定一個有權重的圖形 G=(V, W)，V 為頂點集合，W 為邊以及該邊上權重的集合。假設 V={A,B,C,D,E,F}，W={{A,B,2},{A,C,6},{B,D,7},{C,D,4},{C,E,5},{D,F,10},{E,F,9}}，請找出 G 的最小生成樹（Minimum Spanning Tree），並詳細說明執行的步驟。（25 分）`,
+      answer: `**最小生成樹（MST）**：連接圖中**所有頂點**、**沒有環**、且**邊的權重總和最小**的子圖（n 個頂點需要 n − 1 條邊，本題 6 個頂點需要 5 條邊）。常用演算法：**Kruskal**（依邊）與 **Prim**（依頂點）。以下以 Kruskal 為主，並用 Prim 驗算。
+
+**圖的邊（依權重由小到大排序）**
+
+| 邊 | 權重 |
+|---|---|
+| A–B | 2 |
+| C–D | 4 |
+| C–E | 5 |
+| A–C | 6 |
+| B–D | 7 |
+| E–F | 9 |
+| D–F | 10 |
+
+**Kruskal 演算法**：依權重由小到大逐一考慮每條邊，**若加入後不會形成環就選取**，否則略過，直到選滿 n − 1 條邊。（以「集合」判斷：兩端點在同一個集合表示會成環。）
+
+| 步驟 | 考慮的邊 | 兩端點是否已連通？ | 決定 | 目前的連通集合 | 累計權重 |
+|---|---|---|---|---|---|
+| 1 | A–B（2） | 否 | **選取** | {A,B} {C} {D} {E} {F} | 2 |
+| 2 | C–D（4） | 否 | **選取** | {A,B} {C,D} {E} {F} | 6 |
+| 3 | C–E（5） | 否 | **選取** | {A,B} {C,D,E} {F} | 11 |
+| 4 | A–C（6） | 否（A 在 {A,B}，C 在 {C,D,E}） | **選取** | {A,B,C,D,E} {F} | 17 |
+| 5 | B–D（7） | **是**（B、D 都在同一集合，會成環） | **略過** | 不變 | 17 |
+| 6 | E–F（9） | 否 | **選取** | {A,B,C,D,E,F} | **26** |
+| — | D–F（10） | 已連通，不需要 | 略過 | — | 26 |
+
+已選滿 5 條邊，結束。
+
+**最小生成樹**
+
+邊：**A–B（2）、C–D（4）、C–E（5）、A–C（6）、E–F（9）**；總權重 ＝ 2 ＋ 4 ＋ 5 ＋ 6 ＋ 9 ＝ **26**。
+
+\`\`\`
+      A ──2── B
+      │
+      6
+      │
+      C ──4── D
+      │
+      5
+      │
+      E ──9── F
+\`\`\`
+
+**用 Prim 演算法驗算（從 A 開始，每次選連接「已在樹中」與「不在樹中」頂點的最小邊）**
+
+| 步驟 | 目前樹中的頂點 | 可選的邊中最小的 | 加入 |
+|---|---|---|---|
+| 1 | {A} | A–B（2） | B |
+| 2 | {A,B} | A–C（6）（B–D 是 7） | C |
+| 3 | {A,B,C} | C–D（4） | D |
+| 4 | {A,B,C,D} | C–E（5） | E |
+| 5 | {A,B,C,D,E} | E–F（9）（D–F 是 10） | F |
+
+Prim 得到的邊同樣是 AB、AC、CD、CE、EF，總權重 **26**（以程式實測，兩種演算法結果相同）。
+
+**說明**：不選 B–D（7）是因為 A–B、A–C、C–D 已經讓 B 與 D 連通（B–A–C–D），再加 B–D 會形成環；不選 D–F（10）是因為 E–F（9）已更小地連接了 F。這個圖的權重互不相同，所以最小生成樹**唯一**。`
+    },
+    {
+      id: "loc-dp-109-2", no: "二", topic: "db", topicName: "資料庫",
+      title: "SQL：各部門員工平均薪資；各部門男性員工人數",
+      score: 25,
+      question: `假設關聯式資料庫資料表命名為「員工」，內容記錄以下欄位：編號、姓名、性別、薪資、部門別，若欲查詢各部門的員工平均薪資，應該下達之 SQL 指令為何？又欲查詢各部門的男性員工人數，應該下達之 SQL 指令為何？（25 分）`,
+      answer: `**說明**：以下 SQL 以 SQLite 用自建的 5 位員工資料實際執行驗證。
+
+**（一）各部門的員工平均薪資**
+
+用 **\`GROUP BY\`** 依「部門別」分組，每組用聚合函數 **\`AVG\`** 取薪資的平均：
+
+\`\`\`sql
+SELECT 部門別, AVG(薪資) AS 平均薪資
+FROM 員工
+GROUP BY 部門別;
+\`\`\`
+
+**實測結果**（測試資料：A 部門 2 人薪資 50000、60000；B 部門 2 人 40000、45000；C 部門 1 人 70000）
+
+| 部門別 | 平均薪資 |
+|---|---|
+| A | 55000.0 |
+| B | 42500.0 |
+| C | 70000.0 |
+
+**（二）各部門的男性員工人數**
+
+先用 **\`WHERE\`** 篩出**男性**，再用 \`GROUP BY\` 依部門分組，用 **\`COUNT(*)\`** 計算每組的人數：
+
+\`\`\`sql
+SELECT 部門別, COUNT(*) AS 男性員工人數
+FROM 員工
+WHERE 性別 = '男'
+GROUP BY 部門別;
+\`\`\`
+
+**實測結果**
+
+| 部門別 | 男性員工人數 |
+|---|---|
+| A | 1 |
+| B | 2 |
+
+（C 部門只有女性，**篩選後沒有任何資料列，所以不會出現在結果中**。若要顯示人數為 0 的部門，可改用 \`SELECT 部門別, SUM(CASE WHEN 性別 = '男' THEN 1 ELSE 0 END) AS 男性員工人數 FROM 員工 GROUP BY 部門別\`。）
+
+**觀念說明**
+- \`WHERE\` 是**分組之前**篩選每一列；\`HAVING\` 是**分組之後**篩選每一組（如「只顯示平均薪資超過 5 萬的部門」：\`HAVING AVG(薪資) > 50000\`）；
+- \`COUNT(*)\` 計算列數；\`AVG\`、\`SUM\`、\`MAX\`、\`MIN\` 都是聚合函數；
+- \`SELECT\` 中沒有被聚合的欄位，必須出現在 \`GROUP BY\`。`
+    },
+    {
+      id: "loc-dp-109-3", no: "三", topic: "db", topicName: "資料庫",
+      title: "SQL：查詢參與專案類別為「大數據分析」的專案編號、員工編號、姓名、專長與工作角色（三表連接）",
+      score: 25,
+      question: `假設關聯式資料庫中有員工資料表，其綱要（Schema）定義如下：
+員工（員工編號、姓名、性別、薪資、專長）
+專案（專案編號、起始日期、專案金額、專案類別）
+專案管理（專案編號、員工編號、工作角色）
+若欲查詢參與專案類別為「大數據分析」的專案編號、員工編號、姓名、專長及擔任該專案裏的工作角色，應該下達之 SQL 指令為何？（25 分）`,
+      answer: `**一、分析需要的欄位來自哪個表格**
+
+| 要顯示的欄位 | 來自 |
+|---|---|
+| 專案編號、工作角色 | 專案管理 |
+| 員工編號、姓名、專長 | 員工 |
+| 篩選條件「專案類別 ＝ 大數據分析」 | 專案 |
+
+三個表格要靠**鍵**連接：**專案管理**是「專案」與「員工」之間的**關聯表**（多對多），以專案編號連到專案、以員工編號連到員工。
+
+**二、SQL 指令**
+
+\`\`\`sql
+SELECT 專案管理.專案編號, 員工.員工編號, 員工.姓名, 員工.專長, 專案管理.工作角色
+FROM 專案管理
+JOIN 專案 ON 專案管理.專案編號 = 專案.專案編號
+JOIN 員工 ON 專案管理.員工編號 = 員工.員工編號
+WHERE 專案.專案類別 = '大數據分析';
+\`\`\`
+
+**不使用 JOIN 的寫法（等價）**
+
+\`\`\`sql
+SELECT 專案管理.專案編號, 員工.員工編號, 員工.姓名, 員工.專長, 專案管理.工作角色
+FROM 專案管理, 專案, 員工
+WHERE 專案管理.專案編號 = 專案.專案編號
+  AND 專案管理.員工編號 = 員工.員工編號
+  AND 專案.專案類別 = '大數據分析';
+\`\`\`
+
+**三、實測（SQLite，自建資料：2 個專案、3 位員工）**
+
+測試資料：專案 100 為「大數據分析」、專案 101 為「網站建置」；專案管理：（100, 員工 1, 分析師）、（100, 員工 2, 專案經理）、（101, 員工 3, 工程師）。
+
+| 專案編號 | 員工編號 | 姓名 | 專長 | 工作角色 |
+|---|---|---|---|---|
+| 100 | 1 | 甲 | 統計 | 分析師 |
+| 100 | 2 | 乙 | 資料庫 | 專案經理 |
+
+專案 101（網站建置）的員工因為不符合「大數據分析」，沒有出現。
+
+**四、說明**
+- 連接條件（\`ON\` 或 \`WHERE\` 中的等號）**少寫會產生笛卡兒乘積**（所有組合），結果錯誤；N 個表格需要至少 N − 1 個連接條件。
+- 多個表格有同名欄位（如專案編號）時，要加上**表格名稱前綴**避免模糊；
+- 可以用**別名**簡化：\`FROM 專案管理 AS pm JOIN 專案 AS p ON pm.專案編號 = p.專案編號 …\`。`
+    },
+    {
+      id: "loc-dp-109-4", no: "四", topic: "ds", topicName: "資料結構與演算法",
+      title: "二元樹以節點 A 為樹根，以中序（In-order）拜訪的節點順序",
+      score: 25,
+      question: `給定某二元樹 T=(V, X)，V 為頂點的集合，且 V={A,B,C,D,E,F,G,H,I}，X 為邊的集合，且 X={{A,B},{A,C},{B,D},{B,E},{E,F},{E,G},{G,H},{G,I}}，請以節點 A 為樹根，並以中序（In-order）拜訪法依序列出拜訪的節點。（25 分）`,
+      answer: `**答案：D、B、F、E、H、G、I、A、C**
+
+**一、由邊集合建立二元樹（以 A 為根）**
+
+| 父節點 | 子節點（依邊的列出順序，先列者為左子、後列者為右子） |
+|---|---|
+| A | 左 B，右 C |
+| B | 左 D，右 E |
+| E | 左 F，右 G |
+| G | 左 H，右 I |
+| C、D、F、H、I | 葉節點（沒有子節點） |
+
+**二元樹**
+
+\`\`\`
+              A
+            /   \\
+           B     C
+          / \\
+         D   E
+            / \\
+           F   G
+              / \\
+             H   I
+\`\`\`
+
+（題目的邊集合沒有指定左右，這裡依列出順序，先出現的為左子節點、後出現的為右子節點，這是最常見的解讀。）
+
+**二、中序（In-order）拜訪法**
+
+**順序：左子樹 → 根 → 右子樹**，對每個子樹也遞迴使用同樣的規則。
+
+**遞迴展開**
+
+- Inorder(A) ＝ Inorder(B) → **A** → Inorder(C)
+  - Inorder(B) ＝ Inorder(D) → **B** → Inorder(E)
+    - Inorder(D) ＝ **D**（葉）
+    - Inorder(E) ＝ Inorder(F) → **E** → Inorder(G)
+      - Inorder(F) ＝ **F**
+      - Inorder(G) ＝ Inorder(H) → **G** → Inorder(I) ＝ **H, G, I**
+      - 所以 Inorder(E) ＝ F, E, H, G, I
+    - 所以 Inorder(B) ＝ D, B, F, E, H, G, I
+  - Inorder(C) ＝ **C**（葉）
+
+**組合**：D, B, F, E, H, G, I, **A**, C。
+
+**拜訪順序：D → B → F → E → H → G → I → A → C**（以程式實測，結果相同）。
+
+**三、補充：三種走訪方式（同一棵樹）**
+
+| 走訪 | 規則 | 結果 |
+|---|---|---|
+| 前序（Preorder） | 根 → 左 → 右 | A B D E F G H I C |
+| **中序（Inorder）** | 左 → 根 → 右 | **D B F E H G I A C** |
+| 後序（Postorder） | 左 → 右 → 根 | D F H I G E B C A |`
+    }
+  ]
+},
+
+{
+  year: "108", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：統計、資訊處理｜代號 43540",
+  questions: [
+    {
+      id: "loc-dp-108-1", no: "一", topic: "ds", topicName: "資料結構與演算法",
+      title: "運算式 99 / 9 + 46 * 36 / 6 − 12 * 42 的前序表示法與後序表示法",
+      score: 25,
+      question: `試寫出此 99 / 9 + 46 * 36 / 6 – 12 * 42 運算式的前序表示法與後序表示法。（25 分）`,
+      answer: `**答案**
+
+| 表示法 | 結果 |
+|---|---|
+| **前序（Prefix）** | \`− + / 99 9 / * 46 36 6 * 12 42\` |
+| **後序（Postfix）** | \`99 9 / 46 36 * 6 / + 12 42 * −\` |
+
+**一、先決定運算順序（優先權與結合性）**
+
+- \`*\` 與 \`/\` 的優先權**高於** \`+\` 與 \`−\`；
+- 同優先權由**左到右**（左結合）。
+
+運算式：99 / 9 ＋ 46 * 36 / 6 − 12 * 42
+
+加上完整括號：\`((99 / 9) ＋ ((46 * 36) / 6)) − (12 * 42)\`
+
+- 99 / 9 ＝ 11；
+- 46 * 36 ＝ 1656，再 / 6 ＝ 276（\`46 * 36 / 6\` 由左到右，先乘後除）；
+- 11 ＋ 276 ＝ 287；12 * 42 ＝ 504；287 − 504 ＝ **−217**。
+
+**二、運算式樹（Expression Tree）**
+
+\`\`\`
+                     −
+                  /     \\
+                +         *
+              /   \\      / \\
+            /       /   12  42
+           / \\     / \\
+         99   9   *   6
+                 / \\
+               46   36
+\`\`\`
+
+**三、三種走訪**
+
+| 走訪 | 規則 | 結果 |
+|---|---|---|
+| 前序（根 → 左 → 右）＝ 前序表示法 | 運算子在前 | − ＋ / 99 9 / * 46 36 6 * 12 42 |
+| 中序（左 → 根 → 右）＝ 原運算式 | 運算子在中間（要加括號） | ((99 / 9) ＋ ((46 * 36) / 6)) − (12 * 42) |
+| 後序（左 → 右 → 根）＝ 後序表示法 | 運算子在後 | 99 9 / 46 36 * 6 / ＋ 12 42 * − |
+
+（已用程式依這棵運算式樹產生前序與後序，結果與上面一致。）
+
+**四、驗算後序式（用堆疊計算）**
+
+99 9 / → 11；46 36 * → 1656；1656 6 / → 276；11 276 + → 287；12 42 * → 504；287 504 − → **−217**，與原運算式的值相同。
+
+**重點**：前序與後序表示法**都不需要括號**，也不需要優先權規則，電腦計算較方便（後序式用堆疊即可計算）。`
+    },
+    {
+      id: "loc-dp-108-2", no: "二", topic: "db", topicName: "資料庫",
+      title: "SQL：列出員工編號、姓名與訂單編號、送貨日期、交貨日期，依員工編號遞增排序",
+      score: 25,
+      question: `請利用 SQL 語法列出員工資料表（Employee）內之員工編號（Employee_no），姓名（Employee_name）以及訂單資料表（Order）內之訂單編號（Order_no），送貨日期（Delivery_date），交貨日期（Order_date），並將結果使用員工編號遞增排序，其中：（25 分）
+(一) 員工資料表中包含員工編號，姓名，職稱，性別
+(二) 訂單資料表中包含訂單編號，員工編號，送貨日期，交貨日期`,
+      answer: `**一、分析**
+
+| 要顯示的欄位 | 來自 |
+|---|---|
+| Employee_no、Employee_name | 員工資料表 Employee |
+| Order_no、Delivery_date、Order_date | 訂單資料表 Order |
+| 連接條件 | 兩表共同的**員工編號**（Employee.Employee_no ＝ Order.Employee_no） |
+| 排序 | **依員工編號遞增**：\`ORDER BY Employee_no ASC\` |
+
+**二、SQL 指令**
+
+\`\`\`sql
+SELECT E.Employee_no, E.Employee_name, O.Order_no, O.Delivery_date, O.Order_date
+FROM Employee AS E
+INNER JOIN \`Order\` AS O ON E.Employee_no = O.Employee_no
+ORDER BY E.Employee_no ASC;
+\`\`\`
+
+**重要細節：\`Order\` 是 SQL 的保留字（ORDER BY 的 ORDER）**，表格名稱若直接叫 Order，需要用**引號**括起來，才不會被當成關鍵字。本解答使用 **MySQL 語法：反引號**（鍵盤左上角的 \` 符號）：
+
+- **MySQL**：用反引號把 Order 括起來（本解答的程式碼採用此寫法；在 MySQL 不加引號會出現語法錯誤）；
+- 標準 SQL、SQLite、PostgreSQL：用雙引號 \`"Order"\`；
+- SQL Server、Access：用 \`[Order]\`。
+
+（實務上建議不要用保留字當表格名稱，例如改成 \`Orders\`。）
+
+**不使用 JOIN 語法的寫法（等價）**
+
+\`\`\`sql
+SELECT E.Employee_no, E.Employee_name, O.Order_no, O.Delivery_date, O.Order_date
+FROM Employee E, \`Order\` O
+WHERE E.Employee_no = O.Employee_no
+ORDER BY E.Employee_no;
+\`\`\`
+
+**三、實測（以 SQLite 自建資料驗證邏輯與結果，SQLite 也接受反引號；未在 MySQL 上實際執行。員工 1、2；訂單 10 屬於員工 2，訂單 11、12 屬於員工 1）**
+
+| Employee_no | Employee_name | Order_no | Delivery_date | Order_date |
+|---|---|---|---|---|
+| 1 | A | 11 | 2020-03-03 | 2020-03-01 |
+| 1 | A | 12 | 2020-04-04 | 2020-04-01 |
+| 2 | B | 10 | 2020-02-02 | 2020-02-01 |
+
+結果依員工編號遞增排列（員工 1 在前）；同一位員工有多筆訂單時，每筆訂單各佔一列。
+
+**四、補充**
+- \`INNER JOIN\` 只列出**有訂單的員工**；若要連「沒有任何訂單的員工」也列出（訂單欄位為 NULL），改用 \`LEFT JOIN\`。
+- 若同一員工的訂單也要排序，可再加次要排序：\`ORDER BY E.Employee_no ASC, O.Order_no ASC\`。
+- 題目的欄位說明把「Delivery_date」稱為送貨日期、「Order_date」稱為交貨日期，本解答依題目照列。`
+    },
+    {
+      id: "loc-dp-108-3", no: "三", topic: "prog", topicName: "程式設計實作",
+      title: "可搶先排班（Preemptive）與不可搶先排班（Nonpreemptive）演算法的優缺點",
+      score: 25,
+      question: `分別說明可搶先排班演算法（Preemptive Scheduling）與不可搶先排班演算法（Nonpreemptive Scheduling）二者的優缺點。（25 分）`,
+      answer: `**一、定義**
+
+| 類型 | 定義 |
+|---|---|
+| **不可搶先（Nonpreemptive）** | CPU 一旦分配給某個程序，該程序會**一直執行到結束或自己主動放棄（等待 I/O）**，才會換別的程序；系統**不能中途強制收回**CPU |
+| **可搶先（Preemptive）** | 執行中的程序**可以被中途中斷**（被搶走 CPU）：時間片用完、或有**更高優先權／更短剩餘時間**的程序到達時，系統就把 CPU 收回，讓別的程序先執行 |
+
+**二、優缺點比較**
+
+| 比較 | 不可搶先排班 | 可搶先排班 |
+|---|---|---|
+| **優點** | ① **實作簡單**，管理容易；② **環境切換（context switch）次數少**，額外負擔低，CPU 使用效率高；③ **沒有因搶先造成的資料不一致問題**（程序不會在更新共享資料到一半時被打斷）；④ 每個程序的執行時間較可預測 | ① **回應時間短**，適合**分時（time-sharing）與互動式系統**；② **不會被長工作霸佔 CPU**，對短工作較公平；③ 能讓**高優先權或緊急（即時）工作立即執行**；④ 一般而言平均等待時間較短（如 SRTF 是最佳） |
+| **缺點** | ① **一個長工作會讓後面的短工作等很久**（**護航效應 convoy effect**）；② **回應時間差**，不適合互動式系統；③ 高優先權工作可能要等低優先權工作做完，**不適合即時系統**；④ 一個程序當機或無窮迴圈會使整個系統停擺 | ① **環境切換頻繁，額外負擔大**（儲存與恢復程序狀態、快取失效）；② **實作複雜**；③ **共享資料的同步問題**：被搶先時可能正在修改共享資料，需要鎖與同步機制，否則會產生**競爭條件（race condition）**；④ 低優先權的工作可能**飢餓（starvation）**（可用老化 aging 緩解） |
+| **代表演算法** | 先到先服務（FCFS）、最短工作優先（SJF）、不可搶先的優先權排班 | 輪轉（Round Robin）、最短剩餘時間優先（SRTF）、可搶先的優先權排班、多層回饋佇列 |
+| **適用** | 批次系統、工作時間可預測的環境 | 分時系統、互動式系統、即時系統 |
+
+**三、例子：Process P1 需 8 單位、P2 需 1 單位，P1 先到**
+
+- **不可搶先（FCFS）**：P1 先跑完（0～8），P2 等到 8 才執行，**P2 的等待時間 8**，平均等待 ＝ (0 ＋ 8) ÷ 2 ＝ 4；
+- **可搶先（如 SRTF，P2 在時間 1 到達）**：P2 剩餘時間更短，搶先執行（1～2），再回頭跑完 P1，**P2 等待 0**，平均等待 ＝ (1 ＋ 0) ÷ 2 ＝ 0.5（P1 被延遲 1 單位）。
+
+**結論**：不可搶先簡單、效率高但回應差；可搶先回應快、公平，但有切換負擔與同步複雜度。通用作業系統（Windows、Linux）都採用可搶先排班。`
+    },
+    {
+      id: "loc-dp-108-4", no: "四", topic: "net", topicName: "網路與系統",
+      title: "錯誤控制：回退 N 重傳（Go-Back-N）與選擇性重複（Selective Repeat）的差異與優點",
+      score: 25,
+      question: `封包傳送當中的錯誤控制方式技術有兩種，分別為回退 N 重傳（Go-back-N, GBN）和選擇性重複（Selective Repeat, SR），請比較兩種方式的差異以及各自的優點。（25 分）`,
+      answer: `**一、背景**：兩者都是**滑動視窗（sliding window）協定**，傳送端可以**連續送出多個封包而不必每個都等 ACK**，提高通道使用率；差別在於**封包遺失或出錯時如何重傳**。
+
+**二、運作方式**
+
+**回退 N 重傳（GBN）**
+- 傳送端視窗大小可達 N，連續送出；
+- 接收端**只接受「依序」到達的封包**，收到順序不對（有缺號）的封包就**丟棄**，並重複回覆最後一個正確依序收到的 ACK（累積確認）；
+- 傳送端若逾時（沒收到某封包的 ACK），就**從該封包開始，把視窗內之後送出的所有封包全部重傳**（「回退」N 個）。
+
+**選擇性重複（SR）**
+- 接收端**接受並緩衝「亂序」到達的封包**（在接收視窗內），**逐一確認每個封包**（個別 ACK）；
+- 傳送端為每個封包設定**獨立的計時器**，**只重傳遺失（或逾時）的那一個封包**；
+- 接收端收齊連續的封包後，再**依序**交給上層。
+
+**三、比較**
+
+| 比較 | Go-Back-N（GBN） | Selective Repeat（SR） |
+|---|---|---|
+| 重傳範圍 | **從出錯封包起，之後的所有已傳封包都重傳** | **只重傳遺失或出錯的封包** |
+| 接收端 | **接收視窗大小 ＝ 1**；亂序的封包丟棄，不緩衝 | **接收視窗 ＞ 1**；**緩衝亂序封包**，收齊後排序再上傳 |
+| 確認方式 | **累積確認（cumulative ACK）**：ACK n 表示 n 以前都已正確收到 | **個別確認（individual ACK）**：每個封包各自 ACK |
+| 計時器 | 通常只需**一個計時器**（最舊未確認的封包） | 每個未確認的封包需要**各自的計時器** |
+| 序號空間與視窗 | 視窗大小 ≤ 2ᵐ − 1（m 為序號位元數） | 視窗大小 ≤ 2ᵐ⁻¹（序號空間至少要是視窗的兩倍，避免新舊封包混淆） |
+| 複雜度 | **簡單**，接收端不需緩衝 | **較複雜**，雙方都需要緩衝與多個計時器 |
+| 頻寬使用 | 出錯時**重傳大量已正確收到的封包，浪費頻寬**（錯誤率高或視窗大時更嚴重） | **只重傳需要的封包，節省頻寬** |
+
+**四、各自的優點**
+
+| | 優點 |
+|---|---|
+| **GBN** | ① **實作簡單**，接收端只需記住下一個期待的序號，**不需要緩衝區**（省記憶體）；② 只需一個計時器；③ **錯誤率低的通道**效率仍然很好 |
+| **SR** | ① **重傳最少，頻寬效率高**，特別適合**錯誤率高或延遲大**（如衛星、無線）的網路；② 接收端能保留已正確到達的封包，**不浪費已成功傳輸的資源**；③ 吞吐量較高 |
+
+**五、例子**：傳送封包 0～5，**封包 2 遺失**。
+- **GBN**：接收端收到 0、1 後，3、4、5 因為缺號被丟棄；傳送端逾時後重傳 **2、3、4、5**（共 4 個）。
+- **SR**：接收端緩衝 3、4、5；傳送端只重傳 **2**（1 個）；收到 2 後，2～5 一起依序上交。
+
+**結論**：GBN 簡單但浪費頻寬；SR 有效率但較複雜。實務上 TCP 採用累積確認並加入選擇性確認（SACK）的混合作法。`
+    }
+  ]
+},
+
+{
+  year: "107", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：統計、資訊處理｜代號 43440",
+  questions: [
+    {
+      id: "loc-dp-107-1", no: "一", topic: "ds", topicName: "資料結構與演算法",
+      title: "深度優先走訪適合用堆疊、廣度優先走訪適合用佇列：原因",
+      score: 20,
+      question: `佇列（queue）和堆疊（stack）是二種常用的資料結構。請回答下列問題。
+(一) 若要用深度優先的方式（depth-first search）走訪一樹狀結構（tree structure）的所有節點（node），請問佇列和堆疊，何者較適合？並說明原因。（10 分）
+(二) 若要用廣度優先的方式（breadth-first search）走訪一樹狀結構（tree structure）的所有節點（node），請問佇列和堆疊，何者較適合？並說明原因。（10 分）`,
+      answer: `**範例樹（用來說明）**
+
+\`\`\`
+          A
+        /   \\
+       B     C
+      / \\     \\
+     D   E     F
+\`\`\`
+
+**（一）深度優先（DFS）：堆疊（Stack）較適合（10 分）**
+
+**原因**：深度優先是「**一路往下走到底，走不下去再退回來走另一條路**」，這需要**記住退回的路徑**，也就是**最後走過、尚未處理完的節點要最先回頭處理**——正是**後進先出（LIFO）**，用**堆疊**。
+
+**作法（非遞迴）**：
+1. 把根節點放入堆疊；
+2. 取出頂端節點並拜訪；
+3. 把它的子節點**放入堆疊**（為了讓左子先被處理，先放右子、再放左子）；
+4. 重複 2～3，直到堆疊空了。
+
+| 步驟 | 取出並拜訪 | 堆疊內容（左為底、右為頂） |
+|---|---|---|
+| 0 | — | A |
+| 1 | A | C B |
+| 2 | B | C E D |
+| 3 | D | C E |
+| 4 | E | C |
+| 5 | C | F |
+| 6 | F | （空） |
+
+拜訪順序：**A B D E C F**（深度優先：先走完 B 的整個子樹，才輪到 C）。
+
+遞迴版本實際上也是使用**系統的呼叫堆疊**，所以深度優先本質上用的就是堆疊。
+
+**（二）廣度優先（BFS）：佇列（Queue）較適合（10 分）**
+
+**原因**：廣度優先是「**一層一層由上往下、同一層由左到右**」拜訪，**先被發現的節點要先處理**——正是**先進先出（FIFO）**，用**佇列**。
+
+**作法**：
+1. 把根節點放入佇列；
+2. 從**前端**取出一個節點並拜訪；
+3. 把它的子節點依序放入佇列的**尾端**；
+4. 重複 2～3，直到佇列空了。
+
+| 步驟 | 取出並拜訪 | 佇列內容（左為前端、右為尾端） |
+|---|---|---|
+| 0 | — | A |
+| 1 | A | B C |
+| 2 | B | C D E |
+| 3 | C | D E F |
+| 4 | D | E F |
+| 5 | E | F |
+| 6 | F | （空） |
+
+拜訪順序：**A B C D E F**（一層一層）。
+
+**總結**
+
+| 走訪 | 資料結構 | 存取特性 | 拜訪順序（範例） |
+|---|---|---|---|
+| 深度優先（DFS） | **堆疊** | 後進先出 | A B D E C F |
+| 廣度優先（BFS） | **佇列** | 先進先出 | A B C D E F |
+
+（兩種走訪的演算法其實完全相同，只差在「用堆疊還是佇列來存放待處理的節點」。）`
+    },
+    {
+      id: "loc-dp-107-2", no: "二", topic: "ds", topicName: "資料結構與演算法",
+      title: "雜湊：key mod 4 的靜態雜湊（每個籃子最多三筆）與動態雜湊（每個籃子最多二筆）",
+      score: 20,
+      question: `有一資料表如下圖，共有八筆資料，第一欄是鍵值（key value）的二進位表示法（Binary representation），第二欄是姓氏資料。今要用雜湊（hash）的方式來將資料分成若干籃子（bucket），請回答下列有關雜湊的問題。
+\`\`\`
+鍵值（二進位表示法）    姓
+    1000               Lee
+    0000               Chen
+    0010               Wang
+    1001               Hwang
+    1011               Lu
+    0100               Chao
+    1110               Liao
+    0111               Chang
+\`\`\`
+(一) 假設雜湊函數（hashing function）是 key mod 4，亦即將 key 的值除以 4 之餘數值，即為雜湊函數值。假設每個籃子的容量最多可存三筆資料，請以上表之資料為例，將鍵值之二進位值轉換為十進位值，並將這些資料按所給的雜湊函數，區分為應有的籃子，並以此例說明什麼是靜態雜湊（static hashing）。（10 分）
+(二) 假設每個籃子的容量最多可存二筆資料，請以上表鍵值之二進位表示法為例，用動態雜湊（dynamic hashing）的方法，將這八筆資料做 hash。（10 分）`,
+      answer: `**（一）靜態雜湊（10 分）**
+
+**步驟 1：二進位轉十進位，再算 key mod 4**
+
+| 鍵值（二進位） | 十進位 | key mod 4 | 姓 |
+|---|---|---|---|
+| 1000 | 8 | 0 | Lee |
+| 0000 | 0 | 0 | Chen |
+| 0010 | 2 | 2 | Wang |
+| 1001 | 9 | 1 | Hwang |
+| 1011 | 11 | 3 | Lu |
+| 0100 | 4 | 0 | Chao |
+| 1110 | 14 | 2 | Liao |
+| 0111 | 7 | 3 | Chang |
+
+**步驟 2：依雜湊值放入籃子（每個籃子最多 3 筆）**
+
+| 籃子（雜湊值） | 存放的資料 | 筆數 |
+|---|---|---|
+| **0** | Lee（8）、Chen（0）、Chao（4） | 3（已滿） |
+| **1** | Hwang（9） | 1 |
+| **2** | Wang（2）、Liao（14） | 2 |
+| **3** | Lu（11）、Chang（7） | 2 |
+
+**什麼是靜態雜湊（Static Hashing）**
+
+- **籃子（bucket）的數目是固定的**（本例固定 4 個，由雜湊函數的值域 0～3 決定），**事先決定，不隨資料量改變**；
+- 以固定的雜湊函數 h(key) 直接算出資料所在的籃子位址，**查詢一次就找到籃子（理想 O(1)）**；
+- 缺點：**資料增加時籃子不會增加**，當某個籃子放不下（**溢位 overflow**，如籃子 0 已滿，再來一筆雜湊值為 0 的資料），必須使用**溢位鏈（overflow chain）**把多的資料串在後面，查詢會變慢；若籃子太多則浪費空間。**籃子數無法隨資料量彈性調整**。
+
+**（二）動態雜湊（Dynamic Hashing）——可擴充雜湊（Extendible Hashing）（10 分）**
+
+**動態雜湊的特點**：**籃子數目可以隨資料量增減**。以**可擴充雜湊**為例：
+- 用雜湊值（本題直接使用鍵值的二進位）的**其中 d 個位元**當作**目錄（directory）**的索引；d 稱為**全域深度（global depth）**；
+- 每個籃子有**區域深度（local depth）**，表示該籃子的資料共用幾個位元；
+- 籃子滿了再放入新資料時：**把該籃子分裂成兩個**；若該籃子的區域深度已等於全域深度，**先把目錄大小加倍（d ＋ 1）**，再重新分配資料。
+
+**本題以鍵值二進位的「最後 d 個位元」（低位元）作為目錄索引（與 mod 的做法一致），籃子容量 2**。（若教科書使用「最前面的位元」，過程相同，只是看的位元不同。）
+
+| 步驟 | 插入 | 動作 | 目錄（索引 → 籃子內容） |
+|---|---|---|---|
+| 初始 | — | d ＝ 1，兩個籃子 | 0 → { }　1 → { } |
+| 1 | 1000 Lee | 最後 1 位是 0 | 0 → {1000}　1 → { } |
+| 2 | 0000 Chen | 最後 1 位是 0 | 0 → {1000, 0000}（滿）　1 → { } |
+| 3 | 0010 Wang | 最後 1 位是 0，籃子 0 已滿 → **分裂**；區域深度＝全域深度，**目錄加倍為 d＝2**，依最後 2 位重分：1000、0000 → 00；0010 → 10 | 00 → {1000, 0000}　01 → { }　10 → {0010}　11 → { }（01 與 11 共用原本最後位元為 1 的籃子） |
+| 4 | 1001 Hwang | 最後 2 位 01 | 01、11（共用）→ {1001} |
+| 5 | 1011 Lu | 最後 2 位 11，與 01 共用籃子（尚有空間） | 01、11（共用）→ {1001, 1011}（滿） |
+| 6 | 0100 Chao | 最後 2 位 00，**籃子 00 已滿（1000、0000）** → **分裂**；區域深度 2 ＝ 全域深度 → **目錄加倍為 d＝3**；依最後 3 位：1000→000、0000→000、0100→100 | 000 → {1000, 0000}　100 → {0100} |
+| 7 | 1110 Liao | 最後 2 位 10（最後 3 位 110），與 0010（010）同一籃子（共用 010、110），尚有空間 | 010、110（共用）→ {0010, 1110}（滿） |
+| 8 | 0111 Chang | 最後 2 位 11，該籃子 {1001, 1011} 已滿 → **分裂**（此籃子的區域深度是 1，小於全域深度 3，**不需加倍目錄**；分裂後區域深度變成 2，依最後 2 位區分 01 與 11）：1001 → 01；1011、0111 → 11 | 001、101 → {1001}（01 開頭的共用）；011、111 → {1011, 0111} |
+
+**最終結果（全域深度 d ＝ 3，目錄有 8 個索引，籃子容量 2）**
+
+| 目錄索引（最後 3 位） | 籃子 | 籃子內容 | 區域深度 |
+|---|---|---|---|
+| 000 | B1 | 1000 Lee、0000 Chen | 3 |
+| 100 | B2 | 0100 Chao | 3 |
+| 010、110 | B3 | 0010 Wang、1110 Liao | 2 |
+| 001、101 | B4 | 1001 Hwang | 2 |
+| 011、111 | B5 | 1011 Lu、0111 Chang | 2 |
+
+（這個過程已用程式依相同規則模擬，最終的目錄與籃子內容與上表一致。）
+
+**靜態與動態雜湊的比較**
+
+| 比較 | 靜態雜湊 | 動態（可擴充）雜湊 |
+|---|---|---|
+| 籃子數目 | 固定 | 隨資料量**成長或縮小** |
+| 滿了怎麼辦 | 溢位鏈，查詢變慢 | **分裂籃子、必要時目錄加倍**，查詢仍只需 1～2 次存取 |
+| 空間 | 資料少時浪費，多時溢位 | 彈性，使用率較好 |`
+    },
+    {
+      id: "loc-dp-107-3", no: "三", topic: "net", topicName: "網路與系統",
+      title: "物聯網（IoT）、網際網路（Internet）、全球資訊網（WWW）三者的不同",
+      score: 10,
+      question: `請說明物聯網（Internet of Things）、網際網路（Internet）、全球資訊網（World Wide Web）這三者不同之處。（10 分）`,
+      answer: `| 比較 | 網際網路（Internet） | 全球資訊網（WWW） | 物聯網（IoT） |
+|---|---|---|---|
+| **本質** | **全球性的網路基礎設施**：把世界各地的網路互相連接起來的**實體與邏輯網路** | 建構在網際網路之上的**一種應用服務**：以**超文字（HTML）連結**組成的資訊空間 | 以網際網路為基礎，讓**各種「物品（裝置）」彼此連網與交換資料**的概念與技術 |
+| **連接的對象** | 電腦、伺服器、行動裝置、各種網路 | **網頁、文件、圖片、影音等資源**（由伺服器提供，瀏覽器存取） | **感測器、家電、車輛、工廠機器、穿戴裝置等「物」**（不只是人在操作的電腦） |
+| **使用的協定／技術** | **TCP/IP** 協定族、路由、DNS、IP 位址 | **HTTP／HTTPS**、HTML、URL、瀏覽器 | 感測與通訊協定如 **MQTT、CoAP、Zigbee、藍牙、LoRa、NB-IoT、5G**，通常最後也走 IP 網路 |
+| **誰在使用** | 提供多種服務（電子郵件 SMTP、檔案傳輸 FTP、WWW 等） | 人透過瀏覽器瀏覽與互動 | **機器對機器（M2M）**自動收集資料、自動控制，少有人介入 |
+| **與其他兩者的關係** | **基礎**：WWW 與 IoT 都需要它 | Internet 上的**其中一種服務**（不等於 Internet） | **延伸**：把連網的範圍從人擴大到物 |
+| **例子** | ISP、骨幹網路、各種網路設備 | 維基百科、購物網站 | 智慧電表、智慧家庭、車聯網、智慧農業、穿戴式裝置 |
+
+**簡單的說**
+
+- **Internet ＝ 道路（基礎網路）**；
+- **WWW ＝ 在道路上跑的一種服務（網頁）**，不是唯一的服務，電子郵件、檔案傳輸、遠端登入也走 Internet；
+- **IoT ＝ 讓「物品」也上路**，利用感測器蒐集環境資料，透過 Internet 傳給雲端分析，並可遠端控制。
+
+**常見誤解**：「上網」不等於「上 WWW」；用 App 傳訊息、玩線上遊戲雖然沒用瀏覽器，但仍是使用 Internet。`
+    },
+    {
+      id: "loc-dp-107-4", no: "四", topic: "db", topicName: "資料庫",
+      title: "關聯 {A,B,C,D,E}：CE→ABD、A→D、E→B 的 2NF 與 3NF，並指出關鍵欄位",
+      score: 20,
+      question: `有一資料庫其中一個關連（relation）裡有 A, B, C, D, E 這些欄位（attribute），且他們之間存在一些功能相依（functional dependency）的關係：{CE→ABD, A→D, E→B}。此關連已滿足第一正規化。
+(一) 請將此關連作第二正規化處理，說明理由，並指出何者為關鍵欄位（key attribute）。（10 分）
+(二) 請將此關連作第三正規化處理，說明理由，並指出何者為關鍵欄位。（10 分）`,
+      answer: `**功能相依**：① CE → ABD　② A → D　③ E → B
+
+**一、先找出候選鍵**
+
+- C 與 E 都**沒有出現在任何 FD 的右邊**（沒有人能決定 C 或 E），所以 **C 與 E 一定在鍵中**；
+- (CE)⁺ ＝ {C, E} → 由 CE → ABD 加入 A、B、D → {A, B, C, D, E}（全部）；
+- C⁺ ＝ {C}，E⁺ ＝ {E, B}，都不是全部。
+
+所以**候選鍵（關鍵欄位）是 CE**（C 與 E 合起來），且是唯一的候選鍵。
+
+**（一）第二正規化（2NF）（10 分）**
+
+**2NF 要求**：非鍵屬性必須**完全相依於整個鍵**，不可以只相依於鍵的一部分（部分相依）。
+
+| 非鍵屬性 | 相依情形 | 是否違反 2NF |
+|---|---|---|
+| B | **E → B**（B 只靠鍵的一部分 E 就決定） | **違反（部分相依）** |
+| A | 只靠 CE 才能決定 | 符合 |
+| D | CE → D（經由 A 傳遞；D 不能單靠 C 或 E 決定） | 符合（但有傳遞相依，留待 3NF） |
+
+**分解**（把部分相依的屬性連同它的決定者拆出去）：
+
+| 新表格 | 屬性 | 主鍵（關鍵欄位） | 說明 |
+|---|---|---|---|
+| **R1** | **(E, B)** | **E** | E → B |
+| **R2** | **(C, E, A, D)** | **CE** | CE → A、CE → D（A → D 仍在） |
+
+理由：R1 的鍵只有一個屬性，沒有部分相依；R2 中的 A、D 都完全相依於 CE。兩個表格都符合 2NF。
+
+**（二）第三正規化（3NF）（10 分）**
+
+**3NF 要求**：符合 2NF，且**非鍵屬性不可「傳遞相依」於鍵**（非鍵屬性不可由另一個非鍵屬性決定）。
+
+檢查 R2(C, E, A, D)：**A → D**，A 與 D 都是非鍵屬性，所以 **CE → A → D 是傳遞相依 → 違反 3NF**。R1(E, B) 沒有問題。
+
+**分解**：
+
+| 新表格 | 屬性 | 主鍵（關鍵欄位） | 說明 |
+|---|---|---|---|
+| **R1** | **(E, B)** | **E** | E → B |
+| **R2a** | **(A, D)** | **A** | A → D |
+| **R2b** | **(C, E, A)** | **CE** | CE → A（A 在這裡是外來鍵，對應 R2a） |
+
+**最終 3NF 結果**：**R1(E, B)**、**R2a(A, D)**、**R2b(C, E, A)**。
+
+**無損連接驗證**：R2b 包含原本的鍵 CE，透過 A 連接 R2a、透過 E 連接 R1，可以還原 (A, B, C, D, E)，沒有遺失資訊；所有原始 FD（CE→ABD、A→D、E→B）都可以在分解後的表格中檢查（CE → D 可由 CE → A 與 A → D 推導）。
+
+**重點**：2NF 消除**部分相依**（E → B）；3NF 消除**傳遞相依**（CE → A → D）。`
+    },
+    {
+      id: "loc-dp-107-5", no: "五", topic: "db", topicName: "資料庫",
+      title: "SQL：年齡大於 60 且訂貨日期為 20180101 的客戶；年齡低於 20 的客戶在 2017 年的下單次數",
+      score: 20,
+      question: `有一資料庫記載一些客戶資料，和他們下訂單訂購貨物的資訊如下：
+客戶（身分證字號，姓名，電話，地址，年齡）
+貨品（貨品編號，貨名，價格，庫存量）
+訂單（貨品編號，身分證字號，訂貨日期，訂購數量）
+請用 SQL 回答下列查詢。
+(一) 找出所有年齡大於 60 歲（年齡>60），所下訂單之訂貨日期為 20180101 的客戶，列出他們的姓名和地址。（10 分）
+(二) 找出年齡低於 20 歲（年齡<20）的客戶，列出他們的姓名，電話和在 2017 年（20170101<=訂貨日期<=20171231）裡下訂單的次數。（10 分）`,
+      answer: `**說明**：以下 SQL 以 SQLite 用自建資料實際執行驗證。
+
+**（一）年齡大於 60、訂貨日期為 20180101 的客戶姓名與地址（10 分）**
+
+需要「客戶」與「訂單」兩個表格，以**身分證字號**連接：
+
+\`\`\`sql
+SELECT DISTINCT 客戶.姓名, 客戶.地址
+FROM 客戶
+JOIN 訂單 ON 客戶.身分證字號 = 訂單.身分證字號
+WHERE 客戶.年齡 > 60
+  AND 訂單.訂貨日期 = 20180101;
+\`\`\`
+
+- \`DISTINCT\`：同一位客戶當天可能有多筆訂單（訂購多種貨品），避免重複列出；
+- 篩選條件放在 \`WHERE\`：年齡 > 60 且 訂貨日期 ＝ 20180101；
+- 貨品表格與本題無關，不需要連接。
+
+**實測**：測試資料有年齡 65（當天下單）、70（但日期不同）、18、19、50 歲的客戶，只有 **65 歲那位（甲，臺北）** 符合。
+
+**（二）年齡低於 20 歲的客戶，列出姓名、電話與 2017 年的下單次數（10 分）**
+
+重點：要把**年齡 < 20 的所有客戶都列出來**，即使他們在 2017 年沒有下單（次數 0），所以用 **\`LEFT JOIN\`**，且**日期條件要放在 \`ON\` 子句**（放在 \`WHERE\` 會把沒有訂單的客戶濾掉）：
+
+\`\`\`sql
+SELECT 客戶.姓名, 客戶.電話, COUNT(訂單.貨品編號) AS 下單次數
+FROM 客戶
+LEFT JOIN 訂單
+       ON 客戶.身分證字號 = 訂單.身分證字號
+      AND 訂單.訂貨日期 BETWEEN 20170101 AND 20171231
+WHERE 客戶.年齡 < 20
+GROUP BY 客戶.身分證字號, 客戶.姓名, 客戶.電話;
+\`\`\`
+
+- \`BETWEEN 20170101 AND 20171231\` 等於 \`20170101 <= 訂貨日期 AND 訂貨日期 <= 20171231\`；
+- \`COUNT(訂單.貨品編號)\` **只計算非空值**：沒有訂單的客戶（LEFT JOIN 補 NULL）為 0；若寫成 \`COUNT(*)\` 則會把沒有訂單的客戶誤算成 1；
+- 「下訂單的次數」依題目的資料表（每筆訂單一列）以筆數計算；
+- 分組使用「身分證字號、姓名、電話」。
+
+**實測結果**（測試資料：丙 18 歲，2017 年有 2 筆訂單；丁 19 歲，2017 年 1 筆；戊 50 歲不符年齡條件）
+
+| 姓名 | 電話 | 下單次數 |
+|---|---|---|
+| 丙 | 0933 | 2 |
+| 丁 | 0944 | 1 |
+
+（丙另有一筆 2018 年的訂單，因為不在 2017 年範圍，沒有被計入。）
+
+**易錯點**：若把日期條件寫在 \`WHERE\`（\`WHERE 客戶.年齡 < 20 AND 訂單.訂貨日期 BETWEEN …\`），沒有在 2017 年下過單的年輕客戶會整個不出現，無法顯示次數 0。`
+    },
+    {
+      id: "loc-dp-107-6", no: "六", topic: "sec", topicName: "資訊安全",
+      title: "區塊鏈（Block Chain）的意義與四個最重要的特色",
+      score: 10,
+      question: `說明什麼是「區塊鏈」（Block Chain）。列舉四個區塊鏈最重要的特色，並說明之。（10 分）`,
+      answer: `**一、什麼是區塊鏈（Block Chain）**
+
+區塊鏈是一種**分散式帳本（distributed ledger）技術**：把交易資料**打包成一個個「區塊（block）」**，每個區塊包含**交易紀錄、時間戳記、前一個區塊的雜湊值（hash）**，並以**密碼學雜湊**把區塊**依時間順序串接成一條鏈**；這份帳本由網路中**許多節點共同保存**，新區塊必須經過節點以**共識機制（consensus）**驗證後才能加入。第一個應用是 2008 年中本聰提出的**比特幣**。
+
+\`\`\`
+區塊 N-1                區塊 N                  區塊 N+1
+┌──────────────┐      ┌──────────────┐      ┌──────────────┐
+│ 前一區塊雜湊  │ ◄─── │ 前一區塊雜湊  │ ◄─── │ 前一區塊雜湊  │
+│ 交易資料      │      │ 交易資料      │      │ 交易資料      │
+│ 時間戳記、Nonce│      │ 時間戳記、Nonce│      │ 時間戳記、Nonce│
+│ 本區塊雜湊    │      │ 本區塊雜湊    │      │ 本區塊雜湊    │
+└──────────────┘      └──────────────┘      └──────────────┘
+\`\`\`
+
+**二、四個最重要的特色**
+
+| 特色 | 說明 |
+|---|---|
+| **1. 去中心化（Decentralization）** | **沒有單一的中央機構**（如銀行）掌控帳本；帳本由網路中的多個節點**各自保存一份完整副本**，彼此對等（P2P）。沒有單點故障，也不依賴單一信任中心 |
+| **2. 不可竄改（Immutability）** | 每個區塊都包含**前一區塊的雜湊值**；若有人修改某個舊區塊的資料，該區塊的雜湊值就會改變，**之後所有區塊的連結都會失效**，而且必須同時改掉**過半數節點**的副本才能成功，在計算上幾乎不可能。資料一旦寫入就很難被更改或刪除（只能追加新區塊） |
+| **3. 透明與可追溯（Transparency／Traceability）** | 帳本（尤其是公有鏈）公開，每筆交易都有**完整、依時間排序的紀錄**，可以追蹤資產的來源與流向，利於稽核與防偽（例如食品履歷、供應鏈追溯） |
+| **4. 共識機制與安全性（Consensus & Security）** | 新區塊要經過**共識機制**（如工作量證明 PoW、權益證明 PoS）由大多數節點同意才能加入，確保所有節點的帳本**一致**；並以**雜湊、數位簽章（非對稱加密）**保證交易的完整性、身分驗證與不可否認性 |
+
+（其他常被提到的特色：**匿名性／假名性**——以位址而非真實身分交易；**智慧合約（Smart Contract）**——可程式化、條件達成時自動執行的合約，如以太坊；**集體維護、容錯**。作答時挑選四個說明即可。）
+
+**三、應用**：加密貨幣（比特幣、以太幣）、跨境支付、供應鏈與產品履歷、電子投票、數位身分、智慧合約（保險理賠自動化）。
+
+**四、限制**：交易速度較慢、能源消耗高（PoW）、儲存空間隨時間增加、隱私與法規問題、資料一旦寫入錯誤也難以更正。`
+    }
+  ]
+},
+
+{
+  year: "106", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43440",
+  questions: [
+    {
+      id: "loc-dp-106-1", no: "一", topic: "db", topicName: "資料庫",
+      title: "關聯式資料庫與 NoSQL 資料庫；某些應用採用 NoSQL 的原因",
+      score: 20,
+      question: `關於資料庫，請回答下列問題：
+(一) 請分別說明關聯式資料庫與 NoSQL 資料庫。（10 分）
+(二) 請說明某些特定的應用不採用關聯式資料庫，而採用 NoSQL 資料庫的原因。（10 分）`,
+      answer: `**（一）關聯式資料庫與 NoSQL 資料庫（10 分）**
+
+**關聯式資料庫（Relational Database, RDBMS）**
+- 以**表格（關聯 relation）**儲存資料：列（row）是一筆記錄，欄（column）是屬性；表格之間以**主鍵與外來鍵**建立關聯；
+- 有**固定的綱目（schema）**，事先定義欄位與型態；
+- 以 **SQL**（結構化查詢語言）操作；支援**連接（JOIN）**；
+- 保證 **ACID**（原子性、一致性、隔離性、持久性）交易特性；
+- 以**正規化**減少資料重複；
+- 代表產品：MySQL、PostgreSQL、Oracle、SQL Server。
+
+**NoSQL（Not Only SQL）資料庫**
+- **非關聯式**的資料庫，不以固定表格結構儲存；**綱目彈性（schema-less／schema-flexible）**；
+- 為**大量資料、高併發、分散式、水平擴充**而設計，通常採 **BASE**（基本可用、軟狀態、最終一致）；
+- 依資料模型分成四類：
+
+| 類型 | 說明 | 代表產品 | 適用 |
+|---|---|---|---|
+| **鍵值（Key-Value）** | 以「鍵」存取「值」 | Redis、DynamoDB | 快取、購物車、工作階段 |
+| **文件（Document）** | 以 JSON／BSON 文件儲存，欄位可不同 | MongoDB、CouchDB | 內容管理、產品目錄 |
+| **欄位族（Column-family）** | 以欄為單位儲存，適合大量寫入與分析 | Cassandra、HBase | 時間序列、日誌 |
+| **圖形（Graph）** | 節點與邊，擅長關係查詢 | Neo4j | 社群網路、推薦、詐欺偵測 |
+
+**比較**
+
+| 比較 | 關聯式資料庫 | NoSQL |
+|---|---|---|
+| 資料結構 | 固定表格 | 彈性（鍵值、文件、欄位族、圖） |
+| 綱目 | 嚴格、事先定義 | 彈性、可隨時改變 |
+| 擴充方式 | 以**垂直擴充**（升級單機）為主 | 以**水平擴充**（增加機器）為主 |
+| 交易一致性 | **強一致（ACID）** | 多為**最終一致（BASE）**（部分支援 ACID） |
+| 查詢 | 標準 SQL、複雜連接與聚合 | 各產品自有 API／查詢語言，多半不支援複雜 JOIN |
+
+**（二）某些應用採用 NoSQL 而不採用關聯式資料庫的原因（10 分）**
+
+1. **資料量巨大（Big Data）與擴充需求**：關聯式資料庫難以橫向擴充到數百台機器；NoSQL 原生支援**分散式、水平擴充（sharding）**，可用便宜機器組成叢集；
+2. **高讀寫效能與低延遲**：不需複雜連接與嚴格交易，可達到**極高的吞吐量**（如網站快取、即時排行榜、感測資料寫入）；
+3. **資料結構多樣、不固定（半結構化／非結構化）**：如社群貼文、日誌、感測器資料、JSON 文件，每筆欄位不同，**綱目彈性**讓開發更快，不需要頻繁修改表格結構；
+4. **高可用性**：資料自動複製到多個節點，**部分節點故障仍可服務**（符合 CAP 定理中重視可用性與分區容忍）；
+5. **特定資料模型更貼近需求**：關係網路用圖形資料庫查詢比多層 JOIN 高效；
+6. **快速開發與迭代**：資料模型與程式物件接近（如文件資料庫直接儲存 JSON），不需要物件關聯映射。
+
+**代價**：不保證強一致性、缺少標準 SQL 與複雜查詢能力、各產品差異大、較不成熟的交易支援。
+
+**結論**：**需要強一致交易、複雜查詢（如銀行、會計）→ 關聯式資料庫**；**需要海量資料、高併發、彈性結構、水平擴充（如社群、物聯網、即時分析）→ NoSQL**。實務上常**兩者並用**。`
+    },
+    {
+      id: "loc-dp-106-2", no: "二", topic: "db", topicName: "資料庫",
+      title: "資料庫交易（Transaction）執行過程中，停止交易執行的三種情況",
+      score: 20,
+      question: `在資料庫系統執行交易（Transaction）的過程中，有三種情況會停止交易的執行。請說明交易停止的原因。（20 分）`,
+      answer: `**說明**：本題沒有指明是哪三種情況；依資料庫交易的標準概念，交易的執行會因**三種原因而結束（停止）**：**正常完成並提交、因錯誤而中止回復、因系統故障而中斷**。以下依此作答。
+
+**交易（Transaction）**：資料庫中**一個不可分割的邏輯工作單位**，由一連串的讀、寫操作組成，必須符合 **ACID**（原子性、一致性、隔離性、持久性）。例：轉帳 ＝ 從 A 扣款 ＋ 對 B 加款。
+
+**交易的狀態**：活動（active）→ 部分提交（partially committed）→ **已提交（committed）**；或 活動／部分提交 → **失敗（failed）→ 中止（aborted）**。
+
+**三種停止交易的情況**
+
+| 情況 | 原因 | 資料庫的處理 |
+|---|---|---|
+| **1. 正常完成並提交（Commit）** | 交易的所有操作**都成功執行完畢**，使用者或程式下達 \`COMMIT\` | 把交易的修改**永久寫入資料庫**（持久性），釋放鎖定的資源；交易結束 |
+| **2. 交易中止（Abort／Rollback）** | **交易本身失敗或被取消**：如**程式或邏輯錯誤**（除以 0）、**違反完整性限制**（主鍵重複、外來鍵不存在、餘額不足）、**使用者或程式下達 \`ROLLBACK\`**、**發生死結被系統選為犧牲者而中止**、逾時或違反安全授權等 | 交易**所有已做的修改都被撤銷（回復 rollback）**，資料庫回到交易開始前的狀態（**原子性**：全做或全不做）；可視情況重新執行交易 |
+| **3. 系統故障（System Failure／Crash）** | **系統或硬體問題**：**斷電、作業系統或 DBMS 當機、磁碟損壞（媒體故障）、網路中斷**，使交易執行到一半被迫停止 | 系統重新啟動後，利用**交易日誌（log）、檢查點（checkpoint）、備份**做**回復（recovery）**：**已提交但尚未寫入磁碟的交易重做（redo）**；**未提交的交易復原（undo）** |
+
+**重點**
+
+- **COMMIT ＝ 成功、永久生效**；**ABORT ／ROLLBACK ＝ 失敗、全部撤銷**；**系統故障 ＝ 靠日誌回復，維持一致性與持久性**；
+- 這三種情況確保交易的 **ACID**：原子性（不會做一半）、一致性、持久性（commit 後不會遺失）；
+- **日誌（write-ahead logging）**：先寫日誌、再改資料，才能在故障後 redo／undo。
+
+**例（轉帳）**：從 A 扣 1000 元後，**在 B 加款前當機**（情況 3）→ 重啟後依日誌**復原（undo）**A 的扣款；若 B 帳戶不存在（違反完整性）→ 交易**中止（情況 2）**，扣款回復；若兩步都成功 → **提交（情況 1）**。`
+    },
+    {
+      id: "loc-dp-106-3", no: "三", topic: "ds", topicName: "資料結構與演算法",
+      title: "運算式的中序式、前序式、後序式互相轉換，以及堆疊使用後序式的原理",
+      score: 30,
+      question: `運算式（Expression）有三種表示方式：中序式（Infix）、前序式（Prefix）、後序式（Postfix）。
+(一) 請將中序式 A+B*(C+D)+E/F 轉換為前序式及後序式。（10 分）
+(二) 請將前序式 ++*AB/-CD-EFG 轉換為中序式及後序式。（10 分）
+(三) 在堆疊（Stack）的操作中，會使用後序式的觀念，請說明其原理。（10 分）`,
+      answer: `**三種表示法**：運算子寫在運算元的**中間（中序）、前面（前序）、後面（後序）**。前序與後序**不需要括號與優先權**。
+
+**（一）運算式（10 分）**：\`A+B*(C+D)+E/F\`
+
+**運算順序**：括號最優先；\`*\`、\`/\` 高於 \`+\`；同優先權由左而右：((A ＋ (B ＊ (C ＋ D))) ＋ (E ／ F))。
+
+**運算式樹**
+
+\`\`\`
+           +
+         /   \\
+        +     /
+       / \\   / \\
+      A   * E   F
+         / \\
+        B   +
+           / \\
+          C   D
+\`\`\`
+
+| 表示法 | 結果 |
+|---|---|
+| **前序** | \`+ + A * B + C D / E F\` |
+| **後序** | \`A B C D + * + E F / +\` |
+
+**（二）前序式（10 分）**：\`++*AB/-CD-EFG\`
+
+**由左而右解析前序式**：每遇到運算子，它的兩個運算元是**緊接在後面的兩個完整子式**：
+
+- 最前面的 \`+\` 的左子式：\`+*AB/-CD-EF\`，右子式：\`G\`；
+- 左子式的 \`+\` 的左子式：\`*AB\`（A＊B），右子式：\`/-CD-EF\`；
+- \`/-CD-EF\`：被除數 \`-CD\`（C－D），除數 \`-EF\`（E－F）。
+
+**運算式樹**
+
+\`\`\`
+              +
+            /   \\
+           +     G
+         /   \\
+        *     /
+       / \\   / \\
+      A   B -   -
+           / \\ / \\
+          C  D E  F
+\`\`\`
+
+| 表示法 | 結果 |
+|---|---|
+| **中序** | \`((A*B) + ((C−D)/(E−F))) + G\`，不影響優先權時可寫成 \`A*B+(C−D)/(E−F)+G\` |
+| **後序** | \`A B * C D − E F − / + G +\` |
+
+（以程式依運算式樹轉換驗證，兩小題的結果與上面一致。）
+
+**（三）堆疊與後序式的原理（10 分）**
+
+**後序式的特性**：運算子在它的兩個運算元**之後**，**運算的順序已經由位置決定**，不需要括號與優先權規則。電腦用**堆疊（Stack，後進先出）**來計算：
+
+**計算規則（由左而右掃描）**
+1. 遇到**運算元**（數字）→ **PUSH 進堆疊**；
+2. 遇到**運算子** → **POP 出兩個運算元**（**先取出的是右運算元 b，後取出的是左運算元 a**），計算 \`a 運算子 b\`，再把**結果 PUSH 回堆疊**；
+3. 掃描完畢，**堆疊中剩下的唯一一個數就是答案**。
+
+**為什麼可行**：運算子總是緊接在「它要用的兩個運算元（或子式的結果）」之後，這兩個值**剛好是最近放進堆疊的兩個**（最近的就是最先取出的，後進先出）。
+
+**例：後序式 \`A B C D + * + E F / +\`，令 A＝2、B＝3、C＝4、D＝5、E＝8、F＝2**
+
+| 讀取 | 動作 | Stack（底→頂） |
+|---|---|---|
+| 2、3、4、5 | 運算元，依序 PUSH | 2 3 4 5 |
+| + | 5 與 4 相加 ＝ 9 | 2 3 9 |
+| * | 9 × 3 ＝ 27 | 2 27 |
+| + | 27 ＋ 2 ＝ 29 | 29 |
+| 8、2 | PUSH | 29 8 2 |
+| / | 8 ÷ 2 ＝ 4 | 29 4 |
+| + | 29 ＋ 4 ＝ 33 | **33** |
+
+結果 33，與中序式 2＋3×(4＋5)＋8÷2 ＝ 2 ＋ 27 ＋ 4 ＝ 33 相同。
+
+**另一個與堆疊的關係：中序式轉後序式**也使用堆疊：由左而右掃描，**運算元直接輸出**；**運算子放入堆疊**，遇到優先權較低或相等的運算子時，先把堆疊頂端優先權較高（或相等）的運算子彈出輸出；左括號入堆疊，右括號則彈出到左括號為止。
+
+**優點**：不需要括號、不需要優先權表、**只要掃描一次**，演算法簡單、高效（O(n)），所以編譯器與計算機常用。`
+    },
+    {
+      id: "loc-dp-106-4", no: "四", topic: "net", topicName: "網路與系統",
+      title: "虛擬迴路網路（Virtual Circuit Network）與資料報網路（Datagram Network）的差異",
+      score: 30,
+      question: `請說明虛擬迴路網路（Virtual Circuit Network）與資料報網路（Datagram Network）的差異。（30 分）`,
+      answer: `兩者都是**封包交換（packet switching）網路**，把資料切成封包傳送，差別在於**封包如何選擇路徑、是否先建立連線**。
+
+**一、定義**
+
+| 類型 | 說明 |
+|---|---|
+| **虛擬迴路（Virtual Circuit, VC）網路** | **連線導向（connection-oriented）**：傳送資料前，**先建立一條從來源到目的地的「虛擬連線（路徑）」**，同一次通訊的**所有封包都沿著這條固定路徑**傳送，結束後再**釋放連線**。每個封包只帶一個短的**虛擬迴路編號（VC 號碼）**，路由器依表格轉送。代表：**ATM、X.25、Frame Relay、MPLS** |
+| **資料報（Datagram）網路** | **非連線導向（connectionless）**：**不需先建立連線**，每個封包（**資料報**）**獨立傳送**，標頭帶完整的**目的位址**，**每個路由器對每個封包獨立決定下一站**，同一次通訊的封包可能走**不同路徑**，**可能亂序、遺失或重複到達**。代表：**網際網路的 IP 協定** |
+
+**二、運作過程比較**
+
+**虛擬迴路**：① **連線建立**（送出建立請求，沿途路由器為此連線記錄 VC 號碼與出入埠，並可預留資源）→ ② **資料傳送**（封包帶 VC 號碼，沿相同路徑依序到達）→ ③ **連線釋放**。
+
+**資料報**：封包一到路由器，就查**路由表**依**目的位址**決定轉送出口，下一個封包可能因為網路狀況改變而走不同路。
+
+**三、差異比較**
+
+| 比較項目 | 虛擬迴路網路 | 資料報網路 |
+|---|---|---|
+| **是否需建立連線** | **需要**（建立 → 傳送 → 釋放） | **不需要** |
+| **封包標頭的位址** | **短的 VC 號碼**（標頭小） | **完整的目的（與來源）位址**（標頭較大） |
+| **路徑選擇** | **連線建立時決定一次**，之後全部封包走同一路徑 | **每個封包獨立選路**，可走不同路徑 |
+| **封包順序** | **依序到達**（同一路徑） | **可能亂序**，需上層（如 TCP）重組 |
+| **路由器的負擔** | 需要**維護每條連線的狀態**（VC 表）；轉送時只查 VC 號碼，**速度快** | **不維護連線狀態**（無狀態），每個封包要查路由表（較慢，但設計簡單） |
+| **服務品質（QoS）與資源預留** | **容易**：可在建立連線時**預留頻寬與緩衝區**，保證品質 | **較難**，採「盡力而為（best-effort）」 |
+| **可靠性／錯誤處理** | 網路層可提供**依序、較可靠**傳送與流量控制（視實作） | **不保證**可靠，由端點（TCP）負責 |
+| **路由器或鏈路故障時** | **經過該處的所有連線都中斷**（必須重新建立連線） | **封包可自動繞道**，容錯性好、較有韌性 |
+| **延遲與連線成本** | **建立連線有額外延遲**，短暫通訊划不來 | **無建立延遲**，適合短訊息、突發性資料 |
+| **擁塞控制** | 可在連線層級控制（拒絕新連線） | 難以事先控制 |
+| **位址／編號** | VC 號碼只具**區域意義**（每段鏈路可不同） | 全域唯一的位址（IP） |
+| **代表網路** | ATM、X.25、Frame Relay、MPLS | **網際網路（IP）** |
+
+**四、優缺點整理**
+
+| | 優點 | 缺點 |
+|---|---|---|
+| **虛擬迴路** | 封包有序、標頭小轉送快、易於保證 QoS | 建立連線有成本、路由器要記錄狀態、路徑故障連線即中斷、擴充性較差 |
+| **資料報** | 簡單、無連線、容錯與擴充性佳、適合各種網路混合 | 封包可能亂序遺失、標頭較大、難以保證 QoS |
+
+**結論**：**網際網路選擇資料報**，是因為**簡單、強健、容易擴充**，可靠性交給端點的 TCP；**需要品質保證的專用網路（如電信骨幹、語音）**傾向使用虛擬迴路（如 MPLS、ATM）。`
+    }
+  ]
+},
+
+{
+  year: "105", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43440（第 5 題 ER 圖依題目原圖）",
+  questions: [
+    {
+      id: "loc-dp-105-1", no: "一", topic: "net", topicName: "網路與系統",
+      title: "為什麼要有通信協定，以及通信協定的定義",
+      score: 10,
+      question: `網路通信中，須採用通信協定（communication protocol）。請說明為什麼要有通信協定及通信協定的定義。（10 分）`,
+      answer: `**一、通信協定（Communication Protocol）的定義**
+
+**通信雙方（或多方）為了能正確交換資料，事先共同約定好的一套「規則與格式」**。它規定：資料的**格式與結構**、**傳送的順序與時機**、**如何建立與結束連線**、**如何確認與處理錯誤**等。就像人與人交談要使用共同的語言與禮儀。
+
+**協定的三大要素**
+
+| 要素 | 說明 |
+|---|---|
+| **語法（Syntax）** | 資料的**格式與結構**：封包標頭有哪些欄位、各佔幾位元、編碼方式 |
+| **語意（Semantics）** | 每個欄位或控制訊息的**意義**，以及接收後應採取的**動作**（如何做錯誤處理） |
+| **時序（Timing）** | **何時傳送、傳多快、傳送順序**，以及雙方速度的協調（同步、流量控制） |
+
+**二、為什麼要有通信協定**
+
+1. **讓不同廠商、不同系統的設備能互相溝通（互通性）**：電腦、作業系統、硬體各不相同，若沒有共同規則，彼此無法理解對方送來的資料；
+2. **確保資料能正確且有效率地傳送**：規範**錯誤偵測與更正**（檢查碼、重傳）、**流量控制**（避免傳太快造成接收端來不及處理）、**壅塞控制**、**順序控制**、**定址與路由**；
+3. **同步與連線管理**：規定如何建立、維持與結束通信（如 TCP 的三向交握）；
+4. **將複雜的通信工作分層處理（分層架構）**：每一層只需遵守自己層的協定，如 **OSI 七層模型**、**TCP/IP 四層模型**，降低複雜度、便於開發與維護、各層可獨立更換技術；
+5. **標準化**：讓產品具備相容性，促進網路普及（如 HTTP、TCP、IP、SMTP、DNS 都是由標準組織如 IETF、IEEE、ISO 制定）。
+
+**三、例子**：瀏覽網頁時，瀏覽器與伺服器依 **HTTP** 約定請求與回應的格式；封包在網路上依 **IP** 協定定址與路由；**TCP** 保證資料可靠、依序送達；這些協定一層一層配合運作。
+
+**結論**：通信協定是網路通信的**共同語言與規則**，沒有協定，異質的設備無法可靠地交換資訊。`
+    },
+    {
+      id: "loc-dp-105-2", no: "二", topic: "ds", topicName: "資料結構與演算法",
+      title: "樹的深度優先與廣度優先拜訪順序的差異，以及最適合的資料結構",
+      score: 20,
+      question: `欲拜訪一顆樹諸節點，有深度優先（depth-first search）和廣度優先（breadth-first search）二種方式。請說明二者拜訪順序的差異，並說明實作上最適合這二種拜訪方式的資料結構。（20 分）`,
+      answer: `**範例樹**
+
+\`\`\`
+              A
+           /  |  \\
+          B   C   D
+         / \\       \\
+        E   F       G
+\`\`\`
+
+**一、拜訪順序的差異**
+
+| 方式 | 拜訪順序的原則 | 範例的拜訪順序 |
+|---|---|---|
+| **深度優先（DFS）** | **沿著一條路徑一路走到最深（葉節點），走不下去才退回上一層，再走另一條分支**（先處理完一個子樹才處理下一個子樹） | **A B E F C D G** |
+| **廣度優先（BFS）** | **一層一層由上而下**：先拜訪根，再拜訪第 1 層所有節點，再第 2 層…；**同一層由左到右** | **A B C D E F G** |
+
+**說明**：DFS 先走到最深的 E（A→B→E），退回 B 再到 F，再退回 A 到 C、D、G；BFS 則先把 A 的所有子節點（B、C、D）處理完，才進入下一層（E、F、G）。（二元樹的前序走訪就是一種 DFS。）
+
+**二、最適合的資料結構**
+
+| 方式 | 資料結構 | 理由 |
+|---|---|---|
+| **深度優先** | **堆疊（Stack）** | 需要記住「走到最深後要退回」的路徑，**最後遇到的節點要最先處理** → **後進先出（LIFO）**。遞迴版其實就是使用電腦的**呼叫堆疊** |
+| **廣度優先** | **佇列（Queue）** | **先被發現的節點要先處理**，同一層的節點依發現順序處理，再處理下一層 → **先進先出（FIFO）** |
+
+**三、實作方式（演算法）**
+
+**DFS（使用堆疊）**
+\`\`\`
+把根放入 stack
+當 stack 不空:
+    取出頂端節點 v，拜訪 v
+    把 v 的子節點放入 stack（為了左子先處理，先放右子、再放左子）
+\`\`\`
+
+**BFS（使用佇列）**
+\`\`\`
+把根放入 queue
+當 queue 不空:
+    從前端取出節點 v，拜訪 v
+    把 v 的子節點依序放入 queue 尾端
+\`\`\`
+
+**過程（範例）**
+
+| DFS 取出 | 堆疊（頂在右） | | BFS 取出 | 佇列（前在左） |
+|---|---|---|---|---|
+| A | D C B | | A | B C D |
+| B | D C F E | | B | C D E F |
+| E | D C F | | C | D E F |
+| F | D C | | D | E F G |
+| C | D | | E | F G |
+| D | G | | F | G |
+| G | （空） | | G | （空） |
+
+**四、比較與應用**
+
+| 比較 | DFS | BFS |
+|---|---|---|
+| 空間 | 與**樹高**成正比（堆疊深度） | 與**樹的最大寬度**成正比（佇列） |
+| 適合 | 找所有路徑、拓樸排序、迷宮（走到底再回溯）、檢查連通 | **找最短路徑（邊數最少）**、依層級處理、社群網路的好友距離 |
+
+這兩種走訪的程式幾乎一樣，只差在「待處理節點是放在堆疊還是佇列」。`
+    },
+    {
+      id: "loc-dp-105-3", no: "三", topic: "ds", topicName: "資料結構與演算法",
+      title: "快速排序（quicksort）排序 S＝{6, 2, 7, 4, 1, 5, 9, 8, 3} 的步驟，以及它屬於哪一類演算法",
+      score: 20,
+      question: `我們若針對集合 S = {6, 2, 7, 4, 1, 5, 9, 8, 3}，用快速排序（quicksort）來排序，請說明步驟及過程，並說明快速排序法應歸屬於下列四種演算法中之那一類：暴力法（brute force algorithm）、貪婪法（greedy algorithm）、各個擊破法（divide-and-conquer algorithm）、動態規劃法（dynamic programming algorithm），請解釋其原因。（20 分）`,
+      answer: `**一、快速排序的步驟**
+
+1. **選基準值（pivot）**：本解答選**最右邊的元素**；
+2. **分割（partition）**：把陣列分成「**小於等於基準值**」與「**大於基準值**」兩部分，基準值放到最後的**正確位置**；
+3. **遞迴**：對基準值左、右兩部分分別進行快速排序；
+4. 子陣列只剩 0 或 1 個元素時結束。
+
+**分割的做法（Lomuto）**：用 i 指向「小於等於基準值」區域的最後一個位置；j 由左往右掃描，若 A[j] ≤ 基準值，i 加 1 並交換 A[i] 與 A[j]；掃描完後把基準值與 A[i＋1] 交換。
+
+**二、過程（S ＝ [6, 2, 7, 4, 1, 5, 9, 8, 3]，每次選區段最右邊的元素當基準值；已用程式依相同規則執行驗證）**
+
+| 步驟 | 區段 | 基準值 | 分割後的陣列 | 基準值位置 |
+|---|---|---|---|---|
+| 1 | 整個陣列（位置 0～8） | **3** | [2, 1, **3**, 4, 6, 5, 9, 8, 7] | 位置 2 |
+| 2 | 左半（位置 0～1）：[2, 1] | **1** | [**1**, 2, 3, 4, 6, 5, 9, 8, 7] | 位置 0 |
+| 3 | 右半（位置 3～8）：[4, 6, 5, 9, 8, 7] | **7** | [1, 2, 3, 4, 6, 5, **7**, 8, 9] | 位置 6 |
+| 4 | 位置 3～5：[4, 6, 5] | **5** | [1, 2, 3, 4, **5**, 6, 7, 8, 9] | 位置 4 |
+| 5 | 位置 7～8：[8, 9] | **9** | [1, 2, 3, 4, 5, 6, 7, 8, **9**] | 位置 8 |
+
+其餘只剩單一元素或空區段，不需再處理。**排序結果：[1, 2, 3, 4, 5, 6, 7, 8, 9]**。
+
+**步驟 1 的分割細節**（基準值 3）：
+
+| j | A[j] | 與 3 比較 | 動作 | 陣列 |
+|---|---|---|---|---|
+| 0 | 6 | 大於 | 不動 | 6 2 7 4 1 5 9 8 3 |
+| 1 | 2 | ≤ 3 | i＝0，交換 A[0]、A[1] | 2 6 7 4 1 5 9 8 3 |
+| 2 | 7 | 大於 | 不動 | 2 6 7 4 1 5 9 8 3 |
+| 3 | 4 | 大於 | 不動 | 2 6 7 4 1 5 9 8 3 |
+| 4 | 1 | ≤ 3 | i＝1，交換 A[1]、A[4] | 2 1 7 4 6 5 9 8 3 |
+| 5～7 | 5、9、8 | 大於 | 不動 | 2 1 7 4 6 5 9 8 3 |
+| 結束 | | | 把基準值 3 與 A[i＋1]＝A[2]（7）交換 | 2 1 **3** 4 6 5 9 8 7 |
+
+**樹狀呈現**
+
+\`\`\`
+[6 2 7 4 1 5 9 8 3]  基準 3
+   ├─ [2 1]  基準 1 ──► 1 ，2
+   └─ [4 6 5 9 8 7]  基準 7
+         ├─ [4 6 5]  基準 5 ──► 4 ，5 ，6
+         └─ [8 9]    基準 9 ──► 8 ，9
+\`\`\`
+
+**三、快速排序屬於「各個擊破法（分治法，divide-and-conquer）」**
+
+| 演算法 | 特徵 | 快速排序符合嗎？ |
+|---|---|---|
+| 暴力法 | 窮舉所有可能 | ✗ 不是逐一比較所有排列 |
+| 貪婪法 | 每一步選當下最佳，不回頭 | ✗ 不是以局部最佳選擇來建構解 |
+| **各個擊破法（分治法）** | **把問題分成較小的子問題 → 各自（遞迴）解決 → 合併結果** | **✓** |
+| 動態規劃 | 子問題**重疊**，把子問題的解存起來重複使用 | ✗ 快速排序的子問題**互不重疊**（左、右半獨立），不需要記憶 |
+
+**原因（分治法的三步驟）**
+1. **分（Divide）**：以基準值把問題分割成「小於」與「大於」兩個較小的子陣列；
+2. **治（Conquer）**：**遞迴**地對兩個子陣列各自做快速排序；
+3. **合（Combine）**：因為分割時基準值已就定位，左、右子陣列排好後**自然合併成完整的排序結果，不需要額外的合併工作**（合併排序則是把工作放在「合」的步驟）。
+
+**複雜度**：平均 **O(n log n)**；最差（每次分割極度不平衡，如已排序且基準值選到最小或最大）**O(n²)**；空間（遞迴堆疊）平均 O(log n)。`
+    },
+    {
+      id: "loc-dp-105-4", no: "四", topic: "db", topicName: "資料庫",
+      title: "SQL：年齡小於 15 歲客戶所購買的產品；找出沒有購買任何產品的客戶（判斷寫法是否正確並更正）",
+      score: 25,
+      question: `一關聯式資料庫之綱要（relational database schema）如下：
+產品（編號，名稱，價格）
+客戶（身分證號，姓名，地址，年齡）
+購買（身分證號，編號，數量）
+(一) 請用 SQL 指令來查出所有購買產品的客戶中，年齡小於 15 歲的客戶所購買的產品名稱、數量和這些客戶的姓名。（10 分）
+(二) 今欲查出所有沒有購買任何產品之客戶身分證號和姓名，某位資料庫管理員所寫下的 SQL 指令如下：
+\`\`\`sql
+SELECT  身分證號，姓名
+FROM    客戶，購買
+WHERE   客戶.身分證號 ≠ 購買.身分證號；
+\`\`\`
+請問他的寫法是否正確？若不正確，請說明錯處，並寫出正確的 SQL 查詢。（15 分）`,
+      answer: `**說明**：以下 SQL 採 **MySQL 可用的語法**撰寫（①～③ 的寫法在 MySQL 都適用），邏輯與結果我用 SQLite 以自建資料實際執行驗證過，**沒有在 MySQL 上實際執行**：客戶 A1（12 歲）買筆 3、本 1；A2（14 歲）買本 5；A3（30 歲）買筆 2；A4（9 歲）沒買任何產品。
+
+**（一）年齡小於 15 歲的客戶所購買的產品名稱、數量與客戶姓名（10 分）**
+
+用到三個表格：**客戶**（年齡、姓名）、**購買**（數量）、**產品**（名稱）。以**身分證號**連接客戶與購買，以**編號**連接購買與產品：
+
+\`\`\`sql
+SELECT 產品.名稱, 購買.數量, 客戶.姓名
+FROM 客戶
+JOIN 購買 ON 客戶.身分證號 = 購買.身分證號
+JOIN 產品 ON 購買.編號 = 產品.編號
+WHERE 客戶.年齡 < 15;
+\`\`\`
+
+**實測結果**
+
+| 名稱 | 數量 | 姓名 |
+|---|---|---|
+| 筆 | 3 | 甲（A1，12 歲） |
+| 本 | 1 | 甲 |
+| 本 | 5 | 乙（A2，14 歲） |
+
+（A3 年齡 30 不符；A4 雖然 9 歲，但沒有購買紀錄，用內連接 JOIN 不會出現——題目只要「購買產品的客戶」，正符合。）
+
+**（二）判斷管理員的寫法**
+
+**他的寫法是錯誤的。**
+
+**錯誤的原因**
+
+\`\`\`sql
+SELECT 身分證號，姓名
+FROM 客戶，購買
+WHERE 客戶.身分證號 ≠ 購買.身分證號;
+\`\`\`
+
+1. **FROM 兩個表格並用「≠」連接，會產生「不相等的所有組合」**：這個查詢是把「每一位客戶」與「每一筆購買紀錄」**逐一配對**，只要這位客戶的身分證號與**某一筆（任何一筆）購買紀錄不同**，就會被列出。
+2. **結果不是「沒有購買的客戶」**：
+   - 只要購買表格中有**別人**的購買紀錄，**每一位客戶（包含有購買的）都會被列出**（因為跟別人的紀錄不相等）；
+   - 同一位客戶會因為對上多筆別人的紀錄而**重複出現多次**；
+   - **只有當購買表格是空的**，才會一個都不出現（連沒購買的客戶也沒有）。
+3. 「沒有購買任何產品」是**否定的全稱條件（對所有購買紀錄都不相等）**，不能用「存在一筆不相等」來表達；\`≠\` 不等於「沒有」。
+4. 另外，\`身分證號\` 欄位在兩個表格中都有，未加表格前綴會有**模糊欄位（ambiguous）**錯誤。
+
+**實測（用錯誤寫法，客戶共 4 位、購買 4 筆）**：得到 12 列，其中 A1～A4 都出現（A1 出現 2 次、A2 出現 3 次、A3 3 次、A4 4 次），有購買的客戶也被列出，**結果錯誤**。
+
+**正確的寫法（任選其一，皆實測得到只有 A4 丁）**
+
+**① NOT EXISTS（最常用、最清楚）**
+
+\`\`\`sql
+SELECT 身分證號, 姓名
+FROM 客戶
+WHERE NOT EXISTS (SELECT 1 FROM 購買 WHERE 購買.身分證號 = 客戶.身分證號);
+\`\`\`
+
+**② NOT IN**
+
+\`\`\`sql
+SELECT 身分證號, 姓名
+FROM 客戶
+WHERE 身分證號 NOT IN (SELECT 身分證號 FROM 購買);
+\`\`\`
+
+（注意：若購買表格的身分證號欄位可能有 NULL，\`NOT IN\` 會得到空結果；本題身分證號為鍵的一部分不可為 NULL。）
+
+**③ LEFT JOIN ＋ IS NULL**
+
+\`\`\`sql
+SELECT 客戶.身分證號, 客戶.姓名
+FROM 客戶
+LEFT JOIN 購買 ON 客戶.身分證號 = 購買.身分證號
+WHERE 購買.身分證號 IS NULL;
+\`\`\`
+
+**④ 集合差（EXCEPT）**：標準 SQL 有 \`EXCEPT\`，但 **MySQL 要 8.0.31 以上才支援**，較舊的版本請改用上面的 ①～③（這三種在 MySQL 都能用）
+
+**實測結果（①②③）**
+
+| 身分證號 | 姓名 |
+|---|---|
+| A4 | 丁 |
+
+**重點**：「**沒有**…的資料」要用 **NOT EXISTS／NOT IN／外連接找 NULL／集合差**，不能用 \`≠\` 的連接。`
+    },
+    {
+      id: "loc-dp-105-5", no: "五", topic: "db", topicName: "資料庫",
+      title: "ER 綱目圖（學生、修課、課程、授課、老師）轉換成關聯式資料庫的關聯",
+      score: 25,
+      question: `資料庫實體關係綱目圖（Entity-Relationship Schema Diagram）如下：
+\`\`\`
+學生 ──M── ◇修課◇ ──N── 課程 ──N── ◇授課◇ ──1── 老師
+ 屬性：A(底線，鍵)、B       修課的屬性：C     課程屬性：D(底線，鍵)、E      老師屬性：F(底線，鍵)、G
+\`\`\`
+請將此綱目轉換成關聯式資料庫的關聯（relation）。（25 分）`,
+      answer: `**一、解讀 ER 圖**
+
+| 元素 | 內容 |
+|---|---|
+| 實體「**學生**」 | 屬性 A（**鍵**，有底線）、B |
+| 實體「**課程**」 | 屬性 D（**鍵**）、E |
+| 實體「**老師**」 | 屬性 F（**鍵**）、G |
+| 關係「**修課**」 | 學生 **M** ： 課程 **N**（**多對多**），關係本身有屬性 **C** |
+| 關係「**授課**」 | 課程 **N** ： 老師 **1**（**多個課程由一位老師教，一門課程只有一位老師**） |
+
+**二、ER 轉關聯綱目的規則**
+
+| 規則 | 轉換 |
+|---|---|
+| **強實體**（有自己的鍵） | 轉成**一個表格**：屬性為欄位，鍵為主鍵 |
+| **多對多（M:N）關係** | 轉成**一個新表格**：包含**兩邊實體的主鍵（成為外來鍵）**與關係的屬性；**兩個鍵合起來為主鍵** |
+| **一對多（1:N）關係** | **不另建表格**：把「**1 的那一方**」的**主鍵放到「N 的那一方」表格中當作外來鍵**（關係的屬性也放在 N 方） |
+| **一對一** | 把任一方的主鍵放到另一方當外來鍵 |
+
+**三、轉換結果**
+
+| 表格（關聯） | 屬性 | 主鍵（底線） | 外來鍵 | 來源 |
+|---|---|---|---|---|
+| **學生** | **A**, B | **A** | — | 實體「學生」 |
+| **老師** | **F**, G | **F** | — | 實體「老師」 |
+| **課程** | **D**, E, F | **D** | **F** → 老師(F) | 實體「課程」＋ 1:N 的「授課」（老師 1 方的鍵 F 放到課程 N 方） |
+| **修課** | **A**, **D**, C | **(A, D)** | A → 學生(A)；D → 課程(D) | M:N 的「修課」，含關係屬性 C |
+
+**以關聯綱目書寫（底線以粗體表示主鍵）**
+
+- 學生（**A**，B）
+- 老師（**F**，G）
+- 課程（**D**，E，F）　　— F 為外來鍵，參照 老師.F
+- 修課（**A，D**，C）　　— A 參照 學生.A，D 參照 課程.D
+
+**對應的 SQL（補充）**
+
+\`\`\`sql
+CREATE TABLE 學生 (A INT PRIMARY KEY, B VARCHAR(20));
+CREATE TABLE 老師 (F INT PRIMARY KEY, G VARCHAR(20));
+CREATE TABLE 課程 (D INT PRIMARY KEY, E VARCHAR(20), F INT,
+                  FOREIGN KEY (F) REFERENCES 老師(F));       -- 授課：每門課一位老師
+CREATE TABLE 修課 (A INT, D INT, C VARCHAR(10),
+                  PRIMARY KEY (A, D),                       -- 修課：多對多，鍵為 (A, D)
+                  FOREIGN KEY (A) REFERENCES 學生(A),
+                  FOREIGN KEY (D) REFERENCES 課程(D));
+\`\`\`
+
+（**MySQL 語法注意**：外來鍵要寫成**表格層級的 \`FOREIGN KEY (欄位) REFERENCES …\`**；MySQL 會**忽略**欄位後面直接寫 \`REFERENCES\` 的行內寫法；被參照的表格（學生、老師、課程）要**先建立**；儲存引擎使用 InnoDB（MySQL 預設）才支援外來鍵。）
+
+**四、重點說明**
+1. **M:N 的「修課」必須獨立成一個表格**，不能把課程塞進學生的一個欄位（會違反第一正規化）；
+2. **N:1 的「授課」不需要另建表格**：每門課只有一位老師，把老師的鍵 F 放進課程表格即可，這樣也**避免資料重複**；
+3. 修課關係本身的屬性 **C（如成績）屬於「某位學生修某門課」這個組合**，所以放在修課表格；
+4. 這 4 個表格都符合第三正規化。`
+    }
+  ]
+},
+
+{
+  year: "104", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：統計、資訊處理｜代號 43840",
+  questions: [
+    {
+      id: "loc-dp-104-1", no: "一", topic: "sec", topicName: "資訊安全",
+      title: "SQL injection 是什麼，以及如何避免",
+      score: 20,
+      question: `何謂 SQL injection？要如何避免 SQL injection 的攻擊？（20 分）`,
+      answer: `**一、什麼是 SQL injection（SQL 注入）**
+
+攻擊者在網頁表單、網址參數等**使用者可輸入的地方，輸入特別構造的字串**，使應用程式**把輸入當成 SQL 指令的一部分執行**，改變原本 SQL 的意義，進而**竊取、竄改、刪除資料庫資料，甚至控制伺服器**。它是 OWASP 長年名列前茅的網站弱點。
+
+**成因**：程式以**字串連接**的方式組合 SQL，**沒有把使用者輸入與 SQL 指令分開**。
+
+**例子（登入驗證）**
+
+程式碼（有弱點）：
+
+\`\`\`sql
+SELECT * FROM users WHERE name = '輸入的帳號' AND password = '輸入的密碼';
+\`\`\`
+
+攻擊者在**帳號欄位**輸入：\`admin' --\`（單引號結束字串，\`--\` 是 SQL 註解），組出的 SQL 變成：
+
+\`\`\`sql
+SELECT * FROM users WHERE name = 'admin' --' AND password = '...';
+\`\`\`
+
+\`--\` 之後的密碼檢查被註解掉，**不需要密碼就能以 admin 登入**。另一種：輸入 \`' OR '1'='1\`，條件恆為真，繞過驗證。更嚴重的如 \`'; DROP TABLE users; --\`（刪表）、\`UNION SELECT\` 竊取其他表格的資料。
+
+**可能造成的危害**：資料外洩（個資、密碼）、資料被竄改或刪除、繞過驗證、取得管理者權限、進一步入侵主機。
+
+**二、如何避免 SQL injection**
+
+| 方法 | 說明 |
+|---|---|
+| **1. 參數化查詢／預備陳述式（Prepared Statement）【最有效】** | SQL 指令與資料**分開傳給資料庫**：先送出帶**占位符 \`?\`** 的 SQL，再單獨傳入參數值。資料庫**只把輸入當成「資料」，不會當成 SQL 語法**。例：\`SELECT * FROM users WHERE name = ? AND password = ?\`，再把值綁定進去（Java 的 \`PreparedStatement\`、PHP 的 PDO、Python 的 \`cursor.execute(sql, params)\`） |
+| **2. 使用預存程序（Stored Procedure）** | 以參數呼叫，不在程式中組合 SQL 字串（但預存程序內部若再串接字串仍有風險） |
+| **3. 使用 ORM 框架** | 透過物件介面產生 SQL（Hibernate、Django ORM），通常自動使用參數化 |
+| **4. 輸入驗證與過濾** | 驗證輸入的**型態、長度、格式**（如年齡只允許數字）；使用**白名單**；對特殊字元（單引號、\`--\`、\`;\`）做**跳脫（escape）**；但單靠過濾不夠可靠，應與參數化併用 |
+| **5. 最小權限原則** | 網站連線資料庫的帳號只給**必要的權限**（如不給 DROP、不用 root／sa 帳號），即使被注入，損害也有限 |
+| **6. 隱藏錯誤訊息** | 不把資料庫的**詳細錯誤訊息**顯示給使用者（以免洩漏表格與欄位名稱），改顯示一般錯誤頁，詳細記錄在日誌 |
+| **7. 網站應用程式防火牆（WAF）、入侵偵測** | 偵測並阻擋可疑的注入請求 |
+| **8. 定期弱點掃描、程式碼審查與滲透測試；更新修補** | 及早發現漏洞 |
+| **9. 加密儲存敏感資料（密碼存雜湊值）** | 即使資料外洩，損害也降低 |
+
+**重點**：**根本之道是「永遠不要用字串連接組合 SQL」，一律使用參數化查詢**，再搭配輸入驗證、最小權限與錯誤訊息控管，多層防禦。`
+    },
+    {
+      id: "loc-dp-104-2", no: "二", topic: "db", topicName: "資料庫",
+      title: "SQL：顧客「李大同」購買產品「H 牌手機」一支的更新；同名同姓時的問題與解決",
+      score: 20,
+      question: `考慮下列關聯式資料庫的三個 table：顧客（Customer）、產品（Product）和交易（Transaction）。他們的結構（schema）定義如下：Customer（cName, cID, address）、Product（pName, pID, price）、Transaction（cID, pID, amount）。（每小題 10 分，共 20 分）
+(一) 顧客「李大同」要買產品「H 牌手機」一支，請寫出 SQL 指令來更新 table。
+(二) 如果有同名同姓的顧客，依(一)的 SQL 指令其執行結果是否正確？要如何解決？`,
+      answer: `**說明**：以下 SQL 採 **MySQL 語法**撰寫；邏輯與結果我用 SQLite 以自建資料實際執行驗證過（SQLite 也接受反引號寫法），**沒有在 MySQL 上實際執行**。（顧客：李大同 cID＝1、李大同 cID＝2、王小明 cID＝3；產品：H 牌手機 pID＝10）
+
+**（一）新增一筆交易紀錄（10 分）**
+
+顧客買產品，就是在 **Transaction** 表格**新增一筆**（cID, pID, amount）：購買者的 cID、產品的 pID、數量 1。Transaction 表格只存編號，而題目只給了**名字**，所以要**先由 Customer 與 Product 查出 cID 與 pID**，再插入：
+
+\`\`\`sql
+INSERT INTO \`Transaction\` (cID, pID, amount)
+SELECT Customer.cID, Product.pID, 1
+FROM Customer, Product
+WHERE Customer.cName = '李大同'
+  AND Product.pName = 'H牌手機';
+\`\`\`
+
+（本解答使用 **MySQL 語法**。\`Transaction\` 在 MySQL 是關鍵字但**不是保留字**，不加引號也可以當表格名稱；為了保險，這裡仍用**反引號**（鍵盤左上角的 \` 符號）括起來。若是標準 SQL／SQLite／PostgreSQL，引號要寫成雙引號 \`"Transaction"\`；SQL Server 則寫成 \`[Transaction]\`。）
+
+**（二）有同名同姓的顧客時，結果是否正確**
+
+**不正確。**
+
+- 上面的 SQL 是**用姓名（cName）找顧客**，但姓名**不是鍵（不唯一）**；
+- 若資料庫裡有**兩位叫「李大同」的顧客**（cID 分別是 1 與 2），\`WHERE Customer.cName = '李大同'\` 會找到**兩筆**，\`INSERT … SELECT\` 因此會**插入兩筆交易**：一筆是顧客 1 買、一筆是顧客 2 買 → **本來只有一位顧客買一支手機，卻變成兩人各買一支**，資料錯誤。
+
+**實測**：以上面的指令對有兩位「李大同」的資料執行，Transaction 表格被寫入 **(1, 10, 1) 與 (2, 10, 1) 兩筆**，結果錯誤。
+
+**解決方法**
+
+1. **使用唯一識別的鍵（cID）而不是姓名**：交易時要知道**確切是哪一位顧客**，系統應該在顧客登入或選定顧客後，**直接取得其 cID**，再用 cID 新增交易：
+
+\`\`\`sql
+INSERT INTO \`Transaction\` (cID, pID, amount)
+SELECT 1, pID, 1            -- 1 是這位顧客的 cID
+FROM Product
+WHERE pName = 'H牌手機';
+\`\`\`
+
+   （實測：只寫入 (1, 10, 1) 一筆，正確。）
+
+2. **以其他欄位區分同名同姓**：同時以姓名與**地址**（或電話、身分證字號等能區分的資料）查詢，如 \`WHERE cName = '李大同' AND address = '…'\`；但這些欄位也不保證唯一，**最可靠的是使用鍵 cID**；
+3. **設計上要求識別資料**：資料表應以**不重複的編號（鍵）**識別每位顧客，應用程式介面讓使用者選擇或輸入編號／帳號，**不要只靠名字**；
+4. **新增前先檢查筆數**：先 \`SELECT COUNT(*)\`，若同名不只一位，要求使用者進一步指定，避免誤寫入。
+
+**重點**：**非鍵欄位（如姓名）不能保證唯一，查詢要對應到「單一實體」時必須使用主鍵**。`
+    },
+    {
+      id: "loc-dp-104-3", no: "三", topic: "ds", topicName: "資料結構與演算法",
+      title: "堆積（heap）是什麼，如何以堆積排序，以及堆積排序（heap sort）的時間複雜度",
+      score: 30,
+      question: `資料結構中的堆積（heap）是什麼？如何利用堆積來排序（sorting）？請分析堆積排序（heap sort）的時間複雜度。（30 分）`,
+      answer: `**一、堆積（Heap）是什麼**
+
+堆積是一種**完全二元樹（complete binary tree）**，且滿足**堆積性質**：
+
+| 種類 | 性質 |
+|---|---|
+| **最大堆積（Max Heap）** | **每個節點的值都 ≥ 它的子節點的值**；**根節點是最大值** |
+| **最小堆積（Min Heap）** | 每個節點的值都 ≤ 子節點的值；根是最小值 |
+
+**完全二元樹**：除了最後一層外，每一層都是滿的，且最後一層的節點**由左至右依序排列**。因此可以**用陣列儲存**，不需要指標：節點 i（從 0 起算）的**左子節點 ＝ 2i＋1**、**右子節點 ＝ 2i＋2**、**父節點 ＝ ⌊(i−1)/2⌋**。
+
+**例（最大堆積，陣列 [10, 5, 8, 4, 1, 3, 7]）**
+
+\`\`\`
+            10
+          /    \\
+        5        8
+       / \\      / \\
+      4   1    3   7
+\`\`\`
+
+**堆積的基本操作**
+
+| 操作 | 作法 | 時間 |
+|---|---|---|
+| 取得最大值 | 根 | O(1) |
+| **插入** | 放在最後，再**向上調整（上浮）** | O(log n) |
+| **刪除最大值（取出根）** | 把**最後一個元素搬到根**，再**向下調整（下沉，heapify）** | O(log n) |
+| **建立堆積（由 n 個資料）** | 從**最後一個非葉節點**往前，逐一做向下調整 | **O(n)** |
+
+**二、如何利用堆積排序（Heap Sort，由小到大）**
+
+1. **建立最大堆積**：把陣列調整成最大堆積，**最大值在位置 0**；
+2. **反覆取出最大值**：把**根（目前最大值）與堆積的最後一個元素交換**，使最大值放到陣列最後面的**正確位置**；然後把**堆積大小減 1**（排除已排好的）；
+3. 對新的根做**向下調整（heapify）**，恢復最大堆積；
+4. 重複 2～3，直到堆積只剩 1 個元素，陣列就由小到大排好。
+
+**建立最大堆積的過程（陣列 [4, 10, 3, 5, 1, 8, 7]，已用程式驗證）**
+
+| 步驟 | 動作 | 陣列 |
+|---|---|---|
+| 初始 | | [4, 10, 3, 5, 1, 8, 7] |
+| 調整 i＝2（值 3，子節點 8、7） | 3 與較大的子節點 8 交換 | [4, 10, 8, 5, 1, 3, 7] |
+| 調整 i＝1（值 10，子節點 5、1） | 10 已最大，不動 | [4, 10, 8, 5, 1, 3, 7] |
+| 調整 i＝0（值 4，子節點 10、8） | 4 與 10 交換，再與 5 交換（4 繼續下沉） | **[10, 5, 8, 4, 1, 3, 7]**（最大堆積） |
+
+接著：交換 10 與最後一個（7）→ [7, 5, 8, 4, 1, 3, **10**]，對根調整 → [8, 5, 7, 4, 1, 3, 10]；交換 8 與 3 → [3, 5, 7, 4, 1, **8**, 10]，調整…，最後得到 **[1, 3, 4, 5, 7, 8, 10]**。
+
+**程式（C，實測：gcc 編譯執行，輸出 \`1 3 4 5 7 8 10\`）**
+
+\`\`\`c
+#include <stdio.h>
+
+/* 把以 i 為根的子樹調整成最大堆積（n 為堆積大小） */
+static void heapify(int A[], int n, int i) {
+    int largest = i, l = 2 * i + 1, r = 2 * i + 2, t;
+    if (l < n && A[l] > A[largest]) largest = l;
+    if (r < n && A[r] > A[largest]) largest = r;
+    if (largest != i) {
+        t = A[i]; A[i] = A[largest]; A[largest] = t;
+        heapify(A, n, largest);                 /* 繼續往下調整 */
+    }
+}
+
+void heapsort(int A[], int n) {
+    int i, t;
+    for (i = n / 2 - 1; i >= 0; i--)            /* 1. 建立最大堆積：O(n) */
+        heapify(A, n, i);
+    for (i = n - 1; i > 0; i--) {               /* 2. 重複 n-1 次：取出最大值放到最後，縮小堆積 */
+        t = A[0]; A[0] = A[i]; A[i] = t;
+        heapify(A, i, 0);                       /*    每次調整 O(log n) */
+    }
+}
+
+int main(void) {
+    int A[] = { 4, 10, 3, 5, 1, 8, 7 }, n = 7, k;
+    heapsort(A, n);
+    for (k = 0; k < n; k++) printf("%d ", A[k]);
+    printf("\\n");
+    return 0;
+}
+\`\`\`
+
+**三、時間複雜度分析**
+
+| 階段 | 分析 | 複雜度 |
+|---|---|---|
+| **建立堆積** | 對 n/2 個內部節點做向下調整；高度越低的節點越多，調整成本越小，總和為 **O(n)**（嚴格推導：Σ(層高 × 該層節點數) ＝ O(n)） | **O(n)** |
+| **排序階段** | **取出最大值並調整，共執行 n − 1 次**；每次向下調整最多沿樹高走一條路徑，樹高為 ⌊log₂ n⌋ → 每次 **O(log n)** | **O(n log n)** |
+| **總計** | O(n) ＋ O(n log n) | **O(n log n)** |
+
+**最佳、平均、最差情況都是 O(n log n)**（不會像快速排序有 O(n²) 的最差情況）。
+
+| 其他性質 | 說明 |
+|---|---|
+| 空間複雜度 | **O(1)**（**就地排序 in-place**，只用交換，不需要額外陣列；遞迴版 heapify 用 O(log n) 堆疊，可改成迴圈） |
+| 穩定性 | **不穩定（not stable）**：相同鍵值的相對順序可能改變 |
+| 與其他排序比較 | 最差時間比快速排序好（O(n log n) vs O(n²)），且不需要額外空間（優於合併排序）；但常數較大、對快取不友善，**實務上通常比快速排序慢** |
+
+**四、應用**：優先權佇列（Priority Queue）、排程、Top-K 問題（取前 K 大）、Dijkstra 最短路徑演算法、外部排序。`
+    },
+    {
+      id: "loc-dp-104-4", no: "四", topic: "net", topicName: "網路與系統",
+      title: "IP 位址、MAC 位址與網頁地址（URL）：各是什麼、為何需要這麼多地址、如何對應",
+      score: 30,
+      question: `IP 位址（Internet Protocol Address）、MAC 位址（Media Access Control Address）和網頁地址（Uniform Resource Locator, URL）各是什麼？為何需要這麼多不同的地址？它們之間如何對應？（30 分）`,
+      answer: `**一、三種位址各是什麼**
+
+| 位址 | 全名與長度 | 說明 | 範例 | 所在層級 |
+|---|---|---|---|---|
+| **MAC 位址** | 媒體存取控制位址；**48 位元**（6 位元組），以 16 進位表示 | 網路**介面卡（網卡）出廠時燒錄的硬體位址**，**全球唯一**（前 24 位元是廠商代碼 OUI，後 24 位元是序號）；用於**同一個區域網路（LAN）內**辨識裝置、傳送訊框 | \`00-13-46-9A-63-74\` | **資料連結層（第 2 層）** |
+| **IP 位址** | 網際網路協定位址；**IPv4 為 32 位元**（四組 0～255 的十進位數），IPv6 為 128 位元 | **邏輯位址**，由網路管理者或 DHCP 指派，**包含「網路部分」與「主機部分」**，用於在**不同網路之間路由**封包，**可以更換** | \`192.168.0.1\`、\`140.112.1.1\` | **網路層（第 3 層）** |
+| **URL（網頁地址）** | 統一資源定位器 | **人類易記**的網址，指出**資源的位置與存取方式**：\`通訊協定://主機名稱（網域名稱）:埠號/路徑?參數\` | \`https://www.example.com/news/index.html\` | **應用層** |
+
+**二、為什麼需要這麼多不同的地址**
+
+1. **各層有不同的功能與分工（分層設計）**：
+   - **MAC 位址**：實體網路層級的**身分**，用於**同一個區域網路內的直接傳送**；是**硬體固定的**，但沒有階層結構，**無法用來做遠距離路由**（要記住全世界所有網卡太不可行）。
+   - **IP 位址**：有**階層結構（網路＋主機）**，路由器只要根據**網路部分**就能決定往哪個方向送，**能夠擴及全球**；而且是**邏輯位址，可更換**（裝置換地點、換網路，不需換網卡）。
+   - **URL／網域名稱**：**人類容易記憶**（記 www.example.com 比記 93.184.216.34 簡單）；伺服器換了 IP，網址仍可保持不變。
+2. **獨立性（彈性）**：硬體（網卡）可以更換而不影響網址，伺服器搬家只需修改 DNS 紀錄；
+3. **路由的效率與擴充性**：IP 的階層結構可以做**路由聚合**；MAC 位址扁平，不適合跨網路；
+4. **不同的對象**：MAC 給**網路介面**，IP 給**網路中的主機（介面）**，URL 給**使用者與資源**。
+
+**三、它們之間如何對應**
+
+\`\`\`
+使用者輸入 URL ──(DNS)──► IP 位址 ──(ARP)──► MAC 位址 ──► 實體網路傳送
+www.example.com        93.184.216.34        00-13-46-9A-63-74
+\`\`\`
+
+| 對應 | 協定 | 作法 |
+|---|---|---|
+| **URL（網域名稱）→ IP 位址** | **DNS（網域名稱系統）** | 瀏覽器把 URL 中的主機名稱送給 DNS 伺服器查詢，得到對應的 IP 位址（階層式分散資料庫） |
+| **IP 位址 → MAC 位址** | **ARP（位址解析協定）** | 在同一區域網路內，**廣播詢問**「誰是這個 IP？」，擁有該 IP 的裝置回覆自己的 MAC 位址，傳送端記錄在 **ARP 快取**；若目的主機在**不同網路**，則要查**預設閘道（路由器）**的 MAC |
+| （反向）MAC → IP | RARP／DHCP | 開機時向 DHCP 伺服器取得 IP |
+
+**傳送流程例子**：瀏覽 \`http://www.example.com\`
+1. **DNS**：查得 www.example.com 的 IP ＝ 93.184.216.34；
+2. 判斷目的 IP 不在同一個區域網路，**封包交給預設閘道**；用 **ARP** 取得**閘道器的 MAC 位址**；
+3. 封包的 **IP 位址（來源與最終目的）全程不變**，但**每經過一個路由器，訊框的 MAC 位址（來源與目的）都會改成下一段鏈路的兩端**（逐站轉送）；
+4. 最後一個路由器用 ARP 找到目的伺服器的 MAC，送達。
+
+**四、重點整理**：**URL（給人看，應用層）→ IP（給路由用，網路層）→ MAC（給同一區域網路的鄰居用，資料鏈結層）**；**DNS 負責 URL → IP，ARP 負責 IP → MAC**。MAC 位址固定在硬體，IP 位址可變且有階層，URL 好記。`
+    }
+  ]
+},
+
+{
+  year: "103", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：資訊處理｜代號 43840",
+  questions: [
+    {
+      id: "loc-dp-103-1", no: "一", topic: "db", topicName: "資料庫",
+      title: "資料庫管理系統（DBMS）為了解決檔案系統在資料儲存與管理上的哪些不足",
+      score: 15,
+      question: `請重點說明資料庫管理系統出現，是為了解決檔案系統在資料儲存和管理使用上的那些不足？（15 分）`,
+      answer: `**背景**：早期各應用程式**各自建立並管理自己的資料檔案（檔案處理系統）**，檔案格式與程式碼緊密綁在一起。隨著資料量與使用者增加，出現許多問題，**資料庫管理系統（DBMS）**就是用**集中管理、統一存取**的方式解決這些不足。
+
+| 檔案系統的不足 | 說明（例） | DBMS 的解決方式 |
+|---|---|---|
+| **1. 資料重複（redundancy）與不一致（inconsistency）** | 同一筆資料（如學生地址）存在多個檔案，浪費空間；更新時只改了一處，造成**資料不一致** | **整合成一個共用的資料庫**，資料只存一份（正規化） |
+| **2. 資料孤立、難以存取（data isolation）** | 資料分散在不同格式的檔案，要查詢新需求（如「哪些學生選了某課且住在某區」）必須**重新寫程式** | 提供**查詢語言（SQL）**，使用者可隨時下達查詢 |
+| **3. 程式與資料相依（缺乏資料獨立性）** | 檔案格式寫死在應用程式中，**改變檔案結構（新增欄位）就要修改所有相關程式** | 提供**資料獨立性**（三層綱目架構）：改變儲存結構不影響應用程式 |
+| **4. 完整性（integrity）難以維護** | 資料必須滿足的限制（如餘額不得為負、員工編號不重複）**散落在各程式中**，新增限制要改很多程式 | DBMS 集中定義**完整性限制**（主鍵、外來鍵、檢查條件），自動檢查 |
+| **5. 原子性問題（atomicity）** | 轉帳執行到一半當機，帳目就不一致，無法回復 | **交易（Transaction）管理**：全做或全不做，並可回復 |
+| **6. 並行存取的異常（concurrent access）** | 多人同時更新同一筆資料，可能互相覆蓋（遺失更新） | **並行控制**（鎖定、隔離等級） |
+| **7. 安全性（security）問題** | 檔案系統難以針對不同使用者做**細緻的存取權限**控制 | **授權與存取控制**：依使用者、表格、欄位授予不同權限（GRANT／REVOKE），可加密與稽核 |
+| **8. 備份與復原（backup and recovery）不足** | 故障後資料難以回復到一致狀態 | 提供**日誌、檢查點、備份與復原**機制 |
+| **9. 資料共享不易** | 各部門各自維護，難以共享與整合 | 集中管理，多使用者、多應用程式**共享**同一資料 |
+
+**總結**：DBMS 提供**資料整合、資料獨立性、查詢語言、完整性、交易與並行控制、安全性、備份復原**，使資料**更一致、更安全、更容易共享與維護**。
+
+**代價**：成本高（軟體、硬體、人員）、系統複雜、集中式的單點故障風險；但對大量、多人共用的資料而言，利大於弊。`
+    },
+    {
+      id: "loc-dp-103-2", no: "二", topic: "db", topicName: "資料庫",
+      title: "關聯式資料庫二階（2NF）與三階（3NF）正規化如何去除哪些特性（舉例說明）",
+      score: 25,
+      question: `請說明一般關連式資料庫二階正規化和三階正規化過程是如何將那些特性去除？請有系統的舉例說明之。（25 分）`,
+      answer: `**一、要去除的特性**
+
+| 正規化階段 | 去除的特性 | 造成的問題（異常） |
+|---|---|---|
+| **2NF（第二正規化）** | **部分相依（partial dependency）**：非鍵屬性**只相依於複合主鍵的一部分** | 資料重複、插入／刪除／更新異常 |
+| **3NF（第三正規化）** | **傳遞相依（transitive dependency）**：非鍵屬性**透過另一個非鍵屬性才相依於主鍵**（主鍵 → 非鍵屬性 X → 非鍵屬性 Y） | 同上 |
+
+（前提：1NF——每個欄位都是不可再分的單一值。）
+
+**二、有系統的舉例**
+
+**原始表格（選課表）**：\`選課(學號, 課號, 姓名, 系所, 系主任, 課名, 學分, 成績)\`，**主鍵 ＝ (學號, 課號)**
+
+| 學號 | 課號 | 姓名 | 系所 | 系主任 | 課名 | 學分 | 成績 |
+|---|---|---|---|---|---|---|---|
+| S1 | C1 | 小明 | 資工系 | 王老師 | 資料庫 | 3 | 90 |
+| S1 | C2 | 小明 | 資工系 | 王老師 | 網路 | 3 | 85 |
+| S2 | C1 | 小華 | 資工系 | 王老師 | 資料庫 | 3 | 70 |
+
+**功能相依**
+- (學號, 課號) → 成績
+- **學號 → 姓名、系所**（只靠「學號」，是鍵的一部分）
+- **課號 → 課名、學分**（只靠「課號」，是鍵的一部分）
+- **系所 → 系主任**（非鍵屬性決定非鍵屬性）
+
+**問題（異常）**：小明的姓名、系所、系主任在每一列重複出現（**資料重複、更新異常**：改系主任要改很多列）；若新開一門還沒人選的課，**無法新增**（**插入異常**，因為沒有學號）；刪除某學生唯一的選課紀錄，會連**該學生資料一起消失**（**刪除異常**）。
+
+**步驟 1：轉成 2NF——去除部分相依**
+
+把**只相依於鍵的一部分**的屬性，**連同它的決定者**分出去成為獨立表格：
+
+| 新表格 | 屬性 | 主鍵 |
+|---|---|---|
+| **學生** | (**學號**, 姓名, 系所, 系主任) | 學號 |
+| **課程** | (**課號**, 課名, 學分) | 課號 |
+| **選課** | (**學號**, **課號**, 成績) | (學號, 課號) |
+
+現在每個表格的非鍵屬性都**完全相依於整個主鍵**（選課的成績需要同時知道學號與課號）。姓名、課名等不再重複。
+
+**步驟 2：轉成 3NF——去除傳遞相依**
+
+檢查學生表格：**學號 → 系所 → 系主任**，系主任是**透過系所傳遞相依**於學號（系所不是鍵）→ 違反 3NF（若系所換了系主任，要改很多學生的列）。
+
+把**傳遞相依**拆出來：
+
+| 新表格 | 屬性 | 主鍵 |
+|---|---|---|
+| **學生** | (**學號**, 姓名, 系所) | 學號（系所為外來鍵） |
+| **系所** | (**系所**, 系主任) | 系所 |
+
+**最終 3NF 結果**
+
+| 表格 | 屬性 | 主鍵 |
+|---|---|---|
+| 學生 | 學號, 姓名, 系所 | 學號 |
+| 系所 | 系所, 系主任 | 系所 |
+| 課程 | 課號, 課名, 學分 | 課號 |
+| 選課 | 學號, 課號, 成績 | (學號, 課號) |
+
+**改善的效果**
+
+| 異常 | 正規化前 | 正規化後 |
+|---|---|---|
+| 重複與更新異常 | 系主任重複在每一列；換系主任要改很多列 | **系主任只存在系所表格一筆**，改一次即可 |
+| 插入異常 | 沒有人選的課無法新增 | 課程表格**可獨立新增課程** |
+| 刪除異常 | 刪除唯一的選課紀錄，學生資料也消失 | 刪除選課紀錄**不影響學生資料** |
+
+**三、口訣**：**2NF：每個非鍵屬性要「完全」相依於「整個」主鍵（消除部分相依）；3NF：非鍵屬性要「只」相依於主鍵（消除傳遞相依）——「依賴鍵、整個鍵、除了鍵之外別無其他」**。`
+    },
+    {
+      id: "loc-dp-103-3", no: "三", topic: "ds", topicName: "資料結構與演算法",
+      title: "依序輸入 18, 28, 38, 22, 30, 15, 19, 7, 36 建立二元搜尋樹，並以中序追蹤展開",
+      score: 30,
+      question: `二元搜尋樹（binary search tree）是指一個二元樹，若空樹建第一個數值為根節點，新加節點數值比根節點小的往左尋跡，比根節點大的往右尋跡，直到成為葉子節點。
+(一) 請將下列數字依序建立二元搜尋樹（binary search tree），〈18, 28, 38, 22, 30, 15, 19, 7, 36〉。（15 分）
+(二) 請依中序追蹤將該樹節點數字展開列出。（15 分）`,
+      answer: `**（一）建立二元搜尋樹（15 分）**
+
+**規則**：與節點比較，**小於往左、大於往右**，直到遇到空位放入。
+
+| 插入 | 比較路徑 | 位置 |
+|---|---|---|
+| 18 | 空樹 | **根** |
+| 28 | 28 > 18 → 右 | 18 的右子 |
+| 38 | 38 > 18 → 右 → 38 > 28 → 右 | 28 的右子 |
+| 22 | 22 > 18 → 右 → 22 < 28 → 左 | 28 的左子 |
+| 30 | 30 > 18 → 右 → 30 > 28 → 右 → 30 < 38 → 左 | 38 的左子 |
+| 15 | 15 < 18 → 左 | 18 的左子 |
+| 19 | 19 > 18 → 右 → 19 < 28 → 左 → 19 < 22 → 左 | 22 的左子 |
+| 7 | 7 < 18 → 左 → 7 < 15 → 左 | 15 的左子 |
+| 36 | 36 > 18 → 右 → 36 > 28 → 右 → 36 < 38 → 左 → 36 > 30 → 右 | 30 的右子 |
+
+**完成的二元搜尋樹**
+
+\`\`\`
+                 18
+               /    \\
+             15      28
+            /       /   \\
+           7      22     38
+                 /      /
+               19     30
+                         \\
+                          36
+\`\`\`
+
+**（二）中序（Inorder）追蹤（15 分）**
+
+**中序：左子樹 → 根 → 右子樹**，對二元搜尋樹做中序走訪，會得到**由小到大排序**的結果。
+
+- Inorder(18) ＝ Inorder(15)、18、Inorder(28)
+  - Inorder(15) ＝ 7、15
+  - Inorder(28) ＝ Inorder(22)、28、Inorder(38)
+    - Inorder(22) ＝ 19、22
+    - Inorder(38) ＝ Inorder(30)、38 ＝ 30、36、38
+
+**中序結果：7、15、18、19、22、28、30、36、38**（以程式建立此樹並做中序走訪驗證，結果相同，且為遞增順序）。
+
+**補充：另外兩種走訪（同一棵樹）**
+
+| 走訪 | 結果 |
+|---|---|
+| 前序（根左右） | 18、15、7、28、22、19、38、30、36 |
+| 中序（左根右） | 7、15、18、19、22、28、30、36、38 |
+| 後序（左右根） | 7、15、19、22、36、30、38、28、18 |`
+    },
+    {
+      id: "loc-dp-103-4", no: "四", topic: "net", topicName: "網路與系統",
+      title: "IP 位址 192.168.0.1 的十六進位表示，以及它在無線網路常見的特性",
+      score: 15,
+      question: `IP 位址 192.168.0.1 轉成十六進位會如何表示？這個 IP 在無線網路常看到，請說明其特性。（15 分）`,
+      answer: `**一、轉成十六進位（5 分）**
+
+IPv4 位址由 4 個位元組（每個 0～255）組成，**每個十進位數字各自轉成 2 位十六進位**：
+
+| 十進位 | 192 | 168 | 0 | 1 |
+|---|---|---|---|---|
+| 二進位 | 1100 0000 | 1010 1000 | 0000 0000 | 0000 0001 |
+| 十六進位 | **C0** | **A8** | **00** | **01** |
+
+**192.168.0.1 ＝ C0.A8.00.01（連寫為 0xC0A80001）**
+
+計算：192 ＝ 12×16 ＋ 0 ＝ C0；168 ＝ 10×16 ＋ 8 ＝ A8；0 ＝ 00；1 ＝ 01。（以程式驗算結果相同。）
+
+**二、這個 IP 的特性（10 分）**
+
+**192.168.0.1 是一個「私有位址（Private IP Address）」**，也是家用與小型辦公室**無線路由器／無線基地台（AP）最常見的預設位址**。
+
+| 特性 | 說明 |
+|---|---|
+| **屬於私有位址範圍** | 依 RFC 1918，保留給**內部網路**使用的位址範圍有三段：**10.0.0.0/8**、**172.16.0.0/12**、**192.168.0.0/16**。192.168.0.1 在最後一段（原 **C 類**位址的私有範圍） |
+| **不能在網際網路上路由** | 網際網路上的路由器**不會轉送**以私有位址為目的地的封包，所以不同家庭、不同公司**可以重複使用同樣的 192.168.0.x**，而不會衝突 |
+| **需要 NAT 才能上網** | 內部使用私有位址的裝置要連到網際網路時，由路由器以 **NAT（網路位址轉譯）**把私有位址轉成**一個公開 IP 位址**，節省公開 IP（延緩 IPv4 位址耗盡） |
+| **常用於路由器／AP 本身** | 一般把網段的**第一個可用位址（.1）**給**閘道器（路由器）**：使用者在瀏覽器輸入 \`http://192.168.0.1\` 就能進入**路由器的管理頁面**，設定無線網路名稱（SSID）、密碼、DHCP 等 |
+| **搭配 DHCP 發放位址** | 路由器內建 **DHCP 伺服器**，自動分配 192.168.0.2、192.168.0.3… 給連上來的手機、筆電；子網路遮罩通常是 255.255.255.0（/24），可用主機位址 254 個（.1～.254） |
+| **只在區域網路內有效** | 外部網路無法直接連到這個位址（具有一定的隱藏與保護效果，但**不是防火牆**） |
+| **安全提醒** | 路由器的預設管理帳號與密碼眾所周知，**應該立即更改預設密碼**，避免被攻擊者利用 |
+
+**補充**：公開 IP 位址由 IANA／ISP 配發且全球唯一；私有位址（如 192.168.x.x）只在本地網路內有意義。`
+    },
+    {
+      id: "loc-dp-103-5", no: "五", topic: "sec", topicName: "資訊安全",
+      title: "第三方支付的機制與運作",
+      score: 15,
+      question: `電子商務越趨成熟，第三方支付日趨重要，請敘述第三方支付的機制和運作。（15 分）`,
+      answer: `**一、什麼是第三方支付（Third-party Payment）**
+
+在**買方與賣方之間，由一個獨立的、具公信力的「第三方支付平台（業者）」**居中，**代為收款與付款**的支付機制。買賣雙方通常**互相不認識、不信任**（網路交易的最大問題：先付錢怕收不到貨，先出貨怕收不到錢），第三方扮演**信用中介（擔保）**，同時降低買方與賣方的風險。代表：**PayPal、支付寶、LINE Pay、街口支付、綠界科技（ECPay）、藍新金流** 等。
+
+**二、運作流程（以「代收代付、款項暫存」為例）**
+
+\`\`\`
+ 買方 ──①下單──► 賣方（網路商店）
+  │                    │
+  │ ②導向第三方支付      │
+  ▼                    │
+ 第三方支付平台 ◄───────┘
+  │③買方付款（信用卡／轉帳／超商／帳戶餘額），款項暫存在平台（專戶）
+  │④通知賣方「已收到款項，請出貨」
+  ▼
+ 賣方 ──⑤出貨──► 買方
+ 買方 ──⑥收到商品、確認（或超過鑑賞期自動確認）
+  │
+  ▼
+ 第三方支付平台 ──⑦撥款給賣方（扣除手續費）
+\`\`\`
+
+| 步驟 | 說明 |
+|---|---|
+| ① 下單 | 買方在購物網站選購商品並結帳 |
+| ② 導向支付平台 | 網站把買方導到第三方支付的付款頁（買方只把付款資料交給支付平台，**不必把信用卡資料給每個賣家**） |
+| ③ 買方付款給平台 | 以信用卡、ATM 轉帳、超商代碼、電子錢包等付款；**款項先由平台代收保管**（依法須存放於專用的存款帳戶或信託） |
+| ④ 通知出貨 | 平台通知賣方已收到款項（賣方確認買方有付款，放心出貨） |
+| ⑤ 賣方出貨 | 賣方寄出商品 |
+| ⑥ 買方確認收貨 | 買方收到並確認無誤（或到期自動確認） |
+| ⑦ 平台撥款 | 平台把款項**扣除手續費後撥給賣方**；若有糾紛（未收到貨、貨不對版），平台依規則**處理爭議並退款** |
+
+**三、機制的特色與好處**
+
+| 對象 | 好處 |
+|---|---|
+| **買方** | 資金有保障（貨到才撥款）；**個人金融資料只給支付平台**，降低外洩風險；付款方式多元、方便 |
+| **賣方** | 確定買方**已付款**再出貨，降低詐欺與退款風險；不需自行處理複雜的金流與信用卡串接；可接收多種支付工具 |
+| **平台** | 收取手續費；累積交易資料 |
+| **整體** | 提高網路交易的**信任**，促進電子商務發展 |
+
+**四、安全機制**：傳輸加密（SSL/TLS）、**3D Secure（3DS）**信用卡持卡人驗證、一次性密碼（OTP）、代碼化（tokenization）、風險監控與反詐欺、資金專戶保管。
+
+**五、法規（我國）**：第三方支付業者受**《電子支付機構管理條例》**（及相關規定）管理，須取得主管機關許可、客戶款項須存放專用帳戶並由銀行履約保證（法條以現行為準）。
+
+**六、風險與問題**：平台本身的信用與資安風險（被駭、倒閉）、洗錢防制、爭議處理機制是否公平、手續費成本。`
+    }
+  ]
+},
+
+{
+  year: "102", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：統計、資訊處理｜代號 44020",
+  questions: [
+    {
+      id: "loc-dp-102-1", no: "一", topic: "mis", topicName: "資管理論與名詞",
+      title: "3C 產品的 3C、程式語言第一代到第三代的特性、雲端運算對終端使用者與傳統電腦應用的不同",
+      score: 20,
+      question: `請回答下面關於一般資訊應用概念上的問題：一般所謂 3C 產品的 3C 所指為何？電腦程式語言有世代的演進，請問從第一代到第三代的程式語言，各有何特性？目前流行之雲端運算環境，從終端使用者的角度來檢視，有何異於傳統電腦應用之處？請詳述之。（20 分）`,
+      answer: `**一、3C 產品的 3C（5 分）**
+
+**3C ＝ Computer（電腦）、Communication（通訊）、Consumer Electronics（消費性電子）**。
+
+| 3C | 代表產品 |
+|---|---|
+| Computer | 桌上型電腦、筆記型電腦、平板 |
+| Communication | 手機、數據機、路由器 |
+| Consumer Electronics | 電視、數位相機、音響、遊戲機 |
+
+**3C 整合**：隨著數位化與網路普及，三類產品彼此融合，如智慧型手機同時是電腦、通訊設備與相機、音樂播放器。
+
+**二、程式語言的世代（8 分）**
+
+| 世代 | 名稱 | 特性 | 例子 |
+|---|---|---|---|
+| **第一代（1GL）** | **機器語言（Machine Language）** | **以 0 與 1 二進位碼**撰寫，電腦**可直接執行**；**執行最快**，但**難以閱讀、撰寫與除錯**，且**依賴特定 CPU（不可攜）** | 二進位指令碼 |
+| **第二代（2GL）** | **組合語言（Assembly Language）** | 以**助憶碼（mnemonic）**取代二進位（如 \`ADD\`、\`MOV\`），**需要組譯器（assembler）**翻譯成機器語言；**比機器語言易讀**，但仍**與硬體緊密相關（不可攜）**，一行對應一個機器指令 | x86 組合語言 |
+| **第三代（3GL）** | **高階語言（High-level Language）** | 接近人類語言與數學式，**語法易學易讀**；與特定硬體**無關（可攜性高）**；需要**編譯器（compiler）或直譯器（interpreter）**轉成機器碼；一行敘述對應多個機器指令；多為**程序導向**（**說明如何做**），後期有物件導向 | **FORTRAN、COBOL、C、Pascal、BASIC、Java** |
+
+（延伸：第四代 4GL 為非程序性語言，如 SQL、報表產生器，強調「做什麼」而非「怎麼做」。）
+
+**三、雲端運算與傳統電腦應用的差異（從終端使用者角度）（7 分）**
+
+| 比較 | 傳統電腦應用 | 雲端運算 |
+|---|---|---|
+| **軟體** | **安裝在自己的電腦**上（買授權或光碟），需要自行安裝、更新 | 透過**瀏覽器或 App 直接使用網路上的服務（SaaS）**，**不用安裝**，**永遠是最新版** |
+| **資料儲存** | 存在**自己的硬碟** | 存在**雲端伺服器**（如 Google 雲端硬碟），不怕電腦壞掉遺失，**可備份與分享** |
+| **使用地點與裝置** | 受限於**那台電腦** | **隨時隨地、任何裝置**（電腦、手機、平板）只要能上網就能使用，資料同步 |
+| **運算能力與硬體** | 受限於**個人電腦的效能** | 重運算由**雲端資料中心**負擔，使用者只需要簡單的終端機（薄用戶端）；可**彈性取得**更多資源 |
+| **成本** | 一次買斷、硬體軟體投資高 | **隨用隨付（訂閱制）**，初期成本低 |
+| **協作** | 檔案要寄送、版本分散 | **多人同時線上編輯與協作** |
+| **維運** | 使用者自行維護、備份、防毒 | 由**雲端業者負責維護、備援、更新** |
+| **風險與限制** | 不依賴網路也能使用；資料掌握在自己手上 | **依賴網路連線**；**資料隱私與安全**（資料放在別人的伺服器）；受業者服務品質與政策影響（如停止服務、漲價）；可能被綁定特定業者 |
+
+**結論**：對終端使用者而言，雲端運算讓資訊應用從「**擁有並維護軟硬體**」變成「**隨需使用服務**」，更方便、彈性、低成本，但要注意網路依賴與資料安全。`
+    },
+    {
+      id: "loc-dp-102-2", no: "二", topic: "net", topicName: "網路與系統",
+      title: "集線器（Hub）與交換器（Switch）的差異；無線區域網路遵循的協定與運作",
+      score: 20,
+      question: `在有線網路的連接技術上，集線器與交換器在作用上與功能上有何差異？而在無線網路的環境中，目前無線區域網路所遵循的通訊協定為何？如何運作？（20 分）`,
+      answer: `**一、集線器（Hub）與交換器（Switch）的差異（10 分）**
+
+| 比較 | 集線器（Hub） | 交換器（Switch） |
+|---|---|---|
+| **OSI 層級** | **實體層（第 1 層）** | **資料連結層（第 2 層）** |
+| **運作方式** | 把從一個埠收到的訊號**放大後，向所有其他埠「廣播」**，不看位址 | 讀取訊框的**目的 MAC 位址**，**學習並建立 MAC 位址表**，**只把訊框轉送到目的裝置所在的埠**（未知位址或廣播才氾濫） |
+| **碰撞網域** | **所有埠在同一個碰撞網域**：同一時間只有一個裝置能傳送，多裝置同時傳送就會碰撞（需 CSMA/CD） | **每個埠是獨立的碰撞網域**，可**同時進行多組通訊**，幾乎沒有碰撞 |
+| **頻寬** | **共享頻寬**（如 100 Mbps 由所有裝置平分） | **每個埠獨享頻寬**，可**全雙工（雙向同時傳送）** |
+| **效能與擴充性** | 裝置越多越擁擠、效能下降 | 效能好，可擴充 |
+| **安全性** | 低：每個裝置都能收到所有流量（容易被竊聽） | 較高：訊框只送到目的埠（仍有 MAC 欺騙等攻擊） |
+| **功能** | 只是**訊號中繼器**，沒有智慧 | 有**位址學習、過濾、轉送**，可支援 VLAN、STP（防迴圈）、QoS（管理型交換器） |
+| **價格** | 便宜，已幾乎被淘汰 | 較貴，現今主流 |
+
+**簡單說**：**Hub 是「大聲廣播」，Switch 是「點對點精準投遞」**。
+
+**二、無線區域網路的通訊協定與運作（10 分）**
+
+**遵循的協定：IEEE 802.11 系列（即 Wi-Fi）**
+
+| 標準 | 頻段 | 最高速率（理論） | 別名 |
+|---|---|---|---|
+| 802.11b | 2.4 GHz | 11 Mbps | |
+| 802.11a | 5 GHz | 54 Mbps | |
+| 802.11g | 2.4 GHz | 54 Mbps | |
+| 802.11n | 2.4／5 GHz | 600 Mbps | Wi-Fi 4 |
+| 802.11ac | 5 GHz | 數 Gbps | Wi-Fi 5 |
+| 802.11ax | 2.4／5／6 GHz | 約 9.6 Gbps | Wi-Fi 6／6E |
+
+**運作方式**
+
+1. **架構模式**：
+   - **基礎架構模式（Infrastructure）**：所有裝置連接到**無線基地台（AP）**，由 AP 轉送資料並連到有線網路；以 **SSID** 辨識網路；
+   - **隨意（Ad hoc）模式**：裝置之間直接連線，不需要 AP。
+2. **媒體存取控制：CSMA/CA（載波偵測多重存取／碰撞避免）**：無線電波是共享媒介，無法像乙太網路邊傳邊偵測碰撞，所以：
+   - 傳送前**先偵測頻道是否空閒**；
+   - 空閒時等待一段時間（DIFS）加上**隨機後退時間**，再傳送；
+   - 接收端收到後回傳 **ACK 確認**；沒收到 ACK 就當作碰撞，**加倍後退時間後重傳**；
+   - 可選用 **RTS/CTS** 機制解決**隱藏終端問題**。
+3. **連線過程**：偵測 AP（掃描）→ 驗證（Authentication）→ 關聯（Association）→ 資料傳輸。
+4. **安全性**：以 **WPA2／WPA3** 加密（早期 WEP 已不安全）。
+5. **其他**：無線訊號易受距離、障礙物與干擾影響；多個裝置共用頻寬。`
+    },
+    {
+      id: "loc-dp-102-3", no: "三", topic: "ds", topicName: "資料結構與演算法",
+      title: "二維陣列 A[100, 200]：所需空間，以及以行為主定址下 A[50, 100] 的位址",
+      score: 10,
+      question: `以 A[N, M]表示 X 軸從 0 到 N-1，Y 軸從 0 到 M-1 的二維陣列。假設陣列的起始位置是 1024（即 A[0, 0]的位址為 1024），每個陣列元素占用 4 個位元組（byte）的空間。請問，宣告陣列 A[100, 200]需要多少位元組的空間？在以行為主（column majored）的定址方式下，陣列元素 A[50, 100]的位址為何？（10 分）`,
+      answer: `**答案：需要 80,000 位元組；A[50, 100] 的位址為 41,224**（兩個數字都經程式驗算）
+
+**一、所需空間**
+
+陣列 A[100, 200]：N ＝ 100、M ＝ 200，共 **100 × 200 ＝ 20,000 個元素**；每個元素 4 位元組：
+
+**20,000 × 4 ＝ 80,000 位元組**。
+
+**二、以行為主（column-major）的位址**
+
+**以行為主**：**一行（固定 Y，X 從 0 到 N−1）接著一行**存放；也就是**第一個下標 X 變化最快**。
+
+A[x, y] 的位址 ＝ 起始位址 ＋ (**y × N ＋ x**) × 元素大小
+
+**A[50, 100]**：x ＝ 50、y ＝ 100、N ＝ 100：
+
+- 偏移的元素個數 ＝ 100 × 100 ＋ 50 ＝ 10,000 ＋ 50 ＝ **10,050**
+- 位元組偏移 ＝ 10,050 × 4 ＝ **40,200**
+- 位址 ＝ 1024 ＋ 40,200 ＝ **41,224**
+
+**檢查**：A[0,0] 在 1024；一行有 100 個元素（X 從 0～99）；第 100 行（y ＝ 100）的開頭 A[0,100] 在 1024 ＋ (100 × 100) × 4 ＝ 41,024；再往後 50 個元素，A[50,100] ＝ 41,024 ＋ 50 × 4 ＝ **41,224** ✓。
+
+**補充：若以列為主（row-major）**：A[x, y] 的位址 ＝ 1024 ＋ (x × M ＋ y) × 4 ＝ 1024 ＋ (50 × 200 ＋ 100) × 4 ＝ 1024 ＋ 40,400 ＝ **41,424**。兩種定址方式結果不同，要依題目指定的方式計算；本題是**以行為主，答案 41,224**。
+
+**假設說明**：題目的「X 軸從 0 到 N−1」我解讀為**第一個下標**，「行」是**固定第二個下標的一組元素**，所以以行為主表示第一個下標連續存放（Fortran 的存放方式）。`
+    },
+    {
+      id: "loc-dp-102-4", no: "四", topic: "ds", topicName: "資料結構與演算法",
+      title: "連通圖中邊數與分支度的關係；連通平面圖；完全圖 K4 是否為連通平面圖",
+      score: 20,
+      question: `在一個連通圖（connected graph）中，連線（edge）數跟節點（vertex）的分支度個數之間的關係為何？何謂連通平面圖（connected planar graph）？請問一個 4 個節點的完全圖（complete graph）K4 是否為一個連通平面圖？請說明理由。（20 分）`,
+      answer: `**一、邊數與節點分支度的關係（握手定理，7 分）**
+
+**節點的分支度（degree）**：與該節點相連的邊的數目。
+
+**關係：圖中所有節點的分支度總和 ＝ 邊數的 2 倍**：
+
+**Σ deg(v) ＝ 2 × |E|**
+
+**理由**：**每一條邊有兩個端點**，在計算分支度時**被各端點各算一次（共兩次）**；所以所有分支度加起來剛好是邊數的兩倍。
+
+**推論**：
+- **分支度為奇數的節點個數一定是偶數**（因為總和是偶數）；
+- **邊數 ＝ 所有分支度總和 ÷ 2**。
+
+**例**：三角形（3 個節點，每個分支度 2）：總和 6 → 邊數 3 ✓。
+
+**二、連通平面圖（7 分）**
+
+- **連通圖（connected graph）**：任兩個節點之間**都存在路徑**；
+- **平面圖（planar graph）**：可以**畫在平面上，使所有邊都「不互相交叉」**（邊只在端點相交）的圖；
+- **連通平面圖**：**既是連通的，又是平面圖**。
+
+**平面圖相關性質（歐拉公式）**：連通平面圖，若畫成沒有交叉，則 **V − E ＋ F ＝ 2**（V：節點數，E：邊數，F：**面數，包含外部無限大的面**）；對於 V ≥ 3 的簡單連通平面圖，**E ≤ 3V − 6**。
+
+**三、K4 是否為連通平面圖（6 分）**
+
+**K4（4 個節點的完全圖）**：4 個節點，**每對節點之間都有一條邊**，共 C(4,2) ＝ **6 條邊**，每個節點的分支度為 3（總和 12 ＝ 2 × 6 ✓）。
+
+**是連通圖**：每兩個節點之間都有邊相連。
+
+**是平面圖（可以畫成邊不交叉）**：把其中三個節點畫成**三角形**（A、B、C），**第四個節點 D 放在三角形「內部」**，並連到 A、B、C：
+
+\`\`\`
+            A
+           /|\\
+          / | \\
+         /  D  \\
+        /  / \\  \\
+       / /     \\ \\
+      B ─────────── C
+\`\`\`
+
+三角形的三條邊 AB、BC、CA，加上 D 連到三個頂點的三條邊 DA、DB、DC，**所有邊都沒有交叉**。
+
+**以歐拉公式驗證**：V ＝ 4，E ＝ 6，則 F ＝ 2 − V ＋ E ＝ 2 − 4 ＋ 6 ＝ **4 個面**（內部 3 個三角形面 ＋ 外部 1 個面），與圖相符 ✓。**E ≤ 3V − 6** ＝ 3×4 − 6 ＝ 6，剛好成立（K4 是邊數最多的平面圖）。
+
+**結論：K4 是連通平面圖。**
+
+（對照：K5（5 個節點的完全圖，10 條邊）超過 3V − 6 ＝ 9，**不是平面圖**；K3,3 也不是。這是庫拉托斯基定理的兩個基本非平面圖。）`
+    },
+    {
+      id: "loc-dp-102-5", no: "五", topic: "ds", topicName: "資料結構與演算法",
+      title: "以陣列與串列（鏈結串列）實作堆疊：實作與應用上的差異",
+      score: 20,
+      question: `分別以陣列跟串列的資料結構來表示堆疊，在實作與應用上，請詳述兩種表示法有何差異？（20 分）`,
+      answer: `**堆疊（Stack）**：後進先出（LIFO）的資料結構，基本操作 \`push\`（加入頂端）、\`pop\`（取出頂端）、\`peek\`（看頂端）、\`isEmpty\`、\`isFull\`。
+
+**兩種實作方式**
+
+**陣列堆疊**：用一個陣列 \`stack[MAX]\` 與一個整數 \`top\`（頂端索引）。
+- \`push(x)\`：\`top++; stack[top] = x;\`（先檢查是否已滿，否則**溢位 overflow**）
+- \`pop()\`：\`x = stack[top]; top--;\`（先檢查是否為空，否則**下溢 underflow**）
+
+**鏈結串列堆疊**：每個元素是一個節點（資料＋指向下一個節點的指標），用一個指標 \`top\` 指向**串列的第一個節點（頭）**。
+- \`push(x)\`：**建立新節點，新節點的 next 指向目前的 top，再讓 top 指向新節點**（在串列頭插入）；
+- \`pop()\`：取出 top 節點的資料，**top 指向下一個節點**，釋放該節點。
+
+**差異比較**
+
+| 比較 | 以陣列實作 | 以鏈結串列實作 |
+|---|---|---|
+| **大小** | **固定大小**（宣告時決定 MAX）；太小會溢位，太大浪費空間（可用動態陣列倍增擴充，但需要複製） | **動態**，隨需求增減，**只受記憶體大小限制**，不會因「固定大小」而滿 |
+| **記憶體使用** | **連續記憶體**，沒有額外指標，每個元素空間小；可能預留未使用空間 | **每個節點多一個指標的額外空間**；節點分散在記憶體，需要動態配置 |
+| **push／pop 時間** | **O(1)**（只改 top 與一個元素） | **O(1)**（只改頭指標），但每次 push 要**動態配置記憶體**（malloc／new），常數較大；pop 要**釋放記憶體** |
+| **存取速度與快取** | **記憶體連續，快取友善**，實際速度較快 | 節點分散，快取較不友善 |
+| **滿的判斷** | 需要 \`isFull\`（top ＝ MAX − 1） | 一般不會滿（記憶體不足才失敗） |
+| **實作難度** | **簡單**（陣列與索引） | 較複雜（指標操作，要注意**記憶體洩漏與空指標**） |
+| **可能的錯誤** | 溢位（overflow）、下溢（underflow） | 空指標、記憶體洩漏、忘記釋放 |
+| **隨機存取** | 可直接以索引存取中間元素（但堆疊不允許） | 不支援（只能由頭走訪） |
+| **適用情境** | **知道最大需求量**、追求速度與簡單（如運算式求值、遞迴深度可預估） | **需求量無法預知**、元素數變動很大、需要避免溢位（如瀏覽器歷史紀錄、復原功能） |
+
+**應用上的選擇**
+- 堆疊最大深度**可預估且不大** → **陣列**（簡單、快、省空間）；
+- 資料量**不確定、動態變化** → **鏈結串列**（彈性）；
+- 實務上常使用**動態陣列（如 Java 的 ArrayList、C++ 的 vector）**：兼具陣列的效率與自動擴充；Java 的 \`Deque\`／\`ArrayDeque\` 可當堆疊使用。
+
+**結論**：**陣列實作簡單且快，但大小固定；鏈結串列實作彈性，但需要額外指標空間與動態配置**。兩者的 push、pop 時間複雜度都是 **O(1)**，邏輯行為（LIFO）相同。`
+    },
+    {
+      id: "loc-dp-102-6", no: "六", topic: "db", topicName: "資料庫",
+      title: "XML 檔案包含的部分；關聯式資料庫與 XML 檔案在資料表示上的差異",
+      score: 10,
+      question: `一個 XML 的檔案包含那些部分？傳統的關聯式資料庫管理系統與 XML 檔案系統，在資料的表示上有何差異？請詳述之。（10 分）`,
+      answer: `**一、XML 檔案包含的部分（5 分）**
+
+XML（可延伸標記語言，eXtensible Markup Language）是以**標籤**描述資料結構的文字格式。
+
+| 部分 | 說明 | 例子 |
+|---|---|---|
+| **1. XML 宣告（Prolog，序言）** | 位於最前面（可選），說明**版本與編碼** | \`<?xml version="1.0" encoding="UTF-8"?>\` |
+| **2. 文件型別定義（DTD）或結構描述（XML Schema）**（可選） | 規定這份 XML **有哪些元素、屬性與結構**，用來**驗證有效性（valid）** | \`<!DOCTYPE ...>\`、\`.xsd\` |
+| **3. 根元素（Root Element）** | **整份文件只能有一個根元素**，所有其他元素都包含在其中 | \`<students> … <\/students>\` |
+| **4. 元素（Element）** | 以**起始標籤與結束標籤**包住內容，可以**巢狀**，形成**樹狀階層** | \`<name>王小明<\/name>\` |
+| **5. 屬性（Attribute）** | 寫在起始標籤中的「名稱＝值」，說明元素的額外資訊（值必須加引號） | \`<student id="S001">\` |
+| **6. 文字內容（Text／Character Data）** | 元素中的資料值 | \`王小明\` |
+| **7. 註解（Comment）與處理指令（Processing Instruction）**（可選） | 註解不影響資料；處理指令給應用程式 | \`<!-- 註解 -->\` |
+
+**例**
+
+\`\`\`xml
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student id="S001">
+    <name>王小明<\/name>
+    <dept>資工系<\/dept>
+    <course>資料庫<\/course>
+    <course>網路<\/course>
+  <\/student>
+<\/students>
+\`\`\`
+
+**格式良好（well-formed）的規則**：只有一個根元素；標籤成對且正確巢狀；標籤**大小寫有區別**；屬性值要加引號；特殊字元需要跳脫（\`&lt;\`）。
+
+**二、關聯式資料庫與 XML 在資料表示上的差異（5 分）**
+
+| 比較 | 關聯式資料庫（RDBMS） | XML 檔案 |
+|---|---|---|
+| **資料模型** | **二維表格**（列與欄），**平面（flat）**結構 | **階層式樹狀**結構（元素巢狀），**半結構化**資料 |
+| **綱目（Schema）** | **嚴格、事先定義**，每筆資料欄位固定 | **彈性**：可有 DTD／XML Schema，也可以沒有；各元素可以不同、可有可無 |
+| **資料之間的關係** | 以**主鍵與外來鍵**表示關聯，需要**連接（JOIN）** | 以**巢狀（包含）關係**直接表示一對多（如學生內含多門課） |
+| **資料型態** | 有明確的**資料型態**（INT、VARCHAR、DATE） | 本質是**純文字**，型態需靠 Schema 約定 |
+| **順序** | 表格中的列**沒有順序意義** | 元素的**出現順序有意義**（文件順序） |
+| **自我描述** | 資料與綱目分開（綱目在資料庫中定義） | **自我描述**：標籤本身就說明資料的意義，人與機器皆可讀 |
+| **冗餘** | 以正規化減少重複 | 階層表示可能有重複（多對多時） |
+| **查詢語言** | **SQL** | **XPath、XQuery**、XSLT |
+| **儲存與效能** | 針對大量結構化資料最佳化，有索引、交易、並行控制（ACID） | 文字格式，**檔案較大、解析較慢**；缺少完整的交易與並行機制 |
+| **用途** | **儲存與管理**大量結構化資料，支援複雜查詢 | **資料交換與整合**（跨平台、跨系統，如 Web Service、設定檔、RSS），文件型資料 |
+| **可讀性與可攜性** | 依賴資料庫軟體 | 純文字，**跨平台、易於人類閱讀與傳輸** |
+
+**結論**：**RDBMS 適合儲存大量、結構固定的資料並做複雜查詢；XML 適合描述階層式、結構彈性的資料並作為系統間的資料交換格式**；兩者常搭配使用（資料庫輸出成 XML 交換，或把 XML 存入資料庫）。`
+    }
+  ]
+},
+
+{
+  year: "101", exam: "local",
+  subject: "資料處理概要（舊制）", totalScore: 100, timeLimit: "1小時30分",
+  note: "類科：統計、資訊處理｜代號 43720",
+  questions: [
+    {
+      id: "loc-dp-101-1", no: "一", topic: "db", topicName: "資料庫",
+      title: "資料庫系統的交易（Transaction）需滿足的性質：ACID",
+      score: 20,
+      question: `一般資料庫系統之交易（transaction）需滿足什麼性質？（20 分）`,
+      answer: `**交易（Transaction）**：資料庫中**一個不可分割的邏輯工作單位**，由一連串對資料庫的讀寫操作組成（以 \`BEGIN\` 開始，\`COMMIT\` 提交或 \`ROLLBACK\` 回復）。
+
+為了確保資料正確可靠，交易必須滿足 **ACID** 四個性質：
+
+| 性質 | 英文 | 說明 | 例子（A 轉帳 1000 元給 B） |
+|---|---|---|---|
+| **A：原子性** | **Atomicity** | 交易中的所有操作**不可分割：要嘛全部成功，要嘛全部不做**（沒有做一半）。失敗時要**回復（rollback）**到交易開始前的狀態 | 「A 扣款」與「B 加款」要嘛兩個都完成，要嘛兩個都不做 |
+| **C：一致性** | **Consistency** | 交易執行**前後**，資料庫都必須處於**一致（合法）的狀態**，符合所有完整性限制（主鍵、外來鍵、餘額 ≥ 0 等業務規則） | 轉帳前後，A 與 B 的**餘額總和不變** |
+| **I：隔離性** | **Isolation** | 多個交易**同時（並行）執行**時，**彼此不互相干擾**，每個交易就像單獨執行一樣；一個交易**未提交的中間結果，其他交易看不到**。透過**鎖定（Lock）**或多版本控制實現，並有不同的**隔離等級** | 兩筆同時轉出 A 帳戶的交易，不會互相覆蓋對方的餘額（避免遺失更新、髒讀） |
+| **D：持久性** | **Durability** | 交易一旦**提交（commit）**，其結果就是**永久性**的，**即使之後系統當機或斷電也不會遺失**（寫入日誌與非揮發性儲存） | 轉帳成功後，即使主機立刻當機，重新啟動後餘額仍然正確 |
+
+**實現機制**
+- **日誌（Log）與先寫日誌（WAL）**、**檢查點（checkpoint）**、**重做（redo）與復原（undo）**：確保**原子性與持久性**；
+- **鎖定（兩階段鎖定 2PL）、時間戳記、多版本並行控制（MVCC）**：確保**隔離性**；
+- **完整性限制與觸發器**：確保**一致性**。
+
+**隔離等級（補充）**：讀取未提交（Read Uncommitted）→ 讀取已提交（Read Committed）→ 可重複讀取（Repeatable Read）→ 可序列化（Serializable）；等級越高，越能避免髒讀、不可重複讀、幻讀，但並行度越低。
+
+**說明**：NoSQL 資料庫常採用較寬鬆的 **BASE**（基本可用、軟狀態、最終一致）；傳統關聯式資料庫則以 **ACID** 保證交易的正確性。`
+    },
+    {
+      id: "loc-dp-101-2", no: "二", topic: "db", topicName: "資料庫",
+      title: "購物資料的正規化：說明基本正規化的動作及最終的關聯綱目",
+      score: 20,
+      question: `購物資料如下：交易編號、付款方式、付款金額、交易時間、會員編號、姓名、送貨地址、會員生日、商品編號、商品名稱、定價、數量等。現在想對該資料進行正規化（normalization），請說明基本正規化的動作及最終的關聯綱目（schema）。（20 分）`,
+      answer: `**一、原始資料（單一大表）**
+
+\`購物(交易編號, 付款方式, 付款金額, 交易時間, 會員編號, 姓名, 送貨地址, 會員生日, 商品編號, 商品名稱, 定價, 數量)\`
+
+一筆交易可以購買**多項商品**，所以**同一個交易的基本資料會在每項商品的那一列重複**；以 **(交易編號, 商品編號)** 作為識別每一列的**複合主鍵**。
+
+**二、假設與功能相依（FD）**
+
+| FD | 說明 |
+|---|---|
+| 交易編號 → 付款方式、付款金額、交易時間、會員編號、送貨地址 | 一筆交易只有一種付款方式、一個時間、一位會員、一個送貨地址（**假設送貨地址是每筆交易各自指定**） |
+| 會員編號 → 姓名、會員生日 | 會員的基本資料 |
+| 商品編號 → 商品名稱、定價 | 商品的基本資料 |
+| (交易編號, 商品編號) → 數量 | 該交易購買該商品的數量 |
+
+**三、正規化的動作**
+
+**1NF（第一正規化）**：每個欄位都是**不可再分的單一值**，不允許重複群組。原表每列一項商品，已符合 1NF（若原本把多個商品塞在同一個欄位，要先拆成多列）。
+
+**2NF（第二正規化）——消除部分相依**：主鍵是 (交易編號, 商品編號)。
+
+| 屬性 | 相依於 | 是否部分相依 |
+|---|---|---|
+| 付款方式、付款金額、交易時間、會員編號、姓名、送貨地址、會員生日 | **只靠「交易編號」** | **部分相依** |
+| 商品名稱、定價 | **只靠「商品編號」** | **部分相依** |
+| 數量 | 需要兩者 | 完全相依 |
+
+分解：
+- **交易(交易編號, 付款方式, 付款金額, 交易時間, 會員編號, 姓名, 送貨地址, 會員生日)**，鍵：交易編號
+- **商品(商品編號, 商品名稱, 定價)**，鍵：商品編號
+- **交易明細(交易編號, 商品編號, 數量)**，鍵：(交易編號, 商品編號)
+
+**3NF（第三正規化）——消除傳遞相依**：在「交易」表格中，**交易編號 → 會員編號 → 姓名、會員生日**，姓名與生日**透過非鍵屬性「會員編號」傳遞相依**於交易編號 → 違反 3NF。分解：
+- **會員(會員編號, 姓名, 會員生日)**，鍵：會員編號
+- **交易(交易編號, 付款方式, 付款金額, 交易時間, 會員編號, 送貨地址)**，鍵：交易編號，**會員編號為外來鍵**
+
+**四、最終的關聯綱目（schema）**
+
+| 關聯 | 屬性（主鍵以粗體標示） | 外來鍵 |
+|---|---|---|
+| **會員** | **會員編號**、姓名、會員生日 | — |
+| **商品** | **商品編號**、商品名稱、定價 | — |
+| **交易** | **交易編號**、付款方式、付款金額、交易時間、會員編號、送貨地址 | 會員編號 → 會員 |
+| **交易明細** | **交易編號**、**商品編號**、數量 | 交易編號 → 交易；商品編號 → 商品 |
+
+**五、補充與設計考量**
+
+1. **「付款金額」是衍生欄位**：可由交易明細的（定價 × 數量）加總算出，嚴格的設計可以不存，需要時再計算；若保留，要注意資料一致性。
+2. **定價會調整**：訂單應記錄**「交易當時的成交單價」**（可放在交易明細，如 \`成交單價\`），否則商品改價後，舊交易的金額就會算錯；本題題目只列出「定價」，所以放在商品表格。
+3. **送貨地址**：若是**會員的固定地址**，應放在「會員」表格；若每筆交易可指定不同地址，則放在「交易」表格（本解答採後者）。
+4. **效果**：消除重複（會員姓名、商品名稱各存一次）、避免更新異常（改商品名稱只改一處）、插入與刪除異常（可先新增會員或商品、不需要有交易）。`
+    },
+    {
+      id: "loc-dp-101-3", no: "三", topic: "prog", topicName: "程式設計實作",
+      title: "陣列 score[]：找出最低成績與其索引、計算全班平均、列印所有成績與名次",
+      score: 30,
+      question: `假設有一個陣列 score[]儲存同學的成績，撰寫程式：
+(一) 找出最低的成績，並指出其陣列索引。
+(二) 計算全班的平均分數。
+(三) 列印出所有成績並分別指出其名次（成績最高者，名次為 1）。（30 分）`,
+      answer: `**一、設計重點（以 C 作答）**
+
+| 小題 | 作法 |
+|---|---|
+| (一) 最低成績與索引 | **擂台法**：先假設第 0 個是最小，從第 1 個開始逐一比較，若更小就**更新最小值的「索引」**（記索引，就能同時得到索引與成績）；最後 \`score[minIdx]\` 是最低成績 |
+| (二) 平均分數 | 累加所有成績，再除以人數。**注意整數除法會捨去小數**，要轉成 \`double\` 再除 |
+| (三) 名次 | 對每一位同學 i，**算有幾個人的成績比他高**，**名次 ＝ 比他高的人數 ＋ 1**。最高分者沒人比他高 → 名次 1；**同分者名次相同**（如兩個 92 分都是第 1 名，下一位 85 分是第 3 名，名次跳號） |
+
+**二、完整程式（C）**
+
+\`\`\`c
+#include <stdio.h>
+#define N 5
+
+int main(void) {
+    int score[N] = { 78, 92, 65, 92, 85 };
+    int i, j, minIdx = 0, sum = 0, rank;
+
+    /* (一) 找出最低成績並指出其陣列索引 */
+    for (i = 1; i < N; i++)
+        if (score[i] < score[minIdx]) minIdx = i;
+    printf("最低成績 %d，索引 %d\\n", score[minIdx], minIdx);
+
+    /* (二) 計算全班平均分數 */
+    for (i = 0; i < N; i++) sum += score[i];
+    printf("平均分數 %.2f\\n", (double)sum / N);
+
+    /* (三) 列印所有成績與名次（最高者名次 1；同分同名次） */
+    for (i = 0; i < N; i++) {
+        rank = 1;
+        for (j = 0; j < N; j++)
+            if (score[j] > score[i]) rank++;      /* 比我高的人數 + 1 就是我的名次 */
+        printf("score[%d] = %d  名次 %d\\n", i, score[i], rank);
+    }
+    return 0;
+}
+\`\`\`
+
+**三、執行結果（實測：gcc 編譯執行，成績為 78、92、65、92、85）**
+
+\`\`\`
+最低成績 65，索引 2
+平均分數 82.40
+score[0] = 78  名次 4
+score[1] = 92  名次 1
+score[2] = 65  名次 5
+score[3] = 92  名次 1
+score[4] = 85  名次 3
+\`\`\`
+
+**驗算**
+- 最低 65，在索引 2 ✓；
+- 平均 ＝ (78 ＋ 92 ＋ 65 ＋ 92 ＋ 85) ÷ 5 ＝ 412 ÷ 5 ＝ **82.4** ✓；
+- 名次：92（兩人）比他高的 0 人 → 1；85 比他高的有兩個 92 → 3；78 比他高的有 92、92、85 → 4；65 比他高的 4 人 → 5。
+
+**四、說明與補充**
+- 時間複雜度：(一)、(二)為 O(n)；(三)用兩層迴圈為 O(n²)（n 很小，可行）。若 n 很大，可先**排序**再決定名次，複雜度 O(n log n)。
+- 若要名次**不跳號**（並列後下一位接續，如 1、1、2），可先找出不重複的分數再排序。
+- 題目用「成績最高者名次為 1」，所以是依成績由高到低排名。
+- 陣列大小 \`N\`（程式中為 5）可改為全班人數；若人數由使用者輸入，可用變動長度陣列或動態配置。`
+    },
+    {
+      id: "loc-dp-101-4", no: "四", topic: "sec", topicName: "資訊安全",
+      title: "成功且安全的網際網路交易的四項基本要求、電子商務的威脅、網路攻擊的種類",
+      score: 30,
+      question: `說明成功且安全的網際網路交易的四項基本要求為何？電子商務存在之威脅為何？網路攻擊的種類為何？（30 分）`,
+      answer: `**一、成功且安全的網際網路交易的四項基本要求**
+
+| 要求 | 英文 | 說明 | 常用技術 |
+|---|---|---|---|
+| **1. 機密性（保密性）** | Confidentiality | 交易資料（信用卡號、個資、訂單內容）**只有授權者才能看到**，傳輸與儲存過程**不被竊聽或洩漏** | **加密**：SSL/TLS（HTTPS）、對稱與非對稱加密、VPN |
+| **2. 完整性** | Integrity | 資料在傳送與儲存過程中**不被未授權者竄改、增刪**（如訂單金額被改） | **雜湊函數、數位簽章、訊息鑑別碼（MAC）** |
+| **3. 鑑別（認證）** | Authentication | **確認交易雙方的身分真實**：買方確定賣方不是假網站，賣方確定買方是本人 | **帳號密碼、一次性密碼 OTP、多因素驗證、數位憑證（PKI）、生物辨識、3D Secure** |
+| **4. 不可否認性** | Non-repudiation | 交易一旦完成，**任何一方事後都不能否認**曾經做過這筆交易（下單、付款、收貨） | **數位簽章、時間戳記、交易日誌、電子憑證** |
+
+（另外常見的第五項：**可用性 Availability**——系統與服務在需要時能正常使用，不被阻斷服務攻擊癱瘓。）
+
+**二、電子商務存在的威脅**
+
+| 威脅類別 | 說明與例子 |
+|---|---|
+| **資料竊取與竊聽** | 在網路上截取封包取得信用卡號、密碼；網站資料庫被入侵造成**個資與信用卡資料外洩** |
+| **資料竄改** | 修改訂單金額、收件地址、轉帳帳號（如中間人攻擊） |
+| **身分冒用與詐欺** | **冒用他人身分**下單或登入；**盜刷信用卡**；**偽造網站（釣魚網站）**騙取帳密；假賣家收款不出貨；假買家惡意退貨 |
+| **否認交易** | 買方或賣方事後否認下單、付款或出貨 |
+| **阻斷服務** | **DoS／DDoS** 使購物網站無法使用，造成營運損失 |
+| **惡意程式** | 電腦病毒、木馬、**勒索軟體**、鍵盤側錄程式、網頁掛馬 |
+| **網站弱點** | **SQL 注入、跨站腳本（XSS）**、網站設計缺陷、未更新的軟體漏洞 |
+| **內部威脅** | 員工或廠商濫用權限、洩漏顧客資料 |
+| **隱私與法律風險** | 違反個資法、消費者權益問題、跨境交易爭議 |
+| **其他** | 交易系統當機與資料遺失、系統與供應鏈風險 |
+
+**三、網路攻擊的種類**
+
+**（一）依攻擊方式分類**
+
+| 類型 | 特徵 | 攻擊舉例 |
+|---|---|---|
+| **被動攻擊（Passive Attack）** | **只竊取資訊，不改變資料**，不易被發現；破壞**機密性** | **竊聽（Sniffing）**、**流量分析**、監看 |
+| **主動攻擊（Active Attack）** | **修改資料或影響系統運作**；破壞**完整性、可用性、真實性** | **偽裝（Masquerade）**、**重放（Replay）**、**訊息竄改**、**阻斷服務** |
+
+**（二）常見的網路攻擊種類**
+
+| 攻擊 | 說明 |
+|---|---|
+| **釣魚（Phishing）／社交工程** | 偽造電子郵件或網站，**誘騙使用者主動交出**帳號密碼、信用卡資料 |
+| **中間人攻擊（MITM）** | 攻擊者插入通訊雙方之間，竊聽或竄改資料（如 ARP／DNS 欺騙、惡意 Wi-Fi） |
+| **阻斷服務／分散式阻斷服務（DoS／DDoS）** | 以**大量請求**耗盡伺服器或頻寬資源，使正常使用者無法使用 |
+| **惡意程式（Malware）** | **病毒、蠕蟲、木馬、後門、勒索軟體、間諜軟體**、殭屍網路（Botnet） |
+| **SQL 注入（SQL Injection）** | 在輸入欄位注入 SQL 指令，竊取或破壞資料庫 |
+| **跨站腳本（XSS）** | 在網頁注入惡意腳本，在其他使用者的瀏覽器執行（竊取 Cookie） |
+| **密碼攻擊** | **暴力破解、字典攻擊**、撞庫（用外洩帳密嘗試登入其他網站） |
+| **偽冒／欺騙（Spoofing）** | **IP 欺騙、ARP 欺騙、DNS 欺騙、郵件位址偽造** |
+| **重放攻擊** | 截取合法的交易訊息再重新送出（如重複扣款） |
+| **零時差攻擊（Zero-day）** | 利用尚未被發現或修補的漏洞 |
+| **進階持續性威脅（APT）** | 長期、有組織、針對特定目標的滲透 |
+
+**四、防範措施（簡述）**
+
+- **通訊加密（HTTPS/TLS）**、**數位憑證與簽章（PKI）**、**多因素驗證**、**3D Secure／OTP 的信用卡驗證**；
+- **防火牆、入侵偵測／防禦、WAF**、防毒軟體；
+- 系統**更新修補**、安全開發（防 SQL 注入與 XSS）、**備份與備援**；
+- 敏感資料**加密儲存**、最小權限、日誌稽核；
+- **使用者教育**（辨識釣魚、保護密碼）、遵循個資法與支付產業資安標準（如 PCI DSS）。
+
+**結論**：安全的電子商務必須同時確保**機密性、完整性、鑑別與不可否認性**；威脅來自**外部攻擊、網站弱點、人為與內部因素**，需要以**技術＋管理＋人員**多層防護。`
+    }
+  ]
+},
+
+];
+
+</script>
+<script>/* ===== 地方特考四等（資料處理概要）考古題複習系統 — 應用邏輯 ===== */
+
+// 合併所有資料（依年度由新到舊）
+const ALL_YEARS = [
+  ...EXAM_DATA_CUSTOMS
+];
+
+const TOPIC_INFO = {
+  db:   { name: '資料庫',          cls: 't-db'   },
+  ds:   { name: '資料結構與演算法', cls: 't-ds'   },
+  prog: { name: '程式設計實作',     cls: 't-prog' },
+  sec:  { name: '資訊安全',         cls: 't-sec'  },
+  net:  { name: '網路與系統',       cls: 't-net'  },
+  mis:  { name: '資管理論與名詞',   cls: 't-mis'  },
+};
+
+// 攤平成題目陣列
+const SUBTOPICS = [{"key": "a", "name": "SQL 查詢", "color": "#1f5673"}, {"key": "b", "name": "資料庫設計、正規化與交易", "color": "#8a3324"}, {"key": "c", "name": "資料結構（堆疊、佇列、樹、雜湊、陣列）", "color": "#2f6b4f"}, {"key": "d", "name": "演算法（排序、圖形、編碼）", "color": "#6a4c93"}, {"key": "e", "name": "網路與通訊", "color": "#a07e2c"}, {"key": "f", "name": "作業系統與程式概念", "color": "#b5651d"}, {"key": "g", "name": "資訊安全與電子商務", "color": "#4a5859"}];
+const SUB_INFO = Object.fromEntries(SUBTOPICS.map(x => [x.key, x]));
+const SUB_MAP = {"loc-dp-112-1": "a", "loc-dp-112-2": "e", "loc-dp-112-3": "c", "loc-dp-112-4": "g", "loc-dp-111-1": "d", "loc-dp-111-2": "c", "loc-dp-111-3": "b", "loc-dp-111-4": "f", "loc-dp-111-5": "e", "loc-dp-110-1": "f", "loc-dp-110-2": "b", "loc-dp-110-3": "c", "loc-dp-110-4": "c", "loc-dp-110-5": "d", "loc-dp-110-6": "a", "loc-dp-109-1": "d", "loc-dp-109-2": "a", "loc-dp-109-3": "a", "loc-dp-109-4": "c", "loc-dp-108-1": "c", "loc-dp-108-2": "a", "loc-dp-108-3": "f", "loc-dp-108-4": "e", "loc-dp-107-1": "c", "loc-dp-107-2": "c", "loc-dp-107-3": "e", "loc-dp-107-4": "b", "loc-dp-107-5": "a", "loc-dp-107-6": "g", "loc-dp-106-1": "b", "loc-dp-106-2": "b", "loc-dp-106-3": "c", "loc-dp-106-4": "e", "loc-dp-105-1": "e", "loc-dp-105-2": "c", "loc-dp-105-3": "d", "loc-dp-105-4": "a", "loc-dp-105-5": "b", "loc-dp-104-1": "g", "loc-dp-104-2": "a", "loc-dp-104-3": "d", "loc-dp-104-4": "e", "loc-dp-103-1": "b", "loc-dp-103-2": "b", "loc-dp-103-3": "c", "loc-dp-103-4": "e", "loc-dp-103-5": "g", "loc-dp-102-1": "f", "loc-dp-102-2": "e", "loc-dp-102-3": "c", "loc-dp-102-4": "d", "loc-dp-102-5": "c", "loc-dp-102-6": "b", "loc-dp-101-1": "b", "loc-dp-101-2": "b", "loc-dp-101-3": "d", "loc-dp-101-4": "g"};
+const ALL_Q = [];
+ALL_YEARS.forEach(y => {
+  y.questions.forEach(q => {
+    ALL_Q.push({ ...q, sub: SUB_MAP[q.id] || '', year: y.year, subject: y.subject,
+                 yearNote: y.note || '', timeLimit: y.timeLimit });
+  });
+});
+
+let state = { mode: 'year', topic: 'all', search: '', terms: [] };
+const openIds = new Set();   // 使用者展開的題目卡（重新渲染後仍保留）
+
+
+/* ============================================================
+   搜尋 / 跳轉 / 換行 共用工具（新增）
+   ============================================================ */
+const BREAK_AT_PERIOD = true;   // 解析遇到「。」自動換行；不想要就改成 false
+
+/* 全形→半形、英文轉小寫；逐字處理，確保處理後長度不變（highlight 才對得準） */
+function normText(s) {
+  let out = '';
+  for (const ch of String(s)) {
+    const n = ch.normalize('NFKC').toLowerCase();
+    out += (n.length === ch.length) ? n : ch;
+  }
+  return out;
+}
+function parseTerms(raw) {
+  return [...new Set(normText(raw).split(/\s+/).filter(Boolean))];
+}
+/* 去掉資料裡用來排版的 HTML 標籤，避免搜 "br"、"code"、"strong" 時誤中 */
+function stripTags(s) {
+  return String(s == null ? '' : s)
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?(?:strong|code|sub|sup|u|em|b|i|pre)(?:\s[^>]*)?>/gi, '')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+}
+/* 每個關鍵字都必須出現（AND）；總分 = 各關鍵字命中的最高權重欄位之和 */
+function scoreFields(terms, fields) {
+  let total = 0;
+  for (const term of terms) {
+    let best = 0;
+    for (const f of fields) if (f.w > best && f.t.includes(term)) best = f.w;
+    if (!best) return 0;
+    total += best;
+  }
+  return total;
+}
+/* 在已渲染的 DOM 文字節點上標黃（不動 HTML 結構） */
+function highlightIn(root, terms) {
+  if (!root || !terms.length) return;
+  const nodes = [];
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let n;
+  while ((n = walker.nextNode())) {
+    if (!n.nodeValue.trim()) continue;
+    const p = n.parentNode;
+    if (p && p.closest && p.closest('svg, button, mark')) continue;
+    nodes.push(n);
+  }
+  nodes.forEach(node => {
+    const text = node.nodeValue, low = normText(text);
+    const ranges = [];
+    terms.forEach(t => {
+      let i = low.indexOf(t);
+      while (i !== -1) { ranges.push([i, i + t.length]); i = low.indexOf(t, i + t.length); }
+    });
+    if (!ranges.length) return;
+    ranges.sort((a, b) => a[0] - b[0]);
+    const merged = [ranges[0].slice()];
+    for (let k = 1; k < ranges.length; k++) {
+      const last = merged[merged.length - 1];
+      if (ranges[k][0] <= last[1]) last[1] = Math.max(last[1], ranges[k][1]);
+      else merged.push(ranges[k].slice());
+    }
+    const frag = document.createDocumentFragment();
+    let pos = 0;
+    merged.forEach(([s, e]) => {
+      if (s > pos) frag.appendChild(document.createTextNode(text.slice(pos, s)));
+      const m = document.createElement('mark');
+      m.className = 'hl';
+      m.textContent = text.slice(s, e);
+      frag.appendChild(m);
+      pos = e;
+    });
+    if (pos < text.length) frag.appendChild(document.createTextNode(text.slice(pos)));
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+
+/* 解析換行：遇到「。」就換行（已有 <br>、句尾、或後面接」』）” 的不重複換） */
+function breakSentences(s) {
+  if (!BREAK_AT_PERIOD) return s;
+  return String(s).replace(
+    /。(?!(?:<\/[a-z]+>)*(?:\s*<br\s*\/?>|\s*$|[」』）)”"']))/gi,
+    '。<br>'
+  );
+}
+
+/* ---------- 搜尋框綁定（支援中文輸入法，組字中不觸發搜尋） ---------- */
+function applySearch() {
+  const input = document.getElementById('searchInput');
+  state.search = input.value.trim();
+  state.terms = parseTerms(state.search);
+  render();
+}
+function clearSearch() {
+  const input = document.getElementById('searchInput');
+  input.value = '';
+  document.getElementById('searchClear').classList.remove('show');
+  applySearch();
+  input.focus();
+}
+function bindSearch() {
+  const input = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('searchClear');
+  let timer, composing = false;
+  const schedule = () => { clearTimeout(timer); timer = setTimeout(applySearch, 150); };
+  input.addEventListener('compositionstart', () => { composing = true; });
+  input.addEventListener('compositionend', () => { composing = false; schedule(); });
+  input.addEventListener('input', () => {
+    clearBtn.classList.toggle('show', input.value.length > 0);
+    if (!composing) schedule();
+  });
+  input.addEventListener('keydown', e => { if (e.key === 'Escape') clearSearch(); });
+  clearBtn.addEventListener('click', clearSearch);
+}
+
+/* ---------- 跳轉面板 ---------- */
+let JUMP_ITEMS = [];
+let JUMP_TITLE = '跳到年度';
+function buildJump() {
+  const fab = document.getElementById('jumpFab');
+  const grid = document.getElementById('jumpGrid');
+  document.getElementById('jumpTitle').textContent = JUMP_TITLE;
+  fab.classList.toggle('show', JUMP_ITEMS.length > 0);
+  grid.innerHTML = JUMP_ITEMS.map(it =>
+    `<button class="jump-item${it.done ? ' done' : ''}${it.open ? ' on' : ''}" onclick="jumpTo('${it.key}')">
+       <b>${it.label}</b><small>${it.sub || ''}</small></button>`
+  ).join('');
+  if (!JUMP_ITEMS.length) toggleJump(false);
+}
+function toggleJump(force) {
+  const p = document.getElementById('jumpPanel');
+  p.hidden = (typeof force === 'boolean') ? !force : !p.hidden;
+}
+function scrollToGroup(key) {
+  const el = document.getElementById('g-' + key);
+  if (!el) return;
+  const ctrl = document.querySelector('.controls');
+  const top = el.getBoundingClientRect().top + window.scrollY - (ctrl ? ctrl.offsetHeight : 0) - 10;
+  const root = document.documentElement;
+  root.style.scrollBehavior = 'auto';          // 跳轉用瞬間定位，避免長距離捲動動畫
+  window.scrollTo(0, Math.max(0, top));
+  root.style.scrollBehavior = '';
+}
+document.addEventListener('click', e => {
+  const p = document.getElementById('jumpPanel');
+  if (p && !p.hidden && !p.contains(e.target) && !e.target.closest('#jumpFab')) p.hidden = true;
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleJump(false); });
+
+/* ---------- 搜尋欄位索引 ---------- */
+function plainAnswer(md) {
+  return String(md || '')
+    .replace(/```(?:htmldiagram|tree)\n[\s\S]*?```/g, ' ')   // 圖表/樹狀圖的 HTML、JSON 不列入搜尋
+    .replace(/^#{1,4}\s+/gm, '')
+    .replace(/\*\*|`/g, '')
+    .replace(/\|/g, ' ')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?(?:strong|code|sub|sup|u|em|b|i)\s*>/gi, '');
+}
+function searchIndex(q) {
+  return q._ix || (q._ix = {
+    title: normText(stripTags(q.title)),
+    ques:  normText(stripTags(q.question)),
+    ans:   normText(plainAnswer(q.answer)),
+    code:  normText(q.code ? q.code.text : ''),
+    meta:  normText(q.year + ' ' + q.year + '年 第' + q.no + '題 ' +
+                    ((TOPIC_INFO[q.topic] || {}).name || '') + ' ' + (q.part || ''))
+  });
+}
+function searchFields(q) {
+  const ix = searchIndex(q);
+  return [{ t: ix.title, w: 10 }, { t: ix.ques, w: 6 }, { t: ix.ans, w: 3 },
+          { t: ix.code, w: 2 }, { t: ix.meta, w: 1 }];
+}
+function bodyHit(q) {
+  const ix = searchIndex(q);
+  return state.terms.some(t => ix.ques.includes(t) || ix.ans.includes(t) || ix.code.includes(t));
+}
+
+/* ---------- 輕量 Markdown 渲染 ---------- */
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderMarkdown(md) {
+  // 先抽出 ``` 程式碼/ASCII 區塊
+  const blocks = [];
+  md = md.replace(/```(\w*)\n([\s\S]*?)```/g, (m, lang, code) => {
+    blocks.push({ lang, code });
+    return `\u0000BLOCK${blocks.length - 1}\u0000`;
+  });
+
+  const lines = md.split('\n');
+  let html = '', i = 0;
+
+  while (i < lines.length) {
+    let line = lines[i];
+
+    // 區塊佔位
+    if (/^\u0000BLOCK\d+\u0000$/.test(line.trim())) {
+      const idx = parseInt(line.trim().match(/\d+/)[0]);
+      const b = blocks[idx];
+      // html-diagram 圍欄：直接輸出 HTML（用於圖表），不做跳脫
+      if (b.lang === 'htmldiagram') {
+        html += `<div class="html-diagram">${b.code}</div>`;
+      } else if (b.lang === 'tree') {
+        // tree 圍欄：JSON 樹資料 → 自動產生對齊的 SVG 樹狀圖
+        html += `<div class="html-diagram">${renderTreeSVG(b.code)}</div>`;
+      } else {
+        html += b.lang ? codeBlockHtml({ lang: b.lang, text: b.code.replace(/\n$/,'') }) : `<pre><code>${escapeHtml(b.code.replace(/\n$/,''))}</code></pre>`;
+      }
+      i++; continue;
+    }
+
+    // 表格
+    if (line.includes('|') && i + 1 < lines.length &&
+        /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[i+1])) {
+      const headers = line.split('|').map(c => c.trim()).filter(c => c !== '');
+      i += 2;
+      let rows = [];
+      while (i < lines.length && lines[i].includes('|')) {
+        const cells = lines[i].split('|').map(c => c.trim());
+        // 去除頭尾空白格
+        if (cells[0] === '') cells.shift();
+        if (cells[cells.length-1] === '') cells.pop();
+        rows.push(cells);
+        i++;
+      }
+      html += '<table><thead><tr>' +
+        headers.map(h => `<th>${inline(h)}</th>`).join('') +
+        '</tr></thead><tbody>' +
+        rows.map(r => '<tr>' +
+          r.map(c => `<td>${inline(c)}</td>`).join('') + '</tr>').join('') +
+        '</tbody></table>';
+      continue;
+    }
+
+    // 標題
+    let m;
+    if ((m = line.match(/^####\s+(.*)/))) { html += `<h4>${inline(m[1])}</h4>`; i++; continue; }
+    if ((m = line.match(/^###\s+(.*)/)))  { html += `<h4>${inline(m[1])}</h4>`; i++; continue; }
+
+    // 無序清單
+    if (/^\s*[-*]\s+/.test(line)) {
+      let items = [];
+      while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) {
+        items.push(lines[i].replace(/^\s*[-*]\s+/, ''));
+        i++;
+      }
+      html += '<ul>' + items.map(it => `<li>${breakSentences(inline(it))}</li>`).join('') + '</ul>';
+      continue;
+    }
+    // 有序清單
+    if (/^\s*\d+\.\s+/.test(line)) {
+      let items = [];
+      while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) {
+        items.push(lines[i].replace(/^\s*\d+\.\s+/, ''));
+        i++;
+      }
+      html += '<ol>' + items.map(it => `<li>${breakSentences(inline(it))}</li>`).join('') + '</ol>';
+      continue;
+    }
+
+    // 空行
+    if (line.trim() === '') { i++; continue; }
+
+    // 一般段落（合併連續非空行）
+    let para = [line];
+    i++;
+    while (i < lines.length && lines[i].trim() !== '' &&
+           !/^\s*[-*]\s+/.test(lines[i]) && !/^\s*\d+\.\s+/.test(lines[i]) &&
+           !/^#{3,4}\s/.test(lines[i]) &&
+           !/^\u0000BLOCK\d+\u0000$/.test(lines[i].trim()) &&
+           !(lines[i].includes('|') && i+1 < lines.length &&
+             /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[i+1]))) {
+      para.push(lines[i]); i++;
+    }
+    html += `<p>${para.map(l => breakSentences(inline(l))).join('<br>')}</p>`;
+  }
+  return html;
+}
+
+// 行內語法：**粗體**、`code`、<u>底線</u>
+function inline(s) {
+  // 先抽出 `code` 片段保護起來，其餘文字才做標籤還原與粗體
+  const codes = [];
+  s = s.replace(/`([^`]+)`/g, (m, c) => { codes.push(c); return '\u0001' + (codes.length - 1) + '\u0001'; });
+  s = escapeHtml(s);
+  // 還原資料中直接寫的白名單標籤（<u> 用於標示主鍵）
+  s = s.replace(/&lt;(\/?)(strong|code|sub|sup|u)&gt;/g, '<$1$2>');
+  s = s.replace(/&lt;br\s*\/?&gt;/g, '<br>');
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  s = s.replace(/\u0001(\d+)\u0001/g, (m, i) => '<code>' + escapeHtml(codes[+i]) + '</code>');
+  return s;
+}
+
+/* ---------- 二元樹 SVG 產生器 ---------- */
+// 輸入 JSON：{ "v":"根值", "l":{子樹}, "r":{子樹} }
+// l/r 可省略；空子樹可用 null。採對稱佈局：節點置於左右子樹正中央，
+// 單子節點向左/右偏移固定距離，使左右視覺平衡。
+function renderTreeSVG(json) {
+  let root;
+  try { root = JSON.parse(json.trim()); }
+  catch (e) { return `<pre><code>樹資料格式錯誤</code></pre>`; }
+
+  const NODE_R  = 21;       // 節點圓半徑
+  const H_UNIT  = 32;       // 水平基本單位
+  const V_GAP   = 76;       // 層與層垂直間距
+  const PAD     = 30;       // 邊界留白
+
+  // ── 遞迴佈局：回傳該子樹的 {width, rootX}（皆以 H_UNIT 為單位）──
+  // 做法：左子樹先排好佔據 [0, lw)，右子樹排在 [lw+gap, ...)，
+  //       父節點 x = 左右子根的中點；單子節點則讓父在子的對側偏移一格，
+  //       使整棵子樹仍保有對稱的視覺重心。
+  function layout(node, depth) {
+    node._d = depth;
+    const L = node.l, R = node.r;
+
+    // 葉節點：寬度 1，根在 0
+    if (!L && !R) {
+      node._w = 1;
+      node._x = 0;
+      return;
+    }
+
+    // 雙子：左右子樹各自佈局，並排放置
+    if (L && R) {
+      layout(L, depth + 1);
+      layout(R, depth + 1);
+      const gap = 1;                         // 左右子樹之間留 1 單位
+      // 左子樹佔 [0, L._w)，右子樹整體右移 L._w + gap
+      const shift = L._w + gap;
+      offset(R, shift);
+      node._w = L._w + gap + R._w;
+      node._x = (L._x + R._x) / 2;           // 父 = 左右子根中點
+      return;
+    }
+
+    // 單左子：左子樹佈局後，父放在「左子根右側一格」
+    if (L) {
+      layout(L, depth + 1);
+      node._x = L._x + 1;                    // 父在左子根右邊一格
+      // 整棵子樹寬度 = 左子樹寬度，但要確保涵蓋父節點 x
+      node._w = Math.max(L._w, node._x + 1);
+      return;
+    }
+
+    // 單右子：右子樹佈局後，父放在「右子根左側一格」
+    {
+      layout(R, depth + 1);
+      // 父在右子根左邊一格；若會 < 0 則整體右移
+      let px = R._x - 1;
+      if (px < 0) { offset(R, -px); px = 0; }
+      node._x = px;
+      node._w = Math.max(R._w + (px < 0 ? -px : 0), node._x + 1,
+                         R._x + 1);
+      return;
+    }
+  }
+  // 把以 node 為根的整棵子樹所有 _x 平移 dx
+  function offset(node, dx) {
+    if (!node) return;
+    node._x += dx;
+    offset(node.l, dx);
+    offset(node.r, dx);
+  }
+  layout(root, 0);
+
+  // 收集座標範圍
+  let minX = Infinity, maxX = -Infinity, maxDepth = 0;
+  (function scan(node) {
+    if (!node) return;
+    minX = Math.min(minX, node._x);
+    maxX = Math.max(maxX, node._x);
+    maxDepth = Math.max(maxDepth, node._d);
+    scan(node.l); scan(node.r);
+  })(root);
+
+  const width  = (maxX - minX) * H_UNIT + PAD * 2 + NODE_R * 2;
+  const height = maxDepth * V_GAP + PAD * 2 + NODE_R * 2;
+
+  function cx(node) { return PAD + NODE_R + (node._x - minX) * H_UNIT; }
+  function cy(node) { return PAD + NODE_R + node._d * V_GAP; }
+
+  // 第三遍：產生連線與節點
+  let edges = '', nodes = '';
+  function draw(node) {
+    if (!node) return;
+    const x = cx(node), y = cy(node);
+    ['l', 'r'].forEach(side => {
+      const child = node[side];
+      if (child) {
+        edges += `<line x1="${x}" y1="${y}" x2="${cx(child)}" y2="${cy(child)}" `
+               + `stroke="#3d4456" stroke-width="2"/>`;
+        draw(child);
+      }
+    });
+    const palette = {
+      accent: ['#fbf3f0', '#8a3324', '#8a3324'],
+      blue:   ['#eef4f7', '#1f5673', '#1f5673'],
+      gold:   ['#faf5e6', '#a07e2c', '#7a5d1e'],
+      dim:    ['#e8e3d6', '#b3a98f', '#8a8266'],
+      ink:    ['#1a1f2c', '#1a1f2c', '#ffffff'],
+    };
+    const [fill, stroke, txt] = palette[node.t] || palette.ink;
+    nodes += `<circle cx="${x}" cy="${y}" r="${NODE_R}" `
+           + `fill="${fill}" stroke="${stroke}" stroke-width="2.5"/>`
+           + `<text x="${x}" y="${y + 5}" text-anchor="middle" `
+           + `font-size="15" font-weight="700" fill="${txt}">`
+           + escapeHtml(String(node.v)) + `</text>`;
+  }
+  draw(root);
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" `
+       + `style="max-width:${width}px;width:100%;font-family:'Noto Sans TC',sans-serif;">`
+       + edges + nodes + `</svg>`;
+}
+
+/* ---------- 程式碼語法highlight（逐字元 tokenizer，不在 HTML 上做 regex）---------- */
+function highlightCode(code, lang) {
+  const L = String(lang || 'c').toLowerCase();
+  const KW = {
+    c: 'if else for while do return break continue switch case default goto struct union enum typedef sizeof static extern const volatile register define include ifdef ifndef endif NULL true false',
+    cpp: 'if else for while do return break continue switch case default goto struct union enum class public private protected virtual override final new delete this template typename namespace using typedef sizeof static extern const constexpr nullptr operator try catch throw friend inline explicit true false NULL cout cin endl std',
+    java: 'if else for while do return break continue switch case default class interface extends implements public private protected static final abstract new this super import package try catch finally throw throws synchronized instanceof null true false enum',
+    csharp: 'if else for while do return break continue switch case default class interface public private protected static readonly abstract virtual override new this base using namespace try catch finally throw null true false enum foreach in var',
+    python: 'def return if elif else for while import from as with try except finally class None True False and or not in is lambda break continue pass global nonlocal raise yield assert del print',
+    javascript: 'function return if else for while do let const var new class extends this try catch finally throw import export from null undefined true false typeof instanceof break continue switch case default async await console',
+    sql: 'SELECT FROM WHERE GROUP BY ORDER HAVING JOIN INNER LEFT RIGHT OUTER ON AS AND OR NOT IN IS NULL DISTINCT INSERT INTO VALUES UPDATE SET DELETE CREATE TABLE ALTER DROP PRIMARY KEY FOREIGN REFERENCES LIKE BETWEEN EXISTS UNION DESC ASC COUNT SUM AVG MIN MAX LIMIT CASE WHEN THEN ELSE END',
+    php: 'function return if else elseif for while do foreach as class extends implements interface new public private protected static abstract final echo print true false null require include require_once include_once isset empty die exit global use namespace try catch throw break continue switch case default',
+  };
+  KW.cs = KW.csharp; KW['c++'] = KW.cpp; KW.js = KW.javascript; KW.jsp = KW.java;
+  const TY = 'int char void long short float double bool boolean unsigned signed string String size_t auto byte object decimal var Integer Double Boolean vector map set list array INT VARCHAR CHAR DATE';
+  const kw = new Set((KW[L] !== undefined ? KW[L] : (L === 'html' ? '' : KW.c)).split(/\s+/));
+  const ty = new Set(TY.split(/\s+/));
+  const wrap = (cls, t) => `<span class="${cls}">${escapeHtml(t)}</span>`;
+  const isW = ch => /[A-Za-z0-9_$]/.test(ch);
+  const isD = ch => ch >= '0' && ch <= '9';
+  const hashCom = (L === 'python' || L === 'php');
+  let out = '', i = 0; const n = code.length;
+  while (i < n) {
+    const c = code[i], two = code.substr(i, 2);
+    if (two === '/*') { let j = code.indexOf('*/', i + 2); j = j === -1 ? n : j + 2; out += wrap('tok-com', code.slice(i, j)); i = j; continue; }
+    if (two === '//' || (two === '--' && L === 'sql') || (c === '#' && hashCom)) { let j = code.indexOf('\n', i); if (j === -1) j = n; out += wrap('tok-com', code.slice(i, j)); i = j; continue; }
+    // C/C++ 前置處理：#include、#define…（只在行首）
+    if (c === '#' && (L === 'c' || L === 'cpp' || L === 'c++') && /^[ \t]*$/.test(code.slice(code.lastIndexOf('\n', i - 1) + 1, i))) {
+      let j = i + 1; while (j < n && /[a-z]/.test(code[j])) j++;
+      out += wrap('tok-kw', code.slice(i, j)); i = j; continue;
+    }
+    if (c === '"' || c === "'") {
+      let j = i + 1;
+      while (j < n && code[j] !== c && code[j] !== '\n') { if (code[j] === '\\') j++; j++; }
+      j = Math.min(j + 1, n);
+      out += wrap('tok-str', code.slice(i, j)); i = j; continue;
+    }
+    if (isD(c) || (c === '.' && isD(code[i + 1] || ''))) {
+      let j = i; while (j < n && /[0-9A-Fa-fxX._]/.test(code[j]) && !(/[A-Za-z]/.test(code[j]) && !/[xXA-Fa-f]/.test(code[j]))) j++;
+      out += wrap('tok-num', code.slice(i, j)); i = j; continue;
+    }
+    if (isW(c)) {
+      let j = i; while (j < n && isW(code[j])) j++;
+      const w = code.slice(i, j);
+      let k = j; while (k < n && (code[k] === ' ' || code[k] === '\t')) k++;
+      if (kw.has(w) || (L === 'sql' && kw.has(w.toUpperCase()))) out += wrap('tok-kw', w);
+      else if (ty.has(w)) out += wrap('tok-typ', w);
+      else if (code[k] === '(' && !/^\d/.test(w)) out += wrap('tok-fn', w);
+      else out += escapeHtml(w);
+      i = j; continue;
+    }
+    out += escapeHtml(c); i++;
+  }
+  return out;
+}
+
+function codeBlockHtml(codeObj) {
+  if (!codeObj) return '';
+  const langLabel = {
+    c: 'C', cpp: 'C++', 'c++': 'C++', java: 'Java', python: 'Python', csharp: 'C#', cs: 'C#',
+    javascript: 'JavaScript', js: 'JavaScript', php: 'PHP', html: 'HTML', sql: 'SQL', jsp: 'JSP (Java)'
+  }[String(codeObj.lang).toLowerCase()] || String(codeObj.lang).toUpperCase();
+  return `<div class="code-block">
+    <div class="code-head">
+      <span class="dots"><span></span><span></span><span></span></span>
+      <span>${langLabel}</span>
+    </div>
+    <pre><code>${highlightCode(codeObj.text, codeObj.lang)}</code></pre>
+  </div>`;
+}
+
+/* ---------- 渲染題目卡 ---------- */
+/* QFENCE：考題中的程式碼圍欄 ``` 轉成程式碼區塊（避免原樣顯示、長行撐破版面） */
+function qFences(h) {
+  const unesc = t => t.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+  return h.replace(/```(\w*)\n([\s\S]*?)\n```/g, (m, lang, c) =>
+    lang ? '<div style="white-space:normal">' + codeBlockHtml({ lang, text: unesc(c) }) + '</div>'
+         : '<pre style="background:#2b303b;color:#eee;padding:.7rem 1rem;border-radius:6px;overflow-x:auto;margin:.5rem 0;font-size:.85rem;white-space:pre">' + c + '</pre>');
+}
+
+function bodyHtml(q) {
+  return `      <span class="section-label q">考題</span>
+      <div class="q-question">${qFences(escapeHtml(q.question)).replace(/&lt;u&gt;([\s\S]*?)&lt;\/u&gt;/g, '<u>$1</u>')}</div>
+      ${q.figure ? `<div class="q-figure" style="margin:.7rem 0">${q.figure}</div>` : ''}
+      <span class="section-label a">詳解</span>
+      <div class="q-answer">${renderMarkdown(q.answer)}</div>
+      ${q.code ? codeBlockHtml(q.code) : ''}`;
+}
+
+function fillBody(card) {
+  if (card.dataset.filled) return;
+  const q = ALL_Q.find(x => x.id === card.dataset.id);
+  if (!q) return;
+  const box = card.querySelector('.q-body');
+  box.innerHTML = bodyHtml(q);
+  card.dataset.filled = '1';
+  if (state.terms.length) highlightIn(box, state.terms);
+}
+
+function questionCard(q, forceOpen) {
+  const t = TOPIC_INFO[q.topic] || { name: q.topicName, cls: '' };
+  const sb = SUB_INFO[q.sub] || null;
+  const isOpen = openIds.has(q.id) || !!forceOpen;
+  return `<div class="q-card ${t.cls}${isOpen ? ' open' : ''}" data-id="${q.id}"${isOpen ? ' data-filled="1"' : ''}>
+    <div class="q-header" onclick="toggleCard(this)"${sb ? ` style="border-left-color:${sb.color}"` : ''}>
+      <div class="q-no">${q.no}</div>
+      <div class="q-headmain">
+        <div class="q-title">${escapeHtml(q.title)}</div>
+        <div class="q-tags">
+          <span class="tag tag-topic"${sb ? ` style="background:${sb.color}"` : ''}>${sb ? sb.name : t.name}</span>
+          <span class="tag tag-year">${q.year}年</span>
+          ${q.part ? `<span class="tag tag-part">${escapeHtml(q.part)}　第${q.no}題</span>` : ''}
+          <span class="tag tag-score">${q.score}分</span>
+        </div>
+      </div>
+      <div class="q-toggle">+</div>
+    </div>
+    <div class="q-body">${isOpen ? bodyHtml(q) : ''}</div>
+  </div>`;
+}
+
+/* ---------- 篩選 ---------- */
+function filterQuestions() {
+  let list = ALL_Q.filter(q => state.topic === 'all' || q.sub === state.topic);
+  if (state.terms.length) {
+    // 多關鍵字 AND、全形半形統一、依相關度排序（標題 > 考題 > 詳解 > 程式碼）
+    list = list
+      .map((q, i) => ({ q, i, s: scoreFields(state.terms, searchFields(q)) }))
+      .filter(x => x.s > 0)
+      .sort((a, b) => b.s - a.s || a.i - b.i)
+      .map(x => x.q);
+  }
+  return list;
+}
+
+/* ---------- 渲染主內容 ---------- */
+function updateSearchInfo(count, autoOpen) {
+  const el = document.getElementById('searchInfo');
+  if (!state.terms.length) { el.classList.remove('show'); el.innerHTML = ''; return; }
+  let h = `找到 <b>${count}</b> 題 ‧ 依相關度排序`;
+  if (count > 30) h += ' ‧ 結果較多，已不自動展開詳解，可再加關鍵字縮小範圍';
+  else h += ' ‧ 詳解中有符合的題目已自動展開並標黃';
+  el.innerHTML = h;
+  el.classList.add('show');
+}
+
+function render() {
+  const list = filterQuestions();
+  const wrap = document.getElementById('content');
+  const searching = state.terms.length > 0;
+  const autoOpen = searching && list.length <= 30;
+  JUMP_ITEMS = [];
+  updateSearchInfo(list.length, autoOpen);
+
+  if (list.length === 0) {
+    const msg = searching
+      ? `找不到符合「${escapeHtml(state.search)}」的題目。可改用較短的關鍵字；多個關鍵字請用空格分開。`
+      : '找不到符合條件的題目';
+    wrap.innerHTML = `<div class="empty">
+      <div class="big">📭</div>
+      <p>${msg}</p>
+    </div>`;
+    buildJump();
+    syncExpandBtn();
+    return;
+  }
+
+  let html = '';
+
+  if (searching) {
+    html += `<div class="group">
+      <div class="group-head">
+        <span class="g-badge">搜尋</span>
+        <span class="g-title">依相關度排序</span>
+        <span class="g-meta">共 ${list.length} 題</span>
+      </div>
+      ${list.map(q => questionCard(q, autoOpen && bodyHit(q))).join('')}
+    </div>`;
+  } else if (state.mode === 'year') {
+    JUMP_TITLE = '跳到年度';
+    // 依年度分組
+    const byYear = {};
+    list.forEach(q => { (byYear[q.year] = byYear[q.year] || []).push(q); });
+    const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+    years.forEach(yr => {
+      const qs = byYear[yr];
+      const yObj = ALL_YEARS.find(y => y.year === yr);
+      const totalScore = qs.reduce((s, q) => s + q.score, 0);
+      JUMP_ITEMS.push({ key: 'y' + yr, label: yr, sub: `${qs.length} 題` });
+      html += `<div class="group" id="g-y${yr}">
+        <div class="group-head">
+          <span class="g-badge">${yr} 年</span>
+          <span class="g-title">${escapeHtml(yObj.subject)}</span>
+          <span class="g-meta">
+            ${yObj.timeLimit ? '考試時間 ' + yObj.timeLimit + '<br>' : ''}
+            本頁 ${qs.length} 題 / ${totalScore} 分
+          </span>
+        </div>
+        ${yObj.note ? `<div class="group-note">※ ${escapeHtml(yObj.note)}</div>` : ''}
+        ${qs.map(q => questionCard(q)).join('')}
+      </div>`;
+    });
+  } else {
+    JUMP_TITLE = '跳到主題';
+    // 依主題（子主題）分組
+    const bySub = {};
+    list.forEach(q => { (bySub[q.sub] = bySub[q.sub] || []).push(q); });
+    SUBTOPICS.forEach(st => {
+      const qs = bySub[st.key];
+      if (!qs || qs.length === 0) return;
+      qs.sort((a, b) => Number(b.year) - Number(a.year));
+      JUMP_ITEMS.push({ key: 't' + st.key, label: st.name, sub: `${qs.length} 題` });
+      html += `<div class="group" id="g-t${st.key}">
+        <div class="group-head">
+          <span class="g-badge" style="background:${st.color}">${st.name}</span>
+          <span class="g-title">相似概念彙整</span>
+          <span class="g-meta">共 ${qs.length} 題<br>跨 ${new Set(qs.map(q => q.year)).size} 個年度</span>
+        </div>
+        ${qs.map(q => questionCard(q)).join('')}
+      </div>`;
+    });
+  }
+
+  wrap.innerHTML = html;
+  if (searching) highlightIn(wrap, state.terms);
+  buildJump();
+  syncExpandBtn();
+}
+
+function jumpTo(key) {
+  toggleJump(false);
+  scrollToGroup(key);
+}
+
+/* ---------- 互動 ---------- */
+function toggleCard(headerEl) {
+  const card = headerEl.parentElement;
+  const open = card.classList.toggle('open');
+  if (open) fillBody(card);
+  if (open) openIds.add(card.dataset.id); else openIds.delete(card.dataset.id);
+  syncExpandBtn();
+}
+
+function setMode(mode) {
+  state.mode = mode;
+  document.querySelectorAll('.mode-switch button').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === mode);
+  });
+  render();
+}
+
+function updateStatBar() {
+  const scope = ALL_Q;
+  const yearSet = new Set(scope.map(q => q.year));
+  document.getElementById('statYear').textContent = yearSet.size;
+  document.getElementById('statQ').textContent = scope.length;
+  document.getElementById('statTopic').textContent = new Set(scope.map(q => q.sub)).size;
+}
+
+function rebuildTopicChips() {
+  const scope = ALL_Q;
+  const cnt = {};
+  scope.forEach(q => cnt[q.sub] = (cnt[q.sub] || 0) + 1);
+  const filterRow = document.getElementById('filterRow');
+  let chips = `<button class="chip ${state.topic === 'all' ? 'active' : ''}" data-topic="all"
+    onclick="setTopic('all')">全部<span class="c-count">${scope.length}</span></button>`;
+  SUBTOPICS.forEach(st => {
+    const n = cnt[st.key] || 0;
+    if (!n) return;
+    chips += `<button class="chip ${state.topic === st.key ? 'active' : ''}" data-topic="${st.key}"
+      onclick="setTopic('${st.key}')">${st.name}<span class="c-count">${n}</span></button>`;
+  });
+  filterRow.innerHTML = chips;
+}
+
+function setTopic(topic) {
+  state.topic = topic;
+  document.querySelectorAll('.chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.topic === topic);
+  });
+  render();
+}
+
+/* 按鈕文字依「目前畫面上的卡片是否都已展開」決定，不再用獨立旗標 */
+function syncExpandBtn() {
+  const cards = [...document.querySelectorAll('.q-card')];
+  const allOpen = cards.length > 0 && cards.every(c => c.classList.contains('open'));
+  document.getElementById('btnExpand').textContent = allOpen ? '全部收合' : '全部展開';
+}
+function toggleExpandAll() {
+  const cards = [...document.querySelectorAll('.q-card')];
+  const allOpen = cards.length > 0 && cards.every(c => c.classList.contains('open'));
+  cards.forEach(c => {
+    c.classList.toggle('open', !allOpen);
+    if (!allOpen) fillBody(c);
+    if (allOpen) openIds.delete(c.dataset.id); else openIds.add(c.dataset.id);
+  });
+  syncExpandBtn();
+}
+
+/* ---------- 初始化 ---------- */
+function init() {
+  updateStatBar();
+  rebuildTopicChips();
+
+  bindSearch();
+
+  // 回頂部
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 600);
+  });
+
+  render();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

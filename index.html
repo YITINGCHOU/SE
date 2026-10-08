@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的地方特考備考基地</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #1a1f2c;
+            padding: 48px 20px 64px;
+        }
+        .wrap { max-width: 720px; margin: 0 auto; }
+        h1 { text-align: center; color: #333; margin: 0 0 6px; }
+        .lead { text-align: center; color: #5a6275; font-size: 14px; margin: 0 0 36px; }
+
+        .level {
+            background: #fff;
+            border: 1px solid #dfe3ea;
+            border-radius: 12px;
+            padding: 20px 22px 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .level h2 { margin: 0 0 4px; font-size: 20px; }
+        .level .desc { margin: 0 0 16px; color: #5a6275; font-size: 13.5px; line-height: 1.6; }
+
+        .btn-row { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+        .btn {
+            display: block;
+            padding: 14px 18px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .btn-row .btn { min-height: 76px; }
+        .btn:hover { transform: translateY(-3px); }
+        .btn b { display: block; font-size: 17px; }
+        .btn small { display: block; margin-top: 3px; font-size: 12.5px; opacity: .9; }
+
+        /* 刷題系統按鈕顏色（藍色） */
+        .btn-quiz { background-color: #007bff; }
+        /* 詳解按鈕顏色（綠色） */
+        .btn-solution { background-color: #28a745; }
+
+        /* 三等：各科目的專屬色（與各科詳解頁內的科目標籤同色） */
+        .btn-net { background-color: #b5651d; }
+        .btn-mis { background-color: #4a5859; }
+        .btn-ds  { background-color: #6a4c93; }
+        .btn-dp  { background-color: #1f5673; }
+        .btn-db  { background-color: #1f5673; }
+        .btn-sa  { background-color: #2f6b4f; }
+        .btn-pl  { background-color: #8a3324; }
+        .btn-soon.btn-net { border-left: 6px solid #b5651d; }
+        .btn-soon.btn-mis { border-left: 6px solid #4a5859; }
+
+        /* 尚未上線 */
+        .btn-soon {
+            background: #e6e9ef; color: #7b8498; box-shadow: none;
+            cursor: default; pointer-events: none;
+        }
+        .tag-soon {
+            display: inline-block; margin-left: 8px; padding: 1px 8px;
+            font-size: 12px; font-weight: 500; border-radius: 999px;
+            background: #fff3cd; color: #8a6d1d; vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+
+    <h1>📚 地方特考 準備中心</h1>
+    <p class="lead">特種考試地方政府公務人員及離島地區公務人員考試 ‧ 資訊處理</p>
+
+    <section class="level">
+        <h2>三等考試</h2>
+        <p class="desc">三等只考申論題，每題附參考解答（非官方標準答案）。現行為資通網路與安全、資訊管理、資料結構、資料庫應用四科，另收錄舊制的系統分析與設計、程式設計兩科，已全數上線。</p>
+        <div class="btn-row">
+            <a href="solutions-3-net.html" class="btn btn-net">
+                <b>🌐 資通網路與安全</b>
+                <small>102～114 年 ‧ 69 題 申論題詳解</small>
+            </a>
+            <a href="solutions-3-mis.html" class="btn btn-mis">
+                <b>📚 資訊管理</b>
+                <small>102～114 年 ‧ 52 題 申論題詳解</small>
+            </a>
+            <a href="solutions-3-ds.html" class="btn btn-ds">
+                <b>🌲 資料結構</b>
+                <small>102～114 年 ‧ 64 題 申論題詳解</small>
+            </a>
+            <a href="solutions-3-db.html" class="btn btn-db">
+                <b>🗄️ 資料庫應用</b>
+                <small>102～114 年 ‧ 57 題 申論題詳解</small>
+            </a>
+            <a href="solutions-3-sa.html" class="btn btn-sa">
+                <b>🧩 系統分析與設計（舊制）</b>
+                <small>102～112 年 ‧ 44 題 申論題詳解</small>
+            </a>
+            <a href="solutions-3-pl.html" class="btn btn-pl">
+                <b>💻 程式設計（舊制）</b>
+                <small>102～112 年 ‧ 57 題 申論題詳解</small>
+            </a>
+        </div>
+    </section>
+
+    <section class="level">
+        <h2>四等考試</h2>
+        <p class="desc">計算機概要為單選題（附官方標準答案與解析）；其餘為申論題，附參考解答（非官方標準答案）。標示「舊制」的科目近年已不考，可供複習。</p>
+        <div class="btn-row">
+            <!-- 這裡的 href 必須和英文檔名一模一樣 -->
+            <a href="quiz-system.html" class="btn btn-quiz">
+                <b>🎯 計算機概要</b>
+                <small>101～114 年 ‧ 560 題 選擇題刷題系統</small>
+            </a>
+            <a href="solutions.html" class="btn btn-solution">
+                <b>📖 資通網路與安全概要</b>
+                <small>113～114 年 ‧ 8 題 申論題詳解（現行規格）</small>
+            </a>
+            <a href="solutions-prog.html" class="btn btn-ds">
+                <b>💻 程式設計概要</b>
+                <small>101～114 年 ‧ 73 題 申論題詳解</small>
+            </a>
+            <a href="solutions-mis.html" class="btn btn-mis">
+                <b>📚 資訊管理概要（舊制）</b>
+                <small>101～112 年 ‧ 54 題 ‧ 可供高考資訊管理參考</small>
+            </a>
+            <a href="solutions-dp.html" class="btn btn-dp">
+                <b>🗄️ 資料處理概要（舊制）</b>
+                <small>101～112 年 ‧ 57 題 ‧ SQL 採 MySQL 語法</small>
+            </a>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>
