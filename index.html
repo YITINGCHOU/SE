@@ -69,6 +69,21 @@
             font-size: 12px; font-weight: 500; border-radius: 999px;
             background: #fff3cd; color: #8a6d1d; vertical-align: middle;
         }
+        /* 115 預測模擬卷 */
+        .btn-mock { background-color: #0056b3; }
+        .pred { margin: 14px 0 0; }
+        .pred details {
+            border: 1px solid #e3e7ee; border-radius: 8px; margin-top: 8px; background: #fafbfc;
+        }
+        .pred summary {
+            cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 14.5px; list-style: none;
+        }
+        .pred summary::-webkit-details-marker { display: none; }
+        .pred summary::before { content: "▸ "; color: #7b8498; }
+        .pred details[open] summary::before { content: "▾ "; }
+        .pred .body { padding: 0 14px 12px; font-size: 13px; line-height: 1.75; color: #3d4455; }
+        .pred .body p { margin: 6px 0; }
+        .pred .body b { color: #1a1f2c; }
     </style>
 </head>
 <body>
@@ -76,6 +91,52 @@
 
     <h1>📚 地方特考 準備中心</h1>
     <p class="lead">特種考試地方政府公務人員及離島地區公務人員考試 ‧ 資訊處理</p>
+
+    <section class="level">
+        <h2>115 年預測模擬卷（三等）</h2>
+        <p class="desc">依地方特考三等 102～114 年考古題，並參考 115 年高考、普考、關務的命題方向編寫，非官方試題。四科各 A～D 四份，每份 4 題共 100 分，可「依試卷」或「依科目」切換；每題詳解最後附出題依據。</p>
+        <div class="btn-row">
+            <a href="solutions-3-mock115.html" class="btn btn-mock">
+                <b>📝 115 年預測模擬卷</b>
+                <small>資通網路與安全 ‧ 資訊管理 ‧ 資料結構 ‧ 資料庫應用 ‧ 共 64 題詳解</small>
+            </a>
+        </div>
+        <div class="pred">
+            <p class="desc" style="margin:0"><b>各科 115 年出題方向</b>（A 卷最接近預測、B 卷近 5 年高頻、C 卷計算與實作、D 卷經典打底）</p>
+            <details>
+                <summary>🌐 資通網路與安全</summary>
+                <div class="body">
+                    <p><b>近年趨勢：</b>112 年改名後資安比重升高；114 年回到網路與資安各半（ARP、子網路切割、SSDLC、雲端）。常借用同年先考的高普考、關務，以及前一年關務的考點。</p>
+                    <p><b>高機率：</b>DHCP／ARP／DNS 連網流程、VLSM 與 VLAN、數位簽章與 PKI、TCP 交握與重傳、CSMA/CD 與 CSMA/CA、DMZ 防火牆政策、零信任與多因素驗證、委外與供應鏈資安、5G。</p>
+                    <p><b>低機率（地方三等從未考過）：</b>SDN、NAT、VPN／IPsec、正反向代理、去識別化、EDR／MDR、SPF／DKIM。其中 NAT 在高考、關務、地方四等都出現過，仍可準備到子題程度。</p>
+                </div>
+            </details>
+            <details>
+                <summary>📚 資訊管理</summary>
+                <div class="body">
+                    <p><b>近年趨勢：</b>112 年改名後集中在三條線：軟體開發與專案管理（瀑布式、開發模式選擇、風險管理、敏捷）、政府資安法規（防護基準、事件通報）、新興議題（決策支援與資料探勘、雙軸轉型、AI 治理）。多為承辦人情境題。</p>
+                    <p><b>高機率：</b>敏捷、開發模式選擇、專案風險與需求管理、資通安全管理法及子法、委外管理、個資保護、生成式 AI 治理、數位轉型、決策支援與商業智慧、備份與營運持續。</p>
+                    <p><b>低機率（地方三等從未考過）：</b>價值鏈、CRM／SCM、知識管理、資料治理、零信任（只在網路科考過）、RAG／MCP、深度偽造、微服務、掙值與要徑計算、ITIL／COBIT。</p>
+                </div>
+            </details>
+            <details>
+                <summary>🌲 資料結構</summary>
+                <div class="body">
+                    <p><b>近年趨勢：</b>以「給數據逐步追蹤＋說明複雜度」為主。和高考、關務只在觀念層級重疊，沒有整題沿用；115 高考的平方探查雜湊、Dijkstra 變形，和關務的紅黑樹、Θ 迴圈分析最可能被延伸。</p>
+                    <p><b>高機率：</b>雜湊開放定址、紅黑樹／AVL／B-tree、堆積與優先佇列、BST、運算式與堆疊、圖的走訪、最短路徑與最小生成樹、排序追蹤、遞迴式與呼叫次數。</p>
+                    <p><b>低機率（地方三等從未考過）：</b>跳躍串列、Trie、伸展樹、左傾／二項式堆積、B+ 樹、Union-Find 路徑壓縮、貪婪法與動態規劃（如 LCS）。</p>
+                </div>
+            </details>
+            <details>
+                <summary>🗄️ 資料庫應用</summary>
+                <div class="body">
+                    <p><b>近年趨勢：</b>113、114 年題型固定：完整性限制判斷（20～25 分）、三小題 SQL（30 分）、ER 圖（20 分），再加正規化或新興技術。同年稍早的關務三等風格最接近，115 關務考了 View、以資料判斷 BCNF、ETL。</p>
+                    <p><b>高機率：</b>CREATE TABLE 與 DML 的限制判斷、視觀表、SQL 分組／NOT EXISTS／除法、ER 圖（弱實體、多值、複合屬性）、BCNF 與資料異常、閉包與候選鍵、交易異常與鎖定、NoSQL、資料倉儲。</p>
+                    <p><b>低機率（地方三等從未考過）：</b>查詢最佳化與 Join 成本、CAP／BASE、資料字典、OLAP 操作、B+ 樹插入分裂、衝突可序列化、SQL Injection 與 GRANT、觸發程序、兩階段提交。</p>
+                </div>
+            </details>
+        </div>
+    </section>
 
     <section class="level">
         <h2>三等考試</h2>
